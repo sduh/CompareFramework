@@ -1,18 +1,21 @@
 Option Explicit
 
-' CompareFramework V0.5
+' CompareFramework V0.6
 ' LibreOffice Basic module
 '
 ' Main macro:
 '   ComparerToutesLesFeuilles
 '
-' V0.5:
-'   - keeps V0.4 detailed report and statistics
-'   - adds optional Compare_Config sheet support
-'   - supports ignored columns through config key IGNORE_COLUMNS
-'   - supports comparison options IGNORE_CASE, NORMALIZE_SPACES and IGNORE_EMPTY_CHANGES
-'   - supports custom ID aliases through config key ID_ALIASES
-'   - writes the active configuration in the statistics sheet
+' V0.6:
+'   - keeps indexed comparison with binary search
+'   - compares all matching columns dynamically by header name
+'   - reports old value -> new value for every changed cell
+'   - reports added/removed columns and rows
+'   - adds per-pair statistics in a dedicated sheet
+'   - adds Compare_Config configuration sheet
+'   - supports ignored columns, ID aliases, case-insensitive comparison,
+'     space normalization and optional empty-change filtering
+'   - formats report with colors, frozen header row and optional autofilter
 '
 ' Expected conventions:
 '   - header row is row 1
@@ -23,7 +26,7 @@ Option Explicit
 '   - if no pair is found and the document has exactly two non-report sheets,
 '     those two sheets are compared.
 
-Const CF_VERSION As String = "0.5"
+Const CF_VERSION As String = "0.6"
 Const CF_REPORT_SHEET As String = "Rapport_Comparaison"
 Const CF_STATS_SHEET As String = "Stats_Comparaison"
 Const CF_CONFIG_SHEET As String = "Compare_Config"
@@ -49,6 +52,12 @@ Const CF_COL_NEW_VALUE As Long = 8
 Const CF_COL_MESSAGE As Long = 9
 Const CF_LAST_REPORT_COL As Long = 9
 
+Dim gIgnoreColumns As String
+Dim gIdAliases As String
+Dim gIgnoreCase As Boolean
+Dim gNormalizeSpaces As Boolean
+Dim gIgnoreEmptyChanges As Boolean
+
 Sub ComparerToutesLesFeuilles()
     Dim oDoc As Object, oReport As Object, oStats As Object
     Dim reportRow As Long, statsRow As Long, pairCount As Long
@@ -59,12 +68,12 @@ Sub ComparerToutesLesFeuilles()
 
     oReport = PrepareSheet(oDoc, CF_REPORT_SHEET)
     oStats = PrepareSheet(oDoc, CF_STATS_SHEET)
+    LoadCompareConfig oDoc
 
     reportRow = 0
     statsRow = 0
     WriteReportHeader oReport, reportRow
     WriteStatsHeader oStats, statsRow
-    EnsureDefaultConfigSheet oDoc
     reportRow = reportRow + 1
     statsRow = statsRow + 1
 
@@ -75,7 +84,6 @@ Sub ComparerToutesLesFeuilles()
     End If
 
     WriteGlobalSummary oStats, statsRow, pairCount, totalAdded, totalRemoved, totalChangedRows, totalChangedCells, totalDuplicates, totalIssues
-    WriteActiveConfig oStats, statsRow
     FormatReport oReport, reportRow - 1
     FormatStats oStats, statsRow + 8
 
@@ -166,7 +174,7 @@ Sub CompareSheetPair(oOld As Object, oNew As Object, oReport As Object, ByRef re
     newIdCol = FindIdColumn(newHeaders)
 
     If oldIdCol < 0 Or newIdCol < 0 Then
-        WriteReportRow oReport, reportRow, pairName, "", CF_STATUS_ERROR, "ID", "", "", "", "", "Colonne ID introuvable. Noms acceptes : ID, Identifiant, Code, Reference, Ref, Cle, Key."
+        WriteReportRow oReport, reportRow, pairName, "", CF_STATUS_ERROR, "ID", "", "", "", "", "Colonne ID introuvable. Verifier ID_ALIASES dans Compare_Config."
         reportRow = reportRow + 1
         pairIssues = pairIssues + 1
         totalIssues = totalIssues + 1
@@ -226,6 +234,7 @@ End Sub
 Function CompareRowCellsDetailed(oOld As Object, oNew As Object, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long
     Dim i As Long, newCol As Long
     Dim headerName As String, oldValue As String, newValue As String
+    Dim oldCompare As String, newCompare As String
     Dim changedCells As Long
 
     changedCells = 0
@@ -233,15 +242,19 @@ Function CompareRowCellsDetailed(oOld As Object, oNew As Object, oldHeaders As V
     For i = LBound(oldHeaders) To UBound(oldHeaders)
         headerName = Trim(CStr(oldHeaders(i)))
         If headerName <> "" Then
-            If IsIgnoredColumn(headerName) = False Then
+            If ColumnIsIgnored(headerName) = False Then
                 newCol = HeaderIndex(newHeaders, headerName)
                 If newCol >= 0 Then
                     oldValue = CellText(oOld, i, oldRow)
                     newValue = CellText(oNew, newCol, newRow)
-                    If ValuesAreDifferent(oldValue, newValue) Then
-                        WriteReportRow oReport, reportRow, pairName, idValue, CF_STATUS_CHANGED, headerName, RowNumberText(oldRow), RowNumberText(newRow), oldValue, newValue, "Valeur differente."
-                        reportRow = reportRow + 1
-                        changedCells = changedCells + 1
+                    oldCompare = NormalizeCompareValue(oldValue)
+                    newCompare = NormalizeCompareValue(newValue)
+                    If oldCompare <> newCompare Then
+                        If IgnoreThisEmptyChange(oldCompare, newCompare) = False Then
+                            WriteReportRow oReport, reportRow, pairName, idValue, CF_STATUS_CHANGED, headerName, RowNumberText(oldRow), RowNumberText(newRow), oldValue, newValue, "Valeur differente."
+                            reportRow = reportRow + 1
+                            changedCells = changedCells + 1
+                        End If
                     End If
                 End If
             End If
@@ -257,12 +270,10 @@ Sub ReportColumnDifferences(oldHeaders As Variant, newHeaders As Variant, oRepor
     For i = LBound(oldHeaders) To UBound(oldHeaders)
         headerName = Trim(CStr(oldHeaders(i)))
         If headerName <> "" Then
-            If IsIgnoredColumn(headerName) = False Then
-                If HeaderIndex(newHeaders, headerName) < 0 Then
-                    WriteReportRow oReport, reportRow, pairName, "", CF_STATUS_REMOVED, headerName, "", "", "Colonne presente", "", "Colonne absente dans la nouvelle feuille."
-                    reportRow = reportRow + 1
-                    pairIssues = pairIssues + 1
-                End If
+            If ColumnIsIgnored(headerName) = False And HeaderIndex(newHeaders, headerName) < 0 Then
+                WriteReportRow oReport, reportRow, pairName, "", CF_STATUS_REMOVED, headerName, "", "", "Colonne presente", "", "Colonne absente dans la nouvelle feuille."
+                reportRow = reportRow + 1
+                pairIssues = pairIssues + 1
             End If
         End If
     Next i
@@ -270,12 +281,10 @@ Sub ReportColumnDifferences(oldHeaders As Variant, newHeaders As Variant, oRepor
     For i = LBound(newHeaders) To UBound(newHeaders)
         headerName = Trim(CStr(newHeaders(i)))
         If headerName <> "" Then
-            If IsIgnoredColumn(headerName) = False Then
-                If HeaderIndex(oldHeaders, headerName) < 0 Then
-                    WriteReportRow oReport, reportRow, pairName, "", CF_STATUS_ADDED, headerName, "", "", "", "Colonne presente", "Colonne absente dans l'ancienne feuille."
-                    reportRow = reportRow + 1
-                    pairIssues = pairIssues + 1
-                End If
+            If ColumnIsIgnored(headerName) = False And HeaderIndex(oldHeaders, headerName) < 0 Then
+                WriteReportRow oReport, reportRow, pairName, "", CF_STATUS_ADDED, headerName, "", "", "", "Colonne presente", "Colonne absente dans l'ancienne feuille."
+                reportRow = reportRow + 1
+                pairIssues = pairIssues + 1
             End If
         End If
     Next i
@@ -390,7 +399,7 @@ Function FindIdColumn(headers As Variant) As Long
     Dim i As Long, h As String
     For i = LBound(headers) To UBound(headers)
         h = NormalizeHeader(CStr(headers(i)))
-        If h = "id" Or h = "identifiant" Or h = "code" Or h = "reference" Or h = "ref" Or h = "cle" Or h = "key" Or IsConfiguredIdAlias(h) Then
+        If TokenInList(h, gIdAliases) Then
             FindIdColumn = i
             Exit Function
         End If
@@ -586,7 +595,7 @@ Function NormalizeHeader(valueText As String) As String
 End Function
 
 Function IsReportOrStatsSheet(sheetName As String) As Boolean
-    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or LCase(sheetName) = LCase(CF_STATS_SHEET) Or LCase(sheetName) = LCase(CF_CONFIG_SHEET))
+    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or LCase(sheetName) = LCase(CF_STATS_SHEET))
 End Function
 
 Function IsOldSheetName(sheetName As String) As Boolean
@@ -623,147 +632,77 @@ Function EndsWith(valueText As String, suffixText As String) As Boolean
 End Function
 
 
-Function ValuesAreDifferent(oldValue As String, newValue As String) As Boolean
-    Dim leftValue As String, rightValue As String
+Sub LoadCompareConfig(oDoc As Object)
+    Dim oSheet As Object
+    Dim lastRow As Long, r As Long
+    Dim keyName As String, keyValue As String
 
-    If ConfigFlag("IGNORE_EMPTY_CHANGES", False) Then
-        If Trim(oldValue) = "" Or Trim(newValue) = "" Then
-            ValuesAreDifferent = False
-            Exit Function
-        End If
-    End If
+    gIgnoreColumns = ""
+    gIdAliases = "id;identifiant;code;reference;ref;cle;key"
+    gIgnoreCase = False
+    gNormalizeSpaces = True
+    gIgnoreEmptyChanges = False
 
-    leftValue = NormalizeValueForCompare(oldValue)
-    rightValue = NormalizeValueForCompare(newValue)
-    ValuesAreDifferent = (leftValue <> rightValue)
-End Function
-
-Function NormalizeValueForCompare(valueText As String) As String
-    Dim s As String
-    s = valueText
-
-    If ConfigFlag("NORMALIZE_SPACES", True) Then
-        s = CleanSpaces(s)
-    End If
-
-    If ConfigFlag("IGNORE_CASE", False) Then
-        s = LCase(s)
-    End If
-
-    NormalizeValueForCompare = s
-End Function
-
-Function CleanSpaces(valueText As String) As String
-    Dim s As String
-    s = Trim(valueText)
-    Do While InStr(s, "  ") > 0
-        s = Replace(s, "  ", " ")
-    Loop
-    CleanSpaces = s
-End Function
-
-Function IsIgnoredColumn(headerName As String) As Boolean
-    IsIgnoredColumn = ValueInConfigList("IGNORE_COLUMNS", headerName)
-End Function
-
-Function IsConfiguredIdAlias(normalizedHeader As String) As Boolean
-    IsConfiguredIdAlias = ValueInConfigList("ID_ALIASES", normalizedHeader)
-End Function
-
-Function ValueInConfigList(keyName As String, valueText As String) As Boolean
-    Dim rawList As String, parts As Variant
-    Dim i As Long, target As String, item As String
-
-    rawList = GetConfigValue(keyName, "")
-    target = NormalizeHeader(valueText)
-    ValueInConfigList = False
-
-    If Trim(rawList) = "" Then Exit Function
-
-    parts = Split(rawList, ";")
-    For i = LBound(parts) To UBound(parts)
-        item = NormalizeHeader(CStr(parts(i)))
-        If item = target Then
-            ValueInConfigList = True
-            Exit Function
-        End If
-    Next i
-End Function
-
-Function ConfigFlag(keyName As String, defaultValue As Boolean) As Boolean
-    Dim rawValue As String, fallback As String
-
-    If defaultValue Then
-        fallback = "TRUE"
-    Else
-        fallback = "FALSE"
-    End If
-
-    rawValue = LCase(Trim(GetConfigValue(keyName, fallback)))
-
-    ConfigFlag = defaultValue
-    If rawValue = "true" Or rawValue = "yes" Or rawValue = "oui" Or rawValue = "1" Or rawValue = "vrai" Then ConfigFlag = True
-    If rawValue = "false" Or rawValue = "no" Or rawValue = "non" Or rawValue = "0" Or rawValue = "faux" Then ConfigFlag = False
-End Function
-
-Function GetConfigValue(keyName As String, defaultValue As String) As String
-    On Error GoTo MissingConfig
-    Dim oDoc As Object, oSheet As Object
-    Dim lastRow As Long, r As Long, currentKey As String
-
-    oDoc = ThisComponent
-    If oDoc.Sheets.hasByName(CF_CONFIG_SHEET) = False Then
-        GetConfigValue = defaultValue
-        Exit Function
-    End If
-
-    oSheet = oDoc.Sheets.getByName(CF_CONFIG_SHEET)
+    oSheet = EnsureConfigSheet(oDoc)
     lastRow = LastUsedRow(oSheet)
 
     For r = 1 To lastRow
-        currentKey = UCase(Trim(CellText(oSheet, 0, r)))
-        If currentKey = UCase(Trim(keyName)) Then
-            GetConfigValue = CellText(oSheet, 1, r)
-            Exit Function
-        End If
+        keyName = UCase(Trim(CellText(oSheet, 0, r)))
+        keyValue = Trim(CellText(oSheet, 1, r))
+        Select Case keyName
+            Case "IGNORE_COLUMNS"
+                gIgnoreColumns = keyValue
+            Case "ID_ALIASES"
+                If keyValue <> "" Then gIdAliases = NormalizeList(keyValue)
+            Case "IGNORE_CASE"
+                gIgnoreCase = ToBoolean(keyValue)
+            Case "NORMALIZE_SPACES"
+                gNormalizeSpaces = ToBoolean(keyValue)
+            Case "IGNORE_EMPTY_CHANGES"
+                gIgnoreEmptyChanges = ToBoolean(keyValue)
+        End Select
     Next r
+End Sub
 
-MissingConfig:
-    GetConfigValue = defaultValue
-    On Error GoTo 0
+Function EnsureConfigSheet(oDoc As Object) As Object
+    Dim oSheets As Object, oSheet As Object
+    oSheets = oDoc.Sheets
+
+    If oSheets.hasByName(CF_CONFIG_SHEET) Then
+        oSheet = oSheets.getByName(CF_CONFIG_SHEET)
+    Else
+        oSheets.insertNewByName(CF_CONFIG_SHEET, oSheets.getCount())
+        oSheet = oSheets.getByName(CF_CONFIG_SHEET)
+        WriteDefaultConfig oSheet
+    End If
+
+    EnsureConfigSheet = oSheet
 End Function
 
-Sub EnsureDefaultConfigSheet(oDoc As Object)
-    Dim oSheet As Object
-
-    If oDoc.Sheets.hasByName(CF_CONFIG_SHEET) Then Exit Sub
-
-    oDoc.Sheets.insertNewByName(CF_CONFIG_SHEET, oDoc.Sheets.Count)
-    oSheet = oDoc.Sheets.getByName(CF_CONFIG_SHEET)
-
-    SetCell oSheet, 0, 0, "Cle"
+Sub WriteDefaultConfig(oSheet As Object)
+    SetCell oSheet, 0, 0, "Parametre"
     SetCell oSheet, 1, 0, "Valeur"
     SetCell oSheet, 2, 0, "Description"
 
     SetCell oSheet, 0, 1, "IGNORE_COLUMNS"
     SetCell oSheet, 1, 1, ""
-    SetCell oSheet, 2, 1, "Colonnes a ignorer, separees par des points-virgules. Exemple : Date_Modif;Commentaire"
+    SetCell oSheet, 2, 1, "Colonnes a ignorer, separees par ; ou ,"
 
     SetCell oSheet, 0, 2, "IGNORE_CASE"
     SetCell oSheet, 1, 2, "FALSE"
-    SetCell oSheet, 2, 2, "TRUE pour ignorer les differences majuscules/minuscules."
+    SetCell oSheet, 2, 2, "TRUE pour ignorer majuscules/minuscules"
 
     SetCell oSheet, 0, 3, "NORMALIZE_SPACES"
     SetCell oSheet, 1, 3, "TRUE"
-    SetCell oSheet, 2, 3, "TRUE pour reduire les espaces multiples et ignorer les espaces en debut/fin."
+    SetCell oSheet, 2, 3, "TRUE pour reduire les espaces multiples"
 
     SetCell oSheet, 0, 4, "IGNORE_EMPTY_CHANGES"
     SetCell oSheet, 1, 4, "FALSE"
-    SetCell oSheet, 2, 4, "TRUE pour ignorer les differences ou l'une des deux valeurs est vide."
+    SetCell oSheet, 2, 4, "TRUE pour ignorer les changements vide/non vide"
 
     SetCell oSheet, 0, 5, "ID_ALIASES"
-    SetCell oSheet, 1, 5, ""
-    SetCell oSheet, 2, 5, "Noms supplementaires acceptes pour la colonne ID, separes par des points-virgules."
+    SetCell oSheet, 1, 5, "ID;Identifiant;Code;Reference;Ref;Cle;Key"
+    SetCell oSheet, 2, 5, "Noms possibles de la colonne d'identifiant"
 
     oSheet.getCellRangeByPosition(0, 0, 2, 0).CharWeight = 150
     oSheet.getCellRangeByPosition(0, 0, 2, 0).CellBackColor = RGB(217, 217, 217)
@@ -772,27 +711,66 @@ Sub EnsureDefaultConfigSheet(oDoc As Object)
     oSheet.Columns.getByIndex(2).OptimalWidth = True
 End Sub
 
-Sub WriteActiveConfig(oSheet As Object, ByRef rowIndex As Long)
-    rowIndex = rowIndex + 2
-    SetCell oSheet, 0, rowIndex, "Configuration active"
-    SetCell oSheet, 1, rowIndex, "Valeur"
+Function NormalizeCompareValue(valueText As String) As String
+    Dim result As String
+    result = CStr(valueText)
 
-    rowIndex = rowIndex + 1
-    SetCell oSheet, 0, rowIndex, "IGNORE_COLUMNS"
-    SetCell oSheet, 1, rowIndex, GetConfigValue("IGNORE_COLUMNS", "")
-    rowIndex = rowIndex + 1
-    SetCell oSheet, 0, rowIndex, "IGNORE_CASE"
-    SetCell oSheet, 1, rowIndex, GetConfigValue("IGNORE_CASE", "FALSE")
-    rowIndex = rowIndex + 1
-    SetCell oSheet, 0, rowIndex, "NORMALIZE_SPACES"
-    SetCell oSheet, 1, rowIndex, GetConfigValue("NORMALIZE_SPACES", "TRUE")
-    rowIndex = rowIndex + 1
-    SetCell oSheet, 0, rowIndex, "IGNORE_EMPTY_CHANGES"
-    SetCell oSheet, 1, rowIndex, GetConfigValue("IGNORE_EMPTY_CHANGES", "FALSE")
-    rowIndex = rowIndex + 1
-    SetCell oSheet, 0, rowIndex, "ID_ALIASES"
-    SetCell oSheet, 1, rowIndex, GetConfigValue("ID_ALIASES", "")
-End Sub
+    If gNormalizeSpaces Then
+        result = NormalizeSpaces(result)
+    End If
+
+    If gIgnoreCase Then
+        result = LCase(result)
+    End If
+
+    NormalizeCompareValue = result
+End Function
+
+Function NormalizeSpaces(valueText As String) As String
+    Dim result As String
+    result = Trim(CStr(valueText))
+    Do While InStr(result, "  ") > 0
+        result = Replace(result, "  ", " ")
+    Loop
+    NormalizeSpaces = result
+End Function
+
+Function IgnoreThisEmptyChange(oldCompare As String, newCompare As String) As Boolean
+    If gIgnoreEmptyChanges = False Then
+        IgnoreThisEmptyChange = False
+    Else
+        IgnoreThisEmptyChange = (oldCompare = "" Or newCompare = "")
+    End If
+End Function
+
+Function ColumnIsIgnored(headerName As String) As Boolean
+    ColumnIsIgnored = TokenInList(NormalizeHeader(headerName), gIgnoreColumns)
+End Function
+
+Function TokenInList(token As String, listText As String) As Boolean
+    Dim normalizedToken As String, normalizedList As String
+    normalizedToken = NormalizeHeader(token)
+    normalizedList = ";" & NormalizeList(listText) & ";"
+    TokenInList = (InStr(normalizedList, ";" & normalizedToken & ";") > 0)
+End Function
+
+Function NormalizeList(listText As String) As String
+    Dim result As String
+    result = CStr(listText)
+    result = Replace(result, ",", ";")
+    result = Replace(result, "|", ";")
+    result = Replace(result, Chr(10), ";")
+    result = Replace(result, Chr(13), ";")
+    result = LCase(result)
+    result = Replace(result, " ", "")
+    NormalizeList = result
+End Function
+
+Function ToBoolean(valueText As String) As Boolean
+    Dim v As String
+    v = UCase(Trim(CStr(valueText)))
+    ToBoolean = (v = "TRUE" Or v = "VRAI" Or v = "YES" Or v = "OUI" Or v = "1")
+End Function
 
 Sub FormatReport(oSheet As Object, lastRow As Long)
     Dim oHeader As Object, oRange As Object
