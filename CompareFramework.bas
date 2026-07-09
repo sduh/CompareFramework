@@ -1,3 +1,13 @@
+
+'=========================================================
+' CompareFramework V1.1
+' Rule Engine Foundation
+' - BeginRuleEngine()
+' - LoadRules()
+' - EvaluateRule()
+' - EndRuleEngine()
+'=========================================================
+
 Option Explicit
 
 ' CompareFramework V1.0
