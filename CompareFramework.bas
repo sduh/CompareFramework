@@ -1,5 +1,5 @@
 '=========================================================
-' CompareFramework V1.2
+' CompareFramework V1.3
 ' Profiles Foundation
 '---------------------------------------------------------
 ' This version prepares support for comparison profiles:
@@ -16,7 +16,7 @@
 
 
 '=========================================================
-' CompareFramework V1.1
+' CompareFramework V1.3
 ' Rule Engine Foundation
 ' - BeginRuleEngine()
 ' - LoadRules()
@@ -26,7 +26,7 @@
 
 Option Explicit
 
-' CompareFramework V1.0
+' CompareFramework V1.3
 ' LibreOffice Basic module
 '
 ' Main macro:
@@ -1132,4 +1132,256 @@ Sub ApplyOptionalAutoFilter(oSheet As Object, lastCol As Long, lastRow As Long)
     oRange.AutoFilter = True
 SkipFilter:
     On Error GoTo 0
+End Sub
+
+'=========================================================
+' V1.3 - HTML REPORT EXPORT
+'=========================================================
+
+Public Sub ExporterRapportHTML()
+    On Error GoTo ErrHandler
+
+    Dim oDoc As Object
+    Dim sUrl As String
+    Dim sPath As String
+    Dim sHtml As String
+
+    oDoc = ThisComponent
+    sPath = GetDocumentFolderPath()
+    If sPath = "" Then
+        MsgBox "Impossible de déterminer le dossier du classeur. Enregistre d'abord le fichier LibreOffice.", 48, "CompareFramework"
+        Exit Sub
+    End If
+
+    sUrl = sPath & "/Rapport_Comparaison.html"
+
+    sHtml = BuildHtmlReport(oDoc)
+    WriteTextFile sUrl, sHtml
+
+    MsgBox "Rapport HTML généré :" & Chr(10) & ConvertFromURL(sUrl), 64, "CompareFramework V1.3"
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Erreur ExporterRapportHTML : " & Err & " - " & Error$, 16, "CompareFramework"
+End Sub
+
+Private Function BuildHtmlReport(oDoc As Object) As String
+    Dim s As String
+
+    s = ""
+    s = s & "<!DOCTYPE html>" & Chr(10)
+    s = s & "<html lang=""fr"">" & Chr(10)
+    s = s & "<head>" & Chr(10)
+    s = s & "<meta charset=""utf-8"">" & Chr(10)
+    s = s & "<meta name=""viewport"" content=""width=device-width, initial-scale=1"">" & Chr(10)
+    s = s & "<title>Rapport de comparaison</title>" & Chr(10)
+    s = s & HtmlStyleBlock()
+    s = s & HtmlScriptBlock()
+    s = s & "</head>" & Chr(10)
+    s = s & "<body>" & Chr(10)
+    s = s & "<header>" & Chr(10)
+    s = s & "<h1>Rapport de comparaison</h1>" & Chr(10)
+    s = s & "<p>Généré par CompareFramework V1.3 le " & HtmlEscape(Now) & "</p>" & Chr(10)
+    s = s & "</header>" & Chr(10)
+
+    s = s & "<nav>" & Chr(10)
+    s = s & "<a href=""#synthese"">Synthèse</a>" & Chr(10)
+    s = s & "<a href=""#stats"">Statistiques</a>" & Chr(10)
+    s = s & "<a href=""#rapport"">Détail</a>" & Chr(10)
+    s = s & "<a href=""#actions"">Plan d'action</a>" & Chr(10)
+    s = s & "<a href=""#journal"">Journal</a>" & Chr(10)
+    s = s & "</nav>" & Chr(10)
+
+    s = s & SheetToHtmlSection(oDoc, "Synthese_Comparaison", "synthese", "Synthèse globale", False)
+    s = s & SheetToHtmlSection(oDoc, "Stats_Comparaison", "stats", "Statistiques", False)
+
+    s = s & "<section id=""rapport"">" & Chr(10)
+    s = s & "<h2>Détail des différences</h2>" & Chr(10)
+    s = s & "<div class=""toolbar"">" & Chr(10)
+    s = s & "<input id=""filterInput"" type=""search"" placeholder=""Filtrer dans le rapport..."" onkeyup=""filterTable('rapportTable', this.value)"">" & Chr(10)
+    s = s & "</div>" & Chr(10)
+    s = s & SheetToHtmlTableOnly(oDoc, "Rapport_Comparaison", "rapportTable", True)
+    s = s & "</section>" & Chr(10)
+
+    s = s & SheetToHtmlSection(oDoc, "Plan_Action_Comparaison", "actions", "Plan d'action", True)
+    s = s & SheetToHtmlSection(oDoc, "Journal_Comparaison", "journal", "Journal", False)
+
+    s = s & "<footer>CompareFramework V1.3</footer>" & Chr(10)
+    s = s & "</body>" & Chr(10)
+    s = s & "</html>" & Chr(10)
+
+    BuildHtmlReport = s
+End Function
+
+Private Function HtmlStyleBlock() As String
+    Dim s As String
+
+    s = ""
+    s = s & "<style>" & Chr(10)
+    s = s & "body{font-family:Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937;}" & Chr(10)
+    s = s & "header{background:#111827;color:white;padding:24px 32px;}" & Chr(10)
+    s = s & "header h1{margin:0 0 8px 0;font-size:28px;}" & Chr(10)
+    s = s & "header p{margin:0;color:#d1d5db;}" & Chr(10)
+    s = s & "nav{position:sticky;top:0;background:white;border-bottom:1px solid #e5e7eb;padding:10px 32px;z-index:5;}" & Chr(10)
+    s = s & "nav a{margin-right:16px;color:#2563eb;text-decoration:none;font-weight:bold;}" & Chr(10)
+    s = s & "section{margin:24px 32px;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.04);}" & Chr(10)
+    s = s & "h2{margin-top:0;font-size:22px;}" & Chr(10)
+    s = s & ".toolbar{margin:0 0 12px 0;}" & Chr(10)
+    s = s & "input[type=search]{width:100%;max-width:520px;padding:10px;border:1px solid #d1d5db;border-radius:8px;}" & Chr(10)
+    s = s & ".table-wrap{overflow:auto;max-height:70vh;border:1px solid #e5e7eb;border-radius:8px;}" & Chr(10)
+    s = s & "table{border-collapse:collapse;width:100%;font-size:13px;}" & Chr(10)
+    s = s & "th,td{border-bottom:1px solid #e5e7eb;padding:8px 10px;text-align:left;vertical-align:top;white-space:nowrap;}" & Chr(10)
+    s = s & "th{position:sticky;top:0;background:#f3f4f6;z-index:2;}" & Chr(10)
+    s = s & "tr:hover td{background:#f9fafb;}" & Chr(10)
+    s = s & ".tag-ajout{background:#dcfce7;color:#166534;font-weight:bold;}" & Chr(10)
+    s = s & ".tag-suppression{background:#fee2e2;color:#991b1b;font-weight:bold;}" & Chr(10)
+    s = s & ".tag-modification{background:#fef3c7;color:#92400e;font-weight:bold;}" & Chr(10)
+    s = s & ".tag-p1{background:#fee2e2;color:#991b1b;font-weight:bold;}" & Chr(10)
+    s = s & ".tag-p2{background:#fef3c7;color:#92400e;font-weight:bold;}" & Chr(10)
+    s = s & ".tag-p3{background:#dbeafe;color:#1e40af;font-weight:bold;}" & Chr(10)
+    s = s & ".missing{color:#6b7280;font-style:italic;}" & Chr(10)
+    s = s & "footer{margin:24px 32px;color:#6b7280;font-size:12px;}" & Chr(10)
+    s = s & "</style>" & Chr(10)
+
+    HtmlStyleBlock = s
+End Function
+
+Private Function HtmlScriptBlock() As String
+    Dim s As String
+
+    s = ""
+    s = s & "<script>" & Chr(10)
+    s = s & "function filterTable(id,q){q=q.toLowerCase();var t=document.getElementById(id);if(!t)return;var r=t.getElementsByTagName('tr');for(var i=1;i<r.length;i++){var txt=r[i].innerText.toLowerCase();r[i].style.display=txt.indexOf(q)>=0?'':'none';}}" & Chr(10)
+    s = s & "</script>" & Chr(10)
+
+    HtmlScriptBlock = s
+End Function
+
+Private Function SheetToHtmlSection(oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String
+    Dim s As String
+    s = "<section id=""" & HtmlEscape(sAnchor) & """>" & Chr(10)
+    s = s & "<h2>" & HtmlEscape(sTitle) & "</h2>" & Chr(10)
+
+    If bFilter Then
+        s = s & "<div class=""toolbar"">" & Chr(10)
+        s = s & "<input type=""search"" placeholder=""Filtrer..."" onkeyup=""filterTable('" & HtmlEscape(sAnchor) & "Table', this.value)"">" & Chr(10)
+        s = s & "</div>" & Chr(10)
+    End If
+
+    s = s & SheetToHtmlTableOnly(oDoc, sSheetName, sAnchor & "Table", True)
+    s = s & "</section>" & Chr(10)
+
+    SheetToHtmlSection = s
+End Function
+
+Private Function SheetToHtmlTableOnly(oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String
+    On Error GoTo MissingSheet
+
+    Dim oSheet As Object
+    Dim oCursor As Object
+    Dim lastRow As Long
+    Dim lastCol As Long
+    Dim r As Long
+    Dim c As Long
+    Dim cellText As String
+    Dim s As String
+
+    If Not oDoc.Sheets.hasByName(sSheetName) Then GoTo MissingSheet
+
+    oSheet = oDoc.Sheets.getByName(sSheetName)
+    oCursor = oSheet.createCursor()
+    oCursor.gotoEndOfUsedArea(True)
+    lastRow = oCursor.RangeAddress.EndRow
+    lastCol = oCursor.RangeAddress.EndColumn
+
+    s = "<div class=""table-wrap"">" & Chr(10)
+    s = s & "<table id=""" & HtmlEscape(sTableId) & """>" & Chr(10)
+
+    For r = 0 To lastRow
+        s = s & "<tr>"
+        For c = 0 To lastCol
+            cellText = CStr(oSheet.getCellByPosition(c, r).String)
+            If r = 0 And bHeader Then
+                s = s & "<th>" & HtmlEscape(cellText) & "</th>"
+            Else
+                s = s & "<td class=""" & HtmlCssClassForCell(cellText) & """>" & HtmlEscape(cellText) & "</td>"
+            End If
+        Next c
+        s = s & "</tr>" & Chr(10)
+    Next r
+
+    s = s & "</table>" & Chr(10)
+    s = s & "</div>" & Chr(10)
+
+    SheetToHtmlTableOnly = s
+    Exit Function
+
+MissingSheet:
+    SheetToHtmlTableOnly = "<p class=""missing"">Feuille absente : " & HtmlEscape(sSheetName) & "</p>" & Chr(10)
+End Function
+
+Private Function HtmlCssClassForCell(sValue As String) As String
+    Dim s As String
+    s = UCase(Trim(sValue))
+
+    If s = "AJOUT" Or s = "AJOUTEE" Or s = "AJOUTÉE" Or s = "ADDED" Then
+        HtmlCssClassForCell = "tag-ajout"
+    ElseIf s = "SUPPRESSION" Or s = "SUPPRIMEE" Or s = "SUPPRIMÉE" Or s = "DELETED" Then
+        HtmlCssClassForCell = "tag-suppression"
+    ElseIf s = "MODIFICATION" Or s = "MODIFIEE" Or s = "MODIFIÉE" Or s = "CHANGED" Then
+        HtmlCssClassForCell = "tag-modification"
+    ElseIf s = "P1" Then
+        HtmlCssClassForCell = "tag-p1"
+    ElseIf s = "P2" Then
+        HtmlCssClassForCell = "tag-p2"
+    ElseIf s = "P3" Then
+        HtmlCssClassForCell = "tag-p3"
+    Else
+        HtmlCssClassForCell = ""
+    End If
+End Function
+
+Private Function HtmlEscape(v As Variant) As String
+    Dim s As String
+    s = CStr(v)
+    s = Replace(s, "&", "&amp;")
+    s = Replace(s, "<", "&lt;")
+    s = Replace(s, ">", "&gt;")
+    s = Replace(s, """", "&quot;")
+    s = Replace(s, "'", "&#39;")
+    HtmlEscape = s
+End Function
+
+Private Function GetDocumentFolderPath() As String
+    Dim sUrl As String
+    Dim i As Long
+
+    sUrl = ThisComponent.URL
+    If sUrl = "" Then
+        GetDocumentFolderPath = ""
+        Exit Function
+    End If
+
+    i = Len(sUrl)
+    Do While i > 0
+        If Mid(sUrl, i, 1) = "/" Then
+            GetDocumentFolderPath = Left(sUrl, i - 1)
+            Exit Function
+        End If
+        i = i - 1
+    Loop
+
+    GetDocumentFolderPath = ""
+End Function
+
+Private Sub WriteTextFile(sUrl As String, sText As String)
+    Dim oSFA As Object
+    Dim oStream As Object
+
+    oSFA = createUnoService("com.sun.star.ucb.SimpleFileAccess")
+    oStream = createUnoService("com.sun.star.io.TextOutputStream")
+    oStream.setEncoding("UTF-8")
+    oStream.setOutputStream(oSFA.openFileWrite(sUrl))
+    oStream.writeString(sText)
+    oStream.closeOutput()
 End Sub
