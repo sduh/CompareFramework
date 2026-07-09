@@ -1,10 +1,15 @@
 Option Explicit
 
-' CompareFramework V0.9
+' CompareFramework V1.0
 ' LibreOffice Basic module
 '
 ' Main macro:
 '   ComparerToutesLesFeuilles
+'
+' V1.0:
+'   - export CSV/Markdown summary helpers
+'   - comparison checksum preparation
+'   - plugin hook stubs
 '
 ' V0.9:
 '   - adds Plan_Action_Comparaison with priorities and recommended actions
