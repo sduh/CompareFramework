@@ -1,10 +1,16 @@
 Option Explicit
 
-' CompareFramework V0.6
+' CompareFramework V0.7
 ' LibreOffice Basic module
 '
 ' Main macro:
 '   ComparerToutesLesFeuilles
+'
+' V0.7:
+'   - adds Synthese_Comparaison dashboard sheet
+'   - adds global decision indicator (OK / A CONTROLER)
+'   - adds configuration recap in the dashboard
+'   - keeps all V0.6 features
 '
 ' V0.6:
 '   - keeps indexed comparison with binary search
@@ -26,10 +32,11 @@ Option Explicit
 '   - if no pair is found and the document has exactly two non-report sheets,
 '     those two sheets are compared.
 
-Const CF_VERSION As String = "0.6"
+Const CF_VERSION As String = "0.7"
 Const CF_REPORT_SHEET As String = "Rapport_Comparaison"
 Const CF_STATS_SHEET As String = "Stats_Comparaison"
 Const CF_CONFIG_SHEET As String = "Compare_Config"
+Const CF_DASHBOARD_SHEET As String = "Synthese_Comparaison"
 Const CF_HEADER_ROW As Long = 0
 Const CF_FIRST_DATA_ROW As Long = 1
 
@@ -59,7 +66,7 @@ Dim gNormalizeSpaces As Boolean
 Dim gIgnoreEmptyChanges As Boolean
 
 Sub ComparerToutesLesFeuilles()
-    Dim oDoc As Object, oReport As Object, oStats As Object
+    Dim oDoc As Object, oReport As Object, oStats As Object, oDash As Object
     Dim reportRow As Long, statsRow As Long, pairCount As Long
     Dim totalAdded As Long, totalRemoved As Long, totalChangedRows As Long
     Dim totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long
@@ -68,6 +75,7 @@ Sub ComparerToutesLesFeuilles()
 
     oReport = PrepareSheet(oDoc, CF_REPORT_SHEET)
     oStats = PrepareSheet(oDoc, CF_STATS_SHEET)
+    oDash = PrepareSheet(oDoc, CF_DASHBOARD_SHEET)
     LoadCompareConfig oDoc
 
     reportRow = 0
@@ -84,8 +92,10 @@ Sub ComparerToutesLesFeuilles()
     End If
 
     WriteGlobalSummary oStats, statsRow, pairCount, totalAdded, totalRemoved, totalChangedRows, totalChangedCells, totalDuplicates, totalIssues
+    WriteDashboard oDash, pairCount, totalAdded, totalRemoved, totalChangedRows, totalChangedCells, totalDuplicates, totalIssues
     FormatReport oReport, reportRow - 1
     FormatStats oStats, statsRow + 8
+    FormatDashboard oDash
 
     MsgBox "Comparaison terminee." & Chr(10) & _
            "Paires comparees : " & pairCount & Chr(10) & _
@@ -595,7 +605,7 @@ Function NormalizeHeader(valueText As String) As String
 End Function
 
 Function IsReportOrStatsSheet(sheetName As String) As Boolean
-    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or LCase(sheetName) = LCase(CF_STATS_SHEET))
+    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or LCase(sheetName) = LCase(CF_STATS_SHEET) Or LCase(sheetName) = LCase(CF_CONFIG_SHEET) Or LCase(sheetName) = LCase(CF_DASHBOARD_SHEET))
 End Function
 
 Function IsOldSheetName(sheetName As String) As Boolean
@@ -771,6 +781,82 @@ Function ToBoolean(valueText As String) As Boolean
     v = UCase(Trim(CStr(valueText)))
     ToBoolean = (v = "TRUE" Or v = "VRAI" Or v = "YES" Or v = "OUI" Or v = "1")
 End Function
+
+
+Sub WriteDashboard(oSheet As Object, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long)
+    Dim r As Long, decisionText As String
+
+    r = 0
+    SetCell oSheet, 0, r, "Synthese CompareFramework"
+    SetCell oSheet, 1, r, "V" & CF_VERSION
+
+    r = r + 2
+    SetCell oSheet, 0, r, "Decision"
+    If totalAdded = 0 And totalRemoved = 0 And totalChangedCells = 0 And totalDuplicates = 0 And totalIssues = 0 Then
+        decisionText = "OK - aucune difference detectee"
+    Else
+        decisionText = "A CONTROLER - differences ou alertes detectees"
+    End If
+    SetCell oSheet, 1, r, decisionText
+
+    r = r + 2
+    SetCell oSheet, 0, r, "Indicateur"
+    SetCell oSheet, 1, r, "Valeur"
+
+    r = r + 1
+    SetCell oSheet, 0, r, "Paires comparees"
+    SetCell oSheet, 1, r, CStr(pairCount)
+    r = r + 1
+    SetCell oSheet, 0, r, "Lignes ajoutees"
+    SetCell oSheet, 1, r, CStr(totalAdded)
+    r = r + 1
+    SetCell oSheet, 0, r, "Lignes supprimees"
+    SetCell oSheet, 1, r, CStr(totalRemoved)
+    r = r + 1
+    SetCell oSheet, 0, r, "Lignes modifiees"
+    SetCell oSheet, 1, r, CStr(totalChangedRows)
+    r = r + 1
+    SetCell oSheet, 0, r, "Cellules modifiees"
+    SetCell oSheet, 1, r, CStr(totalChangedCells)
+    r = r + 1
+    SetCell oSheet, 0, r, "ID doublons"
+    SetCell oSheet, 1, r, CStr(totalDuplicates)
+    r = r + 1
+    SetCell oSheet, 0, r, "Alertes structure"
+    SetCell oSheet, 1, r, CStr(totalIssues)
+
+    r = r + 2
+    SetCell oSheet, 0, r, "Configuration active"
+    r = r + 1
+    SetCell oSheet, 0, r, "IGNORE_COLUMNS"
+    SetCell oSheet, 1, r, gIgnoreColumns
+    r = r + 1
+    SetCell oSheet, 0, r, "ID_ALIASES"
+    SetCell oSheet, 1, r, gIdAliases
+    r = r + 1
+    SetCell oSheet, 0, r, "IGNORE_CASE"
+    SetCell oSheet, 1, r, CStr(gIgnoreCase)
+    r = r + 1
+    SetCell oSheet, 0, r, "NORMALIZE_SPACES"
+    SetCell oSheet, 1, r, CStr(gNormalizeSpaces)
+    r = r + 1
+    SetCell oSheet, 0, r, "IGNORE_EMPTY_CHANGES"
+    SetCell oSheet, 1, r, CStr(gIgnoreEmptyChanges)
+End Sub
+
+Sub FormatDashboard(oSheet As Object)
+    On Error Resume Next
+    Dim i As Long
+    oSheet.getCellRangeByPosition(0, 0, 1, 0).CharWeight = 150
+    oSheet.getCellRangeByPosition(0, 0, 1, 0).CellBackColor = RGB(180, 198, 231)
+    oSheet.getCellRangeByPosition(0, 2, 1, 2).CharWeight = 150
+    oSheet.getCellRangeByPosition(0, 4, 1, 4).CharWeight = 150
+    oSheet.getCellRangeByPosition(0, 13, 1, 13).CharWeight = 150
+    For i = 0 To 1
+        oSheet.Columns.getByIndex(i).OptimalWidth = True
+    Next i
+    On Error GoTo 0
+End Sub
 
 Sub FormatReport(oSheet As Object, lastRow As Long)
     Dim oHeader As Object, oRange As Object
