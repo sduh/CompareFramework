@@ -1,10 +1,15 @@
 Option Explicit
 
-' CompareFramework V0.7
+' CompareFramework V0.8
 ' LibreOffice Basic module
 '
 ' Main macro:
 '   ComparerToutesLesFeuilles
+'
+' V0.8:
+'   - adds Plan_Action_Comparaison sheet with prioritized anomalies
+'   - adds recommended actions for every detected difference
+'   - keeps all V0.7 features
 '
 ' V0.7:
 '   - adds Synthese_Comparaison dashboard sheet
@@ -32,11 +37,12 @@ Option Explicit
 '   - if no pair is found and the document has exactly two non-report sheets,
 '     those two sheets are compared.
 
-Const CF_VERSION As String = "0.7"
+Const CF_VERSION As String = "0.8"
 Const CF_REPORT_SHEET As String = "Rapport_Comparaison"
 Const CF_STATS_SHEET As String = "Stats_Comparaison"
 Const CF_CONFIG_SHEET As String = "Compare_Config"
 Const CF_DASHBOARD_SHEET As String = "Synthese_Comparaison"
+Const CF_ACTION_SHEET As String = "Plan_Action_Comparaison"
 Const CF_HEADER_ROW As Long = 0
 Const CF_FIRST_DATA_ROW As Long = 1
 
@@ -66,7 +72,7 @@ Dim gNormalizeSpaces As Boolean
 Dim gIgnoreEmptyChanges As Boolean
 
 Sub ComparerToutesLesFeuilles()
-    Dim oDoc As Object, oReport As Object, oStats As Object, oDash As Object
+    Dim oDoc As Object, oReport As Object, oStats As Object, oDash As Object, oActions As Object
     Dim reportRow As Long, statsRow As Long, pairCount As Long
     Dim totalAdded As Long, totalRemoved As Long, totalChangedRows As Long
     Dim totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long
@@ -76,6 +82,7 @@ Sub ComparerToutesLesFeuilles()
     oReport = PrepareSheet(oDoc, CF_REPORT_SHEET)
     oStats = PrepareSheet(oDoc, CF_STATS_SHEET)
     oDash = PrepareSheet(oDoc, CF_DASHBOARD_SHEET)
+    oActions = PrepareSheet(oDoc, CF_ACTION_SHEET)
     LoadCompareConfig oDoc
 
     reportRow = 0
@@ -93,9 +100,11 @@ Sub ComparerToutesLesFeuilles()
 
     WriteGlobalSummary oStats, statsRow, pairCount, totalAdded, totalRemoved, totalChangedRows, totalChangedCells, totalDuplicates, totalIssues
     WriteDashboard oDash, pairCount, totalAdded, totalRemoved, totalChangedRows, totalChangedCells, totalDuplicates, totalIssues
+    WriteActionPlan oActions, oReport, reportRow - 1
     FormatReport oReport, reportRow - 1
     FormatStats oStats, statsRow + 8
     FormatDashboard oDash
+    FormatActionPlan oActions, LastUsedRow(oActions)
 
     MsgBox "Comparaison terminee." & Chr(10) & _
            "Paires comparees : " & pairCount & Chr(10) & _
@@ -605,7 +614,7 @@ Function NormalizeHeader(valueText As String) As String
 End Function
 
 Function IsReportOrStatsSheet(sheetName As String) As Boolean
-    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or LCase(sheetName) = LCase(CF_STATS_SHEET) Or LCase(sheetName) = LCase(CF_CONFIG_SHEET) Or LCase(sheetName) = LCase(CF_DASHBOARD_SHEET))
+    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or LCase(sheetName) = LCase(CF_STATS_SHEET) Or LCase(sheetName) = LCase(CF_CONFIG_SHEET) Or LCase(sheetName) = LCase(CF_DASHBOARD_SHEET) Or LCase(sheetName) = LCase(CF_ACTION_SHEET))
 End Function
 
 Function IsOldSheetName(sheetName As String) As Boolean
@@ -913,4 +922,134 @@ Sub ApplyOptionalAutoFilter(oSheet As Object, lastCol As Long, lastRow As Long)
     oRange.AutoFilter = True
 SkipFilter:
     On Error GoTo 0
+End Sub
+
+
+Sub WriteActionPlan(oAction As Object, oReport As Object, lastReportRow As Long)
+    Dim r As Long, actionRow As Long
+    Dim statusValue As String, pairName As String, idValue As String
+    Dim colName As String, oldValue As String, newValue As String, messageText As String
+    Dim priorityText As String, adviceText As String
+
+    actionRow = 0
+    WriteActionHeader oAction, actionRow
+    actionRow = actionRow + 1
+
+    For r = 1 To lastReportRow
+        statusValue = CellText(oReport, CF_COL_TYPE, r)
+        If statusValue <> "" And statusValue <> CF_STATUS_INFO Then
+            pairName = CellText(oReport, CF_COL_PAIR, r)
+            idValue = CellText(oReport, CF_COL_ID, r)
+            colName = CellText(oReport, CF_COL_COLUMN, r)
+            oldValue = CellText(oReport, CF_COL_OLD_VALUE, r)
+            newValue = CellText(oReport, CF_COL_NEW_VALUE, r)
+            messageText = CellText(oReport, CF_COL_MESSAGE, r)
+
+            priorityText = ActionPriority(statusValue, colName, messageText)
+            adviceText = ActionAdvice(statusValue, colName, oldValue, newValue, messageText)
+
+            WriteActionRow oAction, actionRow, priorityText, pairName, idValue, statusValue, colName, oldValue, newValue, adviceText, messageText
+            actionRow = actionRow + 1
+        End If
+    Next r
+
+    If actionRow = 1 Then
+        SetCell oAction, 0, actionRow, "OK"
+        SetCell oAction, 1, actionRow, "Aucune action requise"
+        SetCell oAction, 7, actionRow, "Aucune difference ni anomalie detectee."
+    End If
+End Sub
+
+Sub WriteActionHeader(oSheet As Object, rowIndex As Long)
+    SetCell oSheet, 0, rowIndex, "Priorite"
+    SetCell oSheet, 1, rowIndex, "Paire"
+    SetCell oSheet, 2, rowIndex, "ID"
+    SetCell oSheet, 3, rowIndex, "Type"
+    SetCell oSheet, 4, rowIndex, "Colonne"
+    SetCell oSheet, 5, rowIndex, "Ancienne valeur"
+    SetCell oSheet, 6, rowIndex, "Nouvelle valeur"
+    SetCell oSheet, 7, rowIndex, "Action conseillee"
+    SetCell oSheet, 8, rowIndex, "Message"
+End Sub
+
+Sub WriteActionRow(oSheet As Object, ByRef rowIndex As Long, priorityText As String, pairName As String, idValue As String, statusValue As String, colName As String, oldValue As String, newValue As String, adviceText As String, messageText As String)
+    SetCell oSheet, 0, rowIndex, priorityText
+    SetCell oSheet, 1, rowIndex, pairName
+    SetCell oSheet, 2, rowIndex, idValue
+    SetCell oSheet, 3, rowIndex, statusValue
+    SetCell oSheet, 4, rowIndex, colName
+    SetCell oSheet, 5, rowIndex, oldValue
+    SetCell oSheet, 6, rowIndex, newValue
+    SetCell oSheet, 7, rowIndex, adviceText
+    SetCell oSheet, 8, rowIndex, messageText
+End Sub
+
+Function ActionPriority(statusValue As String, colName As String, messageText As String) As String
+    Select Case statusValue
+        Case CF_STATUS_ERROR
+            ActionPriority = "P1 - Bloquant"
+        Case CF_STATUS_DUPLICATE
+            ActionPriority = "P1 - Bloquant"
+        Case CF_STATUS_ADDED
+            ActionPriority = "P2 - Majeur"
+        Case CF_STATUS_REMOVED
+            ActionPriority = "P2 - Majeur"
+        Case CF_STATUS_CHANGED
+            If UCase(colName) = "LIGNE" Then
+                ActionPriority = "P2 - Majeur"
+            Else
+                ActionPriority = "P3 - Controle"
+            End If
+        Case Else
+            ActionPriority = "P3 - Controle"
+    End Select
+End Function
+
+Function ActionAdvice(statusValue As String, colName As String, oldValue As String, newValue As String, messageText As String) As String
+    Select Case statusValue
+        Case CF_STATUS_ERROR
+            ActionAdvice = "Corriger la structure avant de valider la comparaison. Verifier les noms de feuilles, les en-tetes et la colonne ID."
+        Case CF_STATUS_DUPLICATE
+            ActionAdvice = "Resoudre les ID en doublon. Une comparaison fiable exige un identifiant unique par ligne."
+        Case CF_STATUS_ADDED
+            ActionAdvice = "Verifier que l'ajout est attendu. Si oui, accepter la nouvelle ligne ; sinon corriger la source nouvelle."
+        Case CF_STATUS_REMOVED
+            ActionAdvice = "Verifier que la suppression est attendue. Si non, restaurer ou corriger la source nouvelle."
+        Case CF_STATUS_CHANGED
+            ActionAdvice = "Verifier la modification de la colonne. Valider la nouvelle valeur ou corriger la source concernee."
+        Case Else
+            ActionAdvice = "Controler l'ecart signale dans le rapport detaille."
+    End Select
+End Function
+
+Sub FormatActionPlan(oSheet As Object, lastRow As Long)
+    Dim oHeader As Object, oRange As Object
+    Dim r As Long, priorityText As String
+    Dim i As Long
+
+    If lastRow < 0 Then lastRow = 0
+
+    oHeader = oSheet.getCellRangeByPosition(0, 0, 8, 0)
+    oHeader.CharWeight = 150
+    oHeader.CellBackColor = RGB(217, 217, 217)
+
+    For r = 1 To lastRow
+        priorityText = CellText(oSheet, 0, r)
+        oRange = oSheet.getCellRangeByPosition(0, r, 8, r)
+        If InStr(priorityText, "P1") > 0 Then
+            oRange.CellBackColor = RGB(255, 199, 206)
+        ElseIf InStr(priorityText, "P2") > 0 Then
+            oRange.CellBackColor = RGB(255, 235, 156)
+        ElseIf InStr(priorityText, "P3") > 0 Then
+            oRange.CellBackColor = RGB(226, 239, 218)
+        ElseIf priorityText = "OK" Then
+            oRange.CellBackColor = RGB(226, 239, 218)
+        End If
+    Next r
+
+    For i = 0 To 8
+        oSheet.Columns.getByIndex(i).OptimalWidth = True
+    Next i
+
+    ApplyOptionalAutoFilter oSheet, 8, lastRow
 End Sub
