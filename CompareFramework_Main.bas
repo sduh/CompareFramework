@@ -1,4 +1,4 @@
-' CompareFramework V2.2 - Main
+' CompareFramework V2.3 - Main
 ' Orchestration et API publique.
 Option Explicit
 
@@ -193,7 +193,7 @@ Public Function GetFrameworkVersion() As String
 End Function
 
 Public Sub DiagnosticFramework()
-    MsgBox "CompareFramework V2.2" & Chr(10) & _
+    MsgBox "CompareFramework V2.3" & Chr(10) & _
            "Modules: " & FrameworkManifest(), 64, "Diagnostic"
 End Sub
 

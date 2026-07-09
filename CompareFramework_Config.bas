@@ -1,4 +1,4 @@
-' CompareFramework V2.2 - Config
+' CompareFramework V2.3 - Config
 ' Chargement configuration, profils et normalisation.
 Option Explicit
 
@@ -14,6 +14,7 @@ Public Sub LoadCompareConfig(oDoc As Object)
     gIgnoreEmptyChanges = False
 
     oSheet = EnsureConfigSheet(oDoc)
+    EnsureRulesSheet oDoc
     lastRow = LastUsedRow(oSheet)
 
     For r = 1 To lastRow
@@ -32,6 +33,8 @@ Public Sub LoadCompareConfig(oDoc As Object)
                 gIgnoreEmptyChanges = ToBoolean(keyValue)
         End Select
     Next r
+
+    LoadCompareRules oDoc
 End Sub
 
 Public Function EnsureConfigSheet(oDoc As Object) As Object
@@ -79,6 +82,67 @@ Public Sub WriteDefaultConfig(oSheet As Object)
     oSheet.Columns.getByIndex(0).OptimalWidth = True
     oSheet.Columns.getByIndex(1).OptimalWidth = True
     oSheet.Columns.getByIndex(2).OptimalWidth = True
+End Sub
+
+
+Public Function EnsureRulesSheet(oDoc As Object) As Object
+    Dim oSheets As Object, oSheet As Object
+    oSheets = oDoc.Sheets
+
+    If oSheets.hasByName(CF_RULES_SHEET) Then
+        oSheet = oSheets.getByName(CF_RULES_SHEET)
+    Else
+        oSheets.insertNewByName(CF_RULES_SHEET, oSheets.getCount())
+        oSheet = oSheets.getByName(CF_RULES_SHEET)
+        WriteDefaultRulesSheet oSheet
+    End If
+
+    EnsureRulesSheet = oSheet
+End Function
+
+Public Sub WriteDefaultRulesSheet(oSheet As Object)
+    SetCell oSheet, 0, 0, "RuleId"
+    SetCell oSheet, 1, 0, "Enabled"
+    SetCell oSheet, 2, 0, "Scope"
+    SetCell oSheet, 3, 0, "Column"
+    SetCell oSheet, 4, 0, "RuleType"
+    SetCell oSheet, 5, 0, "Param1"
+    SetCell oSheet, 6, 0, "Param2"
+    SetCell oSheet, 7, 0, "Comment"
+
+    SetCell oSheet, 0, 1, "R001"
+    SetCell oSheet, 1, 1, "FALSE"
+    SetCell oSheet, 2, 1, "GLOBAL"
+    SetCell oSheet, 3, 1, "Statut"
+    SetCell oSheet, 4, 1, "EQUIVALENT_VALUES"
+    SetCell oSheet, 5, 1, "NULL;N/A;NA;"
+    SetCell oSheet, 6, 1, ""
+    SetCell oSheet, 7, 1, "Exemple : considere ces valeurs comme equivalentes. Activer si necessaire."
+
+    SetCell oSheet, 0, 2, "R002"
+    SetCell oSheet, 1, 2, "FALSE"
+    SetCell oSheet, 2, 2, "GLOBAL"
+    SetCell oSheet, 3, 2, "Montant"
+    SetCell oSheet, 4, 2, "NUMERIC_TOLERANCE"
+    SetCell oSheet, 5, 2, "0.01"
+    SetCell oSheet, 6, 2, ""
+    SetCell oSheet, 7, 2, "Exemple : ignore les ecarts numeriques inferieurs ou egaux a la tolerance."
+
+    SetCell oSheet, 0, 3, "R003"
+    SetCell oSheet, 1, 3, "FALSE"
+    SetCell oSheet, 2, 3, "GLOBAL"
+    SetCell oSheet, 3, 3, "Commentaire"
+    SetCell oSheet, 4, 3, "IGNORE_IF_ONE_EMPTY"
+    SetCell oSheet, 5, 3, ""
+    SetCell oSheet, 6, 3, ""
+    SetCell oSheet, 7, 3, "Exemple : ignore si une seule valeur est vide."
+
+    oSheet.getCellRangeByPosition(0, 0, 7, 0).CharWeight = 150
+    oSheet.getCellRangeByPosition(0, 0, 7, 0).CellBackColor = RGB(217, 217, 217)
+    Dim i As Long
+    For i = 0 To 7
+        oSheet.Columns.getByIndex(i).OptimalWidth = True
+    Next i
 End Sub
 
 Public Function NormalizeCompareValue(valueText As String) As String

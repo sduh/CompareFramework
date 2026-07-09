@@ -1,14 +1,15 @@
-' CompareFramework V2.2 - Utils
+' CompareFramework V2.3 - Utils
 ' Constantes globales et utilitaires communs.
 Option Explicit
 
-Public Const CF_VERSION As String = "2.2"
+Public Const CF_VERSION As String = "2.3"
 Public Const CF_REPORT_SHEET As String = "Rapport_Comparaison"
 Public Const CF_STATS_SHEET As String = "Stats_Comparaison"
 Public Const CF_CONFIG_SHEET As String = "Compare_Config"
 Public Const CF_DASHBOARD_SHEET As String = "Synthese_Comparaison"
 Public Const CF_ACTION_SHEET As String = "Plan_Action_Comparaison"
 Public Const CF_AUDIT_SHEET As String = "Journal_Comparaison"
+Public Const CF_RULES_SHEET As String = "Compare_Rules"
 Public Const CF_HEADER_ROW As Long = 0
 Public Const CF_FIRST_DATA_ROW As Long = 1
 Public Const CF_STATUS_ADDED As String = "AJOUTE"
@@ -33,6 +34,16 @@ Public gIdAliases As String
 Public gIgnoreCase As Boolean
 Public gNormalizeSpaces As Boolean
 Public gIgnoreEmptyChanges As Boolean
+
+' V2.3 - Rule engine storage
+Public gRuleCount As Long
+Public gRuleEnabled() As Boolean
+Public gRuleScope() As String
+Public gRuleColumn() As String
+Public gRuleType() As String
+Public gRuleParam1() As String
+Public gRuleParam2() As String
+Public gRuleComment() As String
 
 Public Function FullRowText(oSheet As Object, headers As Variant, rowIndex As Long) As String
     Dim i As Long, h As String, v As String, result As String
@@ -105,7 +116,13 @@ Public Function NormalizeHeader(valueText As String) As String
 End Function
 
 Public Function IsReportOrStatsSheet(sheetName As String) As Boolean
-    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or LCase(sheetName) = LCase(CF_STATS_SHEET) Or LCase(sheetName) = LCase(CF_CONFIG_SHEET) Or LCase(sheetName) = LCase(CF_DASHBOARD_SHEET) Or LCase(sheetName) = LCase(CF_ACTION_SHEET) Or LCase(sheetName) = LCase(CF_AUDIT_SHEET))
+    IsReportOrStatsSheet = (LCase(sheetName) = LCase(CF_REPORT_SHEET) Or _
+        LCase(sheetName) = LCase(CF_STATS_SHEET) Or _
+        LCase(sheetName) = LCase(CF_CONFIG_SHEET) Or _
+        LCase(sheetName) = LCase(CF_RULES_SHEET) Or _
+        LCase(sheetName) = LCase(CF_DASHBOARD_SHEET) Or _
+        LCase(sheetName) = LCase(CF_ACTION_SHEET) Or _
+        LCase(sheetName) = LCase(CF_AUDIT_SHEET))
 End Function
 
 Public Function IsOldSheetName(sheetName As String) As Boolean
@@ -186,3 +203,30 @@ Public Sub WriteTextFile(sUrl As String, sText As String)
     oStream.closeOutput()
 End Sub
 
+
+
+Public Function IsNumericText(valueText As String) As Boolean
+    Dim s As String
+    s = Trim(CStr(valueText))
+    s = Replace(s, ",", ".")
+    IsNumericText = IsNumeric(s)
+End Function
+
+Public Function ToNumber(valueText As String) As Double
+    Dim s As String
+    s = Trim(CStr(valueText))
+    s = Replace(s, ",", ".")
+    If IsNumeric(s) Then
+        ToNumber = CDbl(s)
+    Else
+        ToNumber = 0
+    End If
+End Function
+
+Public Function AbsDiff(a As Double, b As Double) As Double
+    If a >= b Then
+        AbsDiff = a - b
+    Else
+        AbsDiff = b - a
+    End If
+End Function
