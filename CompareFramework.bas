@@ -1,6 +1,6 @@
 Option Explicit
 
-' CompareFramework V0.1
+' CompareFramework V0.2
 ' LibreOffice Basic module
 ' Goal: compare two sheets, or automatic pairs of sheets, using an ID column.
 '
@@ -13,10 +13,16 @@ Option Explicit
 ' Main macro to run:
 '   ComparerToutesLesFeuilles
 '
+' V0.2:
+'   - builds a sorted ID index for each sheet before comparison
+'   - uses binary search for ID lookups
+'   - avoids O(n^2) row scans from V0.1
+'   - reports duplicate IDs after indexing
+'
 ' Output:
 '   a sheet named Rapport_Comparaison
 
-Const CF_VERSION As String = "0.1"
+Const CF_VERSION As String = "0.2"
 Const CF_REPORT_SHEET As String = "Rapport_Comparaison"
 Const CF_HEADER_ROW As Long = 0          ' zero-based row index: 0 means row 1
 Const CF_FIRST_DATA_ROW As Long = 1      ' zero-based row index: 1 means row 2
@@ -108,7 +114,9 @@ Sub CompareSheetPair(oOld As Object, oNew As Object, oReport As Object, ByRef re
     Dim oldHeaders As Variant, newHeaders As Variant
     Dim oldIdCol As Long, newIdCol As Long
     Dim oldLastRow As Long, newLastRow As Long, oldLastCol As Long, newLastCol As Long
-    Dim r As Long, newRow As Long, oldRow As Long, idValue As String
+    Dim oldIds As Variant, oldRows As Variant, newIds As Variant, newRows As Variant
+    Dim oldCount As Long, newCount As Long
+    Dim i As Long, foundRow As Long, idValue As String
 
     oldLastRow = LastUsedRow(oOld)
     newLastRow = LastUsedRow(oNew)
@@ -127,31 +135,36 @@ Sub CompareSheetPair(oOld As Object, oNew As Object, oReport As Object, ByRef re
         Exit Sub
     End If
 
-    ' Removed or changed rows
-    For r = CF_FIRST_DATA_ROW To oldLastRow
-        idValue = CellText(oOld, oldIdCol, r)
-        If idValue <> "" Then
-            newRow = FindRowById(oNew, newIdCol, newLastRow, idValue)
-            If newRow < 0 Then
-                WriteIssue oReport, reportRow, oOld.Name & " -> " & oNew.Name, idValue, "", CF_STATUS_REMOVED, "Ligne presente dans l'ancienne feuille uniquement."
-                reportRow = reportRow + 1
-            Else
-                CompareRowCells oOld, oNew, oldHeaders, newHeaders, r, newRow, idValue, oReport, reportRow
-            End If
-        End If
-    Next r
+    BuildIdIndex oOld, oldIdCol, oldLastRow, oldIds, oldRows, oldCount, oReport, reportRow, oOld.Name & " -> " & oNew.Name, "ANCIENNE"
+    BuildIdIndex oNew, newIdCol, newLastRow, newIds, newRows, newCount, oReport, reportRow, oOld.Name & " -> " & oNew.Name, "NOUVELLE"
 
-    ' Added rows
-    For r = CF_FIRST_DATA_ROW To newLastRow
-        idValue = CellText(oNew, newIdCol, r)
-        If idValue <> "" Then
-            oldRow = FindRowById(oOld, oldIdCol, oldLastRow, idValue)
-            If oldRow < 0 Then
-                WriteIssue oReport, reportRow, oOld.Name & " -> " & oNew.Name, idValue, "", CF_STATUS_ADDED, "Ligne presente dans la nouvelle feuille uniquement."
-                reportRow = reportRow + 1
-            End If
+    If oldCount > 1 Then QuickSortIndex oldIds, oldRows, 0, oldCount - 1
+    If newCount > 1 Then QuickSortIndex newIds, newRows, 0, newCount - 1
+
+    ReportDuplicateIds oldIds, oldRows, oldCount, oReport, reportRow, oOld.Name & " -> " & oNew.Name, "ANCIENNE"
+    ReportDuplicateIds newIds, newRows, newCount, oReport, reportRow, oOld.Name & " -> " & oNew.Name, "NOUVELLE"
+
+    ' Removed or changed rows - V0.2 uses indexed lookup instead of scanning the whole sheet for each ID.
+    For i = 0 To oldCount - 1
+        idValue = CStr(oldIds(i))
+        foundRow = FindRowInIndex(newIds, newRows, newCount, idValue)
+        If foundRow < 0 Then
+            WriteIssue oReport, reportRow, oOld.Name & " -> " & oNew.Name, idValue, "", CF_STATUS_REMOVED, "Ligne presente dans l'ancienne feuille uniquement."
+            reportRow = reportRow + 1
+        Else
+            CompareRowCells oOld, oNew, oldHeaders, newHeaders, CLng(oldRows(i)), foundRow, idValue, oReport, reportRow
         End If
-    Next r
+    Next i
+
+    ' Added rows - indexed lookup in the old sheet.
+    For i = 0 To newCount - 1
+        idValue = CStr(newIds(i))
+        foundRow = FindRowInIndex(oldIds, oldRows, oldCount, idValue)
+        If foundRow < 0 Then
+            WriteIssue oReport, reportRow, oOld.Name & " -> " & oNew.Name, idValue, "", CF_STATUS_ADDED, "Ligne presente dans la nouvelle feuille uniquement."
+            reportRow = reportRow + 1
+        End If
+    Next i
 End Sub
 
 Sub CompareRowCells(oOld As Object, oNew As Object, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, oReport As Object, ByRef reportRow As Long)
@@ -287,7 +300,116 @@ Function HeaderIndex(headers As Variant, headerName As String) As Long
     HeaderIndex = -1
 End Function
 
+Sub BuildIdIndex(oSheet As Object, idCol As Long, lastRow As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String)
+    Dim r As Long, idValue As String
+    Dim cap As Long
+
+    cap = lastRow - CF_FIRST_DATA_ROW + 1
+    If cap < 1 Then cap = 1
+
+    ReDim ids(cap - 1)
+    ReDim rows(cap - 1)
+    count = 0
+
+    For r = CF_FIRST_DATA_ROW To lastRow
+        idValue = CellText(oSheet, idCol, r)
+        If idValue <> "" Then
+            ids(count) = idValue
+            rows(count) = r
+            count = count + 1
+        End If
+    Next r
+
+    If count = 0 Then
+        ReDim ids(0)
+        ReDim rows(0)
+    Else
+        ReDim Preserve ids(count - 1)
+        ReDim Preserve rows(count - 1)
+    End If
+End Sub
+
+Function FindRowInIndex(ids As Variant, rows As Variant, count As Long, idValue As String) As Long
+    Dim lo As Long, hi As Long, mid As Long
+    Dim currentId As String
+
+    If count <= 0 Then
+        FindRowInIndex = -1
+        Exit Function
+    End If
+
+    lo = 0
+    hi = count - 1
+
+    Do While lo <= hi
+        mid = (lo + hi) \ 2
+        currentId = CStr(ids(mid))
+
+        If currentId = idValue Then
+            FindRowInIndex = CLng(rows(mid))
+            Exit Function
+        ElseIf currentId < idValue Then
+            lo = mid + 1
+        Else
+            hi = mid - 1
+        End If
+    Loop
+
+    FindRowInIndex = -1
+End Function
+
+Sub QuickSortIndex(ByRef ids As Variant, ByRef rows As Variant, ByVal first As Long, ByVal last As Long)
+    Dim i As Long, j As Long
+    Dim pivot As String
+    Dim tmpId As Variant, tmpRow As Variant
+
+    i = first
+    j = last
+    pivot = CStr(ids((first + last) \ 2))
+
+    Do While i <= j
+        Do While CStr(ids(i)) < pivot
+            i = i + 1
+        Loop
+        Do While CStr(ids(j)) > pivot
+            j = j - 1
+        Loop
+        If i <= j Then
+            tmpId = ids(i)
+            ids(i) = ids(j)
+            ids(j) = tmpId
+
+            tmpRow = rows(i)
+            rows(i) = rows(j)
+            rows(j) = tmpRow
+
+            i = i + 1
+            j = j - 1
+        End If
+    Loop
+
+    If first < j Then QuickSortIndex ids, rows, first, j
+    If i < last Then QuickSortIndex ids, rows, i, last
+End Sub
+
+
+Sub ReportDuplicateIds(ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String)
+    Dim i As Long
+    Dim idValue As String
+
+    If count <= 1 Then Exit Sub
+
+    For i = 1 To count - 1
+        If CStr(ids(i)) = CStr(ids(i - 1)) Then
+            idValue = CStr(ids(i))
+            WriteIssue oReport, reportRow, pairName, idValue, "ID", "DOUBLON", "ID en double dans la feuille " & sideName & " aux lignes " & CStr(CLng(rows(i - 1)) + 1) & " et " & CStr(CLng(rows(i)) + 1) & "."
+            reportRow = reportRow + 1
+        End If
+    Next i
+End Sub
+
 Function FindRowById(oSheet As Object, idCol As Long, lastRow As Long, idValue As String) As Long
+    ' Compatibility helper kept from V0.1. V0.2 comparison uses BuildIdIndex + FindRowInIndex.
     Dim r As Long
     For r = CF_FIRST_DATA_ROW To lastRow
         If CellText(oSheet, idCol, r) = idValue Then
