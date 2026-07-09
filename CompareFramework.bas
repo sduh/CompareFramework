@@ -1,5 +1,18 @@
+
 '=========================================================
-' CompareFramework V1.4
+' CompareFramework V2.0
+' Modular Framework
+'=========================================================
+' Logical modules:
+'   Main      : orchestration
+'   Config    : configuration loading
+'   Index     : indexing engine
+'   Rules     : rule engine
+'   Report    : Calc/HTML exports
+'   Utils     : common helpers
+'
+'=========================================================
+' CompareFramework V1.3
 ' Profiles Foundation
 '---------------------------------------------------------
 ' This version prepares support for comparison profiles:
@@ -16,7 +29,7 @@
 
 
 '=========================================================
-' CompareFramework V1.4
+' CompareFramework V1.3
 ' Rule Engine Foundation
 ' - BeginRuleEngine()
 ' - LoadRules()
@@ -26,7 +39,7 @@
 
 Option Explicit
 
-' CompareFramework V1.4
+' CompareFramework V1.3
 ' LibreOffice Basic module
 '
 ' Main macro:
@@ -1158,7 +1171,7 @@ Public Sub ExporterRapportHTML()
     sHtml = BuildHtmlReport(oDoc)
     WriteTextFile sUrl, sHtml
 
-    MsgBox "Rapport HTML généré :" & Chr(10) & ConvertFromURL(sUrl), 64, "CompareFramework V1.4"
+    MsgBox "Rapport HTML généré :" & Chr(10) & ConvertFromURL(sUrl), 64, "CompareFramework V1.3"
     Exit Sub
 
 ErrHandler:
@@ -1181,7 +1194,7 @@ Private Function BuildHtmlReport(oDoc As Object) As String
     s = s & "<body>" & Chr(10)
     s = s & "<header>" & Chr(10)
     s = s & "<h1>Rapport de comparaison</h1>" & Chr(10)
-    s = s & "<p>Généré par CompareFramework V1.4 le " & HtmlEscape(Now) & "</p>" & Chr(10)
+    s = s & "<p>Généré par CompareFramework V1.3 le " & HtmlEscape(Now) & "</p>" & Chr(10)
     s = s & "</header>" & Chr(10)
 
     s = s & "<nav>" & Chr(10)
@@ -1206,7 +1219,7 @@ Private Function BuildHtmlReport(oDoc As Object) As String
     s = s & SheetToHtmlSection(oDoc, "Plan_Action_Comparaison", "actions", "Plan d'action", True)
     s = s & SheetToHtmlSection(oDoc, "Journal_Comparaison", "journal", "Journal", False)
 
-    s = s & "<footer>CompareFramework V1.4</footer>" & Chr(10)
+    s = s & "<footer>CompareFramework V1.3</footer>" & Chr(10)
     s = s & "</body>" & Chr(10)
     s = s & "</html>" & Chr(10)
 
@@ -1387,35 +1400,12 @@ Private Sub WriteTextFile(sUrl As String, sText As String)
 End Sub
 
 
-'=========================================================
-' V1.4 - Framework validation
-'=========================================================
-
-Public Sub VerifierFramework()
-    Dim expected
-    expected = Array( _
-        "Rapport_Comparaison", _
-        "Stats_Comparaison", _
-        "Synthese_Comparaison", _
-        "Plan_Action_Comparaison", _
-        "Journal_Comparaison", _
-        "Compare_Config")
-
-    Dim i As Integer, missing As String
-    For i = LBound(expected) To UBound(expected)
-        If Not ThisComponent.Sheets.hasByName(expected(i)) Then
-            If missing <> "" Then missing = missing & Chr(10)
-            missing = missing & "- " & expected(i)
-        End If
-    Next i
-
-    If missing = "" Then
-        MsgBox "Framework OK : toutes les feuilles attendues sont présentes.",64,"CompareFramework V1.4"
-    Else
-        MsgBox "Feuilles manquantes :" & Chr(10) & missing,48,"CompareFramework V1.4"
-    End If
-End Sub
-
-Public Function GetFrameworkVersion() As String
-    GetFrameworkVersion = "1.4"
+Public Function FrameworkManifest() As String
+    FrameworkManifest = _
+        "Main,Config,Index,Rules,Report,Utils"
 End Function
+
+Public Sub DiagnosticFramework()
+    MsgBox "CompareFramework V2.0" & Chr(10) & _
+           "Modules: " & FrameworkManifest(), 64, "Diagnostic"
+End Sub
