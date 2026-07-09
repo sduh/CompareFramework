@@ -507,3 +507,31 @@ Function EndsWith(valueText As String, suffixText As String) As Boolean
         EndsWith = (Right(valueText, Len(suffixText)) = suffixText)
     End If
 End Function
+
+
+'========================
+' V0.3 additions
+'========================
+
+Private Sub CompareRowsDetailed(oOldSheet As Object, oldRow As Long, oNewSheet As Object, newRow As Long, _
+                                headers() As String, report As Object, ByRef reportRow As Long)
+    Dim c As Long
+    For c = LBound(headers) To UBound(headers)
+        Dim vOld, vNew
+        vOld = oOldSheet.getCellByPosition(c, oldRow).String
+        vNew = oNewSheet.getCellByPosition(c, newRow).String
+        If vOld <> vNew Then
+            WriteDifference report, reportRow, "MODIFIED", headers(c), vOld, vNew
+            reportRow = reportRow + 1
+        End If
+    Next c
+End Sub
+
+Private Sub AutoFitReportColumns(oSheet As Object)
+    Dim i As Integer
+    For i = 0 To 5
+        oSheet.Columns.getByIndex(i).OptimalWidth = True
+    Next i
+End Sub
+
+' End of V0.3
