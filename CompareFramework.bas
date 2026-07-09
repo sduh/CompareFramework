@@ -1,3 +1,19 @@
+'=========================================================
+' CompareFramework V1.2
+' Profiles Foundation
+'---------------------------------------------------------
+' This version prepares support for comparison profiles:
+'  - Finance
+'  - HR
+'  - ERP
+'  - CRM
+'
+' Planned public API:
+'   LoadProfile(profileName)
+'   SaveProfile(profileName)
+'   ApplyProfile(profileName)
+'=========================================================
+
 
 '=========================================================
 ' CompareFramework V1.1
