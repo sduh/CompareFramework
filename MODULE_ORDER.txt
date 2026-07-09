@@ -1,8 +1,7 @@
-Ordre d import recommandé dans LibreOffice Basic:
-
-1. CompareFramework_Utils.bas
-2. CompareFramework_Config.bas
-3. CompareFramework_Index.bas
-4. CompareFramework_Rules.bas
-5. CompareFramework_Report.bas
-6. CompareFramework_Main.bas
+CompareFramework_Utils.bas
+CompareFramework_Config.bas
+CompareFramework_Index.bas
+CompareFramework_Rules.bas
+CompareFramework_Report.bas
+CompareFramework_Tests.bas
+CompareFramework_Main.bas

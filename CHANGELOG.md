@@ -1,22 +1,17 @@
 # CHANGELOG
 
-## V2.3
+## V2.4 - Test Suite
 
-- Ajout de la feuille `Compare_Rules`.
-- Ajout du chargement des règles au démarrage de la comparaison.
-- Ajout des règles `EQUIVALENT_VALUES`, `NUMERIC_TOLERANCE`, `IGNORE_IF_ONE_EMPTY`, `IGNORE_EXACT_PAIR`, `CONTAINS_BOTH`.
-- Exclusion de `Compare_Rules` des feuilles métier comparées automatiquement.
-- Version portée à 2.3.
+### Ajouté
+- Nouveau module `CompareFramework_Tests.bas`.
+- Macro `CF_CreateTestWorkbook()`.
+- Macro `CF_RunAllTests()`.
+- Feuilles de test `CF_Test_OLD`, `CF_Test_NEW`.
+- Feuille de résultats `CF_Test_Resultats`.
 
-# CHANGELOG
+### Changé
+- Mise à jour de la documentation.
+- Mise à jour de l'ordre recommandé d'import des modules.
 
-## V2.3
-
-- Refactorisation réelle en modules `Main`, `Config`, `Index`, `Rules`, `Report`, `Utils`.
-- Centralisation des constantes et variables partagées.
-- Préservation de `ComparerToutesLesFeuilles()` et `ExporterRapportHTML()`.
-- Ajout d'un fichier monolithique de compatibilité.
-
-## V2.1
-
-- Introduction de la structure modulaire.
+### Objectif
+- Préparer le framework à des évolutions plus sûres grâce à une base de tests intégrés.

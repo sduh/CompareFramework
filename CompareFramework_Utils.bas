@@ -1,4 +1,4 @@
-' CompareFramework V2.3 - Utils
+' CompareFramework V2.4 - Utils
 ' Constantes globales et utilitaires communs.
 Option Explicit
 
