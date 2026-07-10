@@ -5,9 +5,10 @@ CompareFramework_Config.bas
 CompareFramework_Profiles.bas
 CompareFramework_Index.bas
 CompareFramework_Rules.bas
-CompareFramework_EngineMemory.bas
+CompareFramework_Comparators.bas
 CompareFramework_Report.bas
 CompareFramework_Validation.bas
 CompareFramework_Performance.bas
+CompareFramework_EngineMemory.bas
 CompareFramework_Tests.bas
 CompareFramework_Main.bas

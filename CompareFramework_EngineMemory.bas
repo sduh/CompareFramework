@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.0 - In-memory comparison engine
+' CompareFramework V3.1 - In-memory comparison engine
 ' Jalon A: lecture -> indexation -> comparaison -> rapport
 '=========================================================
 
@@ -262,6 +262,8 @@ Public Function CF_CompareMemoryRows(oldData As Variant, newData As Variant, old
     Dim i As Long, newCol As Long
     Dim headerName As String, oldValue As String, newValue As String
     Dim oldCompare As String, newCompare As String
+    Dim comparatorUsed As String, comparatorDetail As String
+    Dim valuesEqual As Boolean
     Dim oldRowData As Variant, newRowData As Variant
     Dim changedCells As Long
 
@@ -277,11 +279,12 @@ Public Function CF_CompareMemoryRows(oldData As Variant, newData As Variant, old
                 newValue = CF_MemoryValueText(newRowData(newCol))
                 oldCompare = NormalizeCompareValue(oldValue)
                 newCompare = NormalizeCompareValue(newValue)
+                valuesEqual = CF_TypedValuesEqual(oldRowData(i), newRowData(newCol), headerName, comparatorUsed, comparatorDetail)
 
-                If oldCompare <> newCompare Then
+                If Not valuesEqual Then
                     If Not IgnoreThisEmptyChange(oldCompare, newCompare) Then
                         If Not ShouldIgnoreDifference(pairName, idValue, headerName, oldValue, newValue, oldCompare, newCompare) Then
-                            WriteReportRow oReport, reportRow, pairName, idValue, CF_STATUS_CHANGED, headerName, RowNumberText(oldRow), RowNumberText(newRow), oldValue, newValue, "Valeur differente (moteur memoire)."
+                            WriteReportRow oReport, reportRow, pairName, idValue, CF_STATUS_CHANGED, headerName, RowNumberText(oldRow), RowNumberText(newRow), oldValue, newValue, "Comparateur " & comparatorUsed & " : " & comparatorDetail
                             reportRow = reportRow + 1
                             changedCells = changedCells + 1
                         End If
@@ -357,12 +360,12 @@ Public Sub CF_RunMemoryEngineTests()
     okIndex = (count = 4)
 
     If okRead And okHeaders And okIndex Then
-        MsgBox "Tests moteur memoire : 3/3", 64, "CompareFramework V3.0"
+        MsgBox "Tests moteur memoire : 3/3", 64, "CompareFramework V3.1"
     Else
-        MsgBox "Tests moteur memoire a controler.", 48, "CompareFramework V3.0"
+        MsgBox "Tests moteur memoire a controler.", 48, "CompareFramework V3.1"
     End If
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunMemoryEngineTests : " & Err & " - " & Error$, 16, "CompareFramework V3.0"
+    MsgBox "Erreur CF_RunMemoryEngineTests : " & Err & " - " & Error$, 16, "CompareFramework V3.1"
 End Sub

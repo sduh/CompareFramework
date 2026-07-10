@@ -1,31 +1,25 @@
-# CompareFramework V3.0 - Jalon A : moteur en memoire
+# CompareFramework V3.1 — Jalon B : comparateurs typés et fiabilité
 
-V3.0 est le premier jalon fonctionnel du nouveau cycle.
+La V3.1 conserve le moteur en mémoire de la V3.0 et remplace la comparaison texte unique par des comparateurs spécialisés.
 
-## Changement majeur
+## Comparateurs
 
-`ComparerToutesLesFeuilles()` utilise maintenant le moteur en memoire :
+- `TEXT` : normalisation historique (casse/espaces selon configuration)
+- `NUMBER` : comparaison numérique avec tolérance
+- `DATE` : comparaison de dates par numéro de série
+- `BOOLEAN` : équivalences Oui/Vrai/True/1 et Non/Faux/False/0
+- `PERCENT` : équivalence entre `10%` et `0.1`
+- `CURRENCY` : suppression des symboles et tolérance d'arrondi
 
-1. lecture de chaque plage avec `getDataArray()` ;
-2. construction des index ID en memoire ;
-3. comparaison des lignes sans relire les cellules une par une ;
-4. ecriture du rapport final.
+Le type est choisi automatiquement d'après l'en-tête et les valeurs.
 
-L'ancien moteur reste disponible avec :
+## Points d'entrée
 
-- `ComparerToutesLesFeuilles_Legacy()`
+- `CF_RunMilestoneB()` : comparaison mémoire avec audit
+- `CF_RunTypedComparatorTests()` : six tests ciblés
+- `CF_RunMilestoneBTests()` : comparateurs + moteur mémoire
+- `ComparerToutesLesFeuilles_Legacy()` : retour arrière
 
-## Points d'entree
+## Limites connues
 
-- `ComparerToutesLesFeuilles()` : moteur V3 en memoire.
-- `CF_RunMilestoneA()` : lancement contextualise et audite.
-- `CF_RunMemoryEngineTests()` : test technique du chargement et de l'indexation.
-- `ComparerToutesLesFeuilles_Legacy()` : solution de repli.
-
-## Limite connue
-
-`getDataArray()` renvoie les valeurs brutes. Les dates et formats d'affichage seront traites par les comparateurs specialises du jalon suivant. Pour valider V3.0, comparer d'abord les resultats du moteur V3 et du moteur Legacy sur les memes jeux de donnees.
-
-## Ordre d'import
-
-Voir `MODULE_ORDER.txt`.
+La détection automatique des dates dépend des formats reconnus par LibreOffice et de la locale. Les tolérances sont centralisées dans `CompareFramework_Comparators.bas` et seront rendues configurables lors du jalon suivant.

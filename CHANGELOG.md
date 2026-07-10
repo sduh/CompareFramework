@@ -1,18 +1,16 @@
 # CHANGELOG
 
-## V3.0 - Jalon A : moteur en memoire
+## V3.1 — Jalon B
 
-### Ajoute
-- `CompareFramework_EngineMemory.bas`.
-- Pipeline lecture, indexation, comparaison et rapport en memoire.
-- `CF_RunMilestoneA()`.
-- `CF_RunMemoryEngineTests()`.
+### Ajouté
+- Module `CompareFramework_Comparators.bas`.
+- Comparateurs texte, nombre, date, booléen, pourcentage et devise.
+- Détection automatique du comparateur par colonne et valeur.
+- Tolérances numériques centralisées.
+- Tests `CF_RunTypedComparatorTests()` et `CF_RunMilestoneBTests()`.
+- Point d'entrée `CF_RunMilestoneB()`.
 
-### Modifie
-- `ComparerToutesLesFeuilles()` utilise le moteur en memoire.
-- L'ancien moteur devient `ComparerToutesLesFeuilles_Legacy()`.
-- Version globale portee a 3.0.
-- Manifeste et ordre d'import actualises.
-
-### Objectif
-Reduire fortement les appels UNO cellule par cellule et rendre le moteur testable par phases.
+### Modifié
+- Le moteur mémoire utilise désormais les valeurs brutes de `getDataArray()`.
+- Le rapport indique le comparateur utilisé et son diagnostic.
+- Version portée à 3.1.
