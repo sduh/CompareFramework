@@ -1,0 +1,163 @@
+#!/usr/bin/env python3
+"""Build the CompareFramework LibreOffice Basic monolith from modular sources."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import re
+from pathlib import Path
+
+
+OPTION_EXPLICIT_RE = re.compile(r"^\s*Option\s+Explicit\s*$", re.IGNORECASE | re.MULTILINE)
+OPTIONAL_DEFAULT_RE = re.compile(
+    r"Optional\s+\w+\s+As\s+\w+\s*=",
+    re.IGNORECASE,
+)
+ROUND_RE = re.compile(r"\bRound\s*\(", re.IGNORECASE)
+PUBLIC_SYMBOL_RE = re.compile(
+    r"^\s*Public\s+(?:Sub|Function)\s+([A-Za-z_][A-Za-z0-9_]*)",
+    re.IGNORECASE | re.MULTILINE,
+)
+
+
+def read_order(root: Path, order_file: Path) -> list[Path]:
+    entries: list[Path] = []
+    for raw_line in order_file.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        path = root / line
+        if not path.is_file():
+            raise FileNotFoundError(f"Module absent: {line}")
+        entries.append(path)
+    if not entries:
+        raise ValueError("MODULE_ORDER.txt ne contient aucun module.")
+    return entries
+
+
+def strip_option_explicit(text: str) -> str:
+    return OPTION_EXPLICIT_RE.sub("", text).strip()
+
+
+def find_duplicate_public_symbols(parts: list[tuple[Path, str]]) -> dict[str, list[str]]:
+    locations: dict[str, list[str]] = {}
+    for path, text in parts:
+        for match in PUBLIC_SYMBOL_RE.finditer(text):
+            key = match.group(1).lower()
+            locations.setdefault(key, []).append(path.as_posix())
+    return {name: files for name, files in locations.items() if len(files) > 1}
+
+
+def validate(parts: list[tuple[Path, str]], monolith: str) -> dict[str, object]:
+    duplicate_symbols = find_duplicate_public_symbols(parts)
+    return {
+        "module_count": len(parts),
+        "single_option_explicit": monolith.lower().count("option explicit") == 1,
+        "optional_default_syntax_absent": not bool(OPTIONAL_DEFAULT_RE.search(monolith)),
+        "round_calls_absent": not bool(ROUND_RE.search(monolith)),
+        "duplicate_public_symbols": duplicate_symbols,
+        "all_checks_passed": (
+            monolith.lower().count("option explicit") == 1
+            and not OPTIONAL_DEFAULT_RE.search(monolith)
+            and not ROUND_RE.search(monolith)
+            and not duplicate_symbols
+        ),
+    }
+
+
+def build(root: Path, order_path: Path, output_path: Path, manifest_path: Path) -> None:
+    module_paths = read_order(root, order_path)
+    parts: list[tuple[Path, str]] = []
+
+    for path in module_paths:
+        text = path.read_text(encoding="utf-8-sig", errors="strict")
+        parts.append((path.relative_to(root), text))
+
+    output_parts = [
+        "Option Explicit",
+        "",
+        "' Generated file. Do not edit directly.",
+        "' Source of truth: src/ and MODULE_ORDER.txt",
+        "",
+    ]
+
+    for relative_path, text in parts:
+        output_parts.extend(
+            [
+                "'" + "=" * 72,
+                f"' MODULE: {relative_path.as_posix()}",
+                "'" + "=" * 72,
+                strip_option_explicit(text),
+                "",
+            ]
+        )
+
+    monolith = "\n".join(output_parts).rstrip() + "\n"
+    checks = validate(parts, monolith)
+
+    if not checks["all_checks_passed"]:
+        raise RuntimeError(
+            "Le build a échoué aux contrôles statiques:\n"
+            + json.dumps(checks, indent=2, ensure_ascii=False)
+        )
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(monolith, encoding="utf-8")
+
+    manifest = {
+        "name": "CompareFramework",
+        "version": "3.7.3-D4",
+        "output": output_path.relative_to(root).as_posix(),
+        "sha256": hashlib.sha256(output_path.read_bytes()).hexdigest(),
+        "modules": [p.as_posix() for p, _ in parts],
+        "checks": checks,
+    }
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=Path(__file__).resolve().parents[1],
+        help="Racine du dépôt.",
+    )
+    parser.add_argument(
+        "--order",
+        type=Path,
+        default=None,
+        help="Fichier d'ordre des modules.",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="Monolithe généré.",
+    )
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        default=None,
+        help="Manifeste de build.",
+    )
+    args = parser.parse_args()
+
+    root = args.root.resolve()
+    order = args.order or root / "MODULE_ORDER.txt"
+    output = args.output or root / "dist" / "CompareFramework_3_7_3_D4_Monolith.bas"
+    manifest = args.manifest or root / "dist" / "BUILD_MANIFEST.json"
+
+    build(root, order, output, manifest)
+    print(output)
+    print(manifest)
+
+
+if __name__ == "__main__":
+    main()

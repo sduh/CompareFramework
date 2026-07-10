@@ -1,15 +1,14 @@
 # CHANGELOG
 
-## 3.7.2-D3
+## 3.7.3-D4
 
 ### Ajouté
-- Feuille `Compare_Launcher`.
-- Macro `CF_OpenReferenceLauncher()`.
-- Macro `CF_RunFromLauncher()`.
-- Sélection de toutes les cibles ou d'une liste explicite.
-- Paramétrage sans modification du code.
+- Script `tools/build_monolith.py`.
+- Build reproductible depuis `src/`.
+- Contrôles statiques avant génération.
+- Manifeste SHA-256 du monolithe.
+- Documentation d'installation et de release.
 
-### Conservé
-- Mode Référence D1.
-- Synthèse consolidée D2.
-- Mode historique par paires.
+### Architecture
+- `src/` est la source de vérité.
+- `dist/` contient uniquement les artefacts générés.

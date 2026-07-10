@@ -1,16 +1,14 @@
 {
   "name": "CompareFramework",
-  "version": "3.7.2-D3",
+  "version": "3.7.3-D4",
   "baseline": "3.6.3",
-  "feature": "Guided launcher",
-  "generated_at": "2026-07-10T14:36:15",
-  "static_checks": {
-    "single_option_explicit": true,
-    "no_optional_defaults": true,
-    "no_round_calls": true,
-    "launcher_present": true,
-    "run_from_launcher_present": true,
-    "selection_filter_present": true
-  },
-  "all_static_checks_passed": true
+  "type": "repository overlay",
+  "generated_at": "2026-07-10T14:47:00",
+  "files": [
+    "MODULE_ORDER.txt",
+    "tools/build_monolith.py",
+    "docs/INSTALLATION_D4.md",
+    "docs/RELEASE_D4.md",
+    "src/Modes/CF_ModeReference.bas"
+  ]
 }

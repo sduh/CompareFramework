@@ -1,37 +1,24 @@
-# CompareFramework V3.7.2-D3 — Assistant de lancement
+# CompareFramework V3.7.3-D4 — Distribution reproductible
 
-D3 ajoute une feuille de configuration guidée pour le mode Référence.
+D4 transforme le monolithe en **artefact généré**.
 
-## Utilisation
+## Source de vérité
 
-1. Exécuter `CF_OpenReferenceLauncher()`.
-2. Ouvrir `Compare_Launcher`.
-3. Renseigner :
-   - `REFERENCE_SHEET`
-   - `KEY_COLUMN`
-   - `TARGET_MODE`
-   - `SELECTED_TARGETS`
-4. Exécuter `CF_RunFromLauncher()`.
+- `src/`
+- `MODULE_ORDER.txt`
 
-## Modes de cibles
+## Build
 
-### Toutes les cibles
+```bash
+python3 tools/build_monolith.py
+```
 
-`TARGET_MODE = ALL`
+## Sorties
 
-### Cibles sélectionnées
+- `dist/CompareFramework_3_7_3_D4_Monolith.bas`
+- `dist/BUILD_MANIFEST.json`
 
-`TARGET_MODE = SELECTED`
+Le mode Référence D1, la synthèse D2 et l'assistant D3 sont inclus via
+`src/Modes/CF_ModeReference.bas`.
 
-Exemple :
-
-`3pmg_001;aedev_936`
-
-## Macros
-
-- `CF_OpenReferenceLauncher()`
-- `CF_RunFromLauncher()`
-- `CF_RunLauncherQuick()`
-- `CF_RunAgainstReference_MODELE()`
-
-D1 et D2 restent disponibles.
+Voir `docs/INSTALLATION_D4.md`.
