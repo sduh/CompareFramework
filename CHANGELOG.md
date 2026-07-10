@@ -1,21 +1,15 @@
 # CHANGELOG
 
-## 3.6 Stable
-
-### Consolidé
-- Compatibilité LibreOffice Basic des paramètres optionnels.
-- Remplacement de `Round()` par `CF_RoundCompat()`.
-- Sécurisation des index du moteur mémoire.
-- Adaptateur `CF_CompareTypedValues()`.
-- Isolation du test de casse dans la régression typée.
-- Correction du schéma `Compare_Comparators`.
-- Parseur décimal indépendant de la locale.
-- Normalisation des statuts de rapport.
-- Préparation correcte de la régression globale.
-- Reconstruction autonome des preuves de release.
+## 3.7.0-D1
 
 ### Ajouté
-- Point d'entrée `CF_RunStableValidation()`.
+- Mode référence unique vers N cibles.
+- API `CF_RunAgainstReference`.
+- Macro interactive `CF_RunReferenceMode`.
+- Preset `CF_RunAgainstReference_MODELE`.
+- Plan de comparaison `Compare_Reference_Plan`.
 
-### Statut
-Première base stable avant ouverture du Jalon D.
+### Conservé
+- Moteur mémoire V3.6.3.
+- Mode historique `_OLD/_NEW`, `_REF/_NEW`, `_AVANT/_APRES`.
+- Rapports et comparateurs existants.

@@ -1,17 +1,17 @@
 {
   "name": "CompareFramework",
-  "version": "3.6",
-  "channel": "Stable",
-  "main_file": "CompareFramework_Stable.bas",
-  "sha256": "b178b9faf5d6eadc19ad09f928bec47cda345640ef57cf72da4420951f822347",
-  "generated_at": "2026-07-10T12:11:33",
+  "version": "3.7.0-D1",
+  "baseline": "3.6.3",
+  "feature": "Reference mode",
+  "monolith_sha256": "0652203b86e2ab3241de36f122a04052ba70af07cbe894a59028d48b4b21da83",
+  "generated_at": "2026-07-10T14:22:24",
   "static_checks": {
-    "optional_default_syntax_absent": true,
-    "round_calls_absent": true,
-    "single_option_explicit": true,
-    "version_constant_3_6": true,
-    "version_function_uses_constant": true,
-    "stable_validation_present": true
+    "single_option_explicit_in_monolith": true,
+    "no_optional_defaults": true,
+    "no_round_calls": true,
+    "reference_api_present": true,
+    "preset_present": true,
+    "interactive_present": true
   },
   "all_static_checks_passed": true
 }

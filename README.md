@@ -1,43 +1,59 @@
-# CompareFramework V3.6 Stable
+# CompareFramework V3.7.0-D1 — Mode Référence
 
-Première version consolidée et validée sous LibreOffice Calc.
+Premier livrable du Jalon D.
 
-## Fichier principal
+## Cas d'usage
 
-- `CompareFramework_Stable.bas`
+Une feuille sert de référence et toutes les autres feuilles métier sont comparées à celle-ci.
 
-Importer ce fichier dans un module Basic d'un classeur de test ou de production.
+Exemple :
 
-## Validation finale
+- référence : `MODELE`
+- identifiant : `ref_scat_abs`
+- cibles : toutes les autres feuilles métier
 
-Exécuter :
+## Installation modulaire
+
+Ajouter `src/Modes/CF_ModeReference.bas` aux modules V3.6.3.
+
+## Installation monolithique
+
+Importer uniquement :
+
+`dist/CompareFramework_3_7_0_D1_Monolith.bas`
+
+## Macros
+
+### Preset pour le classeur fourni
 
 ```basic
-CF_RunStableValidation()
+CF_RunAgainstReference_MODELE()
 ```
 
-Cette macro lance :
+### Mode interactif
 
-1. la régression globale ;
-2. les scénarios métier Finance, RH et ERP ;
-3. la construction de `CF_Release_Readiness` ;
-4. l'audit final.
+```basic
+CF_RunReferenceMode()
+```
 
-## Résultat attendu
+### API
 
-Dans `CF_Release_Readiness` :
+```basic
+CF_RunAgainstReference "MODELE", "ref_scat_abs"
+```
 
-- Scénarios métier : `OK`
-- Tableau de bord qualité : `OK`
-- Régression typée : `OK`
-- Décision : `RELEASE CANDIDATE`
+## Résultats
 
-Dans `Compare_Audit`, la dernière exécution doit avoir le statut `DONE`.
+Le mode réutilise les rapports existants :
 
-## Version
+- `Rapport_Comparaison`
+- `Stats_Comparaison`
+- `Synthese_Comparaison`
+- `Plan_Action_Comparaison`
+- `Journal_Comparaison`
 
-- Version API : `3.6`
-- Canal : `Stable`
-- SHA-256 du monolithe : `b178b9faf5d6eadc19ad09f928bec47cda345640ef57cf72da4420951f822347`
+Il ajoute :
 
-Cette release consolide les correctifs 3.5.2 à 3.5.11.
+- `Compare_Reference_Plan`
+
+Cette feuille indique les cibles planifiées, comparées ou ignorées.
