@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 3.7.3-D4
+## 3.7.3.1-D4
 
 ### Ajouté
 - Script `tools/build_monolith.py`.

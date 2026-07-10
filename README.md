@@ -1,4 +1,4 @@
-# CompareFramework V3.7.3-D4 — Distribution reproductible
+# CompareFramework V3.7.3.1-D4 — Distribution reproductible
 
 D4 transforme le monolithe en **artefact généré**.
 
