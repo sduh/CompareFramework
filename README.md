@@ -1,46 +1,43 @@
-# CompareFramework V3.5 — Jalon C final : stabilisation
+# CompareFramework V3.6 Stable
 
-Cette version clôt fonctionnellement le **Jalon C** sous réserve de validation dans LibreOffice Calc.
+Première version consolidée et validée sous LibreOffice Calc.
 
-## Nouveau module
+## Fichier principal
 
-- `CompareFramework_Scenarios.bas`
+- `CompareFramework_Stable.bas`
 
-## Scénarios métier
+Importer ce fichier dans un module Basic d'un classeur de test ou de production.
 
-- Finance
-- RH
-- ERP
+## Validation finale
 
-Chaque scénario génère ses feuilles OLD/NEW, exécute le moteur puis vérifie les écarts attendus.
+Exécuter :
 
-## Macros principales
+```basic
+CF_RunStableValidation()
+```
 
-- `CF_RunFinanceScenario()`
-- `CF_RunHRScenario()`
-- `CF_RunERPScenario()`
-- `CF_RunAllBusinessScenarios()`
-- `CF_BuildReleaseReadiness()`
-- `CF_RunMilestoneC_Final()`
+Cette macro lance :
 
-## Feuilles générées
+1. la régression globale ;
+2. les scénarios métier Finance, RH et ERP ;
+3. la construction de `CF_Release_Readiness` ;
+4. l'audit final.
 
-- `CF_Scenario_Results`
-- `CF_Release_Readiness`
+## Résultat attendu
 
-## Décision de release
+Dans `CF_Release_Readiness` :
 
-`CF_Release_Readiness` affiche :
+- Scénarios métier : `OK`
+- Tableau de bord qualité : `OK`
+- Régression typée : `OK`
+- Décision : `RELEASE CANDIDATE`
 
-- `RELEASE CANDIDATE` si tous les contrôles sont au vert ;
-- `A CONTROLER` sinon.
+Dans `Compare_Audit`, la dernière exécution doit avoir le statut `DONE`.
 
-## Ordre conseillé
+## Version
 
-1. `CF_RunGlobalRegression()`
-2. `CF_RunAllBusinessScenarios()`
-3. `CF_RunMilestoneC_Final()`
+- Version API : `3.6`
+- Canal : `Stable`
+- SHA-256 du monolithe : `b178b9faf5d6eadc19ad09f928bec47cda345640ef57cf72da4420951f822347`
 
-Le prochain jalon sera **Jalon D — ergonomie, documentation et distribution**.
-
-Généré le 2026-07-10 07:44:22.
+Cette release consolide les correctifs 3.5.2 à 3.5.11.

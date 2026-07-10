@@ -1,16 +1,37 @@
-# VALIDATION V3.5
+# VALIDATION V3.6 STABLE
 
-Dans LibreOffice Calc :
+## Préparation
 
-1. Importer les modules dans l'ordre indiqué par `MODULE_ORDER.txt`.
-2. Exécuter `CF_RunGlobalRegression()`.
-3. Exécuter `CF_RunAllBusinessScenarios()`.
-4. Ouvrir `CF_Release_Readiness`.
-5. Vérifier que la décision est `RELEASE CANDIDATE`.
-6. Exécuter `CF_RunMilestoneC_Final()` pour un run audité complet.
+1. Utiliser un classeur Calc dédié.
+2. Enregistrer le classeur au format `.ods`.
+3. Importer `CompareFramework_Stable.bas`.
+4. Compiler le module.
 
-En cas d'échec :
-- consulter `CF_Quality_Dashboard`,
-- consulter `CF_Scenario_Results`,
-- consulter `Compare_Audit`,
-- comparer avec `ComparerToutesLesFeuilles_Legacy()`.
+## Validation recommandée
+
+Exécuter :
+
+```basic
+CF_RunStableValidation()
+```
+
+## Contrôles
+
+Vérifier :
+
+- `CF_Release_Readiness` : décision `RELEASE CANDIDATE`
+- `CF_Scenario_Results` : FINANCE, RH et ERP en `OK`
+- `CF_Quality_Dashboard` : statut global `OK`
+- `CF_Typed_Regression` : 12/12
+- `Compare_Validation` : synthèse `OK`
+- `Compare_Audit` : dernière exécution `DONE`
+
+## Export HTML
+
+Après génération d'un rapport :
+
+```basic
+ExporterRapportHTML()
+```
+
+Le fichier `Rapport_Comparaison.html` doit être créé à côté du classeur.

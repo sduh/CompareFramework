@@ -1,0 +1,17 @@
+{
+  "name": "CompareFramework",
+  "version": "3.6",
+  "channel": "Stable",
+  "main_file": "CompareFramework_Stable.bas",
+  "sha256": "b178b9faf5d6eadc19ad09f928bec47cda345640ef57cf72da4420951f822347",
+  "generated_at": "2026-07-10T12:11:33",
+  "static_checks": {
+    "optional_default_syntax_absent": true,
+    "round_calls_absent": true,
+    "single_option_explicit": true,
+    "version_constant_3_6": true,
+    "version_function_uses_constant": true,
+    "stable_validation_present": true
+  },
+  "all_static_checks_passed": true
+}
