@@ -1,37 +1,27 @@
-# CompareFramework V2.5 - Execution Context
+# CompareFramework V2.6 - Profils réutilisables
 
-Cette version ajoute un **contexte d'exécution centralisé** pour préparer le remplacement progressif des variables globales.
+Cette version ajoute une couche de profils au-dessus de la configuration et du contexte d'exécution.
 
-## Nouveaux fichiers
+## Nouveau module
 
-- `CompareFramework_Context.bas`
+- `CompareFramework_Profiles.bas`
 
-## API contexte
+## Profils fournis
 
-- `CF_ContextReset()`
-- `CF_ContextSet(key, value)`
-- `CF_ContextGet(key, default)`
-- `CF_ContextHas(key)`
-- `CF_ContextCount()`
-- `CF_ContextBeginRun(runName)`
-- `CF_ContextEndRun(status)`
-- `CF_ContextDumpToSheet()`
+- `STANDARD`
+- `FINANCE`
+- `RH`
+- `ERP`
+- `CRM`
 
-## Nouveaux wrappers
+## Macros principales
 
-- `ComparerToutesLesFeuilles_Contextualisee()`
-- `DiagnosticFramework_Contextualise()`
+- `CF_ListProfiles()` : ouvre la feuille `Compare_Profiles`.
+- `CF_ApplyProfile("FINANCE")` : applique un profil à `Compare_Config`.
+- `CF_SaveCurrentConfigAsProfile("MON_PROFIL")` : enregistre la configuration actuelle.
+- `CF_RunWithProfile("ERP")` : applique le profil puis lance la comparaison.
+- `CF_RunProfileTests()` : vérifie la création des profils intégrés.
 
-Ces wrappers n'imposent pas encore le contexte au moteur historique.
-Ils permettent de commencer la migration sans casser l'API existante.
+## Compatibilité
 
-## Tests
-
-- `CF_RunAllTests()` : tests de base V2.4.
-- `CF_RunContextTests()` : tests du contexte V2.5.
-
-## Ordre d'import recommandé
-
-Voir `MODULE_ORDER.txt`.
-
-Généré le 2026-07-09 15:13:50.
+Les macros historiques restent disponibles. La V2.6 ajoute une couche optionnelle et n'impose pas la migration immédiate.

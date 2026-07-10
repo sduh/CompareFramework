@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V2.5 - Test Suite
+' CompareFramework V2.6 - Test Suite
 '=========================================================
 ' Public macros:
 '   CF_RunAllTests()
@@ -32,11 +32,11 @@ Public Sub CF_CreateTestWorkbook()
     CF_FillOldTestSheet oDoc.Sheets.getByName(CF_TEST_SHEET_OLD)
     CF_FillNewTestSheet oDoc.Sheets.getByName(CF_TEST_SHEET_NEW)
 
-    MsgBox "Jeu de test créé : " & CF_TEST_SHEET_OLD & " / " & CF_TEST_SHEET_NEW, 64, "CompareFramework V2.5"
+    MsgBox "Jeu de test créé : " & CF_TEST_SHEET_OLD & " / " & CF_TEST_SHEET_NEW, 64, "CompareFramework V2.6"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_CreateTestWorkbook : " & Err & " - " & Error$, 16, "CompareFramework V2.5"
+    MsgBox "Erreur CF_CreateTestWorkbook : " & Err & " - " & Error$, 16, "CompareFramework V2.6"
 End Sub
 
 Public Sub CF_RunAllTests()
@@ -73,15 +73,15 @@ Public Sub CF_RunAllTests()
     CF_FormatTestResults oRes
 
     If passed = total Then
-        MsgBox "Tests OK : " & passed & "/" & total, 64, "CompareFramework V2.5"
+        MsgBox "Tests OK : " & passed & "/" & total, 64, "CompareFramework V2.6"
     Else
-        MsgBox "Tests à contrôler : " & passed & "/" & total, 48, "CompareFramework V2.5"
+        MsgBox "Tests à contrôler : " & passed & "/" & total, 48, "CompareFramework V2.6"
     End If
 
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunAllTests : " & Err & " - " & Error$, 16, "CompareFramework V2.5"
+    MsgBox "Erreur CF_RunAllTests : " & Err & " - " & Error$, 16, "CompareFramework V2.6"
 End Sub
 
 Private Sub CF_FillOldTestSheet(oSheet As Object)
@@ -320,11 +320,11 @@ Public Sub CF_RunContextTests()
     oRes.getCellByPosition(0, row + 1).String = "Synthèse"
     oRes.getCellByPosition(1, row + 1).String = passed & "/" & total
 
-    MsgBox "Tests contexte : " & passed & "/" & total, 64, "CompareFramework V2.5"
+    MsgBox "Tests contexte : " & passed & "/" & total, 64, "CompareFramework V2.6"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunContextTests : " & Err & " - " & Error$, 16, "CompareFramework V2.5"
+    MsgBox "Erreur CF_RunContextTests : " & Err & " - " & Error$, 16, "CompareFramework V2.6"
 End Sub
 
 Private Sub CF_AddContextTestResult(oSheet As Object, ByRef row As Long, sName As String, bOk As Boolean, ByRef total As Long, ByRef passed As Long)
@@ -346,3 +346,43 @@ Private Sub CF_DeleteSheetIfExists_TestContext(oDoc As Object, sName As String)
         oDoc.Sheets.removeByName(sName)
     End If
 End Sub
+
+
+'=========================================================
+' V2.6 - Profile tests
+'=========================================================
+
+Public Sub CF_RunProfileTests()
+    On Error GoTo ErrHandler
+
+    Dim oDoc As Object, oProfiles As Object
+    Dim okSheet As Boolean, okStandard As Boolean, okFinance As Boolean
+
+    oDoc = ThisComponent
+    oProfiles = CF_EnsureProfilesSheet(oDoc)
+
+    okSheet = oDoc.Sheets.hasByName(CF_PROFILES_SHEET)
+    okStandard = CF_TestProfileExists(oProfiles, "STANDARD")
+    okFinance = CF_TestProfileExists(oProfiles, "FINANCE")
+
+    If okSheet And okStandard And okFinance Then
+        MsgBox "Tests profils : 3/3", 64, "CompareFramework V2.6"
+    Else
+        MsgBox "Tests profils incomplets.", 48, "CompareFramework V2.6"
+    End If
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Erreur CF_RunProfileTests : " & Err & " - " & Error$, 16, "CompareFramework V2.6"
+End Sub
+
+Private Function CF_TestProfileExists(oSheet As Object, profileName As String) As Boolean
+    Dim r As Long
+    For r = 1 To LastUsedRow(oSheet)
+        If UCase(Trim(CellText(oSheet, 0, r))) = UCase(Trim(profileName)) Then
+            CF_TestProfileExists = True
+            Exit Function
+        End If
+    Next r
+    CF_TestProfileExists = False
+End Function

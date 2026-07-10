@@ -1,8 +1,8 @@
-' CompareFramework V2.5 - Utils
+' CompareFramework V2.6 - Utils
 ' Constantes globales et utilitaires communs.
 Option Explicit
 
-Public Const CF_VERSION As String = "2.3"
+Public Const CF_VERSION As String = "2.6"
 Public Const CF_REPORT_SHEET As String = "Rapport_Comparaison"
 Public Const CF_STATS_SHEET As String = "Stats_Comparaison"
 Public Const CF_CONFIG_SHEET As String = "Compare_Config"

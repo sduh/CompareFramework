@@ -1,15 +1,16 @@
 # CHANGELOG
 
-## V2.5 - Execution Context
+## V2.6 - Profils réutilisables
 
 ### Ajouté
-- Nouveau module `CompareFramework_Context.bas`.
-- API de contexte : `CF_ContextReset`, `CF_ContextSet`, `CF_ContextGet`, `CF_ContextHas`.
-- Gestion début/fin d'exécution : `CF_ContextBeginRun`, `CF_ContextEndRun`.
-- Export du contexte dans la feuille `Compare_Context`.
-- Wrapper `ComparerToutesLesFeuilles_Contextualisee()`.
-- Wrapper `DiagnosticFramework_Contextualise()`.
-- Tests `CF_RunContextTests()`.
+- Module `CompareFramework_Profiles.bas`.
+- Feuille `Compare_Profiles` créée à la demande.
+- Profils intégrés STANDARD, FINANCE, RH, ERP et CRM.
+- Application d'un profil dans `Compare_Config`.
+- Sauvegarde de la configuration courante sous forme de profil.
+- Exécution contextualisée avec `CF_RunWithProfile`.
+- Tests de présence des profils intégrés.
 
-### Objectif
-Préparer le remplacement progressif des variables globales par un contexte d'exécution centralisé, sans casser l'API publique existante.
+### Corrigé
+- Constante de version globale alignée sur `2.6`.
+- Manifeste des modules mis à jour.

@@ -1,4 +1,4 @@
-' CompareFramework V2.5 - Index
+' CompareFramework V2.6 - Index
 ' Indexation des identifiants, recherche et doublons.
 Option Explicit
 
