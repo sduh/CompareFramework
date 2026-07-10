@@ -1,16 +1,21 @@
 # CHANGELOG
 
-## V2.7 - Validation et préflight
+## V2.8 - Execution Audit
 
 ### Ajouté
-- Module `CompareFramework_Validation.bas`.
-- Validation du manifeste et des feuilles de configuration.
-- Contrôle des règles et profils.
-- Détection des paires `_OLD`/`_NEW` et `_REF`/`_NEW`.
-- Rapport `Compare_Validation`.
-- Point d'entrée sécurisé `CF_RunValidated()`.
-- Test `CF_RunValidationTests()`.
+- Nouveau module `CompareFramework_Audit.bas`.
+- Historique persistant dans `Compare_Audit`.
+- Identifiant unique de run.
+- Mesure de durée.
+- Statuts d'exécution.
+- Captures d'erreurs.
+- Métriques personnalisées.
+- Point d'entrée `CF_RunAudited()`.
+- Tests `CF_RunAuditTests()`.
 
 ### Changé
-- Version globale portée à 2.7.
-- Manifeste enrichi avec le module Validation.
+- Ordre d'import mis à jour.
+- Version globale portée à 2.8.
+
+### Objectif
+Rendre les comparaisons traçables, auditables et plus faciles à diagnostiquer.

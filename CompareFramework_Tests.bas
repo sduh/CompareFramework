@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V2.7 - Test Suite
+' CompareFramework V2.8 - Test Suite
 '=========================================================
 ' Public macros:
 '   CF_RunAllTests()
@@ -32,11 +32,11 @@ Public Sub CF_CreateTestWorkbook()
     CF_FillOldTestSheet oDoc.Sheets.getByName(CF_TEST_SHEET_OLD)
     CF_FillNewTestSheet oDoc.Sheets.getByName(CF_TEST_SHEET_NEW)
 
-    MsgBox "Jeu de test créé : " & CF_TEST_SHEET_OLD & " / " & CF_TEST_SHEET_NEW, 64, "CompareFramework V2.7"
+    MsgBox "Jeu de test créé : " & CF_TEST_SHEET_OLD & " / " & CF_TEST_SHEET_NEW, 64, "CompareFramework V2.8"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_CreateTestWorkbook : " & Err & " - " & Error$, 16, "CompareFramework V2.7"
+    MsgBox "Erreur CF_CreateTestWorkbook : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
 End Sub
 
 Public Sub CF_RunAllTests()
@@ -73,15 +73,15 @@ Public Sub CF_RunAllTests()
     CF_FormatTestResults oRes
 
     If passed = total Then
-        MsgBox "Tests OK : " & passed & "/" & total, 64, "CompareFramework V2.7"
+        MsgBox "Tests OK : " & passed & "/" & total, 64, "CompareFramework V2.8"
     Else
-        MsgBox "Tests à contrôler : " & passed & "/" & total, 48, "CompareFramework V2.7"
+        MsgBox "Tests à contrôler : " & passed & "/" & total, 48, "CompareFramework V2.8"
     End If
 
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunAllTests : " & Err & " - " & Error$, 16, "CompareFramework V2.7"
+    MsgBox "Erreur CF_RunAllTests : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
 End Sub
 
 Private Sub CF_FillOldTestSheet(oSheet As Object)
@@ -320,11 +320,11 @@ Public Sub CF_RunContextTests()
     oRes.getCellByPosition(0, row + 1).String = "Synthèse"
     oRes.getCellByPosition(1, row + 1).String = passed & "/" & total
 
-    MsgBox "Tests contexte : " & passed & "/" & total, 64, "CompareFramework V2.7"
+    MsgBox "Tests contexte : " & passed & "/" & total, 64, "CompareFramework V2.8"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunContextTests : " & Err & " - " & Error$, 16, "CompareFramework V2.7"
+    MsgBox "Erreur CF_RunContextTests : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
 End Sub
 
 Private Sub CF_AddContextTestResult(oSheet As Object, ByRef row As Long, sName As String, bOk As Boolean, ByRef total As Long, ByRef passed As Long)
@@ -366,14 +366,14 @@ Public Sub CF_RunProfileTests()
     okFinance = CF_TestProfileExists(oProfiles, "FINANCE")
 
     If okSheet And okStandard And okFinance Then
-        MsgBox "Tests profils : 3/3", 64, "CompareFramework V2.7"
+        MsgBox "Tests profils : 3/3", 64, "CompareFramework V2.8"
     Else
-        MsgBox "Tests profils incomplets.", 48, "CompareFramework V2.7"
+        MsgBox "Tests profils incomplets.", 48, "CompareFramework V2.8"
     End If
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunProfileTests : " & Err & " - " & Error$, 16, "CompareFramework V2.7"
+    MsgBox "Erreur CF_RunProfileTests : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
 End Sub
 
 Private Function CF_TestProfileExists(oSheet As Object, profileName As String) As Boolean
@@ -395,8 +395,62 @@ Public Sub CF_RunValidationTests()
     Dim ok As Boolean
     ok = CF_ValidateFramework()
     If ThisComponent.Sheets.hasByName("Compare_Validation") Then
-        MsgBox "Validation exécutée. Résultat global : " & IIf(ok, "OK", "KO"), 64, "CompareFramework V2.7"
+        MsgBox "Validation exécutée. Résultat global : " & IIf(ok, "OK", "KO"), 64, "CompareFramework V2.8"
     Else
-        MsgBox "Echec : feuille Compare_Validation absente.", 16, "CompareFramework V2.7"
+        MsgBox "Echec : feuille Compare_Validation absente.", 16, "CompareFramework V2.8"
     End If
+End Sub
+
+
+'=========================================================
+' V2.8 - Audit tests
+'=========================================================
+
+Public Sub CF_RunAuditTests()
+    On Error GoTo ErrHandler
+
+    Dim oDoc As Object
+    Dim oSheet As Object
+    Dim bRunId As Boolean
+    Dim bMetric As Boolean
+    Dim bSheet As Boolean
+
+    oDoc = ThisComponent
+
+    CF_AuditBegin "AuditUnitTest"
+    bRunId = (CF_AuditGetRunId() <> "")
+    CF_AuditSet "SampleMetric", "42"
+    bMetric = (CF_AuditDurationSeconds() >= 0)
+    CF_AuditEnd "DONE"
+    bSheet = oDoc.Sheets.hasByName("Compare_Audit")
+
+    If oDoc.Sheets.hasByName("CF_Test_Audit") Then
+        oDoc.Sheets.removeByName("CF_Test_Audit")
+    End If
+
+    oDoc.Sheets.insertNewByName "CF_Test_Audit", oDoc.Sheets.getCount()
+    oSheet = oDoc.Sheets.getByName("CF_Test_Audit")
+
+    oSheet.getCellByPosition(0, 0).String = "Test"
+    oSheet.getCellByPosition(1, 0).String = "Résultat"
+
+    oSheet.getCellByPosition(0, 1).String = "Run ID créé"
+    oSheet.getCellByPosition(1, 1).String = IIf(bRunId, "OK", "KO")
+
+    oSheet.getCellByPosition(0, 2).String = "Durée calculable"
+    oSheet.getCellByPosition(1, 2).String = IIf(bMetric, "OK", "KO")
+
+    oSheet.getCellByPosition(0, 3).String = "Feuille Compare_Audit créée"
+    oSheet.getCellByPosition(1, 3).String = IIf(bSheet, "OK", "KO")
+
+    If bRunId And bMetric And bSheet Then
+        MsgBox "Tests audit : 3/3", 64, "CompareFramework V2.8"
+    Else
+        MsgBox "Tests audit à contrôler.", 48, "CompareFramework V2.8"
+    End If
+
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Erreur CF_RunAuditTests : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
 End Sub

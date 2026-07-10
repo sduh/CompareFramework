@@ -1,4 +1,4 @@
-' CompareFramework V2.7 - Main
+' CompareFramework V2.8 - Main
 ' Orchestration et API publique.
 Option Explicit
 
@@ -193,7 +193,7 @@ Public Function GetFrameworkVersion() As String
 End Function
 
 Public Sub DiagnosticFramework()
-    MsgBox "CompareFramework V2.7" & Chr(10) & _
+    MsgBox "CompareFramework V2.8" & Chr(10) & _
            "Modules: " & FrameworkManifest(), 64, "Diagnostic"
 End Sub
 
@@ -218,7 +218,7 @@ ErrHandler:
     CF_ContextSet "ErrorNumber", CStr(Err)
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V2.7"
+    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
 End Sub
 
 Public Sub DiagnosticFramework_Contextualise()
@@ -227,4 +227,47 @@ Public Sub DiagnosticFramework_Contextualise()
     CF_ContextSet "Version", GetFrameworkVersion()
     CF_ContextEndRun "DONE"
     CF_ContextDumpToSheet
+End Sub
+
+
+'=========================================================
+' V2.8 - Audited entry point
+'=========================================================
+
+Public Sub CF_RunAudited()
+    On Error GoTo ErrHandler
+
+    CF_AuditBegin "CF_RunAudited"
+    CF_ContextBeginRun "CF_RunAudited"
+
+    CF_AuditSet "FrameworkVersion", GetFrameworkVersion()
+    CF_AuditSet "ValidationEnabled", "TRUE"
+
+    If Not CF_ValidateFramework(False) Then
+        CF_AuditSet "ValidationResult", "FAILED"
+        CF_AuditEnd "VALIDATION_FAILED"
+        CF_ContextEndRun "VALIDATION_FAILED"
+        MsgBox "Validation échouée. Consulte la feuille Compare_Validation.", 48, "CompareFramework V2.8"
+        Exit Sub
+    End If
+
+    CF_AuditSet "ValidationResult", "OK"
+
+    ComparerToutesLesFeuilles
+
+    CF_AuditSet "ComparisonResult", "DONE"
+    CF_AuditEnd "DONE"
+    CF_ContextEndRun "DONE"
+    Exit Sub
+
+ErrHandler:
+    CF_AuditFail Err, Error$
+    CF_AuditEnd "ERROR"
+
+    On Error Resume Next
+    CF_ContextSet "ErrorNumber", CStr(Err)
+    CF_ContextSet "ErrorMessage", Error$
+    CF_ContextEndRun "ERROR"
+
+    MsgBox "Erreur CF_RunAudited : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
 End Sub
