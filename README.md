@@ -1,40 +1,37 @@
-# CompareFramework V2.4 - Test Suite
+# CompareFramework V2.5 - Execution Context
 
-Cette version ajoute un socle de tests intégrés directement utilisable dans LibreOffice Calc.
+Cette version ajoute un **contexte d'exécution centralisé** pour préparer le remplacement progressif des variables globales.
 
-## Modules
+## Nouveaux fichiers
 
-Importer de préférence dans cet ordre :
+- `CompareFramework_Context.bas`
 
-1. `CompareFramework_Utils.bas`
-2. `CompareFramework_Config.bas`
-3. `CompareFramework_Index.bas`
-4. `CompareFramework_Rules.bas`
-5. `CompareFramework_Report.bas`
-6. `CompareFramework_Tests.bas`
-7. `CompareFramework_Main.bas`
+## API contexte
 
-## Macros principales
+- `CF_ContextReset()`
+- `CF_ContextSet(key, value)`
+- `CF_ContextGet(key, default)`
+- `CF_ContextHas(key)`
+- `CF_ContextCount()`
+- `CF_ContextBeginRun(runName)`
+- `CF_ContextEndRun(status)`
+- `CF_ContextDumpToSheet()`
 
-- `ComparerToutesLesFeuilles()` : lance la comparaison.
-- `ExporterRapportHTML()` : génère le rapport HTML.
-- `CF_CreateTestWorkbook()` : crée les feuilles de test `CF_Test_OLD` et `CF_Test_NEW`.
-- `CF_RunAllTests()` : exécute les tests intégrés et crée `CF_Test_Resultats`.
+## Nouveaux wrappers
 
-## Objectif V2.4
+- `ComparerToutesLesFeuilles_Contextualisee()`
+- `DiagnosticFramework_Contextualise()`
 
-La V2.4 ne cherche pas seulement à ajouter une fonctionnalité visible.
-Elle ajoute une base de validation pour éviter les régressions avant les futures versions.
+Ces wrappers n'imposent pas encore le contexte au moteur historique.
+Ils permettent de commencer la migration sans casser l'API existante.
 
-## Résultat attendu des tests
+## Tests
 
-`CF_RunAllTests()` doit produire :
+- `CF_RunAllTests()` : tests de base V2.4.
+- `CF_RunContextTests()` : tests du contexte V2.5.
 
-- création correcte des feuilles OLD/NEW ;
-- vérification des en-têtes ;
-- présence d'une ligne ajoutée ;
-- présence d'une ligne supprimée ;
-- présence d'une ligne modifiée ;
-- stabilité d'une ligne inchangée.
+## Ordre d'import recommandé
 
-Généré le 2026-07-09 15:09:44.
+Voir `MODULE_ORDER.txt`.
+
+Généré le 2026-07-09 15:13:50.

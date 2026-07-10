@@ -1,4 +1,4 @@
-' CompareFramework V2.4 - Rules
+' CompareFramework V2.5 - Rules
 ' Moteur de règles et comparaison détaillée.
 Option Explicit
 

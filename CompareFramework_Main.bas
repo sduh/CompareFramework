@@ -1,4 +1,4 @@
-' CompareFramework V2.4 - Main
+' CompareFramework V2.5 - Main
 ' Orchestration et API publique.
 Option Explicit
 
@@ -193,7 +193,38 @@ Public Function GetFrameworkVersion() As String
 End Function
 
 Public Sub DiagnosticFramework()
-    MsgBox "CompareFramework V2.4" & Chr(10) & _
+    MsgBox "CompareFramework V2.5" & Chr(10) & _
            "Modules: " & FrameworkManifest(), 64, "Diagnostic"
 End Sub
 
+
+
+'=========================================================
+' V2.5 - Context-aware wrappers
+'=========================================================
+
+Public Sub ComparerToutesLesFeuilles_Contextualisee()
+    On Error GoTo ErrHandler
+
+    CF_ContextBeginRun "ComparerToutesLesFeuilles"
+    CF_ContextSet "EntryPoint", "ComparerToutesLesFeuilles_Contextualisee"
+
+    ComparerToutesLesFeuilles
+
+    CF_ContextEndRun "DONE"
+    Exit Sub
+
+ErrHandler:
+    CF_ContextSet "ErrorNumber", CStr(Err)
+    CF_ContextSet "ErrorMessage", Error$
+    CF_ContextEndRun "ERROR"
+    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V2.5"
+End Sub
+
+Public Sub DiagnosticFramework_Contextualise()
+    CF_ContextBeginRun "DiagnosticFramework"
+    CF_ContextSet "Modules", FrameworkManifest()
+    CF_ContextSet "Version", GetFrameworkVersion()
+    CF_ContextEndRun "DONE"
+    CF_ContextDumpToSheet
+End Sub

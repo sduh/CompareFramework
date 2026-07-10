@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V2.4 - Test Suite
+' CompareFramework V2.5 - Test Suite
 '=========================================================
 ' Public macros:
 '   CF_RunAllTests()
@@ -32,11 +32,11 @@ Public Sub CF_CreateTestWorkbook()
     CF_FillOldTestSheet oDoc.Sheets.getByName(CF_TEST_SHEET_OLD)
     CF_FillNewTestSheet oDoc.Sheets.getByName(CF_TEST_SHEET_NEW)
 
-    MsgBox "Jeu de test créé : " & CF_TEST_SHEET_OLD & " / " & CF_TEST_SHEET_NEW, 64, "CompareFramework V2.4"
+    MsgBox "Jeu de test créé : " & CF_TEST_SHEET_OLD & " / " & CF_TEST_SHEET_NEW, 64, "CompareFramework V2.5"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_CreateTestWorkbook : " & Err & " - " & Error$, 16, "CompareFramework V2.4"
+    MsgBox "Erreur CF_CreateTestWorkbook : " & Err & " - " & Error$, 16, "CompareFramework V2.5"
 End Sub
 
 Public Sub CF_RunAllTests()
@@ -73,15 +73,15 @@ Public Sub CF_RunAllTests()
     CF_FormatTestResults oRes
 
     If passed = total Then
-        MsgBox "Tests OK : " & passed & "/" & total, 64, "CompareFramework V2.4"
+        MsgBox "Tests OK : " & passed & "/" & total, 64, "CompareFramework V2.5"
     Else
-        MsgBox "Tests à contrôler : " & passed & "/" & total, 48, "CompareFramework V2.4"
+        MsgBox "Tests à contrôler : " & passed & "/" & total, 48, "CompareFramework V2.5"
     End If
 
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunAllTests : " & Err & " - " & Error$, 16, "CompareFramework V2.4"
+    MsgBox "Erreur CF_RunAllTests : " & Err & " - " & Error$, 16, "CompareFramework V2.5"
 End Sub
 
 Private Sub CF_FillOldTestSheet(oSheet As Object)
@@ -275,6 +275,73 @@ Private Sub CF_CreateSheet(oDoc As Object, sName As String)
 End Sub
 
 Private Sub CF_DeleteSheetIfExists(oDoc As Object, sName As String)
+    If oDoc.Sheets.hasByName(sName) Then
+        oDoc.Sheets.removeByName(sName)
+    End If
+End Sub
+
+
+'=========================================================
+' V2.5 - Context tests
+'=========================================================
+
+Public Sub CF_RunContextTests()
+    On Error GoTo ErrHandler
+
+    Dim oDoc As Object
+    Dim oRes As Object
+    Dim row As Long
+    Dim total As Long
+    Dim passed As Long
+
+    oDoc = ThisComponent
+
+    CF_DeleteSheetIfExists_TestContext oDoc, "CF_Test_Context"
+    oDoc.Sheets.insertNewByName "CF_Test_Context", oDoc.Sheets.getCount()
+    oRes = oDoc.Sheets.getByName("CF_Test_Context")
+
+    oRes.getCellByPosition(0, 0).String = "Test"
+    oRes.getCellByPosition(1, 0).String = "Résultat"
+
+    row = 1
+    total = 0
+    passed = 0
+
+    CF_ContextReset
+    CF_AddContextTestResult oRes, row, "Context initialisé", CF_ContextHas("FrameworkVersion"), total, passed
+    CF_ContextSet "SampleKey", "SampleValue"
+    CF_AddContextTestResult oRes, row, "Set/Get contexte", CF_ContextGet("SampleKey") = "SampleValue", total, passed
+    CF_AddContextTestResult oRes, row, "Clé absente avec défaut", CF_ContextGet("MissingKey", "DEFAULT") = "DEFAULT", total, passed
+    CF_ContextBeginRun "UnitTest"
+    CF_AddContextTestResult oRes, row, "BeginRun status", CF_ContextGet("Status") = "RUNNING", total, passed
+    CF_ContextEndRun "DONE"
+    CF_AddContextTestResult oRes, row, "EndRun status", CF_ContextGet("Status") = "DONE", total, passed
+
+    oRes.getCellByPosition(0, row + 1).String = "Synthèse"
+    oRes.getCellByPosition(1, row + 1).String = passed & "/" & total
+
+    MsgBox "Tests contexte : " & passed & "/" & total, 64, "CompareFramework V2.5"
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Erreur CF_RunContextTests : " & Err & " - " & Error$, 16, "CompareFramework V2.5"
+End Sub
+
+Private Sub CF_AddContextTestResult(oSheet As Object, ByRef row As Long, sName As String, bOk As Boolean, ByRef total As Long, ByRef passed As Long)
+    total = total + 1
+    If bOk Then passed = passed + 1
+
+    oSheet.getCellByPosition(0, row).String = sName
+    If bOk Then
+        oSheet.getCellByPosition(1, row).String = "OK"
+    Else
+        oSheet.getCellByPosition(1, row).String = "KO"
+    End If
+
+    row = row + 1
+End Sub
+
+Private Sub CF_DeleteSheetIfExists_TestContext(oDoc As Object, sName As String)
     If oDoc.Sheets.hasByName(sName) Then
         oDoc.Sheets.removeByName(sName)
     End If

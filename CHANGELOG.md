@@ -1,17 +1,15 @@
 # CHANGELOG
 
-## V2.4 - Test Suite
+## V2.5 - Execution Context
 
 ### Ajouté
-- Nouveau module `CompareFramework_Tests.bas`.
-- Macro `CF_CreateTestWorkbook()`.
-- Macro `CF_RunAllTests()`.
-- Feuilles de test `CF_Test_OLD`, `CF_Test_NEW`.
-- Feuille de résultats `CF_Test_Resultats`.
-
-### Changé
-- Mise à jour de la documentation.
-- Mise à jour de l'ordre recommandé d'import des modules.
+- Nouveau module `CompareFramework_Context.bas`.
+- API de contexte : `CF_ContextReset`, `CF_ContextSet`, `CF_ContextGet`, `CF_ContextHas`.
+- Gestion début/fin d'exécution : `CF_ContextBeginRun`, `CF_ContextEndRun`.
+- Export du contexte dans la feuille `Compare_Context`.
+- Wrapper `ComparerToutesLesFeuilles_Contextualisee()`.
+- Wrapper `DiagnosticFramework_Contextualise()`.
+- Tests `CF_RunContextTests()`.
 
 ### Objectif
-- Préparer le framework à des évolutions plus sûres grâce à une base de tests intégrés.
+Préparer le remplacement progressif des variables globales par un contexte d'exécution centralisé, sans casser l'API publique existante.

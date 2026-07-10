@@ -1,4 +1,5 @@
 CompareFramework_Utils.bas
+CompareFramework_Context.bas
 CompareFramework_Config.bas
 CompareFramework_Index.bas
 CompareFramework_Rules.bas
