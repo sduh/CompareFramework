@@ -1,20 +1,18 @@
 # CHANGELOG
 
-## V3.2 - Jalon B configurable comparators
+## V3.3 — Jalon B final
 
 ### Ajouté
-- Module `CompareFramework_ComparatorConfig.bas`.
-- Feuille `Compare_Comparators`.
-- Types et tolérances configurables par profil et colonne.
-- Règles génériques via le joker `*`.
-- Macros de rechargement, ouverture et tests.
-- Point d'entrée `CF_RunMilestoneB_Configured()`.
+- Module `CompareFramework_Reliability.bas`.
+- Macro `CF_RunTypedRegressionSuite()`.
+- Macro `CF_ValidateComparatorRules()`.
+- Macro `CF_BuildComparatorCoverageReport()`.
+- Macro `CF_RunMilestoneB_FinalTests()`.
+- Point d’entrée `CF_RunMilestoneB_Final()`.
 
-### Modifié
-- Le moteur mémoire charge la configuration des comparateurs au démarrage.
-- `CF_TypedValuesEqual()` donne priorité aux règles explicites avant l'auto-détection.
-- Version globale portée à 3.2.
+### Corrigé
+- Alignement global de la version sur 3.3.
+- Validation explicite des types et tolérances.
 
-### Compatibilité
-- API historique conservée.
-- Détection automatique V3.1 utilisée en repli.
+### Jalon
+Le Jalon B est considéré comme fonctionnellement terminé sous réserve de validation dans LibreOffice Calc.

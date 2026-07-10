@@ -1,44 +1,37 @@
-# CompareFramework V3.2 - Jalon B configurable comparators
+# CompareFramework V3.3 — Jalon B final : fiabilité des comparateurs
 
-Cette version rend les comparateurs typés configurables par **profil** et par **colonne**.
+Cette version clôt le **Jalon B**.
 
-## Nouvelle feuille
+## Nouveautés
 
-`Compare_Comparators` contient :
+- `CompareFramework_Reliability.bas`
+- matrice de non-régression des comparateurs typés ;
+- validation de la feuille `Compare_Comparators` ;
+- rapport de couverture des types ;
+- point d’entrée final `CF_RunMilestoneB_Final()` ;
+- suite complète `CF_RunMilestoneB_FinalTests()`.
 
-- `Enabled`
-- `Profile`
-- `Column`
-- `Comparator`
-- `Tolerance`
-- `Comment`
+## Macros à lancer
 
-## Priorité des règles
+1. `CF_RunMilestoneB_FinalTests()`
+2. `CF_RunMilestoneB_Final()`
 
-1. profil actif + colonne exacte ;
-2. `GLOBAL` + colonne exacte ;
-3. profil actif + `*` ;
-4. `GLOBAL` + `*` ;
-5. détection automatique V3.1.
+## Feuilles générées
 
-## Types acceptés
+- `CF_Typed_Regression`
+- `CF_Comparator_Validation`
+- `CF_Comparator_Coverage`
 
-- `AUTO`
-- `TEXT`
-- `NUMBER`
-- `DATE`
-- `BOOLEAN`
-- `PERCENT`
-- `CURRENCY`
+## Résultat du Jalon B
 
-## Macros
+Le moteur dispose désormais :
 
-- `CF_OpenComparatorConfig()`
-- `CF_ReloadComparatorConfig()`
-- `CF_RunComparatorConfigTests()`
-- `CF_RunMilestoneB_ConfigTests()`
-- `CF_RunMilestoneB_Configured()`
+- d’un moteur en mémoire ;
+- de comparateurs typés ;
+- de règles par colonne et profil ;
+- de tolérances configurables ;
+- d’une suite de non-régression ciblée.
 
-L'ancien moteur reste disponible via `ComparerToutesLesFeuilles_Legacy()`.
+Le prochain jalon est **Jalon C — qualité et non-régression globale**.
 
-Généré le 2026-07-10 07:31:09.
+Généré le 2026-07-10 07:33:57.

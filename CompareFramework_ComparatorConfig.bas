@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.2 - Comparator configuration
+' CompareFramework V3.3 - Comparator configuration
 ' Jalon B: types and tolerances by profile/column
 '=========================================================
 
@@ -123,7 +123,7 @@ End Function
 Public Sub CF_ReloadComparatorConfig()
     CF_CC_LOADED = False
     CF_LoadComparatorConfig ThisComponent
-    MsgBox "Configuration des comparateurs rechargee : " & CF_CC_COUNT & " regle(s).", 64, "CompareFramework V3.2"
+    MsgBox "Configuration des comparateurs rechargee : " & CF_CC_COUNT & " regle(s).", 64, "CompareFramework V3.3"
 End Sub
 
 Public Sub CF_OpenComparatorConfig()
@@ -157,14 +157,14 @@ Public Sub CF_RunComparatorConfigTests()
     CF_LoadComparatorConfig ThisComponent
 
     If ok1 And ok2 And ok3 Then
-        MsgBox "Tests configuration comparateurs : 3/3", 64, "CompareFramework V3.2"
+        MsgBox "Tests configuration comparateurs : 3/3", 64, "CompareFramework V3.3"
     Else
-        MsgBox "Tests configuration comparateurs a controler.", 48, "CompareFramework V3.2"
+        MsgBox "Tests configuration comparateurs a controler.", 48, "CompareFramework V3.3"
     End If
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunComparatorConfigTests : " & Err & " - " & Error$, 16, "CompareFramework V3.2"
+    MsgBox "Erreur CF_RunComparatorConfigTests : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
 End Sub
 
 Private Function CF_CC_FindRule(profileName As String, columnName As String) As Long
