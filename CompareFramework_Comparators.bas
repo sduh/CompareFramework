@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.1 - Typed comparators
+' CompareFramework V3.2 - Typed comparators
 ' Jalon B: fiabilite des comparaisons
 '=========================================================
 
@@ -15,23 +15,42 @@ Public Const CF_TYPE_CURRENCY As String = "CURRENCY"
 
 Public Function CF_TypedValuesEqual(oldRaw As Variant, newRaw As Variant, headerName As String, ByRef comparatorUsed As String, ByRef detail As String) As Boolean
     Dim requestedType As String
-    requestedType = CF_ComparatorTypeForHeader(headerName, oldRaw, newRaw)
+    Dim configuredType As String
+    Dim tolerance As Double
+    Dim hasTolerance As Boolean
+    Dim configSource As String
+    Dim hasConfig As Boolean
+
+    hasConfig = CF_ResolveComparatorConfig(headerName, configuredType, tolerance, hasTolerance, configSource)
+
+    If hasConfig And configuredType <> "" And configuredType <> CF_TYPE_AUTO Then
+        requestedType = configuredType
+    Else
+        requestedType = CF_ComparatorTypeForHeader(headerName, oldRaw, newRaw)
+    End If
+
     comparatorUsed = requestedType
+    If hasConfig Then comparatorUsed = comparatorUsed & " [" & configSource & "]"
     detail = ""
 
     Select Case requestedType
         Case CF_TYPE_BOOLEAN
             CF_TypedValuesEqual = CF_BooleanEqual(oldRaw, newRaw, detail)
         Case CF_TYPE_NUMBER
-            CF_TypedValuesEqual = CF_NumberEqual(oldRaw, newRaw, CF_GetNumericTolerance(), detail)
+            If Not hasTolerance Then tolerance = CF_GetNumericTolerance()
+            CF_TypedValuesEqual = CF_NumberEqual(oldRaw, newRaw, tolerance, detail)
         Case CF_TYPE_PERCENT
-            CF_TypedValuesEqual = CF_NumberEqual(CF_PercentToNumber(oldRaw), CF_PercentToNumber(newRaw), CF_GetPercentTolerance(), detail)
+            If Not hasTolerance Then tolerance = CF_GetPercentTolerance()
+            CF_TypedValuesEqual = CF_NumberEqual(CF_PercentToNumber(oldRaw), CF_PercentToNumber(newRaw), tolerance, detail)
         Case CF_TYPE_CURRENCY
-            CF_TypedValuesEqual = CF_NumberEqual(CF_CurrencyToNumber(oldRaw), CF_CurrencyToNumber(newRaw), CF_GetCurrencyTolerance(), detail)
+            If Not hasTolerance Then tolerance = CF_GetCurrencyTolerance()
+            CF_TypedValuesEqual = CF_NumberEqual(CF_CurrencyToNumber(oldRaw), CF_CurrencyToNumber(newRaw), tolerance, detail)
         Case CF_TYPE_DATE
-            CF_TypedValuesEqual = CF_DateEqual(oldRaw, newRaw, CF_GetDateToleranceDays(), detail)
+            If Not hasTolerance Then tolerance = CF_GetDateToleranceDays()
+            CF_TypedValuesEqual = CF_DateEqual(oldRaw, newRaw, tolerance, detail)
         Case Else
             comparatorUsed = CF_TYPE_TEXT
+            If hasConfig Then comparatorUsed = comparatorUsed & " [" & configSource & "]"
             CF_TypedValuesEqual = CF_TextEqual(oldRaw, newRaw, detail)
     End Select
 End Function
@@ -218,8 +237,8 @@ Public Sub CF_RunTypedComparatorTests()
     ok6 = CF_TypedValuesEqual("2026-07-10", "10/07/2026", "Date", c, d)
 
     If ok1 And ok2 And ok3 And ok4 And ok5 And ok6 Then
-        MsgBox "Tests comparateurs types : 6/6", 64, "CompareFramework V3.1"
+        MsgBox "Tests comparateurs types : 6/6", 64, "CompareFramework V3.2"
     Else
-        MsgBox "Tests comparateurs types a controler.", 48, "CompareFramework V3.1"
+        MsgBox "Tests comparateurs types a controler.", 48, "CompareFramework V3.2"
     End If
 End Sub

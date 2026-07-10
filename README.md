@@ -1,25 +1,44 @@
-# CompareFramework V3.1 — Jalon B : comparateurs typés et fiabilité
+# CompareFramework V3.2 - Jalon B configurable comparators
 
-La V3.1 conserve le moteur en mémoire de la V3.0 et remplace la comparaison texte unique par des comparateurs spécialisés.
+Cette version rend les comparateurs typés configurables par **profil** et par **colonne**.
 
-## Comparateurs
+## Nouvelle feuille
 
-- `TEXT` : normalisation historique (casse/espaces selon configuration)
-- `NUMBER` : comparaison numérique avec tolérance
-- `DATE` : comparaison de dates par numéro de série
-- `BOOLEAN` : équivalences Oui/Vrai/True/1 et Non/Faux/False/0
-- `PERCENT` : équivalence entre `10%` et `0.1`
-- `CURRENCY` : suppression des symboles et tolérance d'arrondi
+`Compare_Comparators` contient :
 
-Le type est choisi automatiquement d'après l'en-tête et les valeurs.
+- `Enabled`
+- `Profile`
+- `Column`
+- `Comparator`
+- `Tolerance`
+- `Comment`
 
-## Points d'entrée
+## Priorité des règles
 
-- `CF_RunMilestoneB()` : comparaison mémoire avec audit
-- `CF_RunTypedComparatorTests()` : six tests ciblés
-- `CF_RunMilestoneBTests()` : comparateurs + moteur mémoire
-- `ComparerToutesLesFeuilles_Legacy()` : retour arrière
+1. profil actif + colonne exacte ;
+2. `GLOBAL` + colonne exacte ;
+3. profil actif + `*` ;
+4. `GLOBAL` + `*` ;
+5. détection automatique V3.1.
 
-## Limites connues
+## Types acceptés
 
-La détection automatique des dates dépend des formats reconnus par LibreOffice et de la locale. Les tolérances sont centralisées dans `CompareFramework_Comparators.bas` et seront rendues configurables lors du jalon suivant.
+- `AUTO`
+- `TEXT`
+- `NUMBER`
+- `DATE`
+- `BOOLEAN`
+- `PERCENT`
+- `CURRENCY`
+
+## Macros
+
+- `CF_OpenComparatorConfig()`
+- `CF_ReloadComparatorConfig()`
+- `CF_RunComparatorConfigTests()`
+- `CF_RunMilestoneB_ConfigTests()`
+- `CF_RunMilestoneB_Configured()`
+
+L'ancien moteur reste disponible via `ComparerToutesLesFeuilles_Legacy()`.
+
+Généré le 2026-07-10 07:31:09.

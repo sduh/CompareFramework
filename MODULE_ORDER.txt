@@ -5,6 +5,7 @@ CompareFramework_Config.bas
 CompareFramework_Profiles.bas
 CompareFramework_Index.bas
 CompareFramework_Rules.bas
+CompareFramework_ComparatorConfig.bas
 CompareFramework_Comparators.bas
 CompareFramework_Report.bas
 CompareFramework_Validation.bas
