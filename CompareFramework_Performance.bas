@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V2.9 - Performance & Metrics
+' CompareFramework V3.0 - Performance & Metrics
 '=========================================================
 ' Public API:
 '   CF_PerfReset()
@@ -123,7 +123,7 @@ Public Sub CF_PerfWriteReport()
     oSheet.Columns.getByIndex(4).Width = 3000
     Exit Sub
 ErrHandler:
-    MsgBox "Erreur CF_PerfWriteReport : " & Err & " - " & Error$, 16, "CompareFramework V2.9"
+    MsgBox "Erreur CF_PerfWriteReport : " & Err & " - " & Error$, 16, "CompareFramework V3.0"
 End Sub
 
 Public Function CF_ReadSheetDataArray(oSheet As Object) As Variant
@@ -153,10 +153,10 @@ Public Sub CF_RunPerformanceBenchmark()
         End If
     Next i
     CF_PerfWriteReport
-    MsgBox "Benchmark terminé. Consulte Compare_Performance.", 64, "CompareFramework V2.9"
+    MsgBox "Benchmark terminé. Consulte Compare_Performance.", 64, "CompareFramework V3.0"
     Exit Sub
 ErrHandler:
-    MsgBox "Erreur CF_RunPerformanceBenchmark : " & Err & " - " & Error$, 16, "CompareFramework V2.9"
+    MsgBox "Erreur CF_RunPerformanceBenchmark : " & Err & " - " & Error$, 16, "CompareFramework V3.0"
 End Sub
 
 Private Function CF_PerfIndexOf(sLabel As String) As Long

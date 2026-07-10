@@ -1,16 +1,18 @@
 # CHANGELOG
 
-## V2.9 — Performance & Metrics
+## V3.0 - Jalon A : moteur en memoire
 
-### Ajouté
-- Module `CompareFramework_Performance.bas`.
-- Chronométrage nommé.
-- Rapport `Compare_Performance`.
-- Lecture de plage avec `getDataArray()`.
-- Benchmark et tests de performance.
-- Point d’entrée `CF_RunPerformanceProfiled()`.
+### Ajoute
+- `CompareFramework_EngineMemory.bas`.
+- Pipeline lecture, indexation, comparaison et rapport en memoire.
+- `CF_RunMilestoneA()`.
+- `CF_RunMemoryEngineTests()`.
 
-### Corrigé
-- `CF_VERSION` était restée à 2.6 : elle est maintenant 2.9.
-- Manifeste des modules complété.
-- Exclusion des feuilles techniques lors de la détection des paires.
+### Modifie
+- `ComparerToutesLesFeuilles()` utilise le moteur en memoire.
+- L'ancien moteur devient `ComparerToutesLesFeuilles_Legacy()`.
+- Version globale portee a 3.0.
+- Manifeste et ordre d'import actualises.
+
+### Objectif
+Reduire fortement les appels UNO cellule par cellule et rendre le moteur testable par phases.

@@ -1,33 +1,31 @@
-# CompareFramework V2.9 — Performance & Metrics
+# CompareFramework V3.0 - Jalon A : moteur en memoire
 
-## Nouveau module
+V3.0 est le premier jalon fonctionnel du nouveau cycle.
 
-`CompareFramework_Performance.bas`
+## Changement majeur
 
-## Nouveau point d’entrée recommandé
+`ComparerToutesLesFeuilles()` utilise maintenant le moteur en memoire :
 
-`CF_RunPerformanceProfiled()`
+1. lecture de chaque plage avec `getDataArray()` ;
+2. construction des index ID en memoire ;
+3. comparaison des lignes sans relire les cellules une par une ;
+4. ecriture du rapport final.
 
-Il exécute le préflight, la comparaison et génère `Compare_Performance` avec les durées des phases.
+L'ancien moteur reste disponible avec :
 
-## Lecture en mémoire
+- `ComparerToutesLesFeuilles_Legacy()`
 
-`CF_ReadSheetDataArray(sheet)` utilise `getDataArray()` afin de charger une plage Calc en une opération UNO. Cette API prépare la migration du moteur V3.0 vers une comparaison entièrement en mémoire.
+## Points d'entree
 
-## Outils
+- `ComparerToutesLesFeuilles()` : moteur V3 en memoire.
+- `CF_RunMilestoneA()` : lancement contextualise et audite.
+- `CF_RunMemoryEngineTests()` : test technique du chargement et de l'indexation.
+- `ComparerToutesLesFeuilles_Legacy()` : solution de repli.
 
-- `CF_RunPerformanceBenchmark()` : mesure la lecture en mémoire de chaque feuille.
-- `CF_RunPerformanceTests()` : vérifie la lecture par tableau.
-- `CF_PerfStart/CF_PerfStop` : chronométrage nommé.
-- `CF_PerfRecordPair` : métriques par paire.
-- `CF_PerfWriteReport` : feuille `Compare_Performance`.
+## Limite connue
 
-## Corrections
+`getDataArray()` renvoie les valeurs brutes. Les dates et formats d'affichage seront traites par les comparateurs specialises du jalon suivant. Pour valider V3.0, comparer d'abord les resultats du moteur V3 et du moteur Legacy sur les memes jeux de donnees.
 
-- constante `CF_VERSION` alignée sur `2.9` ;
-- manifeste complété avec Audit, Validation et Performance ;
-- feuilles techniques exclues de la détection des paires.
+## Ordre d'import
 
-La V2.9 est un jalon de mesure. La V3.0 utilisera ces primitives pour remplacer les accès cellule par cellule dans le cœur du moteur.
-
-Généré le 2026-07-10 07:09:09.
+Voir `MODULE_ORDER.txt`.
