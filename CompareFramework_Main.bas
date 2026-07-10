@@ -1,4 +1,4 @@
-' CompareFramework V2.6 - Main
+' CompareFramework V2.7 - Main
 ' Orchestration et API publique.
 Option Explicit
 
@@ -193,7 +193,7 @@ Public Function GetFrameworkVersion() As String
 End Function
 
 Public Sub DiagnosticFramework()
-    MsgBox "CompareFramework V2.6" & Chr(10) & _
+    MsgBox "CompareFramework V2.7" & Chr(10) & _
            "Modules: " & FrameworkManifest(), 64, "Diagnostic"
 End Sub
 
@@ -218,7 +218,7 @@ ErrHandler:
     CF_ContextSet "ErrorNumber", CStr(Err)
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V2.6"
+    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V2.7"
 End Sub
 
 Public Sub DiagnosticFramework_Contextualise()
