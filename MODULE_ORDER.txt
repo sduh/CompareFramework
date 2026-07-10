@@ -12,5 +12,6 @@ CompareFramework_Validation.bas
 CompareFramework_Performance.bas
 CompareFramework_EngineMemory.bas
 CompareFramework_Reliability.bas
+CompareFramework_Quality.bas
 CompareFramework_Tests.bas
 CompareFramework_Main.bas

@@ -1,4 +1,4 @@
-' CompareFramework V3.3 - Main
+' CompareFramework V3.4 - Main
 ' Orchestration et API publique.
 Option Explicit
 
@@ -65,7 +65,7 @@ ErrHandler:
     CF_AuditFail Err, Error$
     CF_AuditEnd "ERROR"
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur Jalon A : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
+    MsgBox "Erreur Jalon A : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
 End Sub
 
 Public Function CompareDetectedPairs(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
@@ -213,7 +213,7 @@ Public Function GetFrameworkVersion() As String
 End Function
 
 Public Sub DiagnosticFramework()
-    MsgBox "CompareFramework V3.3" & Chr(10) & _
+    MsgBox "CompareFramework V3.4" & Chr(10) & _
            "Modules: " & FrameworkManifest(), 64, "Diagnostic"
 End Sub
 
@@ -238,7 +238,7 @@ ErrHandler:
     CF_ContextSet "ErrorNumber", CStr(Err)
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
+    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
 End Sub
 
 Public Sub DiagnosticFramework_Contextualise()
@@ -267,7 +267,7 @@ Public Sub CF_RunAudited()
         CF_AuditSet "ValidationResult", "FAILED"
         CF_AuditEnd "VALIDATION_FAILED"
         CF_ContextEndRun "VALIDATION_FAILED"
-        MsgBox "Validation échouée. Consulte la feuille Compare_Validation.", 48, "CompareFramework V3.3"
+        MsgBox "Validation échouée. Consulte la feuille Compare_Validation.", 48, "CompareFramework V3.4"
         Exit Sub
     End If
 
@@ -289,7 +289,7 @@ ErrHandler:
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
 
-    MsgBox "Erreur CF_RunAudited : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
+    MsgBox "Erreur CF_RunAudited : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
 End Sub
 
 
@@ -310,7 +310,7 @@ Public Sub CF_RunPerformanceProfiled()
         CF_PerfWriteReport
         CF_AuditEnd "VALIDATION_FAILED"
         CF_ContextEndRun "VALIDATION_FAILED"
-        MsgBox "Validation échouée. Consulte Compare_Validation.", 48, "CompareFramework V3.3"
+        MsgBox "Validation échouée. Consulte Compare_Validation.", 48, "CompareFramework V3.4"
         Exit Sub
     End If
     CF_PerfStop "Validation"
@@ -331,7 +331,7 @@ ErrHandler:
     CF_AuditFail Err, Error$
     CF_AuditEnd "ERROR"
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur CF_RunPerformanceProfiled : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
+    MsgBox "Erreur CF_RunPerformanceProfiled : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
 End Sub
 
 
@@ -348,7 +348,7 @@ ErrHandler:
     CF_AuditFail Err, Error$
     CF_AuditEnd "ERROR"
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur Jalon B : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
+    MsgBox "Erreur Jalon B : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
 End Sub
 
 
@@ -374,7 +374,7 @@ ErrHandler:
     CF_AuditFail Err, Error$
     CF_AuditEnd "ERROR"
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur CF_RunMilestoneB_Configured : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
+    MsgBox "Erreur CF_RunMilestoneB_Configured : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
 End Sub
 
 Public Sub CF_RunMilestoneB_ConfigTests()
@@ -408,5 +408,30 @@ ErrHandler:
     CF_AuditFail Err, Error$
     CF_AuditEnd "ERROR"
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur CF_RunMilestoneB_Final : " & Err & " - " & Error$, 16, "CompareFramework V3.3"
+    MsgBox "Erreur CF_RunMilestoneB_Final : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
+End Sub
+
+
+'=========================================================
+' V3.4 - Milestone C entry point
+'=========================================================
+
+Public Sub CF_RunMilestoneC()
+    On Error GoTo ErrHandler
+
+    CF_AuditBegin "CF_RunMilestoneC"
+    CF_ContextBeginRun "CF_RunMilestoneC"
+
+    CF_RunGlobalRegression
+    CF_AuditSet "Milestone", "C"
+    CF_AuditSet "QualitySuite", "ENABLED"
+    CF_AuditEnd "DONE"
+    CF_ContextEndRun "DONE"
+    Exit Sub
+
+ErrHandler:
+    CF_AuditFail Err, Error$
+    CF_AuditEnd "ERROR"
+    CF_ContextEndRun "ERROR"
+    MsgBox "Erreur CF_RunMilestoneC : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
 End Sub

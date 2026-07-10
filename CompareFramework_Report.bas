@@ -1,4 +1,4 @@
-' CompareFramework V3.3 - Report
+' CompareFramework V3.4 - Report
 ' Rapports Calc, synthèse, plan d'action, journal et export HTML.
 Option Explicit
 

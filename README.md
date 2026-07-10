@@ -1,37 +1,41 @@
-# CompareFramework V3.3 — Jalon B final : fiabilité des comparateurs
+# CompareFramework V3.4 — Jalon C : qualité globale
 
-Cette version clôt le **Jalon B**.
+Cette version ouvre le **Jalon C** avec une suite de non-régression de bout en bout.
 
-## Nouveautés
+## Nouveau module
 
-- `CompareFramework_Reliability.bas`
-- matrice de non-régression des comparateurs typés ;
-- validation de la feuille `Compare_Comparators` ;
-- rapport de couverture des types ;
-- point d’entrée final `CF_RunMilestoneB_Final()` ;
-- suite complète `CF_RunMilestoneB_FinalTests()`.
+- `CompareFramework_Quality.bas`
 
-## Macros à lancer
+## Nouveaux scénarios
 
-1. `CF_RunMilestoneB_FinalTests()`
-2. `CF_RunMilestoneB_Final()`
+- génération automatique de `QC_OLD` et `QC_NEW` ;
+- génération des résultats attendus dans `CF_Expected` ;
+- exécution du moteur ;
+- contrôle automatique de `Rapport_Comparaison` ;
+- tableau de bord qualité.
+
+## Macros
+
+- `CF_RunEndToEndScenario()`
+- `CF_ValidateExpectedReport()`
+- `CF_RunGlobalRegression()`
+- `CF_BuildQualityDashboard()`
+- `CF_RunMilestoneC()`
 
 ## Feuilles générées
 
-- `CF_Typed_Regression`
-- `CF_Comparator_Validation`
-- `CF_Comparator_Coverage`
+- `QC_OLD`
+- `QC_NEW`
+- `CF_Expected`
+- `CF_Quality_Results`
+- `CF_Quality_Dashboard`
 
-## Résultat du Jalon B
+## Ordre conseillé
 
-Le moteur dispose désormais :
+1. `CF_RunEndToEndScenario()`
+2. `CF_RunGlobalRegression()`
+3. `CF_RunMilestoneC()`
 
-- d’un moteur en mémoire ;
-- de comparateurs typés ;
-- de règles par colonne et profil ;
-- de tolérances configurables ;
-- d’une suite de non-régression ciblée.
+Le Jalon C sera considéré comme terminé après validation de plusieurs scénarios métier et d'un corpus plus large.
 
-Le prochain jalon est **Jalon C — qualité et non-régression globale**.
-
-Généré le 2026-07-10 07:33:57.
+Généré le 2026-07-10 07:38:18.

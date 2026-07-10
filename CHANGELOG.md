@@ -1,18 +1,15 @@
 # CHANGELOG
 
-## V3.3 — Jalon B final
+## V3.4 — Jalon C : qualité globale
 
 ### Ajouté
-- Module `CompareFramework_Reliability.bas`.
-- Macro `CF_RunTypedRegressionSuite()`.
-- Macro `CF_ValidateComparatorRules()`.
-- Macro `CF_BuildComparatorCoverageReport()`.
-- Macro `CF_RunMilestoneB_FinalTests()`.
-- Point d’entrée `CF_RunMilestoneB_Final()`.
+- Module `CompareFramework_Quality.bas`.
+- Scénario complet OLD/NEW.
+- Résultats attendus.
+- Validation automatique du rapport.
+- Tableau de bord qualité.
+- Régression globale.
+- Point d'entrée `CF_RunMilestoneC()`.
 
-### Corrigé
-- Alignement global de la version sur 3.3.
-- Validation explicite des types et tolérances.
-
-### Jalon
-Le Jalon B est considéré comme fonctionnellement terminé sous réserve de validation dans LibreOffice Calc.
+### Objectif
+Valider le framework de bout en bout, et pas seulement ses fonctions isolées.
