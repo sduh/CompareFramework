@@ -1,15 +1,16 @@
 {
   "name": "CompareFramework",
-  "version": "3.7.1-D2",
+  "version": "3.7.2-D3",
   "baseline": "3.6.3",
-  "feature": "Consolidated reference reports",
-  "generated_at": "2026-07-10T14:30:59",
+  "feature": "Guided launcher",
+  "generated_at": "2026-07-10T14:36:15",
   "static_checks": {
-    "single_option_explicit_in_monolith": true,
+    "single_option_explicit": true,
     "no_optional_defaults": true,
     "no_round_calls": true,
-    "reference_summary_present": true,
-    "summary_sheet_constant_present": true
+    "launcher_present": true,
+    "run_from_launcher_present": true,
+    "selection_filter_present": true
   },
   "all_static_checks_passed": true
 }

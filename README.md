@@ -1,76 +1,37 @@
-# CompareFramework V3.7.1-D2 — Mode Référence
+# CompareFramework V3.7.2-D3 — Assistant de lancement
 
-Premier livrable du Jalon D.
+D3 ajoute une feuille de configuration guidée pour le mode Référence.
 
-## Cas d'usage
+## Utilisation
 
-Une feuille sert de référence et toutes les autres feuilles métier sont comparées à celle-ci.
+1. Exécuter `CF_OpenReferenceLauncher()`.
+2. Ouvrir `Compare_Launcher`.
+3. Renseigner :
+   - `REFERENCE_SHEET`
+   - `KEY_COLUMN`
+   - `TARGET_MODE`
+   - `SELECTED_TARGETS`
+4. Exécuter `CF_RunFromLauncher()`.
+
+## Modes de cibles
+
+### Toutes les cibles
+
+`TARGET_MODE = ALL`
+
+### Cibles sélectionnées
+
+`TARGET_MODE = SELECTED`
 
 Exemple :
 
-- référence : `MODELE`
-- identifiant : `ref_scat_abs`
-- cibles : toutes les autres feuilles métier
-
-## Installation modulaire
-
-Ajouter `src/Modes/CF_ModeReference.bas` aux modules V3.6.3.
-
-## Installation monolithique
-
-Importer uniquement :
-
-`dist/CompareFramework_3_7_0_D1_Monolith.bas`
+`3pmg_001;aedev_936`
 
 ## Macros
 
-### Preset pour le classeur fourni
+- `CF_OpenReferenceLauncher()`
+- `CF_RunFromLauncher()`
+- `CF_RunLauncherQuick()`
+- `CF_RunAgainstReference_MODELE()`
 
-```basic
-CF_RunAgainstReference_MODELE()
-```
-
-### Mode interactif
-
-```basic
-CF_RunReferenceMode()
-```
-
-### API
-
-```basic
-CF_RunAgainstReference "MODELE", "ref_scat_abs"
-```
-
-## Résultats
-
-Le mode réutilise les rapports existants :
-
-- `Rapport_Comparaison`
-- `Stats_Comparaison`
-- `Synthese_Comparaison`
-- `Plan_Action_Comparaison`
-- `Journal_Comparaison`
-
-Il ajoute :
-
-- `Compare_Reference_Plan`
-
-Cette feuille indique les cibles planifiées, comparées ou ignorées.
-
-
-## D2 — Synthèse consolidée
-
-Le mode Référence crée désormais `Compare_Reference_Summary`.
-
-Cette feuille fournit une ligne par cible avec :
-
-- ajouts ;
-- suppressions ;
-- lignes modifiées ;
-- cellules modifiées ;
-- doublons ;
-- incidents ;
-- décision `OK`, `ECARTS` ou `A CONTROLER`.
-
-Une ligne `TOTAL` consolide l'ensemble des cibles.
+D1 et D2 restent disponibles.

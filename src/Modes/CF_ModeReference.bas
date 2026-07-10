@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.7.1-D2
+' CompareFramework V3.7.2-D3
 ' Mode Reference unique -> N feuilles cibles
 '=========================================================
 '
@@ -16,6 +16,8 @@ Option Explicit
 
 Public Const CF_REFERENCE_PLAN_SHEET As String = "Compare_Reference_Plan"
 Public Const CF_REFERENCE_SUMMARY_SHEET As String = "Compare_Reference_Summary"
+Public CF_REFERENCE_TARGET_MODE As String
+Public CF_REFERENCE_SELECTED_TARGETS As String
 
 Public Sub CF_RunReferenceMode()
     Dim referenceName As String
@@ -246,7 +248,7 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
         "Suppressions : " & totalRemoved & Chr(10) & _
         "Lignes modifiées : " & totalChangedRows, _
         64, _
-        "CompareFramework V3.7.1-D2"
+        "CompareFramework V3.7.2-D3"
 
     Exit Sub
 
@@ -259,7 +261,7 @@ ErrHandler:
     MsgBox _
         "Erreur CF_RunAgainstReference : " & Err & " - " & Error$, _
         16, _
-        "CompareFramework V3.7.1-D2"
+        "CompareFramework V3.7.2-D3"
 End Sub
 
 Public Sub CF_BuildReferencePlan(referenceSheetName As String, keyColumnName As String)
@@ -326,6 +328,11 @@ Public Function CF_ReferenceIsTargetSheet(sheetName As String, referenceSheetNam
     End If
 
     If Left(normalized, 8) = "compare_" Then
+        CF_ReferenceIsTargetSheet = False
+        Exit Function
+    End If
+
+    If Not CF_ReferenceTargetSelected(sheetName) Then
         CF_ReferenceIsTargetSheet = False
         Exit Function
     End If
@@ -494,7 +501,7 @@ Public Sub CF_ReferenceBuildSummary(oStats As Object)
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V3.7.1-D2"
+    MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V3.7.2-D3"
 End Sub
 
 Public Sub CF_ReferenceFormatSummary(oSummary As Object)
@@ -512,3 +519,152 @@ Public Sub CF_ReferenceFormatSummary(oSummary As Object)
     oSummary.Columns.getByIndex(6).Width = 2500
     oSummary.Columns.getByIndex(7).Width = 4000
 End Sub
+
+'=========================================================
+' D3 - Guided launcher
+'=========================================================
+
+Public Sub CF_OpenReferenceLauncher()
+    On Error GoTo ErrHandler
+
+    Dim oDoc As Object
+    Dim oSheet As Object
+    Dim names As Variant
+    Dim i As Long
+    Dim row As Long
+    Dim sheetName As String
+
+    oDoc = ThisComponent
+    oSheet = PrepareSheet(oDoc, "Compare_Launcher")
+
+    oSheet.getCellByPosition(0, 0).String = "Paramètre"
+    oSheet.getCellByPosition(1, 0).String = "Valeur"
+    oSheet.getCellByPosition(2, 0).String = "Description"
+
+    oSheet.getCellByPosition(0, 1).String = "REFERENCE_SHEET"
+    oSheet.getCellByPosition(1, 1).String = "MODELE"
+    oSheet.getCellByPosition(2, 1).String = "Feuille de référence"
+
+    oSheet.getCellByPosition(0, 2).String = "KEY_COLUMN"
+    oSheet.getCellByPosition(1, 2).String = "ref_scat_abs"
+    oSheet.getCellByPosition(2, 2).String = "Colonne identifiant"
+
+    oSheet.getCellByPosition(0, 3).String = "TARGET_MODE"
+    oSheet.getCellByPosition(1, 3).String = "ALL"
+    oSheet.getCellByPosition(2, 3).String = "ALL ou SELECTED"
+
+    oSheet.getCellByPosition(0, 4).String = "SELECTED_TARGETS"
+    oSheet.getCellByPosition(1, 4).String = ""
+    oSheet.getCellByPosition(2, 4).String = "Liste séparée par ;"
+
+    oSheet.getCellByPosition(0, 6).String = "Feuilles disponibles"
+    oSheet.getCellByPosition(1, 6).String = "Inclure ?"
+
+    names = oDoc.Sheets.getElementNames()
+    row = 7
+
+    For i = LBound(names) To UBound(names)
+        sheetName = CStr(names(i))
+        If CF_ReferenceIsTargetSheet(sheetName, "MODELE") Or UCase(sheetName) = "MODELE" Then
+            oSheet.getCellByPosition(0, row).String = sheetName
+            oSheet.getCellByPosition(1, row).String = "YES"
+            row = row + 1
+        End If
+    Next i
+
+    On Error Resume Next
+    oSheet.getCellRangeByName("A1:C1").CharWeight = 150
+    oSheet.getCellRangeByName("A1:C1").CellBackColor = RGB(217, 217, 217)
+    oSheet.getCellRangeByName("A7:B7").CharWeight = 150
+    oSheet.getCellRangeByName("A7:B7").CellBackColor = RGB(217, 217, 217)
+    oSheet.Columns.getByIndex(0).Width = 7000
+    oSheet.Columns.getByIndex(1).Width = 7000
+    oSheet.Columns.getByIndex(2).Width = 12000
+    On Error GoTo ErrHandler
+
+    MsgBox "Feuille Compare_Launcher créée." & Chr(10) & _
+           "Renseigne les paramètres puis exécute CF_RunFromLauncher().", _
+           64, "CompareFramework V3.7.2-D3"
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Erreur CF_OpenReferenceLauncher : " & Err & " - " & Error$, _
+           16, "CompareFramework V3.7.2-D3"
+End Sub
+
+Public Sub CF_RunFromLauncher()
+    On Error GoTo ErrHandler
+
+    Dim oDoc As Object
+    Dim oSheet As Object
+    Dim referenceName As String
+    Dim keyColumnName As String
+    Dim targetMode As String
+    Dim selectedTargets As String
+
+    oDoc = ThisComponent
+
+    If Not oDoc.Sheets.hasByName("Compare_Launcher") Then
+        CF_OpenReferenceLauncher
+        Exit Sub
+    End If
+
+    oSheet = oDoc.Sheets.getByName("Compare_Launcher")
+
+    referenceName = Trim(oSheet.getCellByPosition(1, 1).String)
+    keyColumnName = Trim(oSheet.getCellByPosition(1, 2).String)
+    targetMode = UCase(Trim(oSheet.getCellByPosition(1, 3).String))
+    selectedTargets = Trim(oSheet.getCellByPosition(1, 4).String)
+
+    If referenceName = "" Then
+        MsgBox "REFERENCE_SHEET est vide.", 48, "CompareFramework V3.7.2-D3"
+        Exit Sub
+    End If
+
+    If keyColumnName = "" Then
+        MsgBox "KEY_COLUMN est vide.", 48, "CompareFramework V3.7.2-D3"
+        Exit Sub
+    End If
+
+    If targetMode <> "ALL" And targetMode <> "SELECTED" Then
+        MsgBox "TARGET_MODE doit valoir ALL ou SELECTED.", 48, "CompareFramework V3.7.2-D3"
+        Exit Sub
+    End If
+
+    CF_REFERENCE_TARGET_MODE = targetMode
+    CF_REFERENCE_SELECTED_TARGETS = selectedTargets
+
+    CF_RunAgainstReference referenceName, keyColumnName
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Erreur CF_RunFromLauncher : " & Err & " - " & Error$, _
+           16, "CompareFramework V3.7.2-D3"
+End Sub
+
+Public Sub CF_RunLauncherQuick()
+    CF_OpenReferenceLauncher
+End Sub
+
+Private Function CF_ReferenceTargetSelected(sheetName As String) As Boolean
+    Dim normalized As String
+    Dim items As Variant
+    Dim i As Long
+
+    If CF_REFERENCE_TARGET_MODE = "" Or CF_REFERENCE_TARGET_MODE = "ALL" Then
+        CF_ReferenceTargetSelected = True
+        Exit Function
+    End If
+
+    normalized = LCase(Trim(sheetName))
+    items = Split(CF_REFERENCE_SELECTED_TARGETS, ";")
+
+    For i = LBound(items) To UBound(items)
+        If LCase(Trim(CStr(items(i)))) = normalized Then
+            CF_ReferenceTargetSelected = True
+            Exit Function
+        End If
+    Next i
+
+    CF_ReferenceTargetSelected = False
+End Function

@@ -1,14 +1,15 @@
 # CHANGELOG
 
-## 3.7.1-D2
+## 3.7.2-D3
 
 ### Ajouté
-- Feuille `Compare_Reference_Summary`.
-- Synthèse consolidée par feuille cible.
-- Totaux globaux.
-- Décision par cible : `OK`, `ECARTS`, `A CONTROLER`.
+- Feuille `Compare_Launcher`.
+- Macro `CF_OpenReferenceLauncher()`.
+- Macro `CF_RunFromLauncher()`.
+- Sélection de toutes les cibles ou d'une liste explicite.
+- Paramétrage sans modification du code.
 
 ### Conservé
 - Mode Référence D1.
-- Baseline moteur V3.6.3.
-- Ancien mode par paires.
+- Synthèse consolidée D2.
+- Mode historique par paires.
