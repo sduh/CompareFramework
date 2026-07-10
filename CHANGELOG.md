@@ -1,15 +1,14 @@
 # CHANGELOG
 
-## 3.7.0-D1
+## 3.7.1-D2
 
 ### Ajouté
-- Mode référence unique vers N cibles.
-- API `CF_RunAgainstReference`.
-- Macro interactive `CF_RunReferenceMode`.
-- Preset `CF_RunAgainstReference_MODELE`.
-- Plan de comparaison `Compare_Reference_Plan`.
+- Feuille `Compare_Reference_Summary`.
+- Synthèse consolidée par feuille cible.
+- Totaux globaux.
+- Décision par cible : `OK`, `ECARTS`, `A CONTROLER`.
 
 ### Conservé
-- Moteur mémoire V3.6.3.
-- Mode historique `_OLD/_NEW`, `_REF/_NEW`, `_AVANT/_APRES`.
-- Rapports et comparateurs existants.
+- Mode Référence D1.
+- Baseline moteur V3.6.3.
+- Ancien mode par paires.

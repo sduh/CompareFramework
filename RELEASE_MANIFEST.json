@@ -1,17 +1,15 @@
 {
   "name": "CompareFramework",
-  "version": "3.7.0-D1",
+  "version": "3.7.1-D2",
   "baseline": "3.6.3",
-  "feature": "Reference mode",
-  "monolith_sha256": "0652203b86e2ab3241de36f122a04052ba70af07cbe894a59028d48b4b21da83",
-  "generated_at": "2026-07-10T14:22:24",
+  "feature": "Consolidated reference reports",
+  "generated_at": "2026-07-10T14:30:59",
   "static_checks": {
     "single_option_explicit_in_monolith": true,
     "no_optional_defaults": true,
     "no_round_calls": true,
-    "reference_api_present": true,
-    "preset_present": true,
-    "interactive_present": true
+    "reference_summary_present": true,
+    "summary_sheet_constant_present": true
   },
   "all_static_checks_passed": true
 }

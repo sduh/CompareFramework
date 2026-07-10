@@ -1,4 +1,4 @@
-# CompareFramework V3.7.0-D1 — Mode Référence
+# CompareFramework V3.7.1-D2 — Mode Référence
 
 Premier livrable du Jalon D.
 
@@ -57,3 +57,20 @@ Il ajoute :
 - `Compare_Reference_Plan`
 
 Cette feuille indique les cibles planifiées, comparées ou ignorées.
+
+
+## D2 — Synthèse consolidée
+
+Le mode Référence crée désormais `Compare_Reference_Summary`.
+
+Cette feuille fournit une ligne par cible avec :
+
+- ajouts ;
+- suppressions ;
+- lignes modifiées ;
+- cellules modifiées ;
+- doublons ;
+- incidents ;
+- décision `OK`, `ECARTS` ou `A CONTROLER`.
+
+Une ligne `TOTAL` consolide l'ensemble des cibles.

@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.7.0-D1
+' CompareFramework V3.7.1-D2
 ' Mode Reference unique -> N feuilles cibles
 '=========================================================
 '
@@ -15,6 +15,7 @@ Option Explicit
 '=========================================================
 
 Public Const CF_REFERENCE_PLAN_SHEET As String = "Compare_Reference_Plan"
+Public Const CF_REFERENCE_SUMMARY_SHEET As String = "Compare_Reference_Summary"
 
 Public Sub CF_RunReferenceMode()
     Dim referenceName As String
@@ -220,6 +221,7 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
     FormatDashboard oDash
     FormatActionPlan oAction
     FormatAuditLog oAudit
+    CF_ReferenceBuildSummary oStats
     CF_ReferenceFormatPlan
 
     On Error Resume Next
@@ -244,7 +246,7 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
         "Suppressions : " & totalRemoved & Chr(10) & _
         "Lignes modifiées : " & totalChangedRows, _
         64, _
-        "CompareFramework V3.7.0-D1"
+        "CompareFramework V3.7.1-D2"
 
     Exit Sub
 
@@ -257,7 +259,7 @@ ErrHandler:
     MsgBox _
         "Erreur CF_RunAgainstReference : " & Err & " - " & Error$, _
         16, _
-        "CompareFramework V3.7.0-D1"
+        "CompareFramework V3.7.1-D2"
 End Sub
 
 Public Sub CF_BuildReferencePlan(referenceSheetName As String, keyColumnName As String)
@@ -391,4 +393,122 @@ Public Sub CF_ReferenceFormatPlan()
     oPlan.Columns.getByIndex(2).Width = 4500
     oPlan.Columns.getByIndex(3).Width = 3500
     oPlan.Columns.getByIndex(4).Width = 9000
+End Sub
+
+Public Sub CF_ReferenceBuildSummary(oStats As Object)
+    On Error GoTo ErrHandler
+
+    Dim oDoc As Object
+    Dim oSummary As Object
+    Dim lastRow As Long
+    Dim row As Long
+    Dim outRow As Long
+    Dim pairName As String
+    Dim addedCount As String
+    Dim removedCount As String
+    Dim changedRows As String
+    Dim changedCells As String
+    Dim duplicateCount As String
+    Dim issueCount As String
+    Dim totalAdded As Long
+    Dim totalRemoved As Long
+    Dim totalChangedRows As Long
+    Dim totalChangedCells As Long
+    Dim totalDuplicates As Long
+    Dim totalIssues As Long
+    Dim comparedTargets As Long
+
+    oDoc = ThisComponent
+    oSummary = PrepareSheet(oDoc, CF_REFERENCE_SUMMARY_SHEET)
+
+    oSummary.getCellByPosition(0, 0).String = "Feuille cible"
+    oSummary.getCellByPosition(1, 0).String = "Ajouts"
+    oSummary.getCellByPosition(2, 0).String = "Suppressions"
+    oSummary.getCellByPosition(3, 0).String = "Lignes modifiées"
+    oSummary.getCellByPosition(4, 0).String = "Cellules modifiées"
+    oSummary.getCellByPosition(5, 0).String = "Doublons"
+    oSummary.getCellByPosition(6, 0).String = "Incidents"
+    oSummary.getCellByPosition(7, 0).String = "Décision"
+
+    lastRow = LastUsedRow(oStats)
+    outRow = 1
+
+    For row = 1 To lastRow
+        pairName = Trim(oStats.getCellByPosition(0, row).String)
+
+        If InStr(pairName, "->") > 0 Then
+            addedCount = Trim(oStats.getCellByPosition(1, row).String)
+            removedCount = Trim(oStats.getCellByPosition(2, row).String)
+            changedRows = Trim(oStats.getCellByPosition(3, row).String)
+            changedCells = Trim(oStats.getCellByPosition(4, row).String)
+            duplicateCount = Trim(oStats.getCellByPosition(5, row).String)
+            issueCount = Trim(oStats.getCellByPosition(6, row).String)
+
+            oSummary.getCellByPosition(0, outRow).String = Trim(Mid(pairName, InStr(pairName, "->") + 2))
+            oSummary.getCellByPosition(1, outRow).String = addedCount
+            oSummary.getCellByPosition(2, outRow).String = removedCount
+            oSummary.getCellByPosition(3, outRow).String = changedRows
+            oSummary.getCellByPosition(4, outRow).String = changedCells
+            oSummary.getCellByPosition(5, outRow).String = duplicateCount
+            oSummary.getCellByPosition(6, outRow).String = issueCount
+
+            If Val(issueCount) > 0 Or Val(duplicateCount) > 0 Then
+                oSummary.getCellByPosition(7, outRow).String = "A CONTROLER"
+            ElseIf Val(addedCount) > 0 Or Val(removedCount) > 0 Or Val(changedRows) > 0 Then
+                oSummary.getCellByPosition(7, outRow).String = "ECARTS"
+            Else
+                oSummary.getCellByPosition(7, outRow).String = "OK"
+            End If
+
+            totalAdded = totalAdded + Val(addedCount)
+            totalRemoved = totalRemoved + Val(removedCount)
+            totalChangedRows = totalChangedRows + Val(changedRows)
+            totalChangedCells = totalChangedCells + Val(changedCells)
+            totalDuplicates = totalDuplicates + Val(duplicateCount)
+            totalIssues = totalIssues + Val(issueCount)
+            comparedTargets = comparedTargets + 1
+            outRow = outRow + 1
+        End If
+    Next row
+
+    oSummary.getCellByPosition(0, outRow + 1).String = "TOTAL"
+    oSummary.getCellByPosition(1, outRow + 1).String = CStr(totalAdded)
+    oSummary.getCellByPosition(2, outRow + 1).String = CStr(totalRemoved)
+    oSummary.getCellByPosition(3, outRow + 1).String = CStr(totalChangedRows)
+    oSummary.getCellByPosition(4, outRow + 1).String = CStr(totalChangedCells)
+    oSummary.getCellByPosition(5, outRow + 1).String = CStr(totalDuplicates)
+    oSummary.getCellByPosition(6, outRow + 1).String = CStr(totalIssues)
+
+    If totalIssues > 0 Or totalDuplicates > 0 Then
+        oSummary.getCellByPosition(7, outRow + 1).String = "A CONTROLER"
+    ElseIf totalAdded > 0 Or totalRemoved > 0 Or totalChangedRows > 0 Then
+        oSummary.getCellByPosition(7, outRow + 1).String = "ECARTS"
+    Else
+        oSummary.getCellByPosition(7, outRow + 1).String = "OK"
+    End If
+
+    oSummary.getCellByPosition(0, outRow + 3).String = "Feuilles comparées"
+    oSummary.getCellByPosition(1, outRow + 3).String = CStr(comparedTargets)
+
+    CF_ReferenceFormatSummary oSummary
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V3.7.1-D2"
+End Sub
+
+Public Sub CF_ReferenceFormatSummary(oSummary As Object)
+    On Error Resume Next
+
+    oSummary.getCellRangeByName("A1:H1").CharWeight = 150
+    oSummary.getCellRangeByName("A1:H1").CellBackColor = RGB(217, 217, 217)
+
+    oSummary.Columns.getByIndex(0).Width = 6500
+    oSummary.Columns.getByIndex(1).Width = 2500
+    oSummary.Columns.getByIndex(2).Width = 3000
+    oSummary.Columns.getByIndex(3).Width = 3500
+    oSummary.Columns.getByIndex(4).Width = 3500
+    oSummary.Columns.getByIndex(5).Width = 2500
+    oSummary.Columns.getByIndex(6).Width = 2500
+    oSummary.Columns.getByIndex(7).Width = 4000
 End Sub
