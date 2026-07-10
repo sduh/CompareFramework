@@ -1,15 +1,13 @@
 # CHANGELOG
 
-## V3.4 — Jalon C : qualité globale
+## V3.5 — Jalon C final
 
 ### Ajouté
-- Module `CompareFramework_Quality.bas`.
-- Scénario complet OLD/NEW.
-- Résultats attendus.
-- Validation automatique du rapport.
-- Tableau de bord qualité.
-- Régression globale.
-- Point d'entrée `CF_RunMilestoneC()`.
+- Module `CompareFramework_Scenarios.bas`.
+- Scénarios Finance, RH et ERP.
+- Résultats consolidés dans `CF_Scenario_Results`.
+- Décision de préparation dans `CF_Release_Readiness`.
+- Point d'entrée `CF_RunMilestoneC_Final()`.
 
-### Objectif
-Valider le framework de bout en bout, et pas seulement ses fonctions isolées.
+### Jalon
+Le Jalon C est considéré comme fonctionnellement terminé, sous réserve d'exécution des tests dans LibreOffice Calc.

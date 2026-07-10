@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.4 - Execution Audit
+' CompareFramework V3.5 - Execution Audit
 '=========================================================
 ' Public API:
 '   CF_AuditBegin(runName)
@@ -132,7 +132,7 @@ Public Sub CF_AuditWriteCurrentRun()
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_AuditWriteCurrentRun : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
+    MsgBox "Erreur CF_AuditWriteCurrentRun : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
 End Sub
 
 Public Sub CF_AuditClearHistory()
@@ -146,11 +146,11 @@ Public Sub CF_AuditClearHistory()
     End If
 
     CF_AuditEnsureSheet oDoc
-    MsgBox "Historique d'audit réinitialisé.", 64, "CompareFramework V3.4"
+    MsgBox "Historique d'audit réinitialisé.", 64, "CompareFramework V3.5"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_AuditClearHistory : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
+    MsgBox "Erreur CF_AuditClearHistory : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
 End Sub
 
 Public Function CF_AuditGetRunId() As String

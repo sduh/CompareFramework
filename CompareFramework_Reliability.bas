@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.4 - Typed Comparator Reliability
+' CompareFramework V3.5 - Typed Comparator Reliability
 '=========================================================
 ' Public API:
 '   CF_RunTypedRegressionSuite()
@@ -56,14 +56,14 @@ Public Sub CF_RunTypedRegressionSuite()
     CF_ReliabilityFormat oSheet
 
     If passed = total Then
-        MsgBox "Régression typée OK : " & passed & "/" & total, 64, "CompareFramework V3.4"
+        MsgBox "Régression typée OK : " & passed & "/" & total, 64, "CompareFramework V3.5"
     Else
-        MsgBox "Régression typée à contrôler : " & passed & "/" & total, 48, "CompareFramework V3.4"
+        MsgBox "Régression typée à contrôler : " & passed & "/" & total, 48, "CompareFramework V3.5"
     End If
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunTypedRegressionSuite : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
+    MsgBox "Erreur CF_RunTypedRegressionSuite : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
 End Sub
 
 Public Sub CF_ValidateComparatorRules()
@@ -142,11 +142,11 @@ Public Sub CF_ValidateComparatorRules()
     Next row
 
     CF_ReliabilityFormat oSheet
-    MsgBox "Validation des comparateurs terminée.", 64, "CompareFramework V3.4"
+    MsgBox "Validation des comparateurs terminée.", 64, "CompareFramework V3.5"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ValidateComparatorRules : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
+    MsgBox "Erreur CF_ValidateComparatorRules : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
 End Sub
 
 Public Sub CF_BuildComparatorCoverageReport()
@@ -186,11 +186,11 @@ Public Sub CF_BuildComparatorCoverageReport()
     Next i
 
     CF_ReliabilityFormat oSheet
-    MsgBox "Rapport de couverture généré.", 64, "CompareFramework V3.4"
+    MsgBox "Rapport de couverture généré.", 64, "CompareFramework V3.5"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_BuildComparatorCoverageReport : " & Err & " - " & Error$, 16, "CompareFramework V3.4"
+    MsgBox "Erreur CF_BuildComparatorCoverageReport : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
 End Sub
 
 Public Sub CF_RunMilestoneB_FinalTests()
@@ -200,7 +200,7 @@ Public Sub CF_RunMilestoneB_FinalTests()
     CF_ValidateComparatorRules
     CF_BuildComparatorCoverageReport
 
-    MsgBox "Jalon B V3.3 terminé. Consulte les feuilles de test et validation.", 64, "CompareFramework V3.4"
+    MsgBox "Jalon B V3.3 terminé. Consulte les feuilles de test et validation.", 64, "CompareFramework V3.5"
 End Sub
 
 Private Sub CF_ReliabilityAddCase(oSheet As Object, ByRef row As Long, ByRef total As Long, ByRef passed As Long, comparatorType As String, oldValue As Variant, newValue As Variant, expected As Boolean)

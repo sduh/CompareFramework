@@ -1,41 +1,46 @@
-# CompareFramework V3.4 — Jalon C : qualité globale
+# CompareFramework V3.5 — Jalon C final : stabilisation
 
-Cette version ouvre le **Jalon C** avec une suite de non-régression de bout en bout.
+Cette version clôt fonctionnellement le **Jalon C** sous réserve de validation dans LibreOffice Calc.
 
 ## Nouveau module
 
-- `CompareFramework_Quality.bas`
+- `CompareFramework_Scenarios.bas`
 
-## Nouveaux scénarios
+## Scénarios métier
 
-- génération automatique de `QC_OLD` et `QC_NEW` ;
-- génération des résultats attendus dans `CF_Expected` ;
-- exécution du moteur ;
-- contrôle automatique de `Rapport_Comparaison` ;
-- tableau de bord qualité.
+- Finance
+- RH
+- ERP
 
-## Macros
+Chaque scénario génère ses feuilles OLD/NEW, exécute le moteur puis vérifie les écarts attendus.
 
-- `CF_RunEndToEndScenario()`
-- `CF_ValidateExpectedReport()`
-- `CF_RunGlobalRegression()`
-- `CF_BuildQualityDashboard()`
-- `CF_RunMilestoneC()`
+## Macros principales
+
+- `CF_RunFinanceScenario()`
+- `CF_RunHRScenario()`
+- `CF_RunERPScenario()`
+- `CF_RunAllBusinessScenarios()`
+- `CF_BuildReleaseReadiness()`
+- `CF_RunMilestoneC_Final()`
 
 ## Feuilles générées
 
-- `QC_OLD`
-- `QC_NEW`
-- `CF_Expected`
-- `CF_Quality_Results`
-- `CF_Quality_Dashboard`
+- `CF_Scenario_Results`
+- `CF_Release_Readiness`
+
+## Décision de release
+
+`CF_Release_Readiness` affiche :
+
+- `RELEASE CANDIDATE` si tous les contrôles sont au vert ;
+- `A CONTROLER` sinon.
 
 ## Ordre conseillé
 
-1. `CF_RunEndToEndScenario()`
-2. `CF_RunGlobalRegression()`
-3. `CF_RunMilestoneC()`
+1. `CF_RunGlobalRegression()`
+2. `CF_RunAllBusinessScenarios()`
+3. `CF_RunMilestoneC_Final()`
 
-Le Jalon C sera considéré comme terminé après validation de plusieurs scénarios métier et d'un corpus plus large.
+Le prochain jalon sera **Jalon D — ergonomie, documentation et distribution**.
 
-Généré le 2026-07-10 07:38:18.
+Généré le 2026-07-10 07:44:22.
