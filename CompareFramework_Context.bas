@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5 - Execution Context
+' CompareFramework V3.5.1 - Execution Context
 '=========================================================
 ' Goal:
 '   Centralize runtime state in one context structure
@@ -63,7 +63,7 @@ Public Sub CF_ContextSet(sKey As String, vValue As Variant)
     End If
 End Sub
 
-Public Function CF_ContextGet(sKey As String, Optional sDefault As String = "") As String
+Public Function CF_ContextGet(sKey As String, Optional sDefault As Variant) As String
     Dim idx As Long
 
     CF_ContextInitIfNeeded
@@ -71,8 +71,10 @@ Public Function CF_ContextGet(sKey As String, Optional sDefault As String = "") 
     idx = CF_ContextIndexOf(sKey)
     If idx >= 0 Then
         CF_ContextGet = CF_CTX_VALUES(idx)
+    ElseIf IsMissing(sDefault) Then
+        CF_ContextGet = ""
     Else
-        CF_ContextGet = sDefault
+        CF_ContextGet = CStr(sDefault)
     End If
 End Function
 
@@ -113,23 +115,39 @@ Public Sub CF_ContextDumpToSheet()
     oSheet.Columns.getByIndex(0).Width = 6500
     oSheet.Columns.getByIndex(1).Width = 11000
 
-    MsgBox "Contexte exporté dans Compare_Context.", 64, "CompareFramework V3.5"
+    MsgBox "Contexte exporté dans Compare_Context.", 64, "CompareFramework V3.5.1"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ContextDumpToSheet : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_ContextDumpToSheet : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
-Public Sub CF_ContextBeginRun(Optional sRunName As String = "")
+Public Sub CF_ContextBeginRun(Optional sRunName As Variant)
+    Dim resolvedRunName As String
+
+    If IsMissing(sRunName) Then
+        resolvedRunName = ""
+    Else
+        resolvedRunName = CStr(sRunName)
+    End If
+
     CF_ContextReset
-    CF_ContextSet "RunName", sRunName
+    CF_ContextSet "RunName", resolvedRunName
     CF_ContextSet "Status", "RUNNING"
     CF_ContextSet "DocumentURL", ThisComponent.URL
 End Sub
 
-Public Sub CF_ContextEndRun(Optional sStatus As String = "DONE")
+Public Sub CF_ContextEndRun(Optional sStatus As Variant)
+    Dim resolvedStatus As String
+
+    If IsMissing(sStatus) Then
+        resolvedStatus = "DONE"
+    Else
+        resolvedStatus = CStr(sStatus)
+    End If
+
     CF_ContextSet "EndedAt", CStr(Now)
-    CF_ContextSet "Status", sStatus
+    CF_ContextSet "Status", resolvedStatus
 End Sub
 
 Private Function CF_ContextIndexOf(sKey As String) As Long

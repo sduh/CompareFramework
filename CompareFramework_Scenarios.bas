@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5 - Milestone C Stabilisation
+' CompareFramework V3.5.1 - Milestone C Stabilisation
 '=========================================================
 ' Business scenarios:
 '   FINANCE
@@ -34,11 +34,11 @@ Public Sub CF_RunAllBusinessScenarios()
 
     CF_BuildReleaseReadiness
 
-    MsgBox "Scénarios métier terminés. Consulte CF_Scenario_Results et CF_Release_Readiness.", 64, "CompareFramework V3.5"
+    MsgBox "Scénarios métier terminés. Consulte CF_Scenario_Results et CF_Release_Readiness.", 64, "CompareFramework V3.5.1"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunAllBusinessScenarios : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_RunAllBusinessScenarios : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
 Public Sub CF_RunFinanceScenario()
@@ -130,13 +130,13 @@ Public Sub CF_BuildReleaseReadiness()
     CF_ScenarioReadinessRow oSheet, 1, "Scénarios métier", businessStatus, "CF_Scenario_Results"
     CF_ScenarioReadinessRow oSheet, 2, "Tableau de bord qualité", qualityStatus, "CF_Quality_Dashboard"
     CF_ScenarioReadinessRow oSheet, 3, "Régression typée", regressionStatus, "CF_Typed_Regression"
-    CF_ScenarioReadinessRow oSheet, 5, "Décision", releaseStatus, "CompareFramework V3.5"
+    CF_ScenarioReadinessRow oSheet, 5, "Décision", releaseStatus, "CompareFramework V3.5.1"
 
     CF_ScenarioFormat oSheet
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_BuildReleaseReadiness : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_BuildReleaseReadiness : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
 Private Sub CF_ScenarioCreateFinance(oDoc As Object)

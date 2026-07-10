@@ -1,4 +1,4 @@
-' CompareFramework V3.5 - Config
+' CompareFramework V3.5.1 - Config
 ' Chargement configuration, profils et normalisation.
 Option Explicit
 

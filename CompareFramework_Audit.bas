@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5 - Execution Audit
+' CompareFramework V3.5.1 - Execution Audit
 '=========================================================
 ' Public API:
 '   CF_AuditBegin(runName)
@@ -26,13 +26,21 @@ Private CF_AUDIT_METRIC_VALUES() As String
 Private CF_AUDIT_METRIC_COUNT As Long
 Private CF_AUDIT_ACTIVE As Boolean
 
-Public Sub CF_AuditBegin(Optional sRunName As String = "Comparison")
+Public Sub CF_AuditBegin(Optional sRunName As Variant)
     ReDim CF_AUDIT_METRIC_KEYS(0 To 0)
     ReDim CF_AUDIT_METRIC_VALUES(0 To 0)
 
+    Dim resolvedRunName As String
+
+    If IsMissing(sRunName) Then
+        resolvedRunName = "Comparison"
+    Else
+        resolvedRunName = CStr(sRunName)
+    End If
+
     CF_AUDIT_METRIC_COUNT = 0
     CF_AUDIT_RUN_ID = CF_AuditCreateRunId()
-    CF_AUDIT_RUN_NAME = sRunName
+    CF_AUDIT_RUN_NAME = resolvedRunName
     CF_AUDIT_STARTED_AT = Now
     CF_AUDIT_ENDED_AT = 0
     CF_AUDIT_STATUS = "RUNNING"
@@ -86,13 +94,21 @@ Public Sub CF_AuditFail(vErrorNumber As Variant, sErrorMessage As String)
     CF_ContextSet "ErrorMessage", CF_AUDIT_ERROR_MESSAGE
 End Sub
 
-Public Sub CF_AuditEnd(Optional sStatus As String = "DONE")
+Public Sub CF_AuditEnd(Optional sStatus As Variant)
     If Not CF_AUDIT_ACTIVE Then Exit Sub
+
+    Dim resolvedStatus As String
+
+    If IsMissing(sStatus) Then
+        resolvedStatus = "DONE"
+    Else
+        resolvedStatus = CStr(sStatus)
+    End If
 
     CF_AUDIT_ENDED_AT = Now
 
     If CF_AUDIT_STATUS <> "ERROR" Then
-        CF_AUDIT_STATUS = sStatus
+        CF_AUDIT_STATUS = resolvedStatus
     End If
 
     On Error Resume Next
@@ -132,7 +148,7 @@ Public Sub CF_AuditWriteCurrentRun()
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_AuditWriteCurrentRun : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_AuditWriteCurrentRun : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
 Public Sub CF_AuditClearHistory()
@@ -146,11 +162,11 @@ Public Sub CF_AuditClearHistory()
     End If
 
     CF_AuditEnsureSheet oDoc
-    MsgBox "Historique d'audit réinitialisé.", 64, "CompareFramework V3.5"
+    MsgBox "Historique d'audit réinitialisé.", 64, "CompareFramework V3.5.1"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_AuditClearHistory : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_AuditClearHistory : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
 Public Function CF_AuditGetRunId() As String

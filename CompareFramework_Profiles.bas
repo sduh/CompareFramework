@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5 - Reusable Profiles
+' CompareFramework V3.5.1 - Reusable Profiles
 '=========================================================
 ' Public API:
 '   CF_EnsureProfilesSheet()
@@ -59,7 +59,7 @@ Public Sub CF_ApplyProfile(sProfileName As String)
     rowIndex = CF_FindProfileRow(oProfiles, sProfileName)
 
     If rowIndex < 1 Then
-        MsgBox "Profil introuvable : " & sProfileName, 48, "CompareFramework V3.5"
+        MsgBox "Profil introuvable : " & sProfileName, 48, "CompareFramework V3.5.1"
         Exit Sub
     End If
 
@@ -74,11 +74,11 @@ Public Sub CF_ApplyProfile(sProfileName As String)
     CF_ContextSet "ProfileAppliedAt", CStr(Now)
     LoadCompareConfig oDoc
 
-    MsgBox "Profil appliqué : " & UCase(Trim(sProfileName)), 64, "CompareFramework V3.5"
+    MsgBox "Profil appliqué : " & UCase(Trim(sProfileName)), 64, "CompareFramework V3.5.1"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ApplyProfile : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_ApplyProfile : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
 Public Sub CF_SaveCurrentConfigAsProfile(sProfileName As String)
@@ -89,7 +89,7 @@ Public Sub CF_SaveCurrentConfigAsProfile(sProfileName As String)
 
     sProfileName = UCase(Trim(sProfileName))
     If sProfileName = "" Then
-        MsgBox "Le nom du profil est obligatoire.", 48, "CompareFramework V3.5"
+        MsgBox "Le nom du profil est obligatoire.", 48, "CompareFramework V3.5.1"
         Exit Sub
     End If
 
@@ -107,11 +107,11 @@ Public Sub CF_SaveCurrentConfigAsProfile(sProfileName As String)
         CF_GetConfigValue(oConfig, "IGNORE_EMPTY_CHANGES"), _
         "Profil enregistré le " & CStr(Now)
 
-    MsgBox "Profil enregistré : " & sProfileName, 64, "CompareFramework V3.5"
+    MsgBox "Profil enregistré : " & sProfileName, 64, "CompareFramework V3.5.1"
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_SaveCurrentConfigAsProfile : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_SaveCurrentConfigAsProfile : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
 Public Sub CF_ListProfiles()
@@ -134,7 +134,7 @@ ErrHandler:
     CF_ContextSet "ErrorNumber", CStr(Err)
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur CF_RunWithProfile : " & Err & " - " & Error$, 16, "CompareFramework V3.5"
+    MsgBox "Erreur CF_RunWithProfile : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
 End Sub
 
 Private Sub CF_WriteProfileHeader(oSheet As Object)
