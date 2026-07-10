@@ -1,51 +1,33 @@
-# CompareFramework V2.8 - Execution Audit
-
-Cette version ajoute un historique d'exécution persistant dans la feuille `Compare_Audit`.
+# CompareFramework V2.9 — Performance & Metrics
 
 ## Nouveau module
 
-- `CompareFramework_Audit.bas`
+`CompareFramework_Performance.bas`
 
-## Nouveau point d'entrée recommandé
+## Nouveau point d’entrée recommandé
 
-- `CF_RunAudited()`
+`CF_RunPerformanceProfiled()`
 
-Ce point d'entrée :
+Il exécute le préflight, la comparaison et génère `Compare_Performance` avec les durées des phases.
 
-1. démarre le contexte et l'audit ;
-2. valide le framework ;
-3. lance la comparaison ;
-4. enregistre le statut, la durée et les erreurs ;
-5. écrit une ligne dans `Compare_Audit`.
+## Lecture en mémoire
 
-## API d'audit
+`CF_ReadSheetDataArray(sheet)` utilise `getDataArray()` afin de charger une plage Calc en une opération UNO. Cette API prépare la migration du moteur V3.0 vers une comparaison entièrement en mémoire.
 
-- `CF_AuditBegin(runName)`
-- `CF_AuditSet(metricName, value)`
-- `CF_AuditFail(errorNumber, message)`
-- `CF_AuditEnd(status)`
-- `CF_AuditWriteCurrentRun()`
-- `CF_AuditClearHistory()`
-- `CF_AuditGetRunId()`
-- `CF_AuditDurationSeconds()`
+## Outils
 
-## Tests
+- `CF_RunPerformanceBenchmark()` : mesure la lecture en mémoire de chaque feuille.
+- `CF_RunPerformanceTests()` : vérifie la lecture par tableau.
+- `CF_PerfStart/CF_PerfStop` : chronométrage nommé.
+- `CF_PerfRecordPair` : métriques par paire.
+- `CF_PerfWriteReport` : feuille `Compare_Performance`.
 
-- `CF_RunAuditTests()`
+## Corrections
 
-## Feuille créée
+- constante `CF_VERSION` alignée sur `2.9` ;
+- manifeste complété avec Audit, Validation et Performance ;
+- feuilles techniques exclues de la détection des paires.
 
-`Compare_Audit` contient :
+La V2.9 est un jalon de mesure. La V3.0 utilisera ces primitives pour remplacer les accès cellule par cellule dans le cœur du moteur.
 
-- Run ID ;
-- nom de l'exécution ;
-- début / fin ;
-- durée ;
-- statut ;
-- profil ;
-- document ;
-- erreur ;
-- message ;
-- métriques.
-
-Généré le 2026-07-10 07:03:08.
+Généré le 2026-07-10 07:09:09.

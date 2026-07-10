@@ -1,4 +1,4 @@
-' CompareFramework V2.8 - Main
+' CompareFramework V2.9 - Main
 ' Orchestration et API publique.
 Option Explicit
 
@@ -185,7 +185,7 @@ Public Sub CompareSheetPair(oOld As Object, oNew As Object, oReport As Object, B
 End Sub
 
 Public Function FrameworkManifest() As String
-    FrameworkManifest = "Main,Context,Profiles,Config,Index,Rules,Report,Tests,Utils"
+    FrameworkManifest = "Main,Context,Audit,Profiles,Config,Index,Rules,Report,Validation,Performance,Tests,Utils"
 End Function
 
 Public Function GetFrameworkVersion() As String
@@ -193,7 +193,7 @@ Public Function GetFrameworkVersion() As String
 End Function
 
 Public Sub DiagnosticFramework()
-    MsgBox "CompareFramework V2.8" & Chr(10) & _
+    MsgBox "CompareFramework V2.9" & Chr(10) & _
            "Modules: " & FrameworkManifest(), 64, "Diagnostic"
 End Sub
 
@@ -218,7 +218,7 @@ ErrHandler:
     CF_ContextSet "ErrorNumber", CStr(Err)
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
+    MsgBox "Erreur comparaison contextualisée : " & Err & " - " & Error$, 16, "CompareFramework V2.9"
 End Sub
 
 Public Sub DiagnosticFramework_Contextualise()
@@ -247,7 +247,7 @@ Public Sub CF_RunAudited()
         CF_AuditSet "ValidationResult", "FAILED"
         CF_AuditEnd "VALIDATION_FAILED"
         CF_ContextEndRun "VALIDATION_FAILED"
-        MsgBox "Validation échouée. Consulte la feuille Compare_Validation.", 48, "CompareFramework V2.8"
+        MsgBox "Validation échouée. Consulte la feuille Compare_Validation.", 48, "CompareFramework V2.9"
         Exit Sub
     End If
 
@@ -269,5 +269,47 @@ ErrHandler:
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
 
-    MsgBox "Erreur CF_RunAudited : " & Err & " - " & Error$, 16, "CompareFramework V2.8"
+    MsgBox "Erreur CF_RunAudited : " & Err & " - " & Error$, 16, "CompareFramework V2.9"
+End Sub
+
+
+'=========================================================
+' V2.9 - Performance-profiled entry point
+'=========================================================
+Public Sub CF_RunPerformanceProfiled()
+    On Error GoTo ErrHandler
+    CF_PerfReset
+    CF_PerfStart "Total"
+    CF_AuditBegin "CF_RunPerformanceProfiled"
+    CF_ContextBeginRun "CF_RunPerformanceProfiled"
+
+    CF_PerfStart "Validation"
+    If Not CF_ValidateFramework(False) Then
+        CF_PerfStop "Validation"
+        CF_PerfStop "Total"
+        CF_PerfWriteReport
+        CF_AuditEnd "VALIDATION_FAILED"
+        CF_ContextEndRun "VALIDATION_FAILED"
+        MsgBox "Validation échouée. Consulte Compare_Validation.", 48, "CompareFramework V2.9"
+        Exit Sub
+    End If
+    CF_PerfStop "Validation"
+
+    CF_PerfStart "Comparaison"
+    ComparerToutesLesFeuilles
+    CF_PerfStop "Comparaison"
+    CF_PerfStop "Total"
+    CF_PerfWriteReport
+
+    CF_AuditSet "PerformanceReport", "Compare_Performance"
+    CF_AuditEnd "DONE"
+    CF_ContextEndRun "DONE"
+    Exit Sub
+ErrHandler:
+    CF_PerfStop "Total"
+    CF_PerfWriteReport
+    CF_AuditFail Err, Error$
+    CF_AuditEnd "ERROR"
+    CF_ContextEndRun "ERROR"
+    MsgBox "Erreur CF_RunPerformanceProfiled : " & Err & " - " & Error$, 16, "CompareFramework V2.9"
 End Sub
