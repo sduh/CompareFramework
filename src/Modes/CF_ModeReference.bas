@@ -449,7 +449,7 @@ Public Sub CF_ReferenceBuildSummary(oStats As Object)
             changedRows = Trim(oStats.getCellByPosition(3, row).String)
             changedCells = Trim(oStats.getCellByPosition(4, row).String)
             duplicateCount = Trim(oStats.getCellByPosition(5, row).String)
-            issueCount = Trim(oStats.getCellByPosition(6, row).String)
+            issueCount = Trim(oStats.getCellByPosition(8, row).String)
 
             oSummary.getCellByPosition(0, outRow).String = Trim(Mid(pairName, InStr(pairName, "->") + 2))
             oSummary.getCellByPosition(1, outRow).String = addedCount

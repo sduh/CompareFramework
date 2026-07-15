@@ -2,7 +2,7 @@
   "name": "CompareFramework",
   "version": "3.7.3-D4",
   "output": "dist/CompareFramework_3_7_3_D4_Monolith.bas",
-  "sha256": "67dface12628e1ebc9192fdb2d903bb735dff5bb3e8a7ce0e786a049f8b5152f",
+  "sha256": "29a0c822c69c473d88d2fff9683c3eca66f23c3ad3b498ee3c38d34ccb7a2e1b",
   "modules": [
     "src/CompareFramework_Utils.bas",
     "src/CompareFramework_Context.bas",
