@@ -15,7 +15,7 @@ OPTIONAL_DEFAULT_RE = re.compile(
     r"Optional\s+\w+\s+As\s+\w+\s*=",
     re.IGNORECASE,
 )
-ROUND_RE = re.compile(r"\bRound\s*\(", re.IGNORECASE)
+ROUND_RE = re.compile(r"(?<![A-Za-z0-9_])Round\s*\(", re.IGNORECASE)
 PUBLIC_SYMBOL_RE = re.compile(
     r"^\s*Public\s+(?:Sub|Function)\s+([A-Za-z_][A-Za-z0-9_]*)",
     re.IGNORECASE | re.MULTILINE,
