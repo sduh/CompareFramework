@@ -50,18 +50,82 @@ def find_duplicate_public_symbols(parts: list[tuple[Path, str]]) -> dict[str, li
     return {name: files for name, files in locations.items() if len(files) > 1}
 
 
+
+def strip_basic_comments_and_strings(text: str) -> str:
+    """Remove Basic comments and string contents while preserving line breaks."""
+    output: list[str] = []
+
+    for line in text.splitlines(keepends=True):
+        cleaned: list[str] = []
+        in_string = False
+        i = 0
+
+        while i < len(line):
+            char = line[i]
+
+            if in_string:
+                if char == '"':
+                    if i + 1 < len(line) and line[i + 1] == '"':
+                        cleaned.extend((" ", " "))
+                        i += 2
+                        continue
+                    in_string = False
+                    cleaned.append(" ")
+                else:
+                    cleaned.append("\n" if char == "\n" else " ")
+                i += 1
+                continue
+
+            if char == '"':
+                in_string = True
+                cleaned.append(" ")
+                i += 1
+                continue
+
+            if char == "'":
+                while i < len(line) and line[i] != "\n":
+                    cleaned.append(" ")
+                    i += 1
+                continue
+
+            cleaned.append(char)
+            i += 1
+
+        output.append("".join(cleaned))
+
+    return "".join(output)
+
+
+def find_forbidden_round_calls(text: str) -> list[dict[str, object]]:
+    executable_text = strip_basic_comments_and_strings(text)
+    findings: list[dict[str, object]] = []
+    original_lines = text.splitlines()
+
+    for match in ROUND_RE.finditer(executable_text):
+        line_number = executable_text.count("\n", 0, match.start()) + 1
+        original_line = original_lines[line_number - 1].strip()
+        findings.append({"line": line_number, "source": original_line})
+
+    return findings
+
 def validate(parts: list[tuple[Path, str]], monolith: str) -> dict[str, object]:
     duplicate_symbols = find_duplicate_public_symbols(parts)
+    forbidden_round_calls = find_forbidden_round_calls(monolith)
+    single_option_explicit = monolith.lower().count("option explicit") == 1
+    optional_defaults_absent = not bool(OPTIONAL_DEFAULT_RE.search(monolith))
+    round_calls_absent = not forbidden_round_calls
+
     return {
         "module_count": len(parts),
-        "single_option_explicit": monolith.lower().count("option explicit") == 1,
-        "optional_default_syntax_absent": not bool(OPTIONAL_DEFAULT_RE.search(monolith)),
-        "round_calls_absent": not bool(ROUND_RE.search(monolith)),
+        "single_option_explicit": single_option_explicit,
+        "optional_default_syntax_absent": optional_defaults_absent,
+        "round_calls_absent": round_calls_absent,
+        "forbidden_round_calls": forbidden_round_calls,
         "duplicate_public_symbols": duplicate_symbols,
         "all_checks_passed": (
-            monolith.lower().count("option explicit") == 1
-            and not OPTIONAL_DEFAULT_RE.search(monolith)
-            and not ROUND_RE.search(monolith)
+            single_option_explicit
+            and optional_defaults_absent
+            and round_calls_absent
             and not duplicate_symbols
         ),
     }
