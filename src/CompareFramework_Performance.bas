@@ -94,7 +94,7 @@ Public Sub CF_PerfWriteReport()
     r = 1
     For i = 0 To CF_PERF_COUNT - 1
         CF_PerfCell oSheet, 0, r, CF_PERF_LABELS(i)
-        CF_PerfCell oSheet, 1, r, CStr(Round(CF_PERF_ELAPSED(i), 3))
+        CF_PerfCell oSheet, 1, r, CStr(CF_RoundCompat(CF_PERF_ELAPSED(i), 3))
         r = r + 1
     Next i
 
@@ -110,7 +110,7 @@ Public Sub CF_PerfWriteReport()
         CF_PerfCell oSheet, 1, r, CStr(CF_PERF_PAIR_OLD_ROWS(i))
         CF_PerfCell oSheet, 2, r, CStr(CF_PERF_PAIR_NEW_ROWS(i))
         CF_PerfCell oSheet, 3, r, CStr(CF_PERF_PAIR_COLUMNS(i))
-        CF_PerfCell oSheet, 4, r, CStr(Round(CF_PERF_PAIR_SECONDS(i), 3))
+        CF_PerfCell oSheet, 4, r, CStr(CF_RoundCompat(CF_PERF_PAIR_SECONDS(i), 3))
         r = r + 1
     Next i
 

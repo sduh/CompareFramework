@@ -187,7 +187,7 @@ Public Function CF_AuditDurationSeconds() As Double
         endValue = CF_AUDIT_ENDED_AT
     End If
 
-    CF_AuditDurationSeconds = Round((endValue - CF_AUDIT_STARTED_AT) * 86400, 3)
+    CF_AuditDurationSeconds = CF_RoundCompat((endValue - CF_AUDIT_STARTED_AT) * 86400, 3)
 End Function
 
 Private Sub CF_AuditEnsureSheet(oDoc As Object)

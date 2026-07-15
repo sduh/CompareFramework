@@ -1,0 +1,36 @@
+{
+  "name": "CompareFramework",
+  "version": "3.7.3-D4",
+  "output": "dist/CompareFramework_3_7_3_D4_Monolith.bas",
+  "sha256": "67dface12628e1ebc9192fdb2d903bb735dff5bb3e8a7ce0e786a049f8b5152f",
+  "modules": [
+    "src/CompareFramework_Utils.bas",
+    "src/CompareFramework_Context.bas",
+    "src/CompareFramework_Audit.bas",
+    "src/CompareFramework_Config.bas",
+    "src/CompareFramework_Profiles.bas",
+    "src/CompareFramework_Index.bas",
+    "src/CompareFramework_Rules.bas",
+    "src/CompareFramework_ComparatorConfig.bas",
+    "src/CompareFramework_Comparators.bas",
+    "src/CompareFramework_Report.bas",
+    "src/CompareFramework_Validation.bas",
+    "src/CompareFramework_Performance.bas",
+    "src/CompareFramework_EngineMemory.bas",
+    "src/CompareFramework_Reliability.bas",
+    "src/CompareFramework_Quality.bas",
+    "src/CompareFramework_Scenarios.bas",
+    "src/CompareFramework_Tests.bas",
+    "src/Modes/CF_ModeReference.bas",
+    "src/CompareFramework_Main.bas"
+  ],
+  "checks": {
+    "module_count": 19,
+    "single_option_explicit": true,
+    "optional_default_syntax_absent": true,
+    "round_calls_absent": true,
+    "forbidden_round_calls": [],
+    "duplicate_public_symbols": {},
+    "all_checks_passed": true
+  }
+}

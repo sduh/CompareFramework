@@ -235,3 +235,17 @@ Public Function AbsDiff(a As Double, b As Double) As Double
         AbsDiff = b - a
     End If
 End Function
+
+Public Function CF_RoundCompat(vValue As Double, iDecimals As Integer) As Double
+    Dim factor As Double
+    Dim scaled As Double
+
+    factor = 10 ^ iDecimals
+    scaled = vValue * factor
+
+    If scaled >= 0 Then
+        CF_RoundCompat = Int(scaled + 0.5) / factor
+    Else
+        CF_RoundCompat = -Int(-scaled + 0.5) / factor
+    End If
+End Function
