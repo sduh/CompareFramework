@@ -1,5 +1,12 @@
-# S1-07 — Architecture Decision Records
+# S1-09 — Jeux de tests de référence
 
-Ce dossier contient les cinq premiers ADR qui formalisent les décisions fondatrices de CompareFramework.
+Ce livrable ajoute dix jeux CSV indépendants des macros.
 
-Ils complètent `docs/DECISIONS.md`, qui reste l'index des décisions.
+Ils servent à :
+
+- documenter les comportements attendus ;
+- faciliter les revues Git ;
+- préparer l'automatisation future ;
+- valider manuellement les nouvelles releases.
+
+Voir `tests/catalog.md`.

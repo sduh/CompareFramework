@@ -1,0 +1,5 @@
+ProductId,Product,Price,Stock,Active,UpdatedAt
+P001,Keyboard,49.90,120,TRUE,2026-07-01
+P002,Mouse,19.90,250,TRUE,2026-07-01
+P002,Mouse duplicate,21.90,240,TRUE,2026-07-02
+P003,Screen,249.00,32,TRUE,2026-07-01

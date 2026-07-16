@@ -1,0 +1,3 @@
+ProductId,Label,Amount,Rate,Enabled,Date
+P001,alpha,10,0.1,Oui,10/07/2026
+P002,Beta,100,0.2,Non,11/07/2026
