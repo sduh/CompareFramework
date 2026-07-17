@@ -40,7 +40,7 @@ python3 tools/build_monolith.py
 Le script doit générer :
 
 ```text
-dist/CompareFramework-3.8.0-RC1.bas
+dist/CompareFramework_3_7_3_D4_Monolith.bas
 dist/BUILD_MANIFEST.json
 ```
 
