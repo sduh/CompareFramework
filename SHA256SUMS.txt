@@ -1,0 +1,2 @@
+216468e2ab89eb60563e84bd8b1fab3211120ab8e621dd1540bc6907294b2275  CompareFramework_V1.3_labels.patch
+58b8a3b0143f8ed49579db54f8f2be7022227da6b52552808addd92bd3c4335c  src/CompareFramework_Report.bas
