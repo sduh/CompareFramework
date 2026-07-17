@@ -1378,7 +1378,7 @@ Public Sub ExporterRapportHTML()
     sHtml = BuildHtmlReport(oDoc)
     WriteTextFile sUrl, sHtml
 
-    MsgBox "Rapport HTML généré :" & Chr(10) & ConvertFromURL(sUrl), 64, "CompareFramework V1.3"
+    MsgBox "Rapport HTML généré :" & Chr(10) & ConvertFromURL(sUrl), 64, "CompareFramework V" & CF_VERSION
     Exit Sub
 
 ErrHandler:
@@ -1401,7 +1401,7 @@ Public Function BuildHtmlReport(oDoc As Object) As String
     s = s & "<body>" & Chr(10)
     s = s & "<header>" & Chr(10)
     s = s & "<h1>Rapport de comparaison</h1>" & Chr(10)
-    s = s & "<p>Généré par CompareFramework V1.3 le " & HtmlEscape(Now) & "</p>" & Chr(10)
+    s = s & "<p>Généré par CompareFramework V" & CF_VERSION & " le " & HtmlEscape(Now) & "</p>" & Chr(10)
     s = s & "</header>" & Chr(10)
 
     s = s & "<nav>" & Chr(10)
@@ -1426,7 +1426,7 @@ Public Function BuildHtmlReport(oDoc As Object) As String
     s = s & SheetToHtmlSection(oDoc, "Plan_Action_Comparaison", "actions", "Plan d'action", True)
     s = s & SheetToHtmlSection(oDoc, "Journal_Comparaison", "journal", "Journal", False)
 
-    s = s & "<footer>CompareFramework V1.3</footer>" & Chr(10)
+    s = s & "<footer>CompareFramework V" & CF_VERSION & "</footer>" & Chr(10)
     s = s & "</body>" & Chr(10)
     s = s & "</html>" & Chr(10)
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapport de comparaison</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f6f7fb;color:#1f2937;}
+header{background:#111827;color:white;padding:24px 32px;}
+header h1{margin:0 0 8px 0;font-size:28px;}
+header p{margin:0;color:#d1d5db;}
+nav{position:sticky;top:0;background:white;border-bottom:1px solid #e5e7eb;padding:10px 32px;z-index:5;}
+nav a{margin-right:16px;color:#2563eb;text-decoration:none;font-weight:bold;}
+section{margin:24px 32px;background:white;border:1px solid #e5e7eb;border-radius:10px;padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+h2{margin-top:0;font-size:22px;}
+.toolbar{margin:0 0 12px 0;}
+input[type=search]{width:100%;max-width:520px;padding:10px;border:1px solid #d1d5db;border-radius:8px;}
+.table-wrap{overflow:auto;max-height:70vh;border:1px solid #e5e7eb;border-radius:8px;}
+table{border-collapse:collapse;width:100%;font-size:13px;}
+th,td{border-bottom:1px solid #e5e7eb;padding:8px 10px;text-align:left;vertical-align:top;white-space:nowrap;}
+th{position:sticky;top:0;background:#f3f4f6;z-index:2;}
+tr:hover td{background:#f9fafb;}
+.tag-ajout{background:#dcfce7;color:#166534;font-weight:bold;}
+.tag-suppression{background:#fee2e2;color:#991b1b;font-weight:bold;}
+.tag-modification{background:#fef3c7;color:#92400e;font-weight:bold;}
+.tag-p1{background:#fee2e2;color:#991b1b;font-weight:bold;}
+.tag-p2{background:#fef3c7;color:#92400e;font-weight:bold;}
+.tag-p3{background:#dbeafe;color:#1e40af;font-weight:bold;}
+.missing{color:#6b7280;font-style:italic;}
+footer{margin:24px 32px;color:#6b7280;font-size:12px;}
+</style>
+<script>
+function filterTable(id,q){q=q.toLowerCase();var t=document.getElementById(id);if(!t)return;var r=t.getElementsByTagName('tr');for(var i=1;i<r.length;i++){var txt=r[i].innerText.toLowerCase();r[i].style.display=txt.indexOf(q)>=0?'':'none';}}
+</script>
+</head>
+<body>
+<header>
+<h1>Rapport de comparaison</h1>
+<p>Généré par CompareFramework V3.8.0-RC1 le 07/17/2026 12:42:06</p>
+</header>
+<nav>
+<a href="#synthese">Synthèse</a>
+<a href="#stats">Statistiques</a>
+<a href="#rapport">Détail</a>
+<a href="#actions">Plan d'action</a>
+<a href="#journal">Journal</a>
+</nav>
+<section id="synthese">
+<h2>Synthèse globale</h2>
+<p class="missing">Feuille absente : Synthese_Comparaison</p>
+</section>
+<section id="stats">
+<h2>Statistiques</h2>
+<p class="missing">Feuille absente : Stats_Comparaison</p>
+</section>
+<section id="rapport">
+<h2>Détail des différences</h2>
+<div class="toolbar">
+<input id="filterInput" type="search" placeholder="Filtrer dans le rapport..." onkeyup="filterTable('rapportTable', this.value)">
+</div>
+<p class="missing">Feuille absente : Rapport_Comparaison</p>
+</section>
+<section id="actions">
+<h2>Plan d&#39;action</h2>
+<div class="toolbar">
+<input type="search" placeholder="Filtrer..." onkeyup="filterTable('actionsTable', this.value)">
+</div>
+<p class="missing">Feuille absente : Plan_Action_Comparaison</p>
+</section>
+<section id="journal">
+<h2>Journal</h2>
+<p class="missing">Feuille absente : Journal_Comparaison</p>
+</section>
+<footer>CompareFramework V3.8.0-RC1</footer>
+</body>
+</html>
+

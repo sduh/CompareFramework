@@ -3,7 +3,7 @@
   "version": "3.8.0-RC1",
   "version_source": "VERSION",
   "output": "dist/CompareFramework-3.8.0-RC1.bas",
-  "sha256": "c5f0278843c2bab86d6ae179efc86ff0553f70ff248f4b6c70ea0ce584bad98d",
+  "sha256": "c59eb047186a84e73d84ffd7ffd3075a7935c16059d45e6b869c2b1de1d6b45b",
   "modules": [
     "src/CompareFramework_Utils.bas",
     "src/CompareFramework_Context.bas",

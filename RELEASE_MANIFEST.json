@@ -8,18 +8,18 @@
   "artifacts": [
     {
       "path": "dist/CompareFramework-3.8.0-RC1.bas",
-      "size_bytes": 219458,
-      "sha256": "c5f0278843c2bab86d6ae179efc86ff0553f70ff248f4b6c70ea0ce584bad98d"
+      "size_bytes": 219498,
+      "sha256": "c59eb047186a84e73d84ffd7ffd3075a7935c16059d45e6b869c2b1de1d6b45b"
     },
     {
       "path": "dist/RELEASE_CERTIFICATE_3.8.0-RC1.pdf",
-      "size_bytes": 28438,
-      "sha256": "cb9840f69e851106b48ac1dcda991ed51ded5cdb3f9c50eb5e6aab420eb4c0eb"
+      "size_bytes": 28581,
+      "sha256": "3ece553b5fb683f82a60457374658616e7b082469e5f1dc9bd40c6d14f5291e8"
     },
     {
       "path": "dist/BUILD_MANIFEST.json",
       "size_bytes": 1304,
-      "sha256": "5459829ed8a4e562f3ea37c037696d4c2f7824886340f0aca52d58767e86c5d7"
+      "sha256": "2a55f7f550d03e17d5b05d52e22b9106546f4a211c6a967ae6d4d3f9a92ba673"
     },
     {
       "path": "dist/README.md",
