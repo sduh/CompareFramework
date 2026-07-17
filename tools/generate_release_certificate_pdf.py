@@ -38,11 +38,12 @@ def project_root() -> Path:
 
 def read_version(root: Path) -> str:
     version_file = root / "VERSION"
-    if version_file.exists():
-        value = version_file.read_text(encoding="utf-8").strip()
-        if value:
-            return value
-    return "3.8.0-RC1"
+    if not version_file.is_file():
+        raise FileNotFoundError("Fichier VERSION absent.")
+    value = version_file.read_text(encoding="utf-8").strip()
+    if not value:
+        raise ValueError("Le fichier VERSION est vide.")
+    return value
 
 
 def register_font() -> str:

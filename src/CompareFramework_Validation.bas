@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5.1 - Validation and Preflight
+' CompareFramework - Validation and Preflight
 '=========================================================
 ' Public API:
 '   CF_ValidateFramework()
@@ -86,7 +86,7 @@ Public Sub CF_RunValidated()
     If Not CF_PreflightComparison() Then
         CF_ContextSet "PreflightStatus", "FAILED"
         CF_ContextEndRun "VALIDATION_ERROR"
-        MsgBox "Validation échouée. Consulte la feuille Compare_Validation.", 48, "CompareFramework V3.5.1"
+        MsgBox "Validation échouée. Consulte la feuille Compare_Validation.", 48, "CompareFramework V" & CF_VERSION
         Exit Sub
     End If
 
@@ -98,7 +98,7 @@ ErrHandler:
     CF_ContextSet "ErrorNumber", CStr(Err)
     CF_ContextSet "ErrorMessage", Error$
     CF_ContextEndRun "ERROR"
-    MsgBox "Erreur CF_RunValidated : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
+    MsgBox "Erreur CF_RunValidated : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Private Sub CF_ValidationBegin(oDoc As Object)

@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5.1 - In-memory comparison engine
+' CompareFramework - In-memory comparison engine
 ' Jalon A: lecture -> indexation -> comparaison -> rapport
 '=========================================================
 
@@ -361,12 +361,12 @@ Public Sub CF_RunMemoryEngineTests()
     okIndex = (count = 4)
 
     If okRead And okHeaders And okIndex Then
-        MsgBox "Tests moteur memoire : 3/3", 64, "CompareFramework V3.5.1"
+        MsgBox "Tests moteur memoire : 3/3", 64, "CompareFramework V" & CF_VERSION
     Else
-        MsgBox "Tests moteur memoire a controler.", 48, "CompareFramework V3.5.1"
+        MsgBox "Tests moteur memoire a controler.", 48, "CompareFramework V" & CF_VERSION
     End If
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunMemoryEngineTests : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
+    MsgBox "Erreur CF_RunMemoryEngineTests : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub

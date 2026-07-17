@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.7.2-D3
+' CompareFramework - Reference Mode
 ' Mode Reference unique -> N feuilles cibles
 '=========================================================
 '
@@ -248,7 +248,7 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
         "Suppressions : " & totalRemoved & Chr(10) & _
         "Lignes modifiées : " & totalChangedRows, _
         64, _
-        "CompareFramework V3.7.2-D3"
+        "CompareFramework V" & CF_VERSION
 
     Exit Sub
 
@@ -261,7 +261,7 @@ ErrHandler:
     MsgBox _
         "Erreur CF_RunAgainstReference : " & Err & " - " & Error$, _
         16, _
-        "CompareFramework V3.7.2-D3"
+        "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_BuildReferencePlan(referenceSheetName As String, keyColumnName As String)
@@ -501,7 +501,7 @@ Public Sub CF_ReferenceBuildSummary(oStats As Object)
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V3.7.2-D3"
+    MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_ReferenceFormatSummary(oSummary As Object)
@@ -584,12 +584,12 @@ Public Sub CF_OpenReferenceLauncher()
 
     MsgBox "Feuille Compare_Launcher créée." & Chr(10) & _
            "Renseigne les paramètres puis exécute CF_RunFromLauncher().", _
-           64, "CompareFramework V3.7.2-D3"
+           64, "CompareFramework V" & CF_VERSION
     Exit Sub
 
 ErrHandler:
     MsgBox "Erreur CF_OpenReferenceLauncher : " & Err & " - " & Error$, _
-           16, "CompareFramework V3.7.2-D3"
+           16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_RunFromLauncher()
@@ -617,17 +617,17 @@ Public Sub CF_RunFromLauncher()
     selectedTargets = Trim(oSheet.getCellByPosition(1, 4).String)
 
     If referenceName = "" Then
-        MsgBox "REFERENCE_SHEET est vide.", 48, "CompareFramework V3.7.2-D3"
+        MsgBox "REFERENCE_SHEET est vide.", 48, "CompareFramework V" & CF_VERSION
         Exit Sub
     End If
 
     If keyColumnName = "" Then
-        MsgBox "KEY_COLUMN est vide.", 48, "CompareFramework V3.7.2-D3"
+        MsgBox "KEY_COLUMN est vide.", 48, "CompareFramework V" & CF_VERSION
         Exit Sub
     End If
 
     If targetMode <> "ALL" And targetMode <> "SELECTED" Then
-        MsgBox "TARGET_MODE doit valoir ALL ou SELECTED.", 48, "CompareFramework V3.7.2-D3"
+        MsgBox "TARGET_MODE doit valoir ALL ou SELECTED.", 48, "CompareFramework V" & CF_VERSION
         Exit Sub
     End If
 
@@ -639,7 +639,7 @@ Public Sub CF_RunFromLauncher()
 
 ErrHandler:
     MsgBox "Erreur CF_RunFromLauncher : " & Err & " - " & Error$, _
-           16, "CompareFramework V3.7.2-D3"
+           16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_RunLauncherQuick()

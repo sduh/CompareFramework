@@ -4,7 +4,7 @@
 
 CompareFramework compare des données structurées directement dans un classeur LibreOffice Calc. Il peut comparer deux versions d’une feuille ou utiliser une feuille de référence pour contrôler plusieurs feuilles cibles, puis produire des rapports détaillés, une synthèse consolidée, un audit et un export HTML.
 
-> Version en préparation : **3.8.0 RC1**  
+> Version en préparation : **3.8.0-RC1**  
 > Baseline stable : **3.6.3**  
 > Compatibilité validée : **LibreOffice Calc 7.4.7.2**
 
@@ -250,7 +250,7 @@ Le manifeste de build est écrit dans `dist/BUILD_MANIFEST.json`.
 
 ## Statut du projet
 
-La baseline `v3.6.3-stable` a été validée sous LibreOffice Calc. Le Jalon D a ensuite ajouté le mode Référence, la synthèse consolidée, l’assistant de lancement et le build reproductible. La V3.8.0 RC1 consolide ces travaux en vue d’une première distribution documentée.
+La baseline `v3.6.3-stable` a été validée sous LibreOffice Calc. Le Jalon D a ensuite ajouté le mode Référence, la synthèse consolidée, l’assistant de lancement et le build reproductible. La version 3.8.0-RC1 consolide ces travaux en vue d’une première distribution documentée.
 
 ## Roadmap
 

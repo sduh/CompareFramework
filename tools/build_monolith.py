@@ -20,6 +20,23 @@ PUBLIC_SYMBOL_RE = re.compile(
     r"^\s*Public\s+(?:Sub|Function)\s+([A-Za-z_][A-Za-z0-9_]*)",
     re.IGNORECASE | re.MULTILINE,
 )
+VERSION_TOKEN = "@COMPAREFRAMEWORK_VERSION@"
+VERSION_RE = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$")
+
+
+
+def read_version(root: Path) -> str:
+    version_path = root / "VERSION"
+    if not version_path.is_file():
+        raise FileNotFoundError("Fichier VERSION absent.")
+    version = version_path.read_text(encoding="utf-8").strip()
+    if not VERSION_RE.fullmatch(version):
+        raise ValueError(f"Version invalide dans VERSION: {version!r}")
+    return version
+
+
+def inject_version(text: str, version: str) -> str:
+    return text.replace(VERSION_TOKEN, version)
 
 
 def read_order(root: Path, order_file: Path) -> list[Path]:
@@ -132,18 +149,20 @@ def validate(parts: list[tuple[Path, str]], monolith: str) -> dict[str, object]:
 
 
 def build(root: Path, order_path: Path, output_path: Path, manifest_path: Path) -> None:
+    version = read_version(root)
     module_paths = read_order(root, order_path)
     parts: list[tuple[Path, str]] = []
 
     for path in module_paths:
         text = path.read_text(encoding="utf-8-sig", errors="strict")
-        parts.append((path.relative_to(root), text))
+        parts.append((path.relative_to(root), inject_version(text, version)))
 
     output_parts = [
         "Option Explicit",
         "",
         "' Generated file. Do not edit directly.",
-        "' Source of truth: src/ and MODULE_ORDER.txt",
+        "' Source of truth: src/, MODULE_ORDER.txt and VERSION",
+        f"' Version: {version}",
         "",
     ]
 
@@ -172,7 +191,8 @@ def build(root: Path, order_path: Path, output_path: Path, manifest_path: Path) 
 
     manifest = {
         "name": "CompareFramework",
-        "version": "3.7.3-D4",
+        "version": version,
+        "version_source": "VERSION",
         "output": output_path.relative_to(root).as_posix(),
         "sha256": hashlib.sha256(output_path.read_bytes()).hexdigest(),
         "modules": [p.as_posix() for p, _ in parts],
@@ -215,7 +235,8 @@ def main() -> None:
 
     root = args.root.resolve()
     order = args.order or root / "MODULE_ORDER.txt"
-    output = args.output or root / "dist" / "CompareFramework_3_7_3_D4_Monolith.bas"
+    version = read_version(root)
+    output = args.output or root / "dist" / f"CompareFramework-{version}.bas"
     manifest = args.manifest or root / "dist" / "BUILD_MANIFEST.json"
 
     build(root, order, output, manifest)

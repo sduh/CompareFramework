@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5.1 - Execution Context
+' CompareFramework - Execution Context
 '=========================================================
 ' Goal:
 '   Centralize runtime state in one context structure
@@ -115,11 +115,11 @@ Public Sub CF_ContextDumpToSheet()
     oSheet.Columns.getByIndex(0).Width = 6500
     oSheet.Columns.getByIndex(1).Width = 11000
 
-    MsgBox "Contexte exporté dans Compare_Context.", 64, "CompareFramework V3.5.1"
+    MsgBox "Contexte exporté dans Compare_Context.", 64, "CompareFramework V" & CF_VERSION
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ContextDumpToSheet : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
+    MsgBox "Erreur CF_ContextDumpToSheet : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_ContextBeginRun(Optional sRunName As Variant)

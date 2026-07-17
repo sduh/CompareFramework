@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5.1 - Milestone C Quality Suite
+' CompareFramework - Milestone C Quality Suite
 '=========================================================
 ' Public API:
 '   CF_RunEndToEndScenario()
@@ -32,7 +32,7 @@ Public Sub CF_RunEndToEndScenario()
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunEndToEndScenario : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
+    MsgBox "Erreur CF_RunEndToEndScenario : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_ValidateExpectedReport()
@@ -56,12 +56,12 @@ Public Sub CF_ValidateExpectedReport()
     oDoc = ThisComponent
 
     If Not oDoc.Sheets.hasByName("CF_Expected") Then
-        MsgBox "Feuille CF_Expected absente.", 48, "CompareFramework V3.5.1"
+        MsgBox "Feuille CF_Expected absente.", 48, "CompareFramework V" & CF_VERSION
         Exit Sub
     End If
 
     If Not oDoc.Sheets.hasByName("Rapport_Comparaison") Then
-        MsgBox "Feuille Rapport_Comparaison absente.", 48, "CompareFramework V3.5.1"
+        MsgBox "Feuille Rapport_Comparaison absente.", 48, "CompareFramework V" & CF_VERSION
         Exit Sub
     End If
 
@@ -117,14 +117,14 @@ Public Sub CF_ValidateExpectedReport()
     CF_BuildQualityDashboard
 
     If passed = total Then
-        MsgBox "Scénario de bout en bout validé : " & passed & "/" & total, 64, "CompareFramework V3.5.1"
+        MsgBox "Scénario de bout en bout validé : " & passed & "/" & total, 64, "CompareFramework V" & CF_VERSION
     Else
-        MsgBox "Scénario à contrôler : " & passed & "/" & total, 48, "CompareFramework V3.5.1"
+        MsgBox "Scénario à contrôler : " & passed & "/" & total, 48, "CompareFramework V" & CF_VERSION
     End If
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ValidateExpectedReport : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
+    MsgBox "Erreur CF_ValidateExpectedReport : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_RunGlobalRegression()
@@ -139,11 +139,11 @@ Public Sub CF_RunGlobalRegression()
     CF_RunMemoryEngineTests
     CF_RunEndToEndScenario
 
-    MsgBox "Régression globale terminée. Consulte CF_Quality_Dashboard.", 64, "CompareFramework V3.5.1"
+    MsgBox "Régression globale terminée. Consulte CF_Quality_Dashboard.", 64, "CompareFramework V" & CF_VERSION
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_RunGlobalRegression : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
+    MsgBox "Erreur CF_RunGlobalRegression : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Public Sub CF_BuildQualityDashboard()
@@ -176,7 +176,7 @@ Public Sub CF_BuildQualityDashboard()
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_BuildQualityDashboard : " & Err & " - " & Error$, 16, "CompareFramework V3.5.1"
+    MsgBox "Erreur CF_BuildQualityDashboard : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
 Private Sub CF_QualityCreateScenario(oDoc As Object)

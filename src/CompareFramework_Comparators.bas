@@ -1,7 +1,7 @@
 Option Explicit
 
 '=========================================================
-' CompareFramework V3.5.1 - Typed comparators
+' CompareFramework - Typed comparators
 ' Jalon B: fiabilite des comparaisons
 '=========================================================
 
@@ -237,8 +237,8 @@ Public Sub CF_RunTypedComparatorTests()
     ok6 = CF_TypedValuesEqual("2026-07-10", "10/07/2026", "Date", c, d)
 
     If ok1 And ok2 And ok3 And ok4 And ok5 And ok6 Then
-        MsgBox "Tests comparateurs types : 6/6", 64, "CompareFramework V3.5.1"
+        MsgBox "Tests comparateurs types : 6/6", 64, "CompareFramework V" & CF_VERSION
     Else
-        MsgBox "Tests comparateurs types a controler.", 48, "CompareFramework V3.5.1"
+        MsgBox "Tests comparateurs types a controler.", 48, "CompareFramework V" & CF_VERSION
     End If
 End Sub
