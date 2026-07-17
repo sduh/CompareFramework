@@ -1,19 +1,49 @@
+# CompareFramework module build order
+# Source paths are relative to the repository root.
+#
+# Principles:
+# 1. Foundation modules first.
+# 2. Runtime services before engines and orchestration.
+# 3. Validation/test modules after runtime modules.
+# 4. Public API facade last.
+#
+# Known cycles prevent a strict topological order:
+# - Config <-> Rules
+# - Comparators <-> ComparatorConfig
+# - Main <-> Validation / Scenarios / Quality
+
+# Foundations
 src/CompareFramework_Utils.bas
 src/CompareFramework_Context.bas
+
+# Cross-cutting runtime services
 src/CompareFramework_Audit.bas
-src/CompareFramework_Config.bas
-src/CompareFramework_Profiles.bas
-src/CompareFramework_Index.bas
-src/CompareFramework_Rules.bas
-src/CompareFramework_ComparatorConfig.bas
-src/CompareFramework_Comparators.bas
-src/CompareFramework_Report.bas
-src/CompareFramework_Validation.bas
 src/CompareFramework_Performance.bas
+src/CompareFramework_Report.bas
+src/CompareFramework_Index.bas
+
+# Configuration and comparison rules
+src/CompareFramework_Config.bas
+src/CompareFramework_Rules.bas
+src/CompareFramework_Comparators.bas
+src/CompareFramework_ComparatorConfig.bas
+
+# Comparison engines and reliability
 src/CompareFramework_EngineMemory.bas
 src/CompareFramework_Reliability.bas
-src/CompareFramework_Quality.bas
+
+# User configuration and execution modes
+src/CompareFramework_Profiles.bas
+src/Modes/CF_ModeReference.bas
+
+# Main orchestration
+src/CompareFramework_Main.bas
+
+# Validation, scenarios, regression and tests
+src/CompareFramework_Validation.bas
 src/CompareFramework_Scenarios.bas
 src/CompareFramework_Tests.bas
-src/Modes/CF_ModeReference.bas
-src/CompareFramework_Main.bas
+src/CompareFramework_Quality.bas
+
+# Official public facade; keep last
+src/CompareFramework_API.bas

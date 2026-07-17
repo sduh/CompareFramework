@@ -1,0 +1,199 @@
+module,line,name,kind,signature,category,recommended_action,incoming_modules
+CompareFramework_Audit.bas,28,CF_AuditBegin,Sub,(Optional sRunName As Variant),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Audit.bas,57,CF_AuditSet,Sub,"(sMetricName As String, vValue As Variant)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Audit.bas,86,CF_AuditFail,Sub,"(vErrorNumber As Variant, sErrorMessage As String)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Audit.bas,96,CF_AuditEnd,Sub,(Optional sStatus As Variant),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Audit.bas,122,CF_AuditWriteCurrentRun,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Audit.bas,153,CF_AuditClearHistory,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Audit.bas,171,CF_AuditGetRunId,Function,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Tests
+CompareFramework_Audit.bas,175,CF_AuditDurationSeconds,Function,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Tests
+CompareFramework_ComparatorConfig.bas,17,CF_EnsureComparatorsSheet,Function,(oDoc As Object),Module-internal candidate,Review -> Private,
+CompareFramework_ComparatorConfig.bas,31,CF_WriteDefaultComparatorConfig,Sub,(oSheet As Object),Module-internal candidate,Review -> Private,
+CompareFramework_ComparatorConfig.bas,55,CF_LoadComparatorConfig,Sub,(oDoc As Object),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_ComparatorConfig.bas,95,CF_ResolveComparatorConfig,Function,"(headerName As String, ByRef comparatorType As String, ByRef tolerance As Double, ByRef hasTolerance As Boolean, ByRef source As String)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Comparators
+CompareFramework_ComparatorConfig.bas,122,CF_ReloadComparatorConfig,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_ComparatorConfig.bas,128,CF_OpenComparatorConfig,Sub,(),Stable user API,Keep Public,
+CompareFramework_ComparatorConfig.bas,134,CF_RunComparatorConfigTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Reliability"
+CompareFramework_Comparators.bas,15,CF_TypedValuesEqual,Function,"(oldRaw As Variant, newRaw As Variant, headerName As String, ByRef comparatorUsed As String, ByRef detail As String)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_EngineMemory
+CompareFramework_Comparators.bas,57,CF_ComparatorTypeForHeader,Function,"(headerName As String, oldRaw As Variant, newRaw As Variant)",Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,80,CF_TextEqual,Function,"(a As Variant, b As Variant, ByRef detail As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,88,CF_NumberEqual,Function,"(a As Variant, b As Variant, tolerance As Double, ByRef detail As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,100,CF_DateEqual,Function,"(a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,112,CF_BooleanEqual,Function,"(a As Variant, b As Variant, ByRef detail As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,120,CF_LooksNumeric,Function,(v As Variant),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,125,CF_LooksDate,Function,(v As Variant),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,133,CF_LooksBoolean,Function,(v As Variant),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,137,CF_TryParseNumber,Function,"(v As Variant, ByRef result As Double)",Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,167,CF_TryParseDateSerial,Function,"(v As Variant, ByRef result As Double)",Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,183,CF_BooleanCode,Function,(v As Variant),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,196,CF_PercentToNumber,Function,(v As Variant),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,207,CF_CurrencyToNumber,Function,(v As Variant),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,212,CF_GetNumericTolerance,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,216,CF_GetPercentTolerance,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,220,CF_GetCurrencyTolerance,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,224,CF_GetDateToleranceDays,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Comparators.bas,228,CF_RunTypedComparatorTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Reliability, CompareFramework_Tests"
+CompareFramework_Config.bas,4,LoadCompareConfig,Sub,(oDoc As Object),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main, CompareFramework_Profiles"
+CompareFramework_Config.bas,39,EnsureConfigSheet,Function,(oDoc As Object),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Profiles
+CompareFramework_Config.bas,54,WriteDefaultConfig,Sub,(oSheet As Object),Module-internal candidate,Review -> Private,
+CompareFramework_Config.bas,86,EnsureRulesSheet,Function,(oDoc As Object),Module-internal candidate,Review -> Private,
+CompareFramework_Config.bas,102,WriteDefaultRulesSheet,Sub,(oSheet As Object),Module-internal candidate,Review -> Private,
+CompareFramework_Config.bas,147,NormalizeCompareValue,Function,(valueText As String),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Comparators, CompareFramework_EngineMemory, CompareFramework_Rules"
+CompareFramework_Config.bas,162,NormalizeSpaces,Function,(valueText As String),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Profiles
+CompareFramework_Config.bas,171,IgnoreThisEmptyChange,Function,"(oldCompare As String, newCompare As String)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Rules"
+CompareFramework_Config.bas,179,ColumnIsIgnored,Function,(headerName As String),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Rules"
+CompareFramework_Config.bas,183,TokenInList,Function,"(token As String, listText As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Config.bas,190,NormalizeList,Function,(listText As String),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_Rules"
+CompareFramework_Config.bas,202,ToBoolean,Function,(valueText As String),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Rules
+CompareFramework_Config.bas,208,FindIdColumn,Function,(headers As Variant),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Context.bas,22,CF_ContextReset,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Tests
+CompareFramework_Context.bas,33,CF_ContextInitIfNeeded,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Context.bas,39,CF_ContextSet,Sub,"(sKey As String, vValue As Variant)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_Audit, CompareFramework_ComparatorConfig, CompareFramework_EngineMemory, CompareFramework_Main, CompareFramework_Profiles, CompareFramework_Tests, CompareFramework_Validation"
+CompareFramework_Context.bas,65,CF_ContextGet,Function,"(sKey As String, Optional sDefault As Variant)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Audit, CompareFramework_ComparatorConfig, CompareFramework_Main, CompareFramework_Tests, CompareFramework_Validation"
+CompareFramework_Context.bas,80,CF_ContextHas,Function,(sKey As String),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Tests
+CompareFramework_Context.bas,85,CF_ContextCount,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Context.bas,90,CF_ContextDumpToSheet,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_Context.bas,124,CF_ContextBeginRun,Sub,(Optional sRunName As Variant),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Profiles, CompareFramework_Tests, CompareFramework_Validation"
+CompareFramework_Context.bas,139,CF_ContextEndRun,Sub,(Optional sStatus As Variant),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Profiles, CompareFramework_Tests, CompareFramework_Validation"
+CompareFramework_EngineMemory.bas,7,CF_CompareAllSheetsInMemory,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_EngineMemory.bas,79,CF_CompareDetectedPairsMemory,Function,"(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_EngineMemory.bas,104,CF_CompareFallbackMemory,Function,"(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_EngineMemory.bas,131,CF_CompareSheetPairMemory,Sub,"(oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",Internal cross-module,Keep Public (Basic constraint),CF_ModeReference
+CompareFramework_EngineMemory.bas,208,CF_ReadUsedData,Function,(oSheet As Object),Internal cross-module,Keep Public (Basic constraint),CF_ModeReference
+CompareFramework_EngineMemory.bas,218,CF_MemoryHeaders,Function,(data As Variant),Internal cross-module,Keep Public (Basic constraint),CF_ModeReference
+CompareFramework_EngineMemory.bas,230,CF_BuildMemoryIdIndex,Sub,"(data As Variant, idCol As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_EngineMemory.bas,261,CF_CompareMemoryRows,Function,"(oldData As Variant, newData As Variant, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_EngineMemory.bas,300,CF_MemoryFullRow,Function,"(data As Variant, headers As Variant, rowIndex As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_EngineMemory.bas,315,CF_ReportMemoryDuplicates,Function,"(ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String)",Module-internal candidate,Review -> Private,
+CompareFramework_EngineMemory.bas,334,CF_MemoryValueText,Function,(value As Variant),Module-internal candidate,Review -> Private,
+CompareFramework_EngineMemory.bas,342,CF_RunMemoryEngineTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Quality, CompareFramework_Tests"
+CompareFramework_Index.bas,4,BuildIdIndex,Sub,"(oSheet As Object, idCol As Long, lastRow As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_Index.bas,31,FindRowInIndex,Function,"(ids As Variant, rows As Variant, count As Long, idValue As String)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Index.bas,58,QuickSortIndex,Sub,"(ByRef ids As Variant, ByRef rows As Variant, ByVal first As Long, ByVal last As Long)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Index.bas,89,ReportDuplicateIds,Function,"(ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_Index.bas,110,ReadHeaders,Function,"(oSheet As Object, lastCol As Long)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_Index.bas,122,HeaderIndex,Function,"(headers As Variant, headerName As String)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Rules"
+CompareFramework_Main.bas,4,ComparerToutesLesFeuilles_Legacy,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,50,ComparerToutesLesFeuilles,Sub,(),Stable user API,Keep Public,"CompareFramework_Profiles, CompareFramework_Quality, CompareFramework_Scenarios, CompareFramework_Validation"
+CompareFramework_Main.bas,54,CF_RunMilestoneA,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,70,CompareDetectedPairs,Function,"(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,96,CompareFallbackTwoSheets,Function,"(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,124,CompareSheetPair,Sub,"(oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,206,FrameworkManifest,Function,(),Advanced API,Keep Public,CompareFramework_Validation
+CompareFramework_Main.bas,210,GetFrameworkVersion,Function,(),Advanced API,Keep Public,
+CompareFramework_Main.bas,214,DiagnosticFramework,Sub,(),Developer/diagnostic API,Keep Public,
+CompareFramework_Main.bas,225,ComparerToutesLesFeuilles_Contextualisee,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,243,DiagnosticFramework_Contextualise,Sub,(),Developer/diagnostic API,Keep Public,
+CompareFramework_Main.bas,256,CF_RunAudited,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,299,CF_RunPerformanceProfiled,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,336,CF_RunMilestoneB,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,358,CF_RunMilestoneB_Configured,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,379,CF_RunMilestoneB_ConfigTests,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,389,CF_RunMilestoneB_Final,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,418,CF_RunMilestoneC,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Main.bas,443,CF_RunMilestoneC_Final,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Performance.bas,26,CF_PerfReset,Sub,(),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Performance.bas,39,CF_PerfStart,Sub,(sLabel As String),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Performance.bas,48,CF_PerfStop,Function,(sLabel As String),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Performance.bas,61,CF_PerfRecordPair,Sub,"(sPairName As String, oldRows As Long, newRows As Long, columnCount As Long, elapsedSeconds As Double)",Module-internal candidate,Review -> Private,
+CompareFramework_Performance.bas,83,CF_PerfWriteReport,Sub,(),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Performance.bas,128,CF_ReadSheetDataArray,Function,(oSheet As Object),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Tests
+CompareFramework_Performance.bas,136,CF_RunPerformanceBenchmark,Sub,(),Developer/diagnostic API,Keep Public,
+CompareFramework_Profiles.bas,15,CF_EnsureProfilesSheet,Function,(oDoc As Object),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Tests
+CompareFramework_Profiles.bas,29,CF_WriteDefaultProfiles,Sub,(oSheet As Object),Module-internal candidate,Review -> Private,
+CompareFramework_Profiles.bas,50,CF_ApplyProfile,Sub,(sProfileName As String),Advanced API,Keep Public,
+CompareFramework_Profiles.bas,83,CF_SaveCurrentConfigAsProfile,Sub,(sProfileName As String),Advanced API,Keep Public,
+CompareFramework_Profiles.bas,116,CF_ListProfiles,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Profiles.bas,122,CF_RunWithProfile,Sub,(sProfileName As String),Advanced API,Keep Public,
+CompareFramework_Quality.bas,19,CF_RunEndToEndScenario,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Quality.bas,37,CF_ValidateExpectedReport,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Quality.bas,129,CF_RunGlobalRegression,Sub,(),Developer/diagnostic API,Keep Public,CompareFramework_Main
+CompareFramework_Quality.bas,148,CF_BuildQualityDashboard,Sub,(),Developer/diagnostic API,Keep Public,
+CompareFramework_Reliability.bas,16,CF_RunTypedRegressionSuite,Sub,(),Developer/diagnostic API,Keep Public,
+CompareFramework_Reliability.bas,68,CF_ValidateComparatorRules,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_Reliability.bas,151,CF_BuildComparatorCoverageReport,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Reliability.bas,195,CF_RunMilestoneB_FinalTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Quality
+CompareFramework_Report.bas,4,PrepareSheet,Function,"(oDoc As Object, sheetName As String)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,16,WriteReportHeader,Sub,"(oSheet As Object, rowIndex As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,29,WriteReportRow,Sub,"(oSheet As Object, ByRef rowIndex As Long, pairName As String, idValue As String, statusValue As String, colName As String, oldRow As String, newRow As String, oldValue As String, newValue As String, messageText As String)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Index, CompareFramework_Main, CompareFramework_Rules"
+CompareFramework_Report.bas,42,WriteStatsHeader,Sub,"(oSheet As Object, rowIndex As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,54,WriteStatsRow,Sub,"(oSheet As Object, ByRef rowIndex As Long, pairName As String, addedRows As Long, removedRows As Long, changedRows As Long, changedCells As Long, duplicates As Long, oldCount As Long, newCount As Long, issues As Long)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,66,WriteGlobalSummary,Sub,"(oSheet As Object, ByRef rowIndex As Long, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,97,WriteDashboard,Sub,"(oSheet As Object, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,158,BuildActionPlan,Sub,"(oReport As Object, oAction As Object, lastReportRow As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,203,WriteActionHeader,Sub,"(oSheet As Object, rowIndex As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,216,IsActionableStatus,Function,(statusValue As String),Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,220,ActionPriority,Function,"(statusValue As String, colName As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,241,ActionRecommendation,Function,"(statusValue As String, colName As String, messageText As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,262,WriteAuditLog,Sub,"(oSheet As Object, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long, lastReportRow As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,300,FormatActionPlan,Sub,(oSheet As Object),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,327,FormatAuditLog,Sub,(oSheet As Object),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,338,FormatDashboard,Sub,(oSheet As Object),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,352,FormatReport,Sub,"(oSheet As Object, lastRow As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,387,FormatStats,Sub,"(oSheet As Object, lastRow As Long)",Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Report.bas,400,ApplyOptionalAutoFilter,Sub,"(oSheet As Object, lastCol As Long, lastRow As Long)",Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,413,ExporterRapportHTML,Sub,(),Stable user API,Keep Public,
+CompareFramework_Report.bas,440,BuildHtmlReport,Function,(oDoc As Object),Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,488,HtmlStyleBlock,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,521,HtmlScriptBlock,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,532,SheetToHtmlSection,Function,"(oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean)",Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,549,SheetToHtmlTableOnly,Function,"(oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean)",Module-internal candidate,Review -> Private,
+CompareFramework_Report.bas,595,HtmlCssClassForCell,Function,(sValue As String),Module-internal candidate,Review -> Private,
+CompareFramework_Rules.bas,4,LoadCompareRules,Sub,(oDoc As Object),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_Config, CompareFramework_EngineMemory"
+CompareFramework_Rules.bas,46,ShouldIgnoreDifference,Function,"(pairName As String, idValue As String, headerName As String, oldValue As String, newValue As String, oldCompare As String, newCompare As String)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_EngineMemory
+CompareFramework_Rules.bas,66,RuleAppliesToColumn,Function,"(ruleIndex As Long, headerName As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Rules.bas,72,RuleAppliesToScope,Function,"(ruleIndex As Long, pairName As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Rules.bas,78,EvaluateDifferenceRule,Function,"(ruleIndex As Long, oldValue As String, newValue As String, oldCompare As String, newCompare As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Rules.bas,102,ValuesAreEquivalentByList,Function,"(oldCompare As String, newCompare As String, listText As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Rules.bas,113,ValuesAreWithinNumericTolerance,Function,"(oldCompare As String, newCompare As String, toleranceText As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Rules.bas,125,CompareRowCellsDetailed,Function,"(oOld As Object, oNew As Object, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_Rules.bas,160,ReportColumnDifferences,Sub,"(oldHeaders As Variant, newHeaders As Variant, oReport As Object, ByRef reportRow As Long, pairName As String, ByRef pairIssues As Long)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Scenarios.bas,22,CF_RunAllBusinessScenarios,Sub,(),Developer/diagnostic API,Keep Public,CompareFramework_Main
+CompareFramework_Scenarios.bas,43,CF_RunFinanceScenario,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Scenarios.bas,63,CF_RunHRScenario,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Scenarios.bas,82,CF_RunERPScenario,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Scenarios.bas,101,CF_BuildReleaseReadiness,Sub,(),Developer/diagnostic API,Keep Public,CompareFramework_Main
+CompareFramework_Tests.bas,18,CF_CreateTestWorkbook,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_EngineMemory
+CompareFramework_Tests.bas,41,CF_RunAllTests,Sub,(),Developer/diagnostic API,Keep Public,
+CompareFramework_Tests.bas,287,CF_RunContextTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Quality
+CompareFramework_Tests.bas,354,CF_RunProfileTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Quality
+CompareFramework_Tests.bas,394,CF_RunValidationTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Quality
+CompareFramework_Tests.bas,408,CF_RunAuditTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Quality
+CompareFramework_Tests.bas,457,CF_RunPerformanceTests,Sub,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Quality
+CompareFramework_Tests.bas,480,CF_RunMilestoneBTests,Sub,(),Module-internal candidate,Review -> Private,
+CompareFramework_Utils.bas,47,FullRowText,Function,"(oSheet As Object, headers As Variant, rowIndex As Long)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Main
+CompareFramework_Utils.bas,63,LastUsedRow,Function,(oSheet As Object),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_ComparatorConfig, CompareFramework_Config, CompareFramework_EngineMemory, CompareFramework_Main, CompareFramework_Performance, CompareFramework_Profiles, CompareFramework_Report, CompareFramework_Rules, CompareFramework_Tests"
+CompareFramework_Utils.bas,70,LastUsedCol,Function,(oSheet As Object),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main, CompareFramework_Performance"
+CompareFramework_Utils.bas,77,CellText,Function,"(oSheet As Object, col As Long, row As Long)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_ComparatorConfig, CompareFramework_Config, CompareFramework_Index, CompareFramework_Profiles, CompareFramework_Report, CompareFramework_Rules, CompareFramework_Tests"
+CompareFramework_Utils.bas,87,SetCell,Sub,"(oSheet As Object, col As Long, row As Long, valueText As String)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Config, CompareFramework_Profiles, CompareFramework_Report"
+CompareFramework_Utils.bas,91,RowNumberText,Function,(rowIndex As Variant),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Index, CompareFramework_Main, CompareFramework_Rules"
+CompareFramework_Utils.bas,95,NormalizeHeader,Function,(valueText As String),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Config, CompareFramework_Index, CompareFramework_Report, CompareFramework_Rules"
+CompareFramework_Utils.bas,117,IsReportOrStatsSheet,Function,(sheetName As String),Internal cross-module,Keep Public (Basic constraint),"CF_ModeReference, CompareFramework_EngineMemory, CompareFramework_Main, CompareFramework_Performance"
+CompareFramework_Utils.bas,132,IsOldSheetName,Function,(sheetName As String),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Utils.bas,138,PairBaseName,Function,(sheetName As String),Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Utils.bas,150,FindNewSheetForBase,Function,"(oSheets As Object, baseName As String)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_EngineMemory, CompareFramework_Main"
+CompareFramework_Utils.bas,157,EndsWith,Function,"(valueText As String, suffixText As String)",Module-internal candidate,Review -> Private,
+CompareFramework_Utils.bas,165,HtmlEscape,Function,(v As Variant),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Report
+CompareFramework_Utils.bas,176,GetDocumentFolderPath,Function,(),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Report
+CompareFramework_Utils.bas,198,WriteTextFile,Sub,"(sUrl As String, sText As String)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Report
+CompareFramework_Utils.bas,210,IsNumericText,Function,(valueText As String),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Rules
+CompareFramework_Utils.bas,219,ToNumber,Function,(valueText As String),Internal cross-module,Keep Public (Basic constraint),CompareFramework_Rules
+CompareFramework_Utils.bas,230,AbsDiff,Function,"(a As Double, b As Double)",Internal cross-module,Keep Public (Basic constraint),CompareFramework_Rules
+CompareFramework_Utils.bas,238,CF_RoundCompat,Function,"(vValue As Double, iDecimals As Integer)",Internal cross-module,Keep Public (Basic constraint),"CompareFramework_Audit, CompareFramework_Performance"
+CompareFramework_Validation.bas,17,CF_ValidateFramework,Function,(),Developer/diagnostic API,Keep Public,"CompareFramework_Main, CompareFramework_Tests"
+CompareFramework_Validation.bas,39,CF_ValidateActiveProfile,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Validation.bas,70,CF_PreflightComparison,Function,(),Module-internal candidate,Review -> Private,
+CompareFramework_Validation.bas,79,CF_RunValidated,Sub,(),Stable user API,Keep Public,
+Modes/CF_ModeReference.bas,21,CF_RunReferenceMode,Sub,(),Stable user API,Keep Public,
+Modes/CF_ModeReference.bas,42,CF_RunAgainstReference_MODELE,Sub,(),Stable user API,Keep Public,
+Modes/CF_ModeReference.bas,46,CF_RunAgainstReference,Sub,"(referenceSheetName As String, keyColumnName As String)",Advanced API,Keep Public,
+Modes/CF_ModeReference.bas,266,CF_BuildReferencePlan,Sub,"(referenceSheetName As String, keyColumnName As String)",Module-internal candidate,Review -> Private,
+Modes/CF_ModeReference.bas,304,CF_ReferenceIsTargetSheet,Function,"(sheetName As String, referenceSheetName As String)",Module-internal candidate,Review -> Private,
+Modes/CF_ModeReference.bas,342,CF_ReferenceSheetHasKey,Function,"(oSheet As Object, keyColumnName As String)",Module-internal candidate,Review -> Private,
+Modes/CF_ModeReference.bas,360,CF_ReferencePlanSetStatus,Sub,"(targetName As String, statusText As String, messageText As String)",Module-internal candidate,Review -> Private,
+Modes/CF_ModeReference.bas,384,CF_ReferenceFormatPlan,Sub,(),Module-internal candidate,Review -> Private,
+Modes/CF_ModeReference.bas,404,CF_ReferenceBuildSummary,Sub,(oStats As Object),Module-internal candidate,Review -> Private,
+Modes/CF_ModeReference.bas,506,CF_ReferenceFormatSummary,Sub,(oSummary As Object),Module-internal candidate,Review -> Private,
+Modes/CF_ModeReference.bas,526,CF_OpenReferenceLauncher,Sub,(),Stable user API,Keep Public,
+Modes/CF_ModeReference.bas,594,CF_RunFromLauncher,Sub,(),Stable user API,Keep Public,
+Modes/CF_ModeReference.bas,644,CF_RunLauncherQuick,Sub,(),Module-internal candidate,Review -> Private,
