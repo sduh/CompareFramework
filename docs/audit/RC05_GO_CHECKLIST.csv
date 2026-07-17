@@ -1,0 +1,18 @@
+ID;Critere;Obligatoire;Etat;Preuve_attendue
+G01;VERSION contient 3.8.0-RC1;Oui;KO;Fichier VERSION
+G02;Le build lit VERSION;Oui;KO;Code et journal de build
+G03;Aucune version active 3.5.1 dans le produit;Oui;KO;Recherche statique
+G04;Artefact CompareFramework-3.8.0-RC1.bas;Oui;KO;Fichier dist
+G05;BUILD_MANIFEST version 3.8.0-RC1;Oui;KO;BUILD_MANIFEST.json
+G06;Facade API dans src;Oui;KO;src/CompareFramework_API.bas
+G07;MODULE_ORDER officiel mis a jour;Oui;KO;MODULE_ORDER.txt
+G08;ADR-0006 et DECISIONS mis a jour;Oui;KO;docs/adr et docs/DECISIONS.md
+G09;LICENSE present a la racine;Oui;KO;LICENSE
+G10;Build statique reussi;Oui;OK simulation;Journal et manifeste
+G11;Compilation LibreOffice reussie;Oui;A faire;Compte rendu de qualification
+G12;Regression globale reussie;Oui;A faire;Resultats de test
+G13;Mode Reference qualifie;Oui;A faire;REFERENCE_MODE_VALIDATION.md complete
+G14;Donnees reelles qualifiees;Oui;A faire;Compte rendu signe
+G15;CHANGELOG et RELEASE_NOTES finalises;Oui;A verifier;Fichiers racine
+G16;Manifestes et hash final verifies;Oui;A faire;SHA-256 et manifestes
+G17;Archive RC1 reconstruite proprement;Oui;A faire;Archive finale
