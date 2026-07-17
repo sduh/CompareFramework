@@ -1,0 +1,2 @@
+c5f0278843c2bab86d6ae179efc86ff0553f70ff248f4b6c70ea0ce584bad98d  /mnt/data/CompareFramework_3.8.0-RC1_step3/dist/CompareFramework-3.8.0-RC1.bas
+6bc50ce40ae603256624db983e35e418b4bed9f9091bbb0d90194cc2d7a98d87  /mnt/data/CompareFramework_3.8.0-RC1_step3/dist/CompareFramework-3.8.0-RC1-validation.ods

@@ -13,8 +13,8 @@
     },
     {
       "path": "dist/RELEASE_CERTIFICATE_3.8.0-RC1.pdf",
-      "size_bytes": 28438,
-      "sha256": "cb9840f69e851106b48ac1dcda991ed51ded5cdb3f9c50eb5e6aab420eb4c0eb"
+      "size_bytes": 28581,
+      "sha256": "fd61140b0ab150dbcb9f21430f6f53ac9864e57b428e5a1487dc4fc58af449ce"
     },
     {
       "path": "dist/BUILD_MANIFEST.json",
