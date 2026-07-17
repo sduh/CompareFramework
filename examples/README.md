@@ -1,7 +1,5 @@
 # Exemples
 
-Les démonstrateurs seront ajoutés progressivement.
+Ce répertoire est réservé aux classeurs et scénarios d’exemple de CompareFramework.
 
-Les jeux de validation officiels sont disponibles dans :
-
-tests/datasets/
+Les jeux de données de validation automatisée sont conservés dans `tests/datasets/`.
