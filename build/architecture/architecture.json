@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "repository": {
+    "version": "4.0.0-D1"
+  },
+  "modules": [
+    {
+      "name": "CompareFramework_API",
+      "path": "CompareFramework_API.bas",
+      "line_count": 41
+    },
+    {
+      "name": "CompareFramework_Audit",
+      "path": "CompareFramework_Audit.bas",
+      "line_count": 313
+    },
+    {
+      "name": "CompareFramework_ComparatorConfig",
+      "path": "CompareFramework_ComparatorConfig.bas",
+      "line_count": 214
+    },
+    {
+      "name": "CompareFramework_Comparators",
+      "path": "CompareFramework_Comparators.bas",
+      "line_count": 244
+    },
+    {
+      "name": "CompareFramework_Config",
+      "path": "CompareFramework_Config.bas",
+      "line_count": 220
+    },
+    {
+      "name": "CompareFramework_Context",
+      "path": "CompareFramework_Context.bas",
+      "line_count": 177
+    },
+    {
+      "name": "CompareFramework_EngineMemory",
+      "path": "CompareFramework_EngineMemory.bas",
+      "line_count": 372
+    },
+    {
+      "name": "CompareFramework_Index",
+      "path": "CompareFramework_Index.bas",
+      "line_count": 133
+    },
+    {
+      "name": "CompareFramework_Main",
+      "path": "CompareFramework_Main.bas",
+      "line_count": 466
+    },
+    {
+      "name": "CompareFramework_Performance",
+      "path": "CompareFramework_Performance.bas",
+      "line_count": 189
+    },
+    {
+      "name": "CompareFramework_Profiles",
+      "path": "CompareFramework_Profiles.bas",
+      "line_count": 202
+    },
+    {
+      "name": "CompareFramework_Quality",
+      "path": "CompareFramework_Quality.bas",
+      "line_count": 347
+    },
+    {
+      "name": "CompareFramework_Reliability",
+      "path": "CompareFramework_Reliability.bas",
+      "line_count": 260
+    },
+    {
+      "name": "CompareFramework_Report",
+      "path": "CompareFramework_Report.bas",
+      "line_count": 616
+    },
+    {
+      "name": "CompareFramework_Rules",
+      "path": "CompareFramework_Rules.bas",
+      "line_count": 185
+    },
+    {
+      "name": "CompareFramework_Scenarios",
+      "path": "CompareFramework_Scenarios.bas",
+      "line_count": 343
+    },
+    {
+      "name": "CompareFramework_Tests",
+      "path": "CompareFramework_Tests.bas",
+      "line_count": 485
+    },
+    {
+      "name": "CompareFramework_Utils",
+      "path": "CompareFramework_Utils.bas",
+      "line_count": 251
+    },
+    {
+      "name": "CompareFramework_Validation",
+      "path": "CompareFramework_Validation.bas",
+      "line_count": 260
+    },
+    {
+      "name": "CF_ModeReference",
+      "path": "Modes/CF_ModeReference.bas",
+      "line_count": 670
+    }
+  ],
+  "statistics": {
+    "module_count": 20
+  }
+}

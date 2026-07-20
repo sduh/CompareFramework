@@ -1,7 +1,11 @@
 from dataclasses import dataclass, field
+from pathlib import Path
 @dataclass
-class Procedure:
-    name:str; module:str; visibility:str; kind:str
+class Module:
+    name:str
+    path:str
+    line_count:int
 @dataclass
-class RepositoryModel:
-    procedures:list=field(default_factory=list)
+class Repository:
+    version:str=""
+    modules:list[Module]=field(default_factory=list)
