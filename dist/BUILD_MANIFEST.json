@@ -1,9 +1,9 @@
 {
   "name": "CompareFramework",
-  "version": "3.8.0-RC1",
+  "version": "4.0.0-D1",
   "version_source": "VERSION",
-  "output": "dist/CompareFramework-3.8.0-RC1.bas",
-  "sha256": "c59eb047186a84e73d84ffd7ffd3075a7935c16059d45e6b869c2b1de1d6b45b",
+  "output": "dist/CompareFramework-4.0.0-D1.bas",
+  "sha256": "b3658b993e53849f95b64285c94d3e4eeb4b29997dc6bba05561ae7b497a00a1",
   "modules": [
     "src/CompareFramework_Utils.bas",
     "src/CompareFramework_Context.bas",

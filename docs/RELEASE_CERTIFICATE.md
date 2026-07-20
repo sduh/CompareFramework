@@ -3,23 +3,23 @@
 | Champ | Valeur |
 |---|---|
 | Projet | CompareFramework |
-| Version | 3.8.0-RC1 |
-| Type de publication | Release Candidate |
-| Date de qualification | À compléter lors de la publication |
-| Décision de qualification | EN ATTENTE |
+| Version | 3.8.0 |
+| Type de publication | Version stable |
+| Date de qualification | 17 juillet 2026 |
+| Décision de qualification | GO |
 
 ## Objet
 
-Le présent certificat synthétise l’état de qualification de CompareFramework version **3.8.0-RC1**.
+Le présent certificat enregistre la qualification et l’autorisation de publication de CompareFramework version **3.8.0**.
 
-Il ne remplace pas les rapports d’audit détaillés. Il enregistre la décision finale de publication lorsque tous les points bloquants de la revue de préparation ont été levés et que la validation opérationnelle s’est terminée avec succès.
+La version finale reprend sans modification fonctionnelle le code qualifié de `3.8.0-RC1`. Le changement porte sur l’identifiant de version et sur la régénération des artefacts de publication.
 
 ## Références
 
 ### Gouvernance
 
 - `VERSION`
-- `RELEASE_POLICY.md`
+- `docs/RELEASE_POLICY.md`
 - `CHANGELOG.md`
 - `RELEASE_NOTES.md`
 - `RELEASE_MANIFEST.json`
@@ -35,67 +35,50 @@ Il ne remplace pas les rapports d’audit détaillés. Il enregistre la décisio
 - `docs/audit/AUDIT_DEPENDENCIES.md`
 - `docs/audit/RC04_PUBLIC_API_REVIEW.md`
 - `docs/audit/RC05_RELEASE_READINESS.md`
-- `docs/audit/RC05_GO_CHECKLIST.csv`
+- validation LibreOffice de `3.8.0-RC1` ;
+- contrôle du build final `3.8.0` et de l’injection de version.
 
-## Étapes de qualification
+## Résultats de qualification
 
-| Étape | Objet | Statut |
-|---|---|---|
-| RC-00 | Harmonisation des versions | Terminée |
-| RC-01 | Audit de la structure du dépôt | Terminé |
-| RC-02 | Audit statique du code | Terminé |
-| RC-03 | Audit des dépendances | Terminé avec réserves |
-| RC-04 | Revue de l’API publique | Terminée ; intégration en attente |
-| RC-05 | Préparation de la release | NO GO jusqu’à levée des blocages |
+| Contrôle | Résultat |
+|---|---|
+| Build statique des 20 modules | PASS |
+| Compilation LibreOffice de la RC1 | PASS |
+| Suite interne sur la RC1 | 7/7 PASS |
+| Build final et injection de version | 3.8.0 - PASS |
+| Export HTML de la RC1 | PASS |
+| Écriture UTF-8 dans le code final | PASS |
+| Cohérence des manifestes et checksums | PASS |
 
 ## Conformité architecturale
 
-La release candidate qualifiée doit respecter les principes suivants :
-
 - les modules sources sont maintenus sous `src/` ;
-- l’artefact Basic monolithique est généré depuis les modules sources ;
+- le monolithe est généré depuis `src/`, `MODULE_ORDER.txt` et `VERSION` ;
 - les artefacts générés sont stockés sous `dist/` ;
-- la version de publication est lue depuis le fichier racine `VERSION` ;
-- les décisions d’architecture sont enregistrées sous `docs/adr/` ;
-- les preuves de qualification sont stockées sous `docs/audit/` ;
-- la façade publique officielle est définie par `src/CompareFramework_API.bas` et documentée dans `docs/API_REFERENCE.md`.
+- `VERSION` est l’unique source éditable de version ;
+- la façade publique officielle est définie par `src/CompareFramework_API.bas`.
 
-## Artefacts de publication requis
+## Artefacts de publication
 
-Le paquet de publication doit inclure au minimum :
-
-- `dist/CompareFramework-3.8.0-RC1.bas`;
-- `dist/RELEASE_CERTIFICATE_3.8.0-RC1.pdf`;
-- `RELEASE_NOTES.md`;
-- `RELEASE_MANIFEST.json`;
-- `CHANGELOG.md`.
-
-## Exigences de validation finale
-
-Avant de passer la décision à **GO**, les points suivants doivent tous être confirmés :
-
-- le dépôt et les artefacts générés exposent la même version ;
-- `CompareFramework_API.bas` est intégré dans `src/` et `MODULE_ORDER.txt` ;
-- le monolithe est généré avec succès ;
-- le projet compile dans LibreOffice ;
-- la suite de validation de release se termine avec succès ;
-- la validation du mode Référence se termine avec succès ;
-- le manifeste et les sommes de contrôle correspondent aux artefacts publiés ;
-- le tag Git est créé depuis le commit exactement qualifié.
+- `dist/CompareFramework-3.8.0.bas` ;
+- `dist/RELEASE_CERTIFICATE_3.8.0.pdf` ;
+- `dist/CompareFramework-3.8.0.zip` ;
+- `dist/RELEASE_MANIFEST.json` ;
+- `dist/SHA256SUMS.txt`.
 
 ## Décision
 
-**Décision actuelle : EN ATTENTE / NO GO POUR PUBLICATION**
+**Décision finale : GO POUR PUBLICATION**
 
-Le certificat ne peut être passé à **GO** qu’après la levée des blocages identifiés par RC-05 et l’enregistrement des preuves de validation opérationnelle.
+CompareFramework version **3.8.0** est qualifiée pour publication. Le tag attendu est `v3.8.0` et doit être créé sur le commit contenant exactement les artefacts et sources certifiés.
 
 ## Approbation
 
 | Champ | Valeur |
 |---|---|
 | Projet qualifié | CompareFramework |
-| Version qualifiée | 3.8.0-RC1 |
-| Tag Git | `v3.8.0-rc1` |
-| Commit qualifié | À compléter |
-| Approuvé par | À compléter |
-| Date d’approbation | À compléter |
+| Version qualifiée | 3.8.0 |
+| Tag Git attendu | `v3.8.0` |
+| Version candidate qualifiée | `v3.8.0-rc1` |
+| Approuvé par | s.duhamel |
+| Date d’approbation | 17 juillet 2026 |

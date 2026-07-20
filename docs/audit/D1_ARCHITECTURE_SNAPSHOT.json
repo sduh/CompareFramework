@@ -1,0 +1,80 @@
+{
+  "milestone": "4.0-D1",
+  "modules": 20,
+  "loc": 5988,
+  "procedures": 285,
+  "public_procedures": 204,
+  "private_procedures": 81,
+  "official_api": [
+    "CF_ExportLastReportHTML",
+    "CF_OpenSettings",
+    "CF_RunDiagnostics",
+    "CF_RunReleaseValidation",
+    "CF_RunStandardComparison",
+    "CF_StartReferenceComparison"
+  ],
+  "private_review_candidates": 92,
+  "dependency_edges": 77,
+  "cycles": [
+    [
+      "src/CompareFramework_Config.bas",
+      "src/CompareFramework_Rules.bas"
+    ],
+    [
+      "src/CompareFramework_EngineMemory.bas",
+      "src/CompareFramework_Main.bas",
+      "src/CompareFramework_Profiles.bas",
+      "src/CompareFramework_Quality.bas",
+      "src/CompareFramework_Scenarios.bas",
+      "src/CompareFramework_Tests.bas",
+      "src/CompareFramework_Validation.bas"
+    ]
+  ],
+  "largest_modules": [
+    {
+      "module": "src/Modes/CF_ModeReference.bas",
+      "loc": 670,
+      "procedures": 14,
+      "public": 13,
+      "private": 1,
+      "outgoing_dependencies": 9,
+      "incoming_dependencies": 1
+    },
+    {
+      "module": "src/CompareFramework_Report.bas",
+      "loc": 616,
+      "procedures": 26,
+      "public": 26,
+      "private": 0,
+      "outgoing_dependencies": 1,
+      "incoming_dependencies": 6
+    },
+    {
+      "module": "src/CompareFramework_Tests.bas",
+      "loc": 485,
+      "procedures": 26,
+      "public": 8,
+      "private": 18,
+      "outgoing_dependencies": 8,
+      "incoming_dependencies": 2
+    },
+    {
+      "module": "src/CompareFramework_Main.bas",
+      "loc": 466,
+      "procedures": 19,
+      "public": 19,
+      "private": 0,
+      "outgoing_dependencies": 15,
+      "incoming_dependencies": 5
+    },
+    {
+      "module": "src/CompareFramework_EngineMemory.bas",
+      "loc": 372,
+      "procedures": 12,
+      "public": 12,
+      "private": 0,
+      "outgoing_dependencies": 10,
+      "incoming_dependencies": 4
+    }
+  ]
+}

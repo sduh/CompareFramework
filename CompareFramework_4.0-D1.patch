@@ -1,0 +1,1103 @@
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/CHANGELOG.md /mnt/data/CompareFramework_4.0-D1/CHANGELOG.md
+--- /tmp/cf380baseline/CHANGELOG.md	2026-07-17 13:20:11.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/CHANGELOG.md	2026-07-20 09:52:59.879481661 +0000
+@@ -2,6 +2,16 @@
+ 
+ Toutes les évolutions notables de CompareFramework sont consignées dans ce fichier.
+ 
++## [4.0.0-D1] - 2026-07-20
++
++### Architecture
++
++- Supported public façade frozen at six user-facing entry points.
++- Complete public symbol inventory and Private-candidate classification generated.
++- Reproducible module dependency map and cycle snapshot added.
++- Split boundaries prepared for `CompareFramework_Report.bas` and `Modes/CF_ModeReference.bas`.
++- No functional behavior or existing procedure visibility changed in D1.
++
+ ## [3.8.0] - 2026-07-17
+ 
+ ### Publication
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/CompareFramework_4.0-D1.patch /mnt/data/CompareFramework_4.0-D1/CompareFramework_4.0-D1.patch
+--- /tmp/cf380baseline/CompareFramework_4.0-D1.patch	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/CompareFramework_4.0-D1.patch	2026-07-20 09:54:14.991978158 +0000
+@@ -0,0 +1,20 @@
++diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/CHANGELOG.md /mnt/data/CompareFramework_4.0-D1/CHANGELOG.md
++--- /tmp/cf380baseline/CHANGELOG.md	2026-07-17 13:20:11.000000000 +0000
+++++ /mnt/data/CompareFramework_4.0-D1/CHANGELOG.md	2026-07-20 09:52:59.879481661 +0000
++@@ -2,6 +2,16 @@
++ 
++ Toutes les évolutions notables de CompareFramework sont consignées dans ce fichier.
++ 
+++## [4.0.0-D1] - 2026-07-20
+++
+++### Architecture
+++
+++- Supported public façade frozen at six user-facing entry points.
+++- Complete public symbol inventory and Private-candidate classification generated.
+++- Reproducible module dependency map and cycle snapshot added.
+++- Split boundaries prepared for `CompareFramework_Report.bas` and `Modes/CF_ModeReference.bas`.
+++- No functional behavior or existing procedure visibility changed in D1.
+++
++ ## [3.8.0] - 2026-07-17
++ 
++ ### Publication
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/D1_MILESTONE_REPORT.md /mnt/data/CompareFramework_4.0-D1/D1_MILESTONE_REPORT.md
+--- /tmp/cf380baseline/D1_MILESTONE_REPORT.md	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/D1_MILESTONE_REPORT.md	2026-07-20 09:53:49.970437325 +0000
+@@ -0,0 +1,41 @@
++# CompareFramework 4.0-D1 — Milestone Report
++
++## Verdict
++
++**PASS — architectural preparation complete.**
++
++## Implemented
++
++- `VERSION` advanced to `4.0.0-D1`.
++- Supported façade frozen at six procedures in `CompareFramework_API.bas`.
++- All procedures classified by visibility, role and migration recommendation.
++- Module dependencies and strongly connected components mapped reproducibly.
++- Future split boundaries defined for Report and Reference Mode.
++- Architecture analyzer added under `tools/analyze_architecture.py`.
++- No existing procedure removed, renamed or changed from `Public` to `Private`.
++- No functional implementation moved between modules.
++
++## Measured baseline
++
++- Modules: **20**
++- LOC: **5988**
++- Procedures: **285**
++- Public: **204**
++- Private: **81**
++- Supported API: **6**
++- Private-review candidates: **92**
++- Dependency edges: **77**
++- Multi-module cycles: **2**
++
++## Build validation
++
++- Monolith: `dist/CompareFramework-4.0.0-D1.bas`
++- Static checks: PASS
++- Duplicate public symbols: none
++- Forbidden `Round` calls: none
++- Forbidden Optional default syntax: none
++- Python tools syntax: PASS
++
++## Next milestone
++
++4.0-D2 can begin the controlled migration of internal callers behind service boundaries, one regression-tested batch at a time.
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/D1_SHA256SUMS.txt /mnt/data/CompareFramework_4.0-D1/D1_SHA256SUMS.txt
+--- /tmp/cf380baseline/D1_SHA256SUMS.txt	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/D1_SHA256SUMS.txt	2026-07-20 09:53:49.975489631 +0000
+@@ -0,0 +1,9 @@
++2cbbf3bd6018617f3ab49def29a80f2e1312d6e7ce54143ae589473861fb11fb  VERSION
++b3658b993e53849f95b64285c94d3e4eeb4b29997dc6bba05561ae7b497a00a1  dist/CompareFramework-4.0.0-D1.bas
++f5ecae14a072d5404f84e9ab00ee518851b9744ad552678f59d77eef08bb1475  dist/BUILD_MANIFEST.json
++a931f1adc3b03b566ee34e74629d849784bd357e0a581e37b36827db680e96be  D1_MILESTONE_REPORT.md
++2e333d3648ffbf0c8e2f01c514d402b5d79c5ec0e20e862235277ba49f31ac82  docs/audit/D1_ARCHITECTURAL_CLEANUP.md
++f2c5343d4d4adbfd2bf59f8e3a2f80f7dc5f2250ea1b24b7204c8eb60448dc76  docs/audit/D1_PUBLIC_API_INVENTORY.csv
++6b229ae50d659cbeb7cd76f705b84e7fd901972a00f9bf07ea3ca4a111394e83  docs/audit/D1_DEPENDENCY_MAP.csv
++b3ed3a24adf7c788ef6a475d54c3564bd7e06f9c3ed5069cee923adc54783bb5  docs/audit/D1_MODULE_METRICS.csv
++d15f51123e61dd9aace1a5a14a740cd50941059ae5d564ac55cd4cb79df94a83  docs/audit/D1_ARCHITECTURE_SNAPSHOT.json
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/VERSION /mnt/data/CompareFramework_4.0-D1/VERSION
+--- /tmp/cf380baseline/VERSION	2026-07-17 13:16:48.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/VERSION	2026-07-20 09:52:59.877880123 +0000
+@@ -1 +1 @@
+-3.8.0
++4.0.0-D1
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/docs/API_REFERENCE.md /mnt/data/CompareFramework_4.0-D1/docs/API_REFERENCE.md
+--- /tmp/cf380baseline/docs/API_REFERENCE.md	2026-07-17 10:16:40.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/docs/API_REFERENCE.md	2026-07-20 09:52:59.881519038 +0000
+@@ -1,110 +1,18 @@
+-# CompareFramework — Référence de l'API
++# CompareFramework Public API
+ 
+-**Statut :** proposition RC-04  
+-**Version cible :** `3.8.0-RC1`
++## Supported façade — 4.0-D1
+ 
+-## 1. Principe
++Only the following entry points are supported for direct user or integration use:
+ 
+-Une procédure déclarée `Public` dans LibreOffice Basic n'appartient pas nécessairement à l'API stable de CompareFramework.
++- `CF_StartReferenceComparison`
++- `CF_RunStandardComparison`
++- `CF_ExportLastReportHTML`
++- `CF_OpenSettings`
++- `CF_RunDiagnostics`
++- `CF_RunReleaseValidation`
+ 
+-Le mot-clé `Public` est aussi nécessaire pour permettre certains appels entre modules. L'API officielle est donc définie par le présent document et regroupée dans le module :
++All other `Public` procedures remain available for 3.8 compatibility or Basic cross-module calls. They are not part of the stable 4.0 contract unless explicitly promoted here. D1 changes classification only; no existing symbol is removed or made `Private`.
+ 
+-```text
+-CompareFramework_API.bas
+-```
++## Compatibility inventory
+ 
+-Pour une utilisation normale, l'utilisateur ne doit exécuter directement que les macros de ce module.
+-
+-## 2. Démarrage rapide
+-
+-### Comparaison par rapport à une feuille de référence
+-
+-```basic
+-CF_StartReferenceComparison
+-```
+-
+-Ouvre le lanceur du Mode Référence. C'est le point d'entrée recommandé lorsque le classeur contient une feuille modèle et plusieurs feuilles cibles.
+-
+-### Comparaison standard
+-
+-```basic
+-CF_RunStandardComparison
+-```
+-
+-Exécute les contrôles préalables puis lance la comparaison standard.
+-
+-## 3. API utilisateur stable
+-
+-| Macro | Usage |
+-|---|---|
+-| `CF_StartReferenceComparison()` | Ouvrir le lanceur du Mode Référence |
+-| `CF_RunStandardComparison()` | Lancer une comparaison standard validée |
+-| `CF_ExportLastReportHTML()` | Exporter le dernier rapport en HTML |
+-| `CF_OpenSettings()` | Ouvrir la configuration des comparateurs |
+-
+-Ces quatre macros constituent l'API utilisateur recommandée pour la RC1.
+-
+-## 4. API de diagnostic et de maintenance
+-
+-| Macro | Usage |
+-|---|---|
+-| `CF_RunDiagnostics()` | Afficher le diagnostic principal du framework |
+-| `CF_RunReleaseValidation()` | Exécuter la régression globale avant une release |
+-
+-Ces macros sont destinées au mainteneur, pas à l'utilisateur métier courant.
+-
+-## 5. API avancée existante
+-
+-Les procédures suivantes restent accessibles pour les intégrations avancées, mais ne sont pas les points d'entrée recommandés dans l'interface des macros :
+-
+-| Procédure | Rôle |
+-|---|---|
+-| `CF_RunAgainstReference(referenceSheetName, keyColumnName)` | Lancer directement le Mode Référence avec des paramètres explicites |
+-| `CF_ApplyProfile(profileName)` | Appliquer un profil |
+-| `CF_SaveCurrentConfigAsProfile(profileName)` | Enregistrer la configuration comme profil |
+-| `CF_RunWithProfile(profileName)` | Lancer une comparaison avec un profil |
+-| `GetFrameworkVersion()` | Retourner la version du framework |
+-| `FrameworkManifest()` | Retourner les informations de manifeste |
+-
+-Cette API est utilisable par du code d'intégration. Sa stabilisation définitive doit être confirmée avant la version `3.8.0` finale.
+-
+-## 6. Compatibilité
+-
+-Pour une même version majeure :
+-
+-- les noms et comportements essentiels de l'API utilisateur stable doivent rester compatibles ;
+-- une procédure ne peut être retirée sans période de dépréciation ;
+-- les procédures internes peuvent évoluer sans garantie de compatibilité ;
+-- les procédures de tests et de diagnostic ne constituent pas une API métier.
+-
+-## 7. Dépréciation
+-
+-Lorsqu'une macro stable doit être remplacée :
+-
+-1. conserver l'ancienne macro comme enveloppe temporaire ;
+-2. documenter son remplacement dans le `CHANGELOG.md` ;
+-3. afficher un avertissement non bloquant si cela reste compatible avec l'usage ;
+-4. ne supprimer l'ancienne macro qu'à l'occasion d'une version majeure.
+-
+-## 8. Macros historiques
+-
+-Les anciens points d'entrée, notamment les macros `Legacy`, `MilestoneA`, `MilestoneB`, `MilestoneC` et `D1` à `D4`, ne doivent plus être présentés comme API courante.
+-
+-Ils doivent être soit :
+-
+-- rendus `Private` lorsqu'ils ne sont utilisés que dans leur module ;
+-- déplacés dans une bibliothèque de tests ou de compatibilité ;
+-- maintenus temporairement comme enveloppes de compatibilité clairement dépréciées.
+-
+-## 9. Règle pour les nouveaux développements
+-
+-Toute nouvelle macro destinée à être exécutée directement doit :
+-
+-- être ajoutée dans `CompareFramework_API.bas` ;
+-- commencer par `CF_` ;
+-- avoir un nom orienté action ;
+-- ne pas exposer de détail d'implémentation ;
+-- être ajoutée à ce document ;
+-- être couverte par un test de fumée.
+-
+-Une procédure publique créée uniquement pour un appel entre modules ne doit pas être ajoutée à l'API de référence.
++The generated classification is maintained in `docs/audit/D1_PUBLIC_API_INVENTORY.csv`.
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/docs/ROADMAP_4.0.md /mnt/data/CompareFramework_4.0-D1/docs/ROADMAP_4.0.md
+--- /tmp/cf380baseline/docs/ROADMAP_4.0.md	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/docs/ROADMAP_4.0.md	2026-07-20 09:52:57.145170621 +0000
+@@ -0,0 +1,72 @@
++# CompareFramework 4.0 Roadmap
++
++**Status:** approved for implementation  
++**Baseline:** 3.8.0  
++**Target:** 4.0
++
++## Vision
++
++Version 4.0 improves internal architecture while preserving the functional reliability achieved by 3.8.0.
++
++## Objectives
++
++- reduce the supported public API to a stable façade;
++- improve module cohesion and encapsulation;
++- split the two largest modules by responsibility;
++- reduce avoidable dependency cycles;
++- strengthen regression automation and architecture controls.
++
++## Milestones
++
++### 4.0-D1 — Architectural cleanup
++
++- freeze the supported façade;
++- inventory all public symbols and Private candidates;
++- map module dependencies and cycles;
++- define split boundaries for `CompareFramework_Report.bas` and `Modes/CF_ModeReference.bas`;
++- make no functional change.
++
++### 4.0-D2 — API stabilization
++
++- migrate internal callers toward service boundaries;
++- retain compatibility wrappers where required;
++- reduce language-level `Public` exposure in controlled batches.
++
++### 4.0-D3 — Dependency cleanup
++
++- remove avoidable cycles;
++- introduce clear service direction;
++- validate module order and regression after each batch.
++
++### 4.0-D4 — Module refactoring
++
++- split Report responsibilities;
++- split Reference Mode responsibilities;
++- preserve workbook and configuration compatibility.
++
++### 4.0-RC1 — Qualification
++
++- complete build, LibreOffice compilation and regression validation;
++- validate migration notes and supported API;
++- publish a release candidate.
++
++### 4.0 — Stable release
++
++- publish only after all qualification gates pass.
++
++## Success criteria
++
++- exactly one documented supported user-facing façade;
++- significant reduction of implementation symbols exposed as `Public`;
++- fewer dependency cycles than 3.8.0;
++- large modules split into cohesive responsibilities;
++- no regression against 3.8.0 scenarios;
++- reproducible build and LibreOffice validation.
++
++## Out of scope
++
++- complete rewrite;
++- language migration;
++- UI redesign;
++- incompatible workbook format;
++- feature accumulation unrelated to architecture.
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/docs/audit/D1_ARCHITECTURAL_CLEANUP.md /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_ARCHITECTURAL_CLEANUP.md
+--- /tmp/cf380baseline/docs/audit/D1_ARCHITECTURAL_CLEANUP.md	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_ARCHITECTURAL_CLEANUP.md	2026-07-20 09:53:03.179968418 +0000
+@@ -0,0 +1,76 @@
++# CompareFramework 4.0-D1 — Architectural Cleanup Report
++
++## Scope
++
++This milestone establishes architecture boundaries without changing functional behavior. No existing public procedure has been made `Private` in D1.
++
++## Baseline
++
++- Modules analyzed: **20**
++- Source lines: **5988**
++- Procedures: **285**
++- Public procedures: **204**
++- Private procedures: **81**
++- Official supported API entries: **6**
++- Safe-review candidates with no cross-module references: **92**
++- Module dependency edges: **77**
++- Dependency cycles (SCC > 1): **2**
++
++## Supported public facade
++
++The only supported user-facing API is defined in `src/CompareFramework_API.bas`:
++
++- `CF_ExportLastReportHTML`
++- `CF_OpenSettings`
++- `CF_RunDiagnostics`
++- `CF_RunReleaseValidation`
++- `CF_RunStandardComparison`
++- `CF_StartReferenceComparison`
++
++
++All other `Public` procedures are compatibility or implementation symbols. Their visibility is unchanged in D1.
++
++## Visibility strategy
++
++1. D1 classifies symbols only.
++2. A symbol can become `Private` only after its callers are migrated behind a service boundary.
++3. Legacy user macros require wrappers or a documented breaking-change decision before removal.
++4. Each visibility batch must pass the complete regression suite.
++
++## Large-module preparation
++
++### `CompareFramework_Report.bas`
++
++Target split for a later milestone:
++
++- report sheet writing and formatting;
++- statistics and dashboard generation;
++- action plan generation;
++- HTML serialization and file output.
++
++### `Modes/CF_ModeReference.bas`
++
++Target split for a later milestone:
++
++- launcher/UI sheet;
++- target discovery and selection;
++- reference comparison orchestration;
++- summary generation and formatting.
++
++D1 does not move any procedure, preventing accidental dependency or Basic visibility regressions.
++
++## Dependency cycles
++
++- src/CompareFramework_Config.bas -> src/CompareFramework_Rules.bas
++- src/CompareFramework_EngineMemory.bas -> src/CompareFramework_Main.bas -> src/CompareFramework_Profiles.bas -> src/CompareFramework_Quality.bas -> src/CompareFramework_Scenarios.bas -> src/CompareFramework_Tests.bas -> src/CompareFramework_Validation.bas
++
++## D1 decision
++
++**PASS for architectural preparation.** The supported API is explicit, migration candidates are inventoried, large-module split boundaries are defined, and the dependency graph is reproducible.
++
++## Generated evidence
++
++- `D1_PUBLIC_API_INVENTORY.csv`
++- `D1_DEPENDENCY_MAP.csv`
++- `D1_MODULE_METRICS.csv`
++- `D1_ARCHITECTURE_SNAPSHOT.json`
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/docs/audit/D1_ARCHITECTURE_SNAPSHOT.json /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_ARCHITECTURE_SNAPSHOT.json
+--- /tmp/cf380baseline/docs/audit/D1_ARCHITECTURE_SNAPSHOT.json	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_ARCHITECTURE_SNAPSHOT.json	2026-07-20 09:53:03.180317582 +0000
+@@ -0,0 +1,80 @@
++{
++  "milestone": "4.0-D1",
++  "modules": 20,
++  "loc": 5988,
++  "procedures": 285,
++  "public_procedures": 204,
++  "private_procedures": 81,
++  "official_api": [
++    "CF_ExportLastReportHTML",
++    "CF_OpenSettings",
++    "CF_RunDiagnostics",
++    "CF_RunReleaseValidation",
++    "CF_RunStandardComparison",
++    "CF_StartReferenceComparison"
++  ],
++  "private_review_candidates": 92,
++  "dependency_edges": 77,
++  "cycles": [
++    [
++      "src/CompareFramework_Config.bas",
++      "src/CompareFramework_Rules.bas"
++    ],
++    [
++      "src/CompareFramework_EngineMemory.bas",
++      "src/CompareFramework_Main.bas",
++      "src/CompareFramework_Profiles.bas",
++      "src/CompareFramework_Quality.bas",
++      "src/CompareFramework_Scenarios.bas",
++      "src/CompareFramework_Tests.bas",
++      "src/CompareFramework_Validation.bas"
++    ]
++  ],
++  "largest_modules": [
++    {
++      "module": "src/Modes/CF_ModeReference.bas",
++      "loc": 670,
++      "procedures": 14,
++      "public": 13,
++      "private": 1,
++      "outgoing_dependencies": 9,
++      "incoming_dependencies": 1
++    },
++    {
++      "module": "src/CompareFramework_Report.bas",
++      "loc": 616,
++      "procedures": 26,
++      "public": 26,
++      "private": 0,
++      "outgoing_dependencies": 1,
++      "incoming_dependencies": 6
++    },
++    {
++      "module": "src/CompareFramework_Tests.bas",
++      "loc": 485,
++      "procedures": 26,
++      "public": 8,
++      "private": 18,
++      "outgoing_dependencies": 8,
++      "incoming_dependencies": 2
++    },
++    {
++      "module": "src/CompareFramework_Main.bas",
++      "loc": 466,
++      "procedures": 19,
++      "public": 19,
++      "private": 0,
++      "outgoing_dependencies": 15,
++      "incoming_dependencies": 5
++    },
++    {
++      "module": "src/CompareFramework_EngineMemory.bas",
++      "loc": 372,
++      "procedures": 12,
++      "public": 12,
++      "private": 0,
++      "outgoing_dependencies": 10,
++      "incoming_dependencies": 4
++    }
++  ]
++}
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/docs/audit/D1_DEPENDENCY_MAP.csv /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_DEPENDENCY_MAP.csv
+--- /tmp/cf380baseline/docs/audit/D1_DEPENDENCY_MAP.csv	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_DEPENDENCY_MAP.csv	2026-07-20 09:53:03.177474865 +0000
+@@ -0,0 +1,78 @@
++source_module,target_module
++src/CompareFramework_API.bas,src/CompareFramework_ComparatorConfig.bas
++src/CompareFramework_API.bas,src/CompareFramework_Main.bas
++src/CompareFramework_API.bas,src/CompareFramework_Quality.bas
++src/CompareFramework_API.bas,src/CompareFramework_Report.bas
++src/CompareFramework_API.bas,src/CompareFramework_Validation.bas
++src/CompareFramework_API.bas,src/Modes/CF_ModeReference.bas
++src/CompareFramework_Audit.bas,src/CompareFramework_Context.bas
++src/CompareFramework_Audit.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_ComparatorConfig.bas,src/CompareFramework_Context.bas
++src/CompareFramework_ComparatorConfig.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Comparators.bas,src/CompareFramework_ComparatorConfig.bas
++src/CompareFramework_Comparators.bas,src/CompareFramework_Config.bas
++src/CompareFramework_Config.bas,src/CompareFramework_Rules.bas
++src/CompareFramework_Config.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Audit.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_ComparatorConfig.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Comparators.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Config.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Context.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Index.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Report.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Rules.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Tests.bas
++src/CompareFramework_EngineMemory.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Index.bas,src/CompareFramework_Report.bas
++src/CompareFramework_Index.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Audit.bas
++src/CompareFramework_Main.bas,src/CompareFramework_ComparatorConfig.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Comparators.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Config.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Context.bas
++src/CompareFramework_Main.bas,src/CompareFramework_EngineMemory.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Index.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Performance.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Quality.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Reliability.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Report.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Rules.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Scenarios.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Main.bas,src/CompareFramework_Validation.bas
++src/CompareFramework_Performance.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Profiles.bas,src/CompareFramework_Config.bas
++src/CompareFramework_Profiles.bas,src/CompareFramework_Context.bas
++src/CompareFramework_Profiles.bas,src/CompareFramework_Main.bas
++src/CompareFramework_Profiles.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Quality.bas,src/CompareFramework_EngineMemory.bas
++src/CompareFramework_Quality.bas,src/CompareFramework_Main.bas
++src/CompareFramework_Quality.bas,src/CompareFramework_Reliability.bas
++src/CompareFramework_Quality.bas,src/CompareFramework_Tests.bas
++src/CompareFramework_Reliability.bas,src/CompareFramework_ComparatorConfig.bas
++src/CompareFramework_Reliability.bas,src/CompareFramework_Comparators.bas
++src/CompareFramework_Report.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Rules.bas,src/CompareFramework_Config.bas
++src/CompareFramework_Rules.bas,src/CompareFramework_Index.bas
++src/CompareFramework_Rules.bas,src/CompareFramework_Report.bas
++src/CompareFramework_Rules.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Scenarios.bas,src/CompareFramework_Main.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_Audit.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_Comparators.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_Context.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_EngineMemory.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_Performance.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_Profiles.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_Utils.bas
++src/CompareFramework_Tests.bas,src/CompareFramework_Validation.bas
++src/CompareFramework_Validation.bas,src/CompareFramework_Context.bas
++src/CompareFramework_Validation.bas,src/CompareFramework_Main.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_Audit.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_ComparatorConfig.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_Config.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_Context.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_EngineMemory.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_Index.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_Report.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_Rules.bas
++src/Modes/CF_ModeReference.bas,src/CompareFramework_Utils.bas
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/docs/audit/D1_MODULE_METRICS.csv /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_MODULE_METRICS.csv
+--- /tmp/cf380baseline/docs/audit/D1_MODULE_METRICS.csv	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_MODULE_METRICS.csv	2026-07-20 09:53:03.179296548 +0000
+@@ -0,0 +1,21 @@
++module,loc,procedures,public,private,outgoing_dependencies,incoming_dependencies
++src/CompareFramework_API.bas,41,6,6,0,6,0
++src/CompareFramework_Audit.bas,313,17,8,9,2,4
++src/CompareFramework_ComparatorConfig.bas,214,12,7,5,2,6
++src/CompareFramework_Comparators.bas,244,19,19,0,2,4
++src/CompareFramework_Config.bas,220,13,13,0,2,6
++src/CompareFramework_Context.bas,177,11,9,2,0,8
++src/CompareFramework_EngineMemory.bas,372,12,12,0,10,4
++src/CompareFramework_Index.bas,133,6,6,0,2,4
++src/CompareFramework_Main.bas,466,19,19,0,15,5
++src/CompareFramework_Performance.bas,189,10,7,3,1,2
++src/CompareFramework_Profiles.bas,202,11,6,5,4,1
++src/CompareFramework_Quality.bas,347,14,4,10,4,2
++src/CompareFramework_Reliability.bas,260,9,4,5,2,2
++src/CompareFramework_Report.bas,616,26,26,0,1,6
++src/CompareFramework_Rules.bas,185,9,9,0,4,4
++src/CompareFramework_Scenarios.bas,343,17,5,12,1,1
++src/CompareFramework_Tests.bas,485,26,8,18,8,2
++src/CompareFramework_Utils.bas,251,19,19,0,0,12
++src/CompareFramework_Validation.bas,260,15,4,11,2,3
++src/Modes/CF_ModeReference.bas,670,14,13,1,9,1
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/docs/audit/D1_PUBLIC_API_INVENTORY.csv /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_PUBLIC_API_INVENTORY.csv
+--- /tmp/cf380baseline/docs/audit/D1_PUBLIC_API_INVENTORY.csv	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/docs/audit/D1_PUBLIC_API_INVENTORY.csv	2026-07-20 09:53:03.176732809 +0000
+@@ -0,0 +1,286 @@
++module,line,end_line,visibility,kind,name,classification,recommendation,reference_count,external_reference_count
++src/CompareFramework_API.bas,14,16,Public,Sub,CF_StartReferenceComparison,official-api,keep-public,0,0
++src/CompareFramework_API.bas,19,21,Public,Sub,CF_RunStandardComparison,official-api,keep-public,0,0
++src/CompareFramework_API.bas,24,26,Public,Sub,CF_ExportLastReportHTML,official-api,keep-public,0,0
++src/CompareFramework_API.bas,29,31,Public,Sub,CF_OpenSettings,official-api,keep-public,0,0
++src/CompareFramework_API.bas,34,36,Public,Sub,CF_RunDiagnostics,official-api,keep-public,0,0
++src/CompareFramework_API.bas,39,41,Public,Sub,CF_RunReleaseValidation,official-api,keep-public,0,0
++src/CompareFramework_Audit.bas,29,56,Public,Sub,CF_AuditBegin,cross-module-internal,keep-public-until-service-boundary,10,9
++src/CompareFramework_Audit.bas,58,85,Public,Sub,CF_AuditSet,cross-module-internal,keep-public-until-service-boundary,26,26
++src/CompareFramework_Audit.bas,87,95,Public,Sub,CF_AuditFail,cross-module-internal,keep-public-until-service-boundary,10,10
++src/CompareFramework_Audit.bas,97,121,Public,Sub,CF_AuditEnd,cross-module-internal,keep-public-until-service-boundary,19,19
++src/CompareFramework_Audit.bas,123,152,Public,Sub,CF_AuditWriteCurrentRun,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Audit.bas,154,170,Public,Sub,CF_AuditClearHistory,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Audit.bas,172,174,Public,Function,CF_AuditGetRunId,cross-module-internal,keep-public-until-service-boundary,2,1
++src/CompareFramework_Audit.bas,176,191,Public,Function,CF_AuditDurationSeconds,cross-module-internal,keep-public-until-service-boundary,5,1
++src/CompareFramework_Audit.bas,193,215,Private,Sub,CF_AuditEnsureSheet,private-existing,keep-private,2,0
++src/CompareFramework_Audit.bas,217,227,Private,Function,CF_AuditNextRow,private-existing,keep-private,3,0
++src/CompareFramework_Audit.bas,229,234,Private,Function,CF_AuditCreateRunId,private-existing,keep-private,2,0
++src/CompareFramework_Audit.bas,236,247,Private,Function,CF_AuditGetProfileName,private-existing,keep-private,5,0
++src/CompareFramework_Audit.bas,249,261,Private,Function,CF_AuditGetDocumentName,private-existing,keep-private,4,0
++src/CompareFramework_Audit.bas,263,274,Private,Function,CF_AuditSerializeMetrics,private-existing,keep-private,2,0
++src/CompareFramework_Audit.bas,276,290,Private,Function,CF_AuditMetricIndexOf,private-existing,keep-private,3,0
++src/CompareFramework_Audit.bas,292,294,Private,Sub,CF_AuditWriteCell,private-existing,keep-private,22,0
++src/CompareFramework_Audit.bas,296,313,Private,Sub,CF_AuditFormatSheet,private-existing,keep-private,1,0
++src/CompareFramework_ComparatorConfig.bas,18,30,Public,Function,CF_EnsureComparatorsSheet,module-internal-candidate,candidate-private-after-regression,4,0
++src/CompareFramework_ComparatorConfig.bas,32,54,Public,Sub,CF_WriteDefaultComparatorConfig,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_ComparatorConfig.bas,56,94,Public,Sub,CF_LoadComparatorConfig,cross-module-internal,keep-public-until-service-boundary,7,3
++src/CompareFramework_ComparatorConfig.bas,96,121,Public,Function,CF_ResolveComparatorConfig,cross-module-internal,keep-public-until-service-boundary,6,1
++src/CompareFramework_ComparatorConfig.bas,123,127,Public,Sub,CF_ReloadComparatorConfig,module-internal-candidate,candidate-private-after-regression,0,0
++src/CompareFramework_ComparatorConfig.bas,129,133,Public,Sub,CF_OpenComparatorConfig,cross-module-internal,keep-public-until-service-boundary,1,1
++src/CompareFramework_ComparatorConfig.bas,135,168,Public,Sub,CF_RunComparatorConfigTests,maintenance-test,review-public-maintenance,3,2
++src/CompareFramework_ComparatorConfig.bas,170,181,Private,Function,CF_CC_FindRule,private-existing,keep-private,6,0
++src/CompareFramework_ComparatorConfig.bas,183,187,Private,Function,CF_CC_ToBoolean,private-existing,keep-private,2,0
++src/CompareFramework_ComparatorConfig.bas,189,201,Private,Function,CF_CC_TryParseDouble,private-existing,keep-private,3,0
++src/CompareFramework_ComparatorConfig.bas,203,210,Private,Sub,CF_CC_WriteRow,private-existing,keep-private,6,0
++src/CompareFramework_ComparatorConfig.bas,212,214,Private,Sub,CF_CC_SetCell,private-existing,keep-private,12,0
++src/CompareFramework_Comparators.bas,16,56,Public,Function,CF_TypedValuesEqual,cross-module-internal,keep-public-until-service-boundary,13,1
++src/CompareFramework_Comparators.bas,58,79,Public,Function,CF_ComparatorTypeForHeader,module-internal-candidate,candidate-private-after-regression,9,0
++src/CompareFramework_Comparators.bas,81,87,Public,Function,CF_TextEqual,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Comparators.bas,89,99,Public,Function,CF_NumberEqual,module-internal-candidate,candidate-private-after-regression,5,0
++src/CompareFramework_Comparators.bas,101,111,Public,Function,CF_DateEqual,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Comparators.bas,113,119,Public,Function,CF_BooleanEqual,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Comparators.bas,121,124,Public,Function,CF_LooksNumeric,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Comparators.bas,126,132,Public,Function,CF_LooksDate,module-internal-candidate,candidate-private-after-regression,5,0
++src/CompareFramework_Comparators.bas,134,136,Public,Function,CF_LooksBoolean,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Comparators.bas,138,166,Public,Function,CF_TryParseNumber,module-internal-candidate,candidate-private-after-regression,8,0
++src/CompareFramework_Comparators.bas,168,182,Public,Function,CF_TryParseDateSerial,module-internal-candidate,candidate-private-after-regression,7,0
++src/CompareFramework_Comparators.bas,184,195,Public,Function,CF_BooleanCode,module-internal-candidate,candidate-private-after-regression,6,0
++src/CompareFramework_Comparators.bas,197,206,Public,Function,CF_PercentToNumber,module-internal-candidate,candidate-private-after-regression,4,0
++src/CompareFramework_Comparators.bas,208,211,Public,Function,CF_CurrencyToNumber,module-internal-candidate,candidate-private-after-regression,4,0
++src/CompareFramework_Comparators.bas,213,215,Public,Function,CF_GetNumericTolerance,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Comparators.bas,217,219,Public,Function,CF_GetPercentTolerance,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Comparators.bas,221,223,Public,Function,CF_GetCurrencyTolerance,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Comparators.bas,225,227,Public,Function,CF_GetDateToleranceDays,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Comparators.bas,229,244,Public,Sub,CF_RunTypedComparatorTests,maintenance-test,review-public-maintenance,3,3
++src/CompareFramework_Config.bas,5,38,Public,Sub,LoadCompareConfig,cross-module-internal,keep-public-until-service-boundary,4,4
++src/CompareFramework_Config.bas,40,53,Public,Function,EnsureConfigSheet,cross-module-internal,keep-public-until-service-boundary,4,2
++src/CompareFramework_Config.bas,55,85,Public,Sub,WriteDefaultConfig,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Config.bas,88,101,Public,Function,EnsureRulesSheet,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Config.bas,103,146,Public,Sub,WriteDefaultRulesSheet,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Config.bas,148,161,Public,Function,NormalizeCompareValue,cross-module-internal,keep-public-until-service-boundary,11,10
++src/CompareFramework_Config.bas,163,170,Public,Function,NormalizeSpaces,cross-module-internal,keep-public-until-service-boundary,3,1
++src/CompareFramework_Config.bas,172,178,Public,Function,IgnoreThisEmptyChange,cross-module-internal,keep-public-until-service-boundary,4,2
++src/CompareFramework_Config.bas,180,182,Public,Function,ColumnIsIgnored,cross-module-internal,keep-public-until-service-boundary,5,4
++src/CompareFramework_Config.bas,184,189,Public,Function,TokenInList,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Config.bas,191,201,Public,Function,NormalizeList,cross-module-internal,keep-public-until-service-boundary,5,2
++src/CompareFramework_Config.bas,203,207,Public,Function,ToBoolean,cross-module-internal,keep-public-until-service-boundary,5,1
++src/CompareFramework_Config.bas,209,219,Public,Function,FindIdColumn,cross-module-internal,keep-public-until-service-boundary,7,5
++src/CompareFramework_Context.bas,23,32,Public,Sub,CF_ContextReset,cross-module-internal,keep-public-until-service-boundary,3,1
++src/CompareFramework_Context.bas,34,38,Public,Sub,CF_ContextInitIfNeeded,module-internal-candidate,candidate-private-after-regression,5,0
++src/CompareFramework_Context.bas,40,64,Public,Sub,CF_ContextSet,cross-module-internal,keep-public-until-service-boundary,48,40
++src/CompareFramework_Context.bas,66,79,Public,Function,CF_ContextGet,cross-module-internal,keep-public-until-service-boundary,12,9
++src/CompareFramework_Context.bas,81,84,Public,Function,CF_ContextHas,cross-module-internal,keep-public-until-service-boundary,2,1
++src/CompareFramework_Context.bas,86,89,Public,Function,CF_ContextCount,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Context.bas,91,123,Public,Sub,CF_ContextDumpToSheet,cross-module-internal,keep-public-until-service-boundary,2,1
++src/CompareFramework_Context.bas,125,138,Public,Sub,CF_ContextBeginRun,cross-module-internal,keep-public-until-service-boundary,13,13
++src/CompareFramework_Context.bas,140,151,Public,Sub,CF_ContextEndRun,cross-module-internal,keep-public-until-service-boundary,27,27
++src/CompareFramework_Context.bas,153,171,Private,Function,CF_ContextIndexOf,private-existing,keep-private,6,0
++src/CompareFramework_Context.bas,173,177,Private,Sub,CF_DeleteSheetIfExists_Context,private-existing,keep-private,1,0
++src/CompareFramework_EngineMemory.bas,8,78,Public,Sub,CF_CompareAllSheetsInMemory,cross-module-internal,keep-public-until-service-boundary,4,4
++src/CompareFramework_EngineMemory.bas,80,103,Public,Function,CF_CompareDetectedPairsMemory,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_EngineMemory.bas,105,130,Public,Function,CF_CompareFallbackMemory,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_EngineMemory.bas,132,207,Public,Sub,CF_CompareSheetPairMemory,cross-module-internal,keep-public-until-service-boundary,3,1
++src/CompareFramework_EngineMemory.bas,209,217,Public,Function,CF_ReadUsedData,cross-module-internal,keep-public-until-service-boundary,5,1
++src/CompareFramework_EngineMemory.bas,219,229,Public,Function,CF_MemoryHeaders,cross-module-internal,keep-public-until-service-boundary,5,1
++src/CompareFramework_EngineMemory.bas,231,260,Public,Sub,CF_BuildMemoryIdIndex,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_EngineMemory.bas,262,299,Public,Function,CF_CompareMemoryRows,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_EngineMemory.bas,301,314,Public,Function,CF_MemoryFullRow,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_EngineMemory.bas,316,333,Public,Function,CF_ReportMemoryDuplicates,module-internal-candidate,candidate-private-after-regression,4,0
++src/CompareFramework_EngineMemory.bas,335,341,Public,Function,CF_MemoryValueText,module-internal-candidate,candidate-private-after-regression,7,0
++src/CompareFramework_EngineMemory.bas,343,372,Public,Sub,CF_RunMemoryEngineTests,maintenance-test,review-public-maintenance,3,2
++src/CompareFramework_Index.bas,5,30,Public,Sub,BuildIdIndex,cross-module-internal,keep-public-until-service-boundary,2,2
++src/CompareFramework_Index.bas,32,57,Public,Function,FindRowInIndex,cross-module-internal,keep-public-until-service-boundary,7,4
++src/CompareFramework_Index.bas,59,88,Public,Sub,QuickSortIndex,cross-module-internal,keep-public-until-service-boundary,6,4
++src/CompareFramework_Index.bas,90,109,Public,Function,ReportDuplicateIds,cross-module-internal,keep-public-until-service-boundary,4,2
++src/CompareFramework_Index.bas,111,121,Public,Function,ReadHeaders,cross-module-internal,keep-public-until-service-boundary,3,2
++src/CompareFramework_Index.bas,123,132,Public,Function,HeaderIndex,cross-module-internal,keep-public-until-service-boundary,7,5
++src/CompareFramework_Main.bas,5,49,Public,Sub,ComparerToutesLesFeuilles_Legacy,module-internal-candidate,candidate-private-after-regression,0,0
++src/CompareFramework_Main.bas,51,53,Public,Sub,ComparerToutesLesFeuilles,cross-module-internal,keep-public-until-service-boundary,11,7
++src/CompareFramework_Main.bas,55,69,Public,Sub,CF_RunMilestoneA,module-internal-candidate,candidate-private-after-regression,0,0
++src/CompareFramework_Main.bas,71,95,Public,Function,CompareDetectedPairs,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Main.bas,97,123,Public,Function,CompareFallbackTwoSheets,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Main.bas,125,205,Public,Sub,CompareSheetPair,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Main.bas,207,209,Public,Function,FrameworkManifest,cross-module-internal,keep-public-until-service-boundary,4,1
++src/CompareFramework_Main.bas,211,213,Public,Function,GetFrameworkVersion,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Main.bas,215,218,Public,Sub,DiagnosticFramework,cross-module-internal,keep-public-until-service-boundary,2,1
++src/CompareFramework_Main.bas,226,242,Public,Sub,ComparerToutesLesFeuilles_Contextualisee,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Main.bas,244,250,Public,Sub,DiagnosticFramework_Contextualise,module-internal-candidate,candidate-private-after-regression,0,0
++src/CompareFramework_Main.bas,257,293,Public,Sub,CF_RunAudited,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Main.bas,299,335,Public,Sub,CF_RunPerformanceProfiled,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Main.bas,338,352,Public,Sub,CF_RunMilestoneB,module-internal-candidate,candidate-private-after-regression,0,0
++src/CompareFramework_Main.bas,359,378,Public,Sub,CF_RunMilestoneB_Configured,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Main.bas,380,383,Public,Sub,CF_RunMilestoneB_ConfigTests,maintenance-test,review-public-maintenance,0,0
++src/CompareFramework_Main.bas,390,412,Public,Sub,CF_RunMilestoneB_Final,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Main.bas,419,437,Public,Sub,CF_RunMilestoneC,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Main.bas,444,466,Public,Sub,CF_RunMilestoneC_Final,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Performance.bas,27,38,Public,Sub,CF_PerfReset,cross-module-internal,keep-public-until-service-boundary,3,2
++src/CompareFramework_Performance.bas,40,47,Public,Sub,CF_PerfStart,cross-module-internal,keep-public-until-service-boundary,5,4
++src/CompareFramework_Performance.bas,49,60,Public,Function,CF_PerfStop,cross-module-internal,keep-public-until-service-boundary,10,7
++src/CompareFramework_Performance.bas,62,82,Public,Sub,CF_PerfRecordPair,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Performance.bas,84,127,Public,Sub,CF_PerfWriteReport,cross-module-internal,keep-public-until-service-boundary,6,4
++src/CompareFramework_Performance.bas,129,135,Public,Function,CF_ReadSheetDataArray,cross-module-internal,keep-public-until-service-boundary,3,1
++src/CompareFramework_Performance.bas,137,160,Public,Sub,CF_RunPerformanceBenchmark,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Performance.bas,162,168,Private,Function,CF_PerfIndexOf,private-existing,keep-private,4,0
++src/CompareFramework_Performance.bas,170,185,Private,Function,CF_PerfAddLabel,private-existing,keep-private,2,0
++src/CompareFramework_Performance.bas,187,189,Private,Sub,CF_PerfCell,private-existing,keep-private,14,0
++src/CompareFramework_Profiles.bas,16,28,Public,Function,CF_EnsureProfilesSheet,cross-module-internal,keep-public-until-service-boundary,5,1
++src/CompareFramework_Profiles.bas,30,49,Public,Sub,CF_WriteDefaultProfiles,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Profiles.bas,51,82,Public,Sub,CF_ApplyProfile,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Profiles.bas,84,115,Public,Sub,CF_SaveCurrentConfigAsProfile,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Profiles.bas,117,121,Public,Sub,CF_ListProfiles,module-internal-candidate,candidate-private-after-regression,0,0
++src/CompareFramework_Profiles.bas,123,138,Public,Sub,CF_RunWithProfile,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Profiles.bas,140,148,Private,Sub,CF_WriteProfileHeader,private-existing,keep-private,1,0
++src/CompareFramework_Profiles.bas,150,158,Private,Sub,CF_WriteProfileRow,private-existing,keep-private,6,0
++src/CompareFramework_Profiles.bas,160,173,Private,Function,CF_FindProfileRow,private-existing,keep-private,4,0
++src/CompareFramework_Profiles.bas,175,188,Private,Sub,CF_SetConfigValue,private-existing,keep-private,5,0
++src/CompareFramework_Profiles.bas,190,202,Private,Function,CF_GetConfigValue,private-existing,keep-private,7,0
++src/CompareFramework_Quality.bas,20,36,Public,Sub,CF_RunEndToEndScenario,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Quality.bas,38,128,Public,Sub,CF_ValidateExpectedReport,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Quality.bas,130,147,Public,Sub,CF_RunGlobalRegression,maintenance-test,review-public-maintenance,4,3
++src/CompareFramework_Quality.bas,149,180,Public,Sub,CF_BuildQualityDashboard,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Quality.bas,182,204,Private,Sub,CF_QualityCreateScenario,private-existing,keep-private,1,0
++src/CompareFramework_Quality.bas,206,229,Private,Sub,CF_QualityCreateExpected,private-existing,keep-private,1,0
++src/CompareFramework_Quality.bas,231,261,Private,Function,CF_QualityFindReportEntry,private-existing,keep-private,3,0
++src/CompareFramework_Quality.bas,263,294,Private,Function,CF_QualitySheetStatus,private-existing,keep-private,9,0
++src/CompareFramework_Quality.bas,296,305,Private,Function,CF_QualityGlobalStatus,private-existing,keep-private,3,0
++src/CompareFramework_Quality.bas,307,311,Private,Sub,CF_QualityDashboardRow,private-existing,keep-private,6,0
++src/CompareFramework_Quality.bas,313,320,Private,Sub,CF_QualityWriteHeaders,private-existing,keep-private,2,0
++src/CompareFramework_Quality.bas,322,329,Private,Sub,CF_QualityWriteRow,private-existing,keep-private,8,0
++src/CompareFramework_Quality.bas,331,336,Private,Sub,CF_QualityRecreateSheet,private-existing,keep-private,5,0
++src/CompareFramework_Quality.bas,338,347,Private,Sub,CF_QualityFormat,private-existing,keep-private,3,0
++src/CompareFramework_Reliability.bas,17,67,Public,Sub,CF_RunTypedRegressionSuite,maintenance-test,review-public-maintenance,2,0
++src/CompareFramework_Reliability.bas,69,150,Public,Sub,CF_ValidateComparatorRules,cross-module-internal,keep-public-until-service-boundary,3,1
++src/CompareFramework_Reliability.bas,152,194,Public,Sub,CF_BuildComparatorCoverageReport,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Reliability.bas,196,204,Public,Sub,CF_RunMilestoneB_FinalTests,maintenance-test,review-public-maintenance,1,1
++src/CompareFramework_Reliability.bas,206,222,Private,Sub,CF_ReliabilityAddCase,private-existing,keep-private,12,0
++src/CompareFramework_Reliability.bas,224,231,Private,Sub,CF_ReliabilityWriteHeader,private-existing,keep-private,1,0
++src/CompareFramework_Reliability.bas,233,240,Private,Function,CF_ReliabilityIsSupportedType,private-existing,keep-private,3,0
++src/CompareFramework_Reliability.bas,242,247,Private,Sub,CF_ReliabilityRecreateSheet,private-existing,keep-private,3,0
++src/CompareFramework_Reliability.bas,249,260,Private,Sub,CF_ReliabilityFormat,private-existing,keep-private,4,0
++src/CompareFramework_Report.bas,5,15,Public,Function,PrepareSheet,cross-module-internal,keep-public-until-service-boundary,19,18
++src/CompareFramework_Report.bas,17,28,Public,Sub,WriteReportHeader,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,30,41,Public,Sub,WriteReportRow,cross-module-internal,keep-public-until-service-boundary,16,16
++src/CompareFramework_Report.bas,43,53,Public,Sub,WriteStatsHeader,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,55,65,Public,Sub,WriteStatsRow,cross-module-internal,keep-public-until-service-boundary,4,4
++src/CompareFramework_Report.bas,67,96,Public,Sub,WriteGlobalSummary,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,98,157,Public,Sub,WriteDashboard,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,159,202,Public,Sub,BuildActionPlan,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,204,215,Public,Sub,WriteActionHeader,module-internal-candidate,candidate-private-after-regression,1,0
++src/CompareFramework_Report.bas,217,219,Public,Function,IsActionableStatus,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Report.bas,221,240,Public,Function,ActionPriority,module-internal-candidate,candidate-private-after-regression,8,0
++src/CompareFramework_Report.bas,242,261,Public,Function,ActionRecommendation,module-internal-candidate,candidate-private-after-regression,8,0
++src/CompareFramework_Report.bas,263,299,Public,Sub,WriteAuditLog,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,301,326,Public,Sub,FormatActionPlan,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,328,337,Public,Sub,FormatAuditLog,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,339,351,Public,Sub,FormatDashboard,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,353,386,Public,Sub,FormatReport,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,388,399,Public,Sub,FormatStats,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Report.bas,401,408,Public,Sub,ApplyOptionalAutoFilter,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Report.bas,414,439,Public,Sub,ExporterRapportHTML,cross-module-internal,keep-public-until-service-boundary,2,1
++src/CompareFramework_Report.bas,441,487,Public,Function,BuildHtmlReport,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Report.bas,489,520,Public,Function,HtmlStyleBlock,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Report.bas,522,531,Public,Function,HtmlScriptBlock,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Report.bas,533,548,Public,Function,SheetToHtmlSection,module-internal-candidate,candidate-private-after-regression,5,0
++src/CompareFramework_Report.bas,550,594,Public,Function,SheetToHtmlTableOnly,module-internal-candidate,candidate-private-after-regression,4,0
++src/CompareFramework_Report.bas,596,615,Public,Function,HtmlCssClassForCell,module-internal-candidate,candidate-private-after-regression,8,0
++src/CompareFramework_Rules.bas,5,45,Public,Sub,LoadCompareRules,cross-module-internal,keep-public-until-service-boundary,3,3
++src/CompareFramework_Rules.bas,47,65,Public,Function,ShouldIgnoreDifference,cross-module-internal,keep-public-until-service-boundary,4,1
++src/CompareFramework_Rules.bas,67,71,Public,Function,RuleAppliesToColumn,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Rules.bas,73,77,Public,Function,RuleAppliesToScope,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Rules.bas,79,101,Public,Function,EvaluateDifferenceRule,module-internal-candidate,candidate-private-after-regression,8,0
++src/CompareFramework_Rules.bas,103,112,Public,Function,ValuesAreEquivalentByList,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Rules.bas,114,124,Public,Function,ValuesAreWithinNumericTolerance,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Rules.bas,126,159,Public,Function,CompareRowCellsDetailed,cross-module-internal,keep-public-until-service-boundary,2,1
++src/CompareFramework_Rules.bas,161,185,Public,Sub,ReportColumnDifferences,cross-module-internal,keep-public-until-service-boundary,2,2
++src/CompareFramework_Scenarios.bas,23,42,Public,Sub,CF_RunAllBusinessScenarios,maintenance-test,review-public-maintenance,2,1
++src/CompareFramework_Scenarios.bas,44,62,Public,Sub,CF_RunFinanceScenario,maintenance-test,review-public-maintenance,1,0
++src/CompareFramework_Scenarios.bas,64,81,Public,Sub,CF_RunHRScenario,maintenance-test,review-public-maintenance,1,0
++src/CompareFramework_Scenarios.bas,83,100,Public,Sub,CF_RunERPScenario,maintenance-test,review-public-maintenance,1,0
++src/CompareFramework_Scenarios.bas,102,140,Public,Sub,CF_BuildReleaseReadiness,maintenance-test,review-public-maintenance,3,1
++src/CompareFramework_Scenarios.bas,142,161,Private,Sub,CF_ScenarioCreateFinance,private-existing,keep-private,1,0
++src/CompareFramework_Scenarios.bas,163,182,Private,Sub,CF_ScenarioCreateHR,private-existing,keep-private,1,0
++src/CompareFramework_Scenarios.bas,184,204,Private,Sub,CF_ScenarioCreateERP,private-existing,keep-private,1,0
++src/CompareFramework_Scenarios.bas,206,243,Private,Function,CF_ScenarioReportContains,private-existing,keep-private,10,0
++src/CompareFramework_Scenarios.bas,245,255,Private,Sub,CF_ScenarioPrepareResults,private-existing,keep-private,2,0
++src/CompareFramework_Scenarios.bas,257,274,Private,Sub,CF_ScenarioAppendResult,private-existing,keep-private,6,0
++src/CompareFramework_Scenarios.bas,276,307,Private,Function,CF_ScenarioSheetStatus,private-existing,keep-private,6,0
++src/CompareFramework_Scenarios.bas,309,314,Private,Sub,CF_ScenarioWriteHeaders,private-existing,keep-private,6,0
++src/CompareFramework_Scenarios.bas,316,321,Private,Sub,CF_ScenarioWriteRow,private-existing,keep-private,19,0
++src/CompareFramework_Scenarios.bas,323,327,Private,Sub,CF_ScenarioReadinessRow,private-existing,keep-private,4,0
++src/CompareFramework_Scenarios.bas,329,334,Private,Sub,CF_ScenarioRecreateSheet,private-existing,keep-private,8,0
++src/CompareFramework_Scenarios.bas,336,343,Private,Sub,CF_ScenarioFormat,private-existing,keep-private,2,0
++src/CompareFramework_Tests.bas,19,40,Public,Sub,CF_CreateTestWorkbook,maintenance-test,review-public-maintenance,4,1
++src/CompareFramework_Tests.bas,42,85,Public,Sub,CF_RunAllTests,maintenance-test,review-public-maintenance,1,0
++src/CompareFramework_Tests.bas,87,112,Private,Sub,CF_FillOldTestSheet,private-existing,keep-private,1,0
++src/CompareFramework_Tests.bas,114,139,Private,Sub,CF_FillNewTestSheet,private-existing,keep-private,1,0
++src/CompareFramework_Tests.bas,141,152,Private,Function,CF_TestHeaders,private-existing,keep-private,2,0
++src/CompareFramework_Tests.bas,154,156,Private,Function,CF_TestAddedRow,private-existing,keep-private,2,0
++src/CompareFramework_Tests.bas,158,161,Private,Function,CF_TestDeletedRow,private-existing,keep-private,2,0
++src/CompareFramework_Tests.bas,163,180,Private,Function,CF_TestModifiedRow,private-existing,keep-private,3,0
++src/CompareFramework_Tests.bas,182,202,Private,Function,CF_TestUnchangedRow,private-existing,keep-private,3,0
++src/CompareFramework_Tests.bas,204,221,Private,Function,CF_FindIdInSheet,private-existing,keep-private,9,0
++src/CompareFramework_Tests.bas,223,227,Private,Sub,CF_WriteTestHeader,private-existing,keep-private,1,0
++src/CompareFramework_Tests.bas,229,242,Private,Sub,CF_AddTestResult,private-existing,keep-private,7,0
++src/CompareFramework_Tests.bas,244,252,Private,Sub,CF_WriteTestSummary,private-existing,keep-private,1,0
++src/CompareFramework_Tests.bas,254,265,Private,Sub,CF_FormatTestResults,private-existing,keep-private,1,0
++src/CompareFramework_Tests.bas,267,269,Private,Sub,CF_SetCell,private-existing,keep-private,51,0
++src/CompareFramework_Tests.bas,271,275,Private,Sub,CF_CreateSheet,private-existing,keep-private,3,0
++src/CompareFramework_Tests.bas,277,281,Private,Sub,CF_DeleteSheetIfExists,private-existing,keep-private,4,0
++src/CompareFramework_Tests.bas,288,328,Public,Sub,CF_RunContextTests,maintenance-test,review-public-maintenance,2,1
++src/CompareFramework_Tests.bas,330,342,Private,Sub,CF_AddContextTestResult,private-existing,keep-private,5,0
++src/CompareFramework_Tests.bas,344,348,Private,Sub,CF_DeleteSheetIfExists_TestContext,private-existing,keep-private,1,0
++src/CompareFramework_Tests.bas,355,377,Public,Sub,CF_RunProfileTests,maintenance-test,review-public-maintenance,2,1
++src/CompareFramework_Tests.bas,379,388,Private,Function,CF_TestProfileExists,private-existing,keep-private,4,0
++src/CompareFramework_Tests.bas,394,402,Public,Sub,CF_RunValidationTests,maintenance-test,review-public-maintenance,1,1
++src/CompareFramework_Tests.bas,409,456,Public,Sub,CF_RunAuditTests,maintenance-test,review-public-maintenance,2,1
++src/CompareFramework_Tests.bas,459,479,Public,Sub,CF_RunPerformanceTests,maintenance-test,review-public-maintenance,2,1
++src/CompareFramework_Tests.bas,482,485,Public,Sub,CF_RunMilestoneBTests,maintenance-test,review-public-maintenance,0,0
++src/CompareFramework_Utils.bas,48,62,Public,Function,FullRowText,cross-module-internal,keep-public-until-service-boundary,3,2
++src/CompareFramework_Utils.bas,64,69,Public,Function,LastUsedRow,cross-module-internal,keep-public-until-service-boundary,17,16
++src/CompareFramework_Utils.bas,71,76,Public,Function,LastUsedCol,cross-module-internal,keep-public-until-service-boundary,5,4
++src/CompareFramework_Utils.bas,78,86,Public,Function,CellText,cross-module-internal,keep-public-until-service-boundary,48,45
++src/CompareFramework_Utils.bas,88,90,Public,Sub,SetCell,cross-module-internal,keep-public-until-service-boundary,203,203
++src/CompareFramework_Utils.bas,92,94,Public,Function,RowNumberText,cross-module-internal,keep-public-until-service-boundary,13,12
++src/CompareFramework_Utils.bas,96,116,Public,Function,NormalizeHeader,cross-module-internal,keep-public-until-service-boundary,13,12
++src/CompareFramework_Utils.bas,118,131,Public,Function,IsReportOrStatsSheet,cross-module-internal,keep-public-until-service-boundary,7,6
++src/CompareFramework_Utils.bas,133,137,Public,Function,IsOldSheetName,cross-module-internal,keep-public-until-service-boundary,3,2
++src/CompareFramework_Utils.bas,139,149,Public,Function,PairBaseName,cross-module-internal,keep-public-until-service-boundary,9,2
++src/CompareFramework_Utils.bas,151,156,Public,Function,FindNewSheetForBase,cross-module-internal,keep-public-until-service-boundary,6,2
++src/CompareFramework_Utils.bas,158,164,Public,Function,EndsWith,module-internal-candidate,candidate-private-after-regression,11,0
++src/CompareFramework_Utils.bas,166,175,Public,Function,HtmlEscape,cross-module-internal,keep-public-until-service-boundary,8,7
++src/CompareFramework_Utils.bas,177,197,Public,Function,GetDocumentFolderPath,cross-module-internal,keep-public-until-service-boundary,4,1
++src/CompareFramework_Utils.bas,199,209,Public,Sub,WriteTextFile,cross-module-internal,keep-public-until-service-boundary,1,1
++src/CompareFramework_Utils.bas,213,218,Public,Function,IsNumericText,cross-module-internal,keep-public-until-service-boundary,4,3
++src/CompareFramework_Utils.bas,220,229,Public,Function,ToNumber,cross-module-internal,keep-public-until-service-boundary,5,3
++src/CompareFramework_Utils.bas,231,237,Public,Function,AbsDiff,cross-module-internal,keep-public-until-service-boundary,3,1
++src/CompareFramework_Utils.bas,239,251,Public,Function,CF_RoundCompat,cross-module-internal,keep-public-until-service-boundary,5,3
++src/CompareFramework_Validation.bas,18,38,Public,Function,CF_ValidateFramework,cross-module-internal,keep-public-until-service-boundary,6,3
++src/CompareFramework_Validation.bas,40,69,Public,Function,CF_ValidateActiveProfile,module-internal-candidate,candidate-private-after-regression,3,0
++src/CompareFramework_Validation.bas,71,78,Public,Function,CF_PreflightComparison,module-internal-candidate,candidate-private-after-regression,2,0
++src/CompareFramework_Validation.bas,80,102,Public,Sub,CF_RunValidated,cross-module-internal,keep-public-until-service-boundary,2,1
++src/CompareFramework_Validation.bas,104,119,Private,Sub,CF_ValidationBegin,private-existing,keep-private,2,0
++src/CompareFramework_Validation.bas,121,136,Private,Sub,CF_ValidationFinish,private-existing,keep-private,4,0
++src/CompareFramework_Validation.bas,138,149,Private,Sub,CF_LogValidation,private-existing,keep-private,21,0
++src/CompareFramework_Validation.bas,151,158,Private,Sub,CF_CheckRequiredModules,private-existing,keep-private,1,0
++src/CompareFramework_Validation.bas,160,170,Private,Sub,CF_CheckCoreSheets,private-existing,keep-private,1,0
++src/CompareFramework_Validation.bas,172,181,Private,Sub,CF_CheckConfigurationSheet,private-existing,keep-private,1,0
++src/CompareFramework_Validation.bas,183,195,Private,Sub,CF_CheckRulesSheet,private-existing,keep-private,1,0
++src/CompareFramework_Validation.bas,197,209,Private,Sub,CF_CheckProfilesSheet,private-existing,keep-private,1,0
++src/CompareFramework_Validation.bas,211,227,Private,Sub,CF_CheckSourcePairs,private-existing,keep-private,1,0
++src/CompareFramework_Validation.bas,229,241,Private,Function,CF_ProfileExists,private-existing,keep-private,3,0
++src/CompareFramework_Validation.bas,243,260,Private,Function,CF_ReadConfigValue,private-existing,keep-private,4,0
++src/Modes/CF_ModeReference.bas,22,41,Public,Sub,CF_RunReferenceMode,module-internal-candidate,candidate-private-after-regression,0,0
++src/Modes/CF_ModeReference.bas,43,45,Public,Sub,CF_RunAgainstReference_MODELE,module-internal-candidate,candidate-private-after-regression,0,0
++src/Modes/CF_ModeReference.bas,47,265,Public,Sub,CF_RunAgainstReference,module-internal-candidate,candidate-private-after-regression,4,0
++src/Modes/CF_ModeReference.bas,267,303,Public,Sub,CF_BuildReferencePlan,module-internal-candidate,candidate-private-after-regression,1,0
++src/Modes/CF_ModeReference.bas,305,341,Public,Function,CF_ReferenceIsTargetSheet,module-internal-candidate,candidate-private-after-regression,10,0
++src/Modes/CF_ModeReference.bas,343,359,Public,Function,CF_ReferenceSheetHasKey,module-internal-candidate,candidate-private-after-regression,4,0
++src/Modes/CF_ModeReference.bas,361,383,Public,Sub,CF_ReferencePlanSetStatus,module-internal-candidate,candidate-private-after-regression,2,0
++src/Modes/CF_ModeReference.bas,385,403,Public,Sub,CF_ReferenceFormatPlan,module-internal-candidate,candidate-private-after-regression,2,0
++src/Modes/CF_ModeReference.bas,405,505,Public,Sub,CF_ReferenceBuildSummary,module-internal-candidate,candidate-private-after-regression,2,0
++src/Modes/CF_ModeReference.bas,507,521,Public,Sub,CF_ReferenceFormatSummary,module-internal-candidate,candidate-private-after-regression,1,0
++src/Modes/CF_ModeReference.bas,527,593,Public,Sub,CF_OpenReferenceLauncher,cross-module-internal,keep-public-until-service-boundary,4,1
++src/Modes/CF_ModeReference.bas,595,643,Public,Sub,CF_RunFromLauncher,module-internal-candidate,candidate-private-after-regression,2,0
++src/Modes/CF_ModeReference.bas,645,647,Public,Sub,CF_RunLauncherQuick,module-internal-candidate,candidate-private-after-regression,0,0
++src/Modes/CF_ModeReference.bas,649,670,Private,Function,CF_ReferenceTargetSelected,private-existing,keep-private,4,0
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/src/CompareFramework_API.bas /mnt/data/CompareFramework_4.0-D1/src/CompareFramework_API.bas
+--- /tmp/cf380baseline/src/CompareFramework_API.bas	2026-07-17 09:54:08.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/src/CompareFramework_API.bas	2026-07-20 09:52:59.880668532 +0000
+@@ -1,12 +1,13 @@
+ Option Explicit
+ 
+ ' ============================================================================
+-' CompareFramework - API publique simplifiee
++' CompareFramework - API publique supportee (4.0-D1)
+ ' Version lue par le framework depuis la source de verite du projet.
+ '
+ ' Ce module regroupe les macros que l'utilisateur doit executer directement.
+-' Les autres procedures Public existent principalement pour les appels internes
+-' entre modules LibreOffice Basic.
++' Contrat D1 : ces six procedures constituent la seule facade utilisateur supportee.
++' Les autres procedures Public restent exposees uniquement pour compatibilite ou
++' appels inter-modules et seront migrees par lots dans les jalons suivants.
+ ' ============================================================================
+ 
+ ' Point d'entree recommande pour le Mode Reference.
+diff -ruN '--exclude=dist' '--exclude=*.pyc' '--exclude=__pycache__' /tmp/cf380baseline/tools/analyze_architecture.py /mnt/data/CompareFramework_4.0-D1/tools/analyze_architecture.py
+--- /tmp/cf380baseline/tools/analyze_architecture.py	1970-01-01 00:00:00.000000000 +0000
++++ /mnt/data/CompareFramework_4.0-D1/tools/analyze_architecture.py	2026-07-20 09:52:10.932355244 +0000
+@@ -0,0 +1,208 @@
++#!/usr/bin/env python3
++from __future__ import annotations
++import csv, json, re
++from collections import defaultdict
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++SRC = ROOT / 'src'
++OUT = ROOT / 'docs' / 'audit'
++OUT.mkdir(parents=True, exist_ok=True)
++
++PROC_RE = re.compile(r'^\s*(Public|Private)?\s*(Sub|Function)\s+([A-Za-z_][A-Za-z0-9_]*)\b', re.I)
++CALL_TOKEN_RE = re.compile(r'\b([A-Za-z_][A-Za-z0-9_]*)\b')
++KEYWORDS = {x.lower() for x in '''If Then Else ElseIf End Sub Function For Each Next Do Loop While Wend Select Case Dim As ByRef ByVal Optional Public Private On Error GoTo Resume Exit Call Let Set And Or Not Mod True False Nothing String Long Integer Double Boolean Variant Object UCase LCase CStr CLng CDbl CInt Val Trim Left Right Mid Len IsNull IsEmpty Array LBound UBound MsgBox Chr RGB ThisComponent'''.split()}
++OFFICIAL_API = {
++    'CF_StartReferenceComparison','CF_RunStandardComparison','CF_ExportLastReportHTML',
++    'CF_OpenSettings','CF_RunDiagnostics','CF_RunReleaseValidation'
++}
++
++files = sorted(SRC.rglob('*.bas'))
++procedures = []
++proc_by_name = {}
++lines_by_file = {}
++for path in files:
++    rel = path.relative_to(ROOT).as_posix()
++    lines = path.read_text(encoding='utf-8').splitlines()
++    lines_by_file[rel] = lines
++    current = None
++    for idx, line in enumerate(lines, 1):
++        m = PROC_RE.match(line)
++        if m:
++            visibility = (m.group(1) or 'Public').title()
++            kind = m.group(2).title()
++            name = m.group(3)
++            current = {'name':name,'visibility':visibility,'kind':kind,'module':rel,'line':idx,'end_line':idx}
++            procedures.append(current); proc_by_name[name.lower()] = current
++        elif current:
++            current['end_line'] = idx
++            if re.match(r'^\s*End\s+(Sub|Function)\b', line, re.I):
++                current = None
++
++# references/calls, ignoring declaration line and comments
++refs = defaultdict(list)
++module_edges = defaultdict(set)
++for rel, lines in lines_by_file.items():
++    for idx, raw in enumerate(lines, 1):
++        code = raw.split("'",1)[0]
++        if PROC_RE.match(code):
++            continue
++        for tok in CALL_TOKEN_RE.findall(code):
++            p = proc_by_name.get(tok.lower())
++            if p and p['module'] != rel:
++                refs[p['name']].append((rel, idx))
++                module_edges[rel].add(p['module'])
++            elif p:
++                refs[p['name']].append((rel, idx))
++
++# classify
++for p in procedures:
++    calls = refs.get(p['name'], [])
++    ext_calls = [c for c in calls if c[0] != p['module']]
++    p['reference_count'] = len(calls)
++    p['external_reference_count'] = len(ext_calls)
++    if p['visibility'] != 'Public':
++        p['classification'] = 'private-existing'
++        p['recommendation'] = 'keep-private'
++    elif p['name'] in OFFICIAL_API:
++        p['classification'] = 'official-api'
++        p['recommendation'] = 'keep-public'
++    elif p['module'].endswith('CompareFramework_Tests.bas') or p['module'].endswith('CompareFramework_Scenarios.bas') or p['name'].lower().startswith(('cf_test','cf_run')) and ('test' in p['name'].lower() or 'regression' in p['name'].lower()):
++        p['classification'] = 'maintenance-test'
++        p['recommendation'] = 'review-public-maintenance'
++    elif not ext_calls:
++        p['classification'] = 'module-internal-candidate'
++        p['recommendation'] = 'candidate-private-after-regression'
++    else:
++        p['classification'] = 'cross-module-internal'
++        p['recommendation'] = 'keep-public-until-service-boundary'
++
++# CSV inventory
++fields = ['module','line','end_line','visibility','kind','name','classification','recommendation','reference_count','external_reference_count']
++with (OUT/'D1_PUBLIC_API_INVENTORY.csv').open('w', newline='', encoding='utf-8') as f:
++    w=csv.DictWriter(f, fieldnames=fields); w.writeheader();
++    for p in procedures: w.writerow({k:p[k] for k in fields})
++
++# dependency CSV
++with (OUT/'D1_DEPENDENCY_MAP.csv').open('w', newline='', encoding='utf-8') as f:
++    w=csv.writer(f); w.writerow(['source_module','target_module'])
++    for s in sorted(module_edges):
++        for t in sorted(module_edges[s]): w.writerow([s,t])
++
++# Tarjan SCC
++nodes = sorted(lines_by_file)
++index=0; stack=[]; on=set(); idxs={}; low={}; scc=[]
++def strong(v):
++    global index
++    idxs[v]=low[v]=len(idxs); stack.append(v); on.add(v)
++    for w in module_edges.get(v,set()):
++        if w not in idxs: strong(w); low[v]=min(low[v],low[w])
++        elif w in on: low[v]=min(low[v],idxs[w])
++    if low[v]==idxs[v]:
++        comp=[]
++        while True:
++            w=stack.pop(); on.remove(w); comp.append(w)
++            if w==v: break
++        scc.append(sorted(comp))
++for n in nodes:
++    if n not in idxs: strong(n)
++cycles=[c for c in scc if len(c)>1]
++
++# module metrics
++metrics=[]
++for rel, lines in lines_by_file.items():
++    ps=[p for p in procedures if p['module']==rel]
++    metrics.append({
++        'module':rel,'loc':len(lines),'procedures':len(ps),
++        'public':sum(p['visibility']=='Public' for p in ps),
++        'private':sum(p['visibility']=='Private' for p in ps),
++        'outgoing_dependencies':len(module_edges.get(rel,set())),
++        'incoming_dependencies':sum(rel in ts for ts in module_edges.values())
++    })
++with (OUT/'D1_MODULE_METRICS.csv').open('w', newline='', encoding='utf-8') as f:
++    w=csv.DictWriter(f, fieldnames=list(metrics[0])); w.writeheader(); w.writerows(metrics)
++
++public=[p for p in procedures if p['visibility']=='Public']
++private=[p for p in procedures if p['visibility']=='Private']
++candidates=[p for p in public if p['recommendation']=='candidate-private-after-regression']
++report = f'''# CompareFramework 4.0-D1 — Architectural Cleanup Report
++
++## Scope
++
++This milestone establishes architecture boundaries without changing functional behavior. No existing public procedure has been made `Private` in D1.
++
++## Baseline
++
++- Modules analyzed: **{len(files)}**
++- Source lines: **{sum(len(v) for v in lines_by_file.values())}**
++- Procedures: **{len(procedures)}**
++- Public procedures: **{len(public)}**
++- Private procedures: **{len(private)}**
++- Official supported API entries: **{len(OFFICIAL_API)}**
++- Safe-review candidates with no cross-module references: **{len(candidates)}**
++- Module dependency edges: **{sum(len(v) for v in module_edges.values())}**
++- Dependency cycles (SCC > 1): **{len(cycles)}**
++
++## Supported public facade
++
++The only supported user-facing API is defined in `src/CompareFramework_API.bas`:
++
++'''+''.join(f'- `{name}`\n' for name in sorted(OFFICIAL_API))+f'''
++
++All other `Public` procedures are compatibility or implementation symbols. Their visibility is unchanged in D1.
++
++## Visibility strategy
++
++1. D1 classifies symbols only.
++2. A symbol can become `Private` only after its callers are migrated behind a service boundary.
++3. Legacy user macros require wrappers or a documented breaking-change decision before removal.
++4. Each visibility batch must pass the complete regression suite.
++
++## Large-module preparation
++
++### `CompareFramework_Report.bas`
++
++Target split for a later milestone:
++
++- report sheet writing and formatting;
++- statistics and dashboard generation;
++- action plan generation;
++- HTML serialization and file output.
++
++### `Modes/CF_ModeReference.bas`
++
++Target split for a later milestone:
++
++- launcher/UI sheet;
++- target discovery and selection;
++- reference comparison orchestration;
++- summary generation and formatting.
++
++D1 does not move any procedure, preventing accidental dependency or Basic visibility regressions.
++
++## Dependency cycles
++
++'''+('\n'.join('- '+ ' -> '.join(c) for c in cycles) if cycles else '- No multi-module cycle detected.')+f'''
++
++## D1 decision
++
++**PASS for architectural preparation.** The supported API is explicit, migration candidates are inventoried, large-module split boundaries are defined, and the dependency graph is reproducible.
++
++## Generated evidence
++
++- `D1_PUBLIC_API_INVENTORY.csv`
++- `D1_DEPENDENCY_MAP.csv`
++- `D1_MODULE_METRICS.csv`
++- `D1_ARCHITECTURE_SNAPSHOT.json`
++'''
++(OUT/'D1_ARCHITECTURAL_CLEANUP.md').write_text(report, encoding='utf-8')
++
++snapshot={
++ 'milestone':'4.0-D1','modules':len(files),'loc':sum(len(v) for v in lines_by_file.values()),
++ 'procedures':len(procedures),'public_procedures':len(public),'private_procedures':len(private),
++ 'official_api':sorted(OFFICIAL_API),'private_review_candidates':len(candidates),
++ 'dependency_edges':sum(len(v) for v in module_edges.values()),'cycles':cycles,
++ 'largest_modules':sorted(metrics,key=lambda x:x['loc'],reverse=True)[:5]
++}
++(OUT/'D1_ARCHITECTURE_SNAPSHOT.json').write_text(json.dumps(snapshot,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
++print(json.dumps(snapshot,indent=2,ensure_ascii=False))

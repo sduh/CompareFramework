@@ -1,25 +1,33 @@
 {
   "name": "CompareFramework",
-  "version": "3.8.0-RC1",
-  "release_type": "release-candidate",
+  "version": "3.8.0",
+  "release_type": "stable",
   "build_date": "2026-07-17",
-  "publication_status": "pending-libreoffice-validation",
+  "publication_status": "ready-for-publication",
   "version_source": "VERSION",
+  "qualification": {
+    "source_candidate": "3.8.0-RC1",
+    "source_tag": "v3.8.0-rc1",
+    "libreoffice_version": "25.2.3.2",
+    "tests_passed": 7,
+    "tests_total": 7,
+    "status": "pass"
+  },
   "artifacts": [
     {
-      "path": "dist/CompareFramework-3.8.0-RC1.bas",
-      "size_bytes": 219498,
-      "sha256": "c59eb047186a84e73d84ffd7ffd3075a7935c16059d45e6b869c2b1de1d6b45b"
+      "path": "dist/CompareFramework-3.8.0.bas",
+      "size_bytes": 219490,
+      "sha256": "8b5d1d4b8d8f66bfa6c78b33d0aa753cea7789b7da54154c12ab99fc2128af26"
     },
     {
-      "path": "dist/RELEASE_CERTIFICATE_3.8.0-RC1.pdf",
-      "size_bytes": 28581,
-      "sha256": "cec507ab03ed69dec0e7871f5681e1dadd258ed4c9491288bfb73994617bca8a"
+      "path": "dist/RELEASE_CERTIFICATE_3.8.0.pdf",
+      "size_bytes": 26541,
+      "sha256": "b7233cf133e7b574a4b620b61c53c6b5a55be3ddecd1709c2cb26832c4b6f2e6"
     },
     {
       "path": "dist/BUILD_MANIFEST.json",
-      "size_bytes": 1304,
-      "sha256": "2a55f7f550d03e17d5b05d52e22b9106546f4a211c6a967ae6d4d3f9a92ba673"
+      "size_bytes": 1296,
+      "sha256": "292112cb54734ed8b031d2b0beadeb39b51317d251bfb63e80905660c05cd234"
     },
     {
       "path": "dist/README.md",
@@ -28,18 +36,18 @@
     },
     {
       "path": "dist/CHANGELOG.md",
-      "size_bytes": 1287,
-      "sha256": "f1c5320510be381777d66b4fc4d42b697c617b282cafaad7b08a5f2814c29f51"
+      "size_bytes": 1785,
+      "sha256": "2b661bc9631f9d3b953a05470db326f261af0772b7b33adabab1b072942c2a8d"
     },
     {
       "path": "dist/RELEASE_NOTES.md",
-      "size_bytes": 1833,
-      "sha256": "8f4eb34e89df74eba1a16fd8e7d58c880311f9a74693bfcc14470bfa983cccac"
+      "size_bytes": 1821,
+      "sha256": "e2de6065aefcc45efbf55e4c13554d080efcc99c731b81af874e222a292676f9"
     },
     {
       "path": "dist/VERSION",
-      "size_bytes": 10,
-      "sha256": "6e0f329eb06b51fa130336e4ec3bd4eabb95474a4e2b7831bcd99a53b76906bd"
+      "size_bytes": 6,
+      "sha256": "88206afd2d9b56ca71466c85d1ed1421b1db0e78fa00072697918fb8a9ac54ef"
     }
   ]
 }

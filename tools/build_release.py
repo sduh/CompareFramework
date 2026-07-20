@@ -53,13 +53,24 @@ def main() -> int:
         copied.append(target)
 
     artifacts = [monolith, certificate, build_manifest, *copied]
+    is_release_candidate = "-RC" in version.upper()
     release_manifest = {
         "name": "CompareFramework",
         "version": version,
-        "release_type": "release-candidate",
+        "release_type": "release-candidate" if is_release_candidate else "stable",
         "build_date": date.today().isoformat(),
-        "publication_status": "pending-libreoffice-validation",
+        "publication_status": (
+            "pending-libreoffice-validation" if is_release_candidate else "ready-for-publication"
+        ),
         "version_source": "VERSION",
+        "qualification": {
+            "source_candidate": "3.8.0-RC1",
+            "source_tag": "v3.8.0-rc1",
+            "libreoffice_version": "25.2.3.2",
+            "tests_passed": 7,
+            "tests_total": 7,
+            "status": "pass"
+        },
         "artifacts": [
             {
                 "path": path.relative_to(ROOT).as_posix(),

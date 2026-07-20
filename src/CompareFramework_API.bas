@@ -1,12 +1,13 @@
 Option Explicit
 
 ' ============================================================================
-' CompareFramework - API publique simplifiee
+' CompareFramework - API publique supportee (4.0-D1)
 ' Version lue par le framework depuis la source de verite du projet.
 '
 ' Ce module regroupe les macros que l'utilisateur doit executer directement.
-' Les autres procedures Public existent principalement pour les appels internes
-' entre modules LibreOffice Basic.
+' Contrat D1 : ces six procedures constituent la seule facade utilisateur supportee.
+' Les autres procedures Public restent exposees uniquement pour compatibilite ou
+' appels inter-modules et seront migrees par lots dans les jalons suivants.
 ' ============================================================================
 
 ' Point d'entree recommande pour le Mode Reference.
