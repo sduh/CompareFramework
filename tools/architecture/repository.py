@@ -1,10 +1,16 @@
-from pathlib import Path
-from .config import SRC_DIR,VERSION_FILE
-from .model import Repository,Module
-def load_repository():
-    repo=Repository()
+"""Repository discovery and Basic module parsing."""
+
+from __future__ import annotations
+
+from .config import SRC_DIR, VERSION_FILE
+from .model import Repository
+from .parser import parse_module_file
+
+
+def load_repository() -> Repository:
+    repo = Repository()
     if VERSION_FILE.exists():
-        repo.version=VERSION_FILE.read_text(encoding="utf-8").strip()
-    for f in sorted(SRC_DIR.rglob("*.bas")):
-        repo.modules.append(Module(f.stem,str(f.relative_to(SRC_DIR)),sum(1 for _ in f.open(encoding="utf-8",errors="ignore"))))
+        repo.version = VERSION_FILE.read_text(encoding="utf-8-sig").strip()
+    for source_file in sorted(SRC_DIR.rglob("*.bas")):
+        repo.modules.append(parse_module_file(source_file, SRC_DIR))
     return repo
