@@ -27,7 +27,7 @@ Public Function CF_EnsureProfilesSheet(oDoc As Object) As Object
     CF_EnsureProfilesSheet = oSheet
 End Function
 
-Public Sub CF_WriteDefaultProfiles(oSheet As Object)
+Private Sub CF_WriteDefaultProfiles(oSheet As Object)
     CF_WriteProfileHeader oSheet
 
     CF_WriteProfileRow oSheet, 1, "STANDARD", "", "ID;Identifiant;Code;Reference;Ref;Cle;Key", "FALSE", "TRUE", "FALSE", "Configuration générale"
@@ -48,7 +48,7 @@ Public Sub CF_WriteDefaultProfiles(oSheet As Object)
     oSheet.Columns.getByIndex(6).Width = 9000
 End Sub
 
-Public Sub CF_ApplyProfile(sProfileName As String)
+Private Sub CF_ApplyProfile(sProfileName As String)
     On Error GoTo ErrHandler
 
     Dim oDoc As Object, oProfiles As Object, oConfig As Object

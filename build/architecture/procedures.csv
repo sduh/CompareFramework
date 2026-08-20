@@ -125,8 +125,8 @@ CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfIndexOf,Fun
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfAddLabel,Function,Private,170,185,Long,1,Private Function CF_PerfAddLabel (sLabel As String) As Long
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfCell,Sub,Private,187,189,,4,"Private Sub CF_PerfCell (oSheet As Object, col As Long, row As Long, v As Variant)"
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_EnsureProfilesSheet,Function,Public,16,28,Object,1,Public Function CF_EnsureProfilesSheet (oDoc As Object) As Object
-CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_WriteDefaultProfiles,Sub,Public,30,49,,1,Public Sub CF_WriteDefaultProfiles (oSheet As Object)
-CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ApplyProfile,Sub,Public,51,82,,1,Public Sub CF_ApplyProfile (sProfileName As String)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_WriteDefaultProfiles,Sub,Private,30,49,,1,Private Sub CF_WriteDefaultProfiles (oSheet As Object)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ApplyProfile,Sub,Private,51,82,,1,Private Sub CF_ApplyProfile (sProfileName As String)
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_SaveCurrentConfigAsProfile,Sub,Public,84,115,,1,Public Sub CF_SaveCurrentConfigAsProfile (sProfileName As String)
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ListProfiles,Sub,Public,117,121,,0,Public Sub CF_ListProfiles ()
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_RunWithProfile,Sub,Public,123,138,,1,Public Sub CF_RunWithProfile (sProfileName As String)
