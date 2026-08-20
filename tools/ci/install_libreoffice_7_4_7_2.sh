@@ -3,7 +3,7 @@ set -euo pipefail
 
 LO_VERSION="7.4.7.2"
 LO_ARCHIVE="LibreOffice_${LO_VERSION}_Linux_x86-64_deb.tar.gz"
-LO_BASE_URL="https://downloadarchive.documentfoundation.org/libreoffice/old/${LO_VERSION}/deb/x86_64"
+LO_BASE_URL="https://downloadarchive.documentfoundation.org/libreoffice/old/7.4.7.2/deb/x86_64"
 LO_URL="${LO_BASE_URL}/${LO_ARCHIVE}"
 
 workdir="$(mktemp -d)"
