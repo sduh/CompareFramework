@@ -1508,7 +1508,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "WriteActionHeader",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 204
     },
@@ -1517,7 +1517,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "IsActionableStatus",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 217
     },
@@ -1526,7 +1526,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "ActionPriority",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 221
     },
@@ -1535,7 +1535,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "ActionRecommendation",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 242
     },
@@ -1598,7 +1598,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "ApplyOptionalAutoFilter",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 401
     },
@@ -1616,7 +1616,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "BuildHtmlReport",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 441
     },
@@ -1625,7 +1625,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "HtmlStyleBlock",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 489
     },
@@ -1634,7 +1634,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "HtmlScriptBlock",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 522
     },
@@ -1643,7 +1643,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "SheetToHtmlSection",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 533
     },
@@ -1652,7 +1652,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "SheetToHtmlTableOnly",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 550
     },
@@ -1661,7 +1661,7 @@
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
       "name": "HtmlCssClassForCell",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 596
     },

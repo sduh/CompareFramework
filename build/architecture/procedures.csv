@@ -166,24 +166,24 @@ CompareFramework_Report,CompareFramework_Report.bas,WriteStatsRow,Sub,Public,55,
 CompareFramework_Report,CompareFramework_Report.bas,WriteGlobalSummary,Sub,Public,67,96,,9,"Public Sub WriteGlobalSummary (oSheet As Object, ByRef rowIndex As Long, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long)"
 CompareFramework_Report,CompareFramework_Report.bas,WriteDashboard,Sub,Public,98,157,,8,"Public Sub WriteDashboard (oSheet As Object, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long)"
 CompareFramework_Report,CompareFramework_Report.bas,BuildActionPlan,Sub,Public,159,202,,3,"Public Sub BuildActionPlan (oReport As Object, oAction As Object, lastReportRow As Long)"
-CompareFramework_Report,CompareFramework_Report.bas,WriteActionHeader,Sub,Public,204,215,,2,"Public Sub WriteActionHeader (oSheet As Object, rowIndex As Long)"
-CompareFramework_Report,CompareFramework_Report.bas,IsActionableStatus,Function,Public,217,219,Boolean,1,Public Function IsActionableStatus (statusValue As String) As Boolean
-CompareFramework_Report,CompareFramework_Report.bas,ActionPriority,Function,Public,221,240,String,2,"Public Function ActionPriority (statusValue As String, colName As String) As String"
-CompareFramework_Report,CompareFramework_Report.bas,ActionRecommendation,Function,Public,242,261,String,3,"Public Function ActionRecommendation (statusValue As String, colName As String, messageText As String) As String"
+CompareFramework_Report,CompareFramework_Report.bas,WriteActionHeader,Sub,Private,204,215,,2,"Private Sub WriteActionHeader (oSheet As Object, rowIndex As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,IsActionableStatus,Function,Private,217,219,Boolean,1,Private Function IsActionableStatus (statusValue As String) As Boolean
+CompareFramework_Report,CompareFramework_Report.bas,ActionPriority,Function,Private,221,240,String,2,"Private Function ActionPriority (statusValue As String, colName As String) As String"
+CompareFramework_Report,CompareFramework_Report.bas,ActionRecommendation,Function,Private,242,261,String,3,"Private Function ActionRecommendation (statusValue As String, colName As String, messageText As String) As String"
 CompareFramework_Report,CompareFramework_Report.bas,WriteAuditLog,Sub,Public,263,299,,9,"Public Sub WriteAuditLog (oSheet As Object, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long, lastReportRow As Long)"
 CompareFramework_Report,CompareFramework_Report.bas,FormatActionPlan,Sub,Public,301,326,,1,Public Sub FormatActionPlan (oSheet As Object)
 CompareFramework_Report,CompareFramework_Report.bas,FormatAuditLog,Sub,Public,328,337,,1,Public Sub FormatAuditLog (oSheet As Object)
 CompareFramework_Report,CompareFramework_Report.bas,FormatDashboard,Sub,Public,339,351,,1,Public Sub FormatDashboard (oSheet As Object)
 CompareFramework_Report,CompareFramework_Report.bas,FormatReport,Sub,Public,353,386,,2,"Public Sub FormatReport (oSheet As Object, lastRow As Long)"
 CompareFramework_Report,CompareFramework_Report.bas,FormatStats,Sub,Public,388,399,,2,"Public Sub FormatStats (oSheet As Object, lastRow As Long)"
-CompareFramework_Report,CompareFramework_Report.bas,ApplyOptionalAutoFilter,Sub,Public,401,408,,3,"Public Sub ApplyOptionalAutoFilter (oSheet As Object, lastCol As Long, lastRow As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,ApplyOptionalAutoFilter,Sub,Private,401,408,,3,"Private Sub ApplyOptionalAutoFilter (oSheet As Object, lastCol As Long, lastRow As Long)"
 CompareFramework_Report,CompareFramework_Report.bas,ExporterRapportHTML,Sub,Public,414,439,,0,Public Sub ExporterRapportHTML ()
-CompareFramework_Report,CompareFramework_Report.bas,BuildHtmlReport,Function,Public,441,487,String,1,Public Function BuildHtmlReport (oDoc As Object) As String
-CompareFramework_Report,CompareFramework_Report.bas,HtmlStyleBlock,Function,Public,489,520,String,0,Public Function HtmlStyleBlock () As String
-CompareFramework_Report,CompareFramework_Report.bas,HtmlScriptBlock,Function,Public,522,531,String,0,Public Function HtmlScriptBlock () As String
-CompareFramework_Report,CompareFramework_Report.bas,SheetToHtmlSection,Function,Public,533,548,String,5,"Public Function SheetToHtmlSection (oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String"
-CompareFramework_Report,CompareFramework_Report.bas,SheetToHtmlTableOnly,Function,Public,550,594,String,4,"Public Function SheetToHtmlTableOnly (oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String"
-CompareFramework_Report,CompareFramework_Report.bas,HtmlCssClassForCell,Function,Public,596,615,String,1,Public Function HtmlCssClassForCell (sValue As String) As String
+CompareFramework_Report,CompareFramework_Report.bas,BuildHtmlReport,Function,Private,441,487,String,1,Private Function BuildHtmlReport (oDoc As Object) As String
+CompareFramework_Report,CompareFramework_Report.bas,HtmlStyleBlock,Function,Private,489,520,String,0,Private Function HtmlStyleBlock () As String
+CompareFramework_Report,CompareFramework_Report.bas,HtmlScriptBlock,Function,Private,522,531,String,0,Private Function HtmlScriptBlock () As String
+CompareFramework_Report,CompareFramework_Report.bas,SheetToHtmlSection,Function,Private,533,548,String,5,"Private Function SheetToHtmlSection (oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String"
+CompareFramework_Report,CompareFramework_Report.bas,SheetToHtmlTableOnly,Function,Private,550,594,String,4,"Private Function SheetToHtmlTableOnly (oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String"
+CompareFramework_Report,CompareFramework_Report.bas,HtmlCssClassForCell,Function,Private,596,615,String,1,Private Function HtmlCssClassForCell (sValue As String) As String
 CompareFramework_Rules,CompareFramework_Rules.bas,LoadCompareRules,Sub,Public,5,45,,1,Public Sub LoadCompareRules (oDoc As Object)
 CompareFramework_Rules,CompareFramework_Rules.bas,ShouldIgnoreDifference,Function,Public,47,65,Boolean,7,"Public Function ShouldIgnoreDifference (pairName As String, idValue As String, headerName As String, oldValue As String, newValue As String, oldCompare As String, newCompare As String) As Boolean"
 CompareFramework_Rules,CompareFramework_Rules.bas,RuleAppliesToColumn,Function,Private,67,71,Boolean,2,"Private Function RuleAppliesToColumn (ruleIndex As Long, headerName As String) As Boolean"

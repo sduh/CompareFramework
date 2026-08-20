@@ -5358,10 +5358,10 @@
         {
           "name": "WriteActionHeader",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 204,
           "end_line": 215,
-          "signature": "Public Sub WriteActionHeader (oSheet As Object, rowIndex As Long)",
+          "signature": "Private Sub WriteActionHeader (oSheet As Object, rowIndex As Long)",
           "return_type": null,
           "parameters": [
             {
@@ -5387,10 +5387,10 @@
         {
           "name": "IsActionableStatus",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 217,
           "end_line": 219,
-          "signature": "Public Function IsActionableStatus (statusValue As String) As Boolean",
+          "signature": "Private Function IsActionableStatus (statusValue As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -5407,10 +5407,10 @@
         {
           "name": "ActionPriority",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 221,
           "end_line": 240,
-          "signature": "Public Function ActionPriority (statusValue As String, colName As String) As String",
+          "signature": "Private Function ActionPriority (statusValue As String, colName As String) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -5436,10 +5436,10 @@
         {
           "name": "ActionRecommendation",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 242,
           "end_line": 261,
-          "signature": "Public Function ActionRecommendation (statusValue As String, colName As String, messageText As String) As String",
+          "signature": "Private Function ActionRecommendation (statusValue As String, colName As String, messageText As String) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -5684,10 +5684,10 @@
         {
           "name": "ApplyOptionalAutoFilter",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 401,
           "end_line": 408,
-          "signature": "Public Sub ApplyOptionalAutoFilter (oSheet As Object, lastCol As Long, lastRow As Long)",
+          "signature": "Private Sub ApplyOptionalAutoFilter (oSheet As Object, lastCol As Long, lastRow As Long)",
           "return_type": null,
           "parameters": [
             {
@@ -5732,10 +5732,10 @@
         {
           "name": "BuildHtmlReport",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 441,
           "end_line": 487,
-          "signature": "Public Function BuildHtmlReport (oDoc As Object) As String",
+          "signature": "Private Function BuildHtmlReport (oDoc As Object) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -5752,30 +5752,30 @@
         {
           "name": "HtmlStyleBlock",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 489,
           "end_line": 520,
-          "signature": "Public Function HtmlStyleBlock () As String",
+          "signature": "Private Function HtmlStyleBlock () As String",
           "return_type": "String",
           "parameters": []
         },
         {
           "name": "HtmlScriptBlock",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 522,
           "end_line": 531,
-          "signature": "Public Function HtmlScriptBlock () As String",
+          "signature": "Private Function HtmlScriptBlock () As String",
           "return_type": "String",
           "parameters": []
         },
         {
           "name": "SheetToHtmlSection",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 533,
           "end_line": 548,
-          "signature": "Public Function SheetToHtmlSection (oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String",
+          "signature": "Private Function SheetToHtmlSection (oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -5828,10 +5828,10 @@
         {
           "name": "SheetToHtmlTableOnly",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 550,
           "end_line": 594,
-          "signature": "Public Function SheetToHtmlTableOnly (oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String",
+          "signature": "Private Function SheetToHtmlTableOnly (oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -5875,10 +5875,10 @@
         {
           "name": "HtmlCssClassForCell",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 596,
           "end_line": 615,
-          "signature": "Public Function HtmlCssClassForCell (sValue As String) As String",
+          "signature": "Private Function HtmlCssClassForCell (sValue As String) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -10402,7 +10402,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "WriteActionHeader",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 204
       },
@@ -10411,7 +10411,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "IsActionableStatus",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 217
       },
@@ -10420,7 +10420,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "ActionPriority",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 221
       },
@@ -10429,7 +10429,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "ActionRecommendation",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 242
       },
@@ -10492,7 +10492,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "ApplyOptionalAutoFilter",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 401
       },
@@ -10510,7 +10510,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "BuildHtmlReport",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 441
       },
@@ -10519,7 +10519,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "HtmlStyleBlock",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 489
       },
@@ -10528,7 +10528,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "HtmlScriptBlock",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 522
       },
@@ -10537,7 +10537,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "SheetToHtmlSection",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 533
       },
@@ -10546,7 +10546,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "SheetToHtmlTableOnly",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 550
       },
@@ -10555,7 +10555,7 @@
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
         "name": "HtmlCssClassForCell",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 596
       },
@@ -19447,149 +19447,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Report.WriteActionHeader",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "WriteActionHeader",
-        "kind": "Sub",
-        "line": 204,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.IsActionableStatus",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "IsActionableStatus",
-        "kind": "Function",
-        "line": 217,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.ActionPriority",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "ActionPriority",
-        "kind": "Function",
-        "line": 221,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.ActionRecommendation",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "ActionRecommendation",
-        "kind": "Function",
-        "line": 242,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.ApplyOptionalAutoFilter",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "ApplyOptionalAutoFilter",
-        "kind": "Sub",
-        "line": 401,
-        "local_incoming_edges": 2,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.BuildHtmlReport",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "BuildHtmlReport",
-        "kind": "Function",
-        "line": 441,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.HtmlStyleBlock",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "HtmlStyleBlock",
-        "kind": "Function",
-        "line": 489,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.HtmlScriptBlock",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "HtmlScriptBlock",
-        "kind": "Function",
-        "line": 522,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.SheetToHtmlSection",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "SheetToHtmlSection",
-        "kind": "Function",
-        "line": 533,
-        "local_incoming_edges": 1,
-        "local_call_sites": 4,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.SheetToHtmlTableOnly",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "SheetToHtmlTableOnly",
-        "kind": "Function",
-        "line": 550,
-        "local_incoming_edges": 2,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Report.HtmlCssClassForCell",
-        "module": "CompareFramework_Report",
-        "module_path": "CompareFramework_Report.bas",
-        "procedure": "HtmlCssClassForCell",
-        "kind": "Function",
-        "line": 596,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CF_ModeReference.CF_RunReferenceMode",
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
@@ -19981,12 +19838,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 145,
+      "public_procedure_count": 134,
       "cross_module_used_public_count": 99,
-      "candidate_count": 46,
+      "candidate_count": 35,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 16,
+        "local-only": 5,
         "zero-caller-review": 30
       }
     }
@@ -19995,8 +19852,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 145,
-    "private_procedure_count": 140,
+    "public_procedure_count": 134,
+    "private_procedure_count": 151,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20011,8 +19868,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 46,
-    "local_only_public_count": 16,
+    "privatization_candidate_count": 35,
+    "local_only_public_count": 5,
     "zero_caller_public_count": 30
   }
 }

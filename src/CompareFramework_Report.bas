@@ -201,7 +201,7 @@ Public Sub BuildActionPlan(oReport As Object, oAction As Object, lastReportRow A
     End If
 End Sub
 
-Public Sub WriteActionHeader(oSheet As Object, rowIndex As Long)
+Private Sub WriteActionHeader(oSheet As Object, rowIndex As Long)
     SetCell oSheet, 0, rowIndex, "Priorite"
     SetCell oSheet, 1, rowIndex, "Paire"
     SetCell oSheet, 2, rowIndex, "ID"
@@ -214,11 +214,11 @@ Public Sub WriteActionHeader(oSheet As Object, rowIndex As Long)
     SetCell oSheet, 9, rowIndex, "Commentaire"
 End Sub
 
-Public Function IsActionableStatus(statusValue As String) As Boolean
+Private Function IsActionableStatus(statusValue As String) As Boolean
     IsActionableStatus = (statusValue = CF_STATUS_ADDED Or statusValue = CF_STATUS_REMOVED Or statusValue = CF_STATUS_CHANGED Or statusValue = CF_STATUS_DUPLICATE Or statusValue = CF_STATUS_ERROR)
 End Function
 
-Public Function ActionPriority(statusValue As String, colName As String) As String
+Private Function ActionPriority(statusValue As String, colName As String) As String
     Select Case statusValue
         Case CF_STATUS_ERROR
             ActionPriority = "P1"
@@ -239,7 +239,7 @@ Public Function ActionPriority(statusValue As String, colName As String) As Stri
     End Select
 End Function
 
-Public Function ActionRecommendation(statusValue As String, colName As String, messageText As String) As String
+Private Function ActionRecommendation(statusValue As String, colName As String, messageText As String) As String
     Select Case statusValue
         Case CF_STATUS_ERROR
             ActionRecommendation = "Corriger la structure avant d'exploiter la comparaison"
@@ -398,7 +398,7 @@ Public Sub FormatStats(oSheet As Object, lastRow As Long)
     Next i
 End Sub
 
-Public Sub ApplyOptionalAutoFilter(oSheet As Object, lastCol As Long, lastRow As Long)
+Private Sub ApplyOptionalAutoFilter(oSheet As Object, lastCol As Long, lastRow As Long)
     On Error GoTo SkipFilter
     Dim oRange As Object
     oRange = oSheet.getCellRangeByPosition(0, 0, lastCol, lastRow)
@@ -438,7 +438,7 @@ ErrHandler:
     MsgBox "Erreur ExporterRapportHTML : " & Err & " - " & Error$, 16, "CompareFramework"
 End Sub
 
-Public Function BuildHtmlReport(oDoc As Object) As String
+Private Function BuildHtmlReport(oDoc As Object) As String
     Dim s As String
 
     s = ""
@@ -486,7 +486,7 @@ Public Function BuildHtmlReport(oDoc As Object) As String
     BuildHtmlReport = s
 End Function
 
-Public Function HtmlStyleBlock() As String
+Private Function HtmlStyleBlock() As String
     Dim s As String
 
     s = ""
@@ -519,7 +519,7 @@ Public Function HtmlStyleBlock() As String
     HtmlStyleBlock = s
 End Function
 
-Public Function HtmlScriptBlock() As String
+Private Function HtmlScriptBlock() As String
     Dim s As String
 
     s = ""
@@ -530,7 +530,7 @@ Public Function HtmlScriptBlock() As String
     HtmlScriptBlock = s
 End Function
 
-Public Function SheetToHtmlSection(oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String
+Private Function SheetToHtmlSection(oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String
     Dim s As String
     s = "<section id=""" & HtmlEscape(sAnchor) & """>" & Chr(10)
     s = s & "<h2>" & HtmlEscape(sTitle) & "</h2>" & Chr(10)
@@ -547,7 +547,7 @@ Public Function SheetToHtmlSection(oDoc As Object, sSheetName As String, sAnchor
     SheetToHtmlSection = s
 End Function
 
-Public Function SheetToHtmlTableOnly(oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String
+Private Function SheetToHtmlTableOnly(oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String
     On Error GoTo MissingSheet
 
     Dim oSheet As Object
@@ -593,7 +593,7 @@ MissingSheet:
     SheetToHtmlTableOnly = "<p class=""missing"">Feuille absente : " & HtmlEscape(sSheetName) & "</p>" & Chr(10)
 End Function
 
-Public Function HtmlCssClassForCell(sValue As String) As String
+Private Function HtmlCssClassForCell(sValue As String) As String
     Dim s As String
     s = UCase(Trim(sValue))
 
