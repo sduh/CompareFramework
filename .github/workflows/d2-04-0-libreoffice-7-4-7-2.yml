@@ -1,0 +1,48 @@
+name: D2-04.0 LibreOffice 7.4.7.2 runtime
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  libreoffice-runtime:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate runtime contract
+        run: PYTHONPATH=. python tests/test_d2_04_0_libreoffice_runtime_contract.py
+
+      - name: Validate installer shell syntax
+        run: bash -n tools/ci/install_libreoffice_7_4_7_2.sh
+
+      - name: Install LibreOffice 7.4.7.2
+        run: bash tools/ci/install_libreoffice_7_4_7_2.sh
+
+      - name: Verify exact LibreOffice version
+        run: |
+          observed="$(${SOFFICE_BIN} --version)"
+          echo "${observed}"
+          [[ "${observed}" == *"7.4.7.2"* ]]
+
+      - name: Headless smoke test with isolated profile
+        run: |
+          profile_dir="$(mktemp -d)"
+          output_dir="$(mktemp -d)"
+          trap 'rm -rf "${profile_dir}" "${output_dir}"' EXIT
+          printf 'D2-04.0 smoke\n' > "${output_dir}/smoke.txt"
+          timeout 60s "${SOFFICE_BIN}" \
+            --headless \
+            --nologo \
+            --nodefault \
+            --nofirststartwizard \
+            "-env:UserInstallation=file://${profile_dir}" \
+            --convert-to pdf \
+            --outdir "${output_dir}" \
+            "${output_dir}/smoke.txt"
+          test -s "${output_dir}/smoke.pdf"
