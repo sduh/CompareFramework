@@ -166,8 +166,21 @@ def validate_entrypoint_audit(document: dict[str, Any]) -> None:
 def validate_public_api_contract(document: dict[str, Any]) -> None:
     contract = document["public_api_contract"]
     expected = set(PUBLIC_API_PROCEDURES)
-    if contract.get("status") != "frozen":
-        raise ArchitectureValidationError("public API contract must be frozen")
+    status = contract.get("status")
+
+    if status == "not-applicable":
+        if contract.get("module") != PUBLIC_API_MODULE:
+            raise ArchitectureValidationError("public API contract module mismatch")
+        if contract.get("procedures") != [] or contract.get("procedure_count") != 0:
+            raise ArchitectureValidationError("non-applicable public API contract must be empty")
+        if any(module["name"] == PUBLIC_API_MODULE for module in document["modules"]):
+            raise ArchitectureValidationError("public API contract cannot be non-applicable when facade exists")
+        if document["statistics"].get("supported_public_api_count") != 0:
+            raise ArchitectureValidationError("non-applicable supported public API count mismatch")
+        return
+
+    if status != "frozen":
+        raise ArchitectureValidationError("public API contract must be frozen or not-applicable")
     if contract.get("module") != PUBLIC_API_MODULE:
         raise ArchitectureValidationError("public API contract module mismatch")
     if set(contract.get("procedures", [])) != expected:
