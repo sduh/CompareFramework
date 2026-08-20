@@ -12,7 +12,7 @@ from tools.architecture.reports import (
 class ReportTests(unittest.TestCase):
     def sample(self):
         return {
-            "schema_version": "1.5.0",
+            "schema_version": "1.6.0",
             "repository": {"name": "repo", "version": "4.0-dev", "root": "."},
             "statistics": {
                 "module_count": 2,
@@ -69,7 +69,7 @@ class ReportTests(unittest.TestCase):
         text = render_architecture_report(self.sample())
         self.assertIn("Resolved procedure edges: **1**", text)
         self.assertIn("Directed module dependencies: **1**", text)
-        self.assertIn("Canonical schema: **1.5.0**", text)
+        self.assertIn("Canonical schema: **1.6.0**", text)
 
     def test_dependency_report_contains_dependency(self):
         text = render_dependency_report(self.sample())

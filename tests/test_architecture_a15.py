@@ -11,7 +11,7 @@ from tools.architecture.validation import (
 class ValidationTests(unittest.TestCase):
     def sample(self):
         return {
-            "schema_version": "1.5.0",
+            "schema_version": "1.6.0",
             "repository": {"name": "repo", "version": "1.0", "root": "."},
             "languages": [],
             "modules": [
@@ -69,7 +69,18 @@ class ValidationTests(unittest.TestCase):
                 "reviews": [],
                 "statistics": {"review_count": 0, "disposition_counts": {}},
             },
-            "statistics": {"module_count": 1, "procedure_count": 0},
+            "public_api_contract": {
+                "status": "not-applicable",
+                "module": "CompareFramework_API",
+                "procedure_count": 0,
+                "procedures": [],
+                "policy": "fixture",
+            },
+            "statistics": {
+                "module_count": 1,
+                "procedure_count": 0,
+                "supported_public_api_count": 0,
+            },
         }
 
     def test_valid_document(self):

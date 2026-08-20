@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 
-from .config import SCHEMA_VERSION
+from .config import PUBLIC_API_MODULE, PUBLIC_API_PROCEDURES, SCHEMA_VERSION
 
 
 class ArchitectureValidationError(ValueError):
@@ -12,6 +12,7 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
     required = {
         "schema_version","repository","languages","modules","statistics",
         "call_graph","dependency_analysis","privatization_analysis","entrypoint_audit",
+        "public_api_contract",
     }
     missing = sorted(required - document.keys())
     if missing:
@@ -92,6 +93,7 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
 
     validate_privatization_analysis(document)
     validate_entrypoint_audit(document)
+    validate_public_api_contract(document)
 
 
 def validate_privatization_analysis(document: dict[str, Any]) -> None:
@@ -159,3 +161,44 @@ def validate_entrypoint_audit(document: dict[str, Any]) -> None:
 
     if audit["statistics"]["review_count"] != len(audit["reviews"]):
         raise ArchitectureValidationError("entrypoint audit review count mismatch")
+
+
+def validate_public_api_contract(document: dict[str, Any]) -> None:
+    contract = document["public_api_contract"]
+    expected = set(PUBLIC_API_PROCEDURES)
+    status = contract.get("status")
+
+    if status == "not-applicable":
+        if contract.get("module") != PUBLIC_API_MODULE:
+            raise ArchitectureValidationError("public API contract module mismatch")
+        if contract.get("procedures") != [] or contract.get("procedure_count") != 0:
+            raise ArchitectureValidationError("non-applicable public API contract must be empty")
+        if any(module["name"] == PUBLIC_API_MODULE for module in document["modules"]):
+            raise ArchitectureValidationError("public API contract cannot be non-applicable when facade exists")
+        if document["statistics"].get("supported_public_api_count") != 0:
+            raise ArchitectureValidationError("non-applicable supported public API count mismatch")
+        return
+
+    if status != "frozen":
+        raise ArchitectureValidationError("public API contract must be frozen or not-applicable")
+    if contract.get("module") != PUBLIC_API_MODULE:
+        raise ArchitectureValidationError("public API contract module mismatch")
+    if set(contract.get("procedures", [])) != expected:
+        raise ArchitectureValidationError("public API contract procedure set mismatch")
+    if contract.get("procedure_count") != len(expected):
+        raise ArchitectureValidationError("public API contract procedure count mismatch")
+
+    facade = next(
+        (module for module in document["modules"] if module["name"] == PUBLIC_API_MODULE),
+        None,
+    )
+    if facade is None:
+        raise ArchitectureValidationError("public API facade module is missing")
+    actual = {
+        proc["name"] for proc in facade["procedures"] if proc["visibility"] == "Public"
+    }
+    if actual != expected:
+        raise ArchitectureValidationError("public API facade differs from frozen contract")
+
+    if document["statistics"].get("supported_public_api_count") != len(expected):
+        raise ArchitectureValidationError("supported public API count mismatch")
