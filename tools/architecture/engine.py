@@ -40,7 +40,17 @@ def _statistics(repository) -> dict[str, int]:
     }
 
 
-def _public_api_contract() -> dict[str, Any]:
+def _public_api_contract(repository) -> dict[str, Any]:
+    facade_present = any(module.name == PUBLIC_API_MODULE for module in repository.modules)
+    if not facade_present:
+        return {
+            "status": "not-applicable",
+            "module": PUBLIC_API_MODULE,
+            "procedure_count": 0,
+            "procedures": [],
+            "policy": "Frozen CompareFramework user API is not applicable to this repository.",
+        }
+
     return {
         "status": "frozen",
         "module": PUBLIC_API_MODULE,
@@ -69,7 +79,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
 
     entrypoint_audit = build_entrypoint_audit(config.repository_root, privatization_analysis)
     entrypoint_data = entrypoint_audit.as_dict()
-    public_api_contract = _public_api_contract()
+    public_api_contract = _public_api_contract(repository)
 
     statistics.update({
         "call_graph_edge_count": graph_data["statistics"]["edge_count"],
