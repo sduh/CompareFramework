@@ -244,42 +244,16 @@
       "classification": "zero-caller-review",
       "confidence": "medium",
       "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneB_ConfigTests",
-      "kind": "Sub",
-      "line": 380,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Tests.CF_RunMilestoneBTests",
-      "module": "CompareFramework_Tests",
-      "module_path": "CompareFramework_Tests.bas",
-      "procedure": "CF_RunMilestoneBTests",
-      "kind": "Sub",
-      "line": 482,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
     }
   ],
   "statistics": {
-    "public_procedure_count": 120,
+    "public_procedure_count": 118,
     "cross_module_used_public_count": 99,
-    "candidate_count": 8,
+    "candidate_count": 6,
     "protected_public_count": 13,
-    "zero_caller_public_count": 16,
+    "zero_caller_public_count": 14,
     "classification_counts": {
-      "zero-caller-review": 8
+      "zero-caller-review": 6
     }
   }
 }

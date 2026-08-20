@@ -3497,10 +3497,10 @@
         {
           "name": "CF_RunMilestoneB_ConfigTests",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 380,
           "end_line": 383,
-          "signature": "Public Sub CF_RunMilestoneB_ConfigTests ()",
+          "signature": "Private Sub CF_RunMilestoneB_ConfigTests ()",
           "return_type": null,
           "parameters": []
         },
@@ -7419,10 +7419,10 @@
         {
           "name": "CF_RunMilestoneBTests",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 482,
           "end_line": 485,
-          "signature": "Public Sub CF_RunMilestoneBTests ()",
+          "signature": "Private Sub CF_RunMilestoneBTests ()",
           "return_type": null,
           "parameters": []
         }
@@ -9898,7 +9898,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunMilestoneB_ConfigTests",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 380
       },
@@ -11023,7 +11023,7 @@
         "module": "CompareFramework_Tests",
         "module_path": "CompareFramework_Tests.bas",
         "name": "CF_RunMilestoneBTests",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 482
       },
@@ -19619,42 +19619,16 @@
         "classification": "zero-caller-review",
         "confidence": "medium",
         "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneB_ConfigTests",
-        "kind": "Sub",
-        "line": 380,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Tests.CF_RunMilestoneBTests",
-        "module": "CompareFramework_Tests",
-        "module_path": "CompareFramework_Tests.bas",
-        "procedure": "CF_RunMilestoneBTests",
-        "kind": "Sub",
-        "line": 482,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
       }
     ],
     "statistics": {
-      "public_procedure_count": 120,
+      "public_procedure_count": 118,
       "cross_module_used_public_count": 99,
-      "candidate_count": 8,
+      "candidate_count": 6,
       "protected_public_count": 13,
-      "zero_caller_public_count": 16,
+      "zero_caller_public_count": 14,
       "classification_counts": {
-        "zero-caller-review": 8
+        "zero-caller-review": 6
       }
     }
   },
@@ -19756,37 +19730,12 @@
         ],
         "disposition": "keep-public-api",
         "rationale": "Explicit official API contract requires Public visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneB_ConfigTests",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "maintenance-test",
-        "inventory_decision": "review-public-maintenance",
-        "user_document_references": [],
-        "disposition": "maintenance-entrypoint-review",
-        "rationale": "Maintenance/test entry point requires an explicit lifecycle decision."
-      },
-      {
-        "id": "CompareFramework_Tests.CF_RunMilestoneBTests",
-        "module": "CompareFramework_Tests",
-        "module_path": "CompareFramework_Tests.bas",
-        "procedure": "CF_RunMilestoneBTests",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "maintenance-test",
-        "inventory_decision": "review-public-maintenance",
-        "user_document_references": [],
-        "disposition": "maintenance-entrypoint-review",
-        "rationale": "Maintenance/test entry point requires an explicit lifecycle decision."
       }
     ],
     "statistics": {
-      "review_count": 8,
+      "review_count": 6,
       "disposition_counts": {
-        "keep-public-api": 6,
-        "maintenance-entrypoint-review": 2
+        "keep-public-api": 6
       }
     }
   },
@@ -19794,8 +19743,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 120,
-    "private_procedure_count": 165,
+    "public_procedure_count": 118,
+    "private_procedure_count": 167,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -19810,10 +19759,10 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 8,
+    "privatization_candidate_count": 6,
     "local_only_public_count": 0,
     "protected_public_count": 13,
-    "zero_caller_public_count": 16,
-    "entrypoint_review_count": 8
+    "zero_caller_public_count": 14,
+    "entrypoint_review_count": 6
   }
 }

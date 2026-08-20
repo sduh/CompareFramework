@@ -96,37 +96,12 @@
       ],
       "disposition": "keep-public-api",
       "rationale": "Explicit official API contract requires Public visibility."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneB_ConfigTests",
-      "static_classification": "zero-caller-review",
-      "inventory_classification": "maintenance-test",
-      "inventory_decision": "review-public-maintenance",
-      "user_document_references": [],
-      "disposition": "maintenance-entrypoint-review",
-      "rationale": "Maintenance/test entry point requires an explicit lifecycle decision."
-    },
-    {
-      "id": "CompareFramework_Tests.CF_RunMilestoneBTests",
-      "module": "CompareFramework_Tests",
-      "module_path": "CompareFramework_Tests.bas",
-      "procedure": "CF_RunMilestoneBTests",
-      "static_classification": "zero-caller-review",
-      "inventory_classification": "maintenance-test",
-      "inventory_decision": "review-public-maintenance",
-      "user_document_references": [],
-      "disposition": "maintenance-entrypoint-review",
-      "rationale": "Maintenance/test entry point requires an explicit lifecycle decision."
     }
   ],
   "statistics": {
-    "review_count": 8,
+    "review_count": 6,
     "disposition_counts": {
-      "keep-public-api": 6,
-      "maintenance-entrypoint-review": 2
+      "keep-public-api": 6
     }
   }
 }

@@ -479,7 +479,7 @@ ErrHandler:
 End Sub
 
 
-Public Sub CF_RunMilestoneBTests()
+Private Sub CF_RunMilestoneBTests()
     CF_RunTypedComparatorTests
     CF_RunMemoryEngineTests
 End Sub

@@ -1004,7 +1004,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunMilestoneB_ConfigTests",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 380
     },
@@ -2129,7 +2129,7 @@
       "module": "CompareFramework_Tests",
       "module_path": "CompareFramework_Tests.bas",
       "name": "CF_RunMilestoneBTests",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 482
     },

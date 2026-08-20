@@ -357,7 +357,7 @@ CompareFramework_Main.CF_RunAudited,CompareFramework_Main,CompareFramework_Main.
 CompareFramework_Main.CF_RunPerformanceProfiled,CompareFramework_Main,CompareFramework_Main.bas,CF_RunPerformanceProfiled,procedure,Private,299,335,,,Private Sub CF_RunPerformanceProfiled (),
 CompareFramework_Main.CF_RunMilestoneB,CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB,procedure,Private,338,352,,,Private Sub CF_RunMilestoneB (),
 CompareFramework_Main.CF_RunMilestoneB_Configured,CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_Configured,procedure,Private,359,378,,,Private Sub CF_RunMilestoneB_Configured (),
-CompareFramework_Main.CF_RunMilestoneB_ConfigTests,CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_ConfigTests,procedure,Public,380,383,,,Public Sub CF_RunMilestoneB_ConfigTests (),
+CompareFramework_Main.CF_RunMilestoneB_ConfigTests,CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_ConfigTests,procedure,Private,380,383,,,Private Sub CF_RunMilestoneB_ConfigTests (),
 CompareFramework_Main.CF_RunMilestoneB_Final,CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_Final,procedure,Private,390,412,,,Private Sub CF_RunMilestoneB_Final (),
 CompareFramework_Main.CF_RunMilestoneC,CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneC,procedure,Private,419,437,,,Private Sub CF_RunMilestoneC (),
 CompareFramework_Main.CF_RunMilestoneC_Final,CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneC_Final,procedure,Private,444,466,,,Private Sub CF_RunMilestoneC_Final (),
@@ -761,7 +761,7 @@ CompareFramework_Tests.CF_TestProfileExists,CompareFramework_Tests,CompareFramew
 CompareFramework_Tests.CF_RunValidationTests,CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunValidationTests,procedure,Public,394,402,,,Public Sub CF_RunValidationTests (),
 CompareFramework_Tests.CF_RunAuditTests,CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunAuditTests,procedure,Public,409,456,,,Public Sub CF_RunAuditTests (),
 CompareFramework_Tests.CF_RunPerformanceTests,CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunPerformanceTests,procedure,Public,459,479,,,Public Sub CF_RunPerformanceTests (),
-CompareFramework_Tests.CF_RunMilestoneBTests,CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunMilestoneBTests,procedure,Public,482,485,,,Public Sub CF_RunMilestoneBTests (),
+CompareFramework_Tests.CF_RunMilestoneBTests,CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunMilestoneBTests,procedure,Private,482,485,,,Private Sub CF_RunMilestoneBTests (),
 CompareFramework_Utils.CF_VERSION,CompareFramework_Utils,CompareFramework_Utils.bas,CF_VERSION,constant,Public,5,,,String,,"""@COMPAREFRAMEWORK_VERSION@"""
 CompareFramework_Utils.CF_REPORT_SHEET,CompareFramework_Utils,CompareFramework_Utils.bas,CF_REPORT_SHEET,constant,Public,6,,,String,,"""Rapport_Comparaison"""
 CompareFramework_Utils.CF_STATS_SHEET,CompareFramework_Utils,CompareFramework_Utils.bas,CF_STATS_SHEET,constant,Public,7,,,String,,"""Stats_Comparaison"""

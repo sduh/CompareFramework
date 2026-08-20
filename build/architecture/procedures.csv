@@ -110,7 +110,7 @@ CompareFramework_Main,CompareFramework_Main.bas,CF_RunAudited,Sub,Private,257,29
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunPerformanceProfiled,Sub,Private,299,335,,0,Private Sub CF_RunPerformanceProfiled ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB,Sub,Private,338,352,,0,Private Sub CF_RunMilestoneB ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_Configured,Sub,Private,359,378,,0,Private Sub CF_RunMilestoneB_Configured ()
-CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_ConfigTests,Sub,Public,380,383,,0,Public Sub CF_RunMilestoneB_ConfigTests ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_ConfigTests,Sub,Private,380,383,,0,Private Sub CF_RunMilestoneB_ConfigTests ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_Final,Sub,Private,390,412,,0,Private Sub CF_RunMilestoneB_Final ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneC,Sub,Private,419,437,,0,Private Sub CF_RunMilestoneC ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneC_Final,Sub,Private,444,466,,0,Private Sub CF_RunMilestoneC_Final ()
@@ -235,7 +235,7 @@ CompareFramework_Tests,CompareFramework_Tests.bas,CF_TestProfileExists,Function,
 CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunValidationTests,Sub,Public,394,402,,0,Public Sub CF_RunValidationTests ()
 CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunAuditTests,Sub,Public,409,456,,0,Public Sub CF_RunAuditTests ()
 CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunPerformanceTests,Sub,Public,459,479,,0,Public Sub CF_RunPerformanceTests ()
-CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunMilestoneBTests,Sub,Public,482,485,,0,Public Sub CF_RunMilestoneBTests ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunMilestoneBTests,Sub,Private,482,485,,0,Private Sub CF_RunMilestoneBTests ()
 CompareFramework_Utils,CompareFramework_Utils.bas,FullRowText,Function,Public,48,62,String,3,"Public Function FullRowText (oSheet As Object, headers As Variant, rowIndex As Long) As String"
 CompareFramework_Utils,CompareFramework_Utils.bas,LastUsedRow,Function,Public,64,69,Long,1,Public Function LastUsedRow (oSheet As Object) As Long
 CompareFramework_Utils,CompareFramework_Utils.bas,LastUsedCol,Function,Public,71,76,Long,1,Public Function LastUsedCol (oSheet As Object) As Long

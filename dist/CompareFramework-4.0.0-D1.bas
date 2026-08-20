@@ -4461,7 +4461,7 @@ ErrHandler:
     MsgBox "Erreur CF_RunMilestoneB_Configured : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_RunMilestoneB_ConfigTests()
+Private Sub CF_RunMilestoneB_ConfigTests()
     CF_RunTypedComparatorTests
     CF_RunComparatorConfigTests
 End Sub
@@ -5638,7 +5638,7 @@ ErrHandler:
 End Sub
 
 
-Public Sub CF_RunMilestoneBTests()
+Private Sub CF_RunMilestoneBTests()
     CF_RunTypedComparatorTests
     CF_RunMemoryEngineTests
 End Sub
