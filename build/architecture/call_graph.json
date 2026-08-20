@@ -95,7 +95,7 @@
       "module": "CompareFramework_Audit",
       "module_path": "CompareFramework_Audit.bas",
       "name": "CF_AuditWriteCurrentRun",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 123
     },

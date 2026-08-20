@@ -193,10 +193,10 @@
         {
           "name": "CF_AuditWriteCurrentRun",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 123,
           "end_line": 152,
-          "signature": "Public Sub CF_AuditWriteCurrentRun ()",
+          "signature": "Private Sub CF_AuditWriteCurrentRun ()",
           "return_type": null,
           "parameters": []
         },
@@ -8989,7 +8989,7 @@
         "module": "CompareFramework_Audit",
         "module_path": "CompareFramework_Audit.bas",
         "name": "CF_AuditWriteCurrentRun",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 123
       },
@@ -19486,19 +19486,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Audit.CF_AuditWriteCurrentRun",
-        "module": "CompareFramework_Audit",
-        "module_path": "CompareFramework_Audit.bas",
-        "procedure": "CF_AuditWriteCurrentRun",
-        "kind": "Sub",
-        "line": 123,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_Config.WriteDefaultConfig",
         "module": "CompareFramework_Config",
         "module_path": "CompareFramework_Config.bas",
@@ -20501,12 +20488,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 185,
+      "public_procedure_count": 184,
       "cross_module_used_public_count": 99,
-      "candidate_count": 86,
+      "candidate_count": 85,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 56,
+        "local-only": 55,
         "zero-caller-review": 30
       }
     }
@@ -20515,8 +20502,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 185,
-    "private_procedure_count": 100,
+    "public_procedure_count": 184,
+    "private_procedure_count": 101,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20531,8 +20518,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 86,
-    "local_only_public_count": 56,
+    "privatization_candidate_count": 85,
+    "local_only_public_count": 55,
     "zero_caller_public_count": 30
   }
 }

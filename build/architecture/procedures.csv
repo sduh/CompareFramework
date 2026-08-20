@@ -9,7 +9,7 @@ CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditBegin,Sub,Public,29,56
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditSet,Sub,Public,58,85,,2,"Public Sub CF_AuditSet (sMetricName As String, vValue As Variant)"
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditFail,Sub,Public,87,95,,2,"Public Sub CF_AuditFail (vErrorNumber As Variant, sErrorMessage As String)"
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditEnd,Sub,Public,97,121,,1,Public Sub CF_AuditEnd (Optional sStatus As Variant)
-CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditWriteCurrentRun,Sub,Public,123,152,,0,Public Sub CF_AuditWriteCurrentRun ()
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditWriteCurrentRun,Sub,Private,123,152,,0,Private Sub CF_AuditWriteCurrentRun ()
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditClearHistory,Sub,Public,154,170,,0,Public Sub CF_AuditClearHistory ()
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditGetRunId,Function,Public,172,174,String,0,Public Function CF_AuditGetRunId () As String
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditDurationSeconds,Function,Public,176,191,Double,0,Public Function CF_AuditDurationSeconds () As Double

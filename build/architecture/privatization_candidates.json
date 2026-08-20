@@ -111,19 +111,6 @@
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
     },
     {
-      "id": "CompareFramework_Audit.CF_AuditWriteCurrentRun",
-      "module": "CompareFramework_Audit",
-      "module_path": "CompareFramework_Audit.bas",
-      "procedure": "CF_AuditWriteCurrentRun",
-      "kind": "Sub",
-      "line": 123,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
       "id": "CompareFramework_Config.WriteDefaultConfig",
       "module": "CompareFramework_Config",
       "module_path": "CompareFramework_Config.bas",
@@ -1126,12 +1113,12 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 185,
+    "public_procedure_count": 184,
     "cross_module_used_public_count": 99,
-    "candidate_count": 86,
+    "candidate_count": 85,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 56,
+      "local-only": 55,
       "zero-caller-review": 30
     }
   }

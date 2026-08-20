@@ -26,7 +26,7 @@ CompareFramework_Audit.CF_AuditFail.vErrorNumber,CompareFramework_Audit,CompareF
 CompareFramework_Audit.CF_AuditFail,CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditFail,procedure,Public,87,95,,,"Public Sub CF_AuditFail (vErrorNumber As Variant, sErrorMessage As String)",
 CompareFramework_Audit.CF_AuditEnd.sStatus,CompareFramework_Audit,CompareFramework_Audit.bas,sStatus,parameter,Local,97,121,CF_AuditEnd,Variant,,
 CompareFramework_Audit.CF_AuditEnd,CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditEnd,procedure,Public,97,121,,,Public Sub CF_AuditEnd (Optional sStatus As Variant),
-CompareFramework_Audit.CF_AuditWriteCurrentRun,CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditWriteCurrentRun,procedure,Public,123,152,,,Public Sub CF_AuditWriteCurrentRun (),
+CompareFramework_Audit.CF_AuditWriteCurrentRun,CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditWriteCurrentRun,procedure,Private,123,152,,,Private Sub CF_AuditWriteCurrentRun (),
 CompareFramework_Audit.CF_AuditClearHistory,CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditClearHistory,procedure,Public,154,170,,,Public Sub CF_AuditClearHistory (),
 CompareFramework_Audit.CF_AuditGetRunId,CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditGetRunId,procedure,Public,172,174,,String,Public Function CF_AuditGetRunId () As String,
 CompareFramework_Audit.CF_AuditDurationSeconds,CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditDurationSeconds,procedure,Public,176,191,,Double,Public Function CF_AuditDurationSeconds () As Double,

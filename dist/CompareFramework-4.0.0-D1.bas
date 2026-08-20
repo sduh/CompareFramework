@@ -560,7 +560,7 @@ Public Sub CF_AuditEnd(Optional sStatus As Variant)
     CF_AUDIT_ACTIVE = False
 End Sub
 
-Public Sub CF_AuditWriteCurrentRun()
+Private Sub CF_AuditWriteCurrentRun()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object

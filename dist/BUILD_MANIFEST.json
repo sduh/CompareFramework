@@ -3,7 +3,7 @@
   "version": "4.0.0-D1",
   "version_source": "VERSION",
   "output": "dist/CompareFramework-4.0.0-D1.bas",
-  "sha256": "5b7560a5a4ece3aaf1bed9ff222c95bd1416a9395fd4b9cbe6a9456cb6ff4d09",
+  "sha256": "2ddf80bbd020bfcac9d2e711b7065d82a256477bf83d526ddf2d88823f6fa4c2",
   "modules": [
     "src/CompareFramework_Utils.bas",
     "src/CompareFramework_Context.bas",
