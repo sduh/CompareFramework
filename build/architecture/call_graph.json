@@ -2237,7 +2237,7 @@
       "module": "CompareFramework_Utils",
       "module_path": "CompareFramework_Utils.bas",
       "name": "EndsWith",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 158
     },

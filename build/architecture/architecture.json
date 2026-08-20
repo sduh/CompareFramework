@@ -7756,10 +7756,10 @@
         {
           "name": "EndsWith",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 158,
           "end_line": 164,
-          "signature": "Public Function EndsWith (valueText As String, suffixText As String) As Boolean",
+          "signature": "Private Function EndsWith (valueText As String, suffixText As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -11131,7 +11131,7 @@
         "module": "CompareFramework_Utils",
         "module_path": "CompareFramework_Utils.bas",
         "name": "EndsWith",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 158
       },
@@ -20032,19 +20032,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Utils.EndsWith",
-        "module": "CompareFramework_Utils",
-        "module_path": "CompareFramework_Utils.bas",
-        "procedure": "EndsWith",
-        "kind": "Function",
-        "line": 158,
-        "local_incoming_edges": 2,
-        "local_call_sites": 9,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_Validation.CF_ValidateActiveProfile",
         "module": "CompareFramework_Validation",
         "module_path": "CompareFramework_Validation.bas",
@@ -20462,12 +20449,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 182,
+      "public_procedure_count": 181,
       "cross_module_used_public_count": 99,
-      "candidate_count": 83,
+      "candidate_count": 82,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 53,
+        "local-only": 52,
         "zero-caller-review": 30
       }
     }
@@ -20476,8 +20463,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 182,
-    "private_procedure_count": 103,
+    "public_procedure_count": 181,
+    "private_procedure_count": 104,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20492,8 +20479,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 83,
-    "local_only_public_count": 53,
+    "privatization_candidate_count": 82,
+    "local_only_public_count": 52,
     "zero_caller_public_count": 30
   }
 }

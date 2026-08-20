@@ -1,0 +1,11 @@
+--- a/src/CompareFramework_Utils.bas
++++ b/src/CompareFramework_Utils.bas
+@@ -155,7 +155,7 @@
+     FindNewSheetForBase = ""
+ End Function
+ 
+-Public Function EndsWith(valueText As String, suffixText As String) As Boolean
++Private Function EndsWith(valueText As String, suffixText As String) As Boolean
+     If Len(valueText) < Len(suffixText) Then
+         EndsWith = False
+     Else

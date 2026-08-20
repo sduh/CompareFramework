@@ -834,7 +834,7 @@ CompareFramework_Utils.FindNewSheetForBase.oSheets,CompareFramework_Utils,Compar
 CompareFramework_Utils.FindNewSheetForBase,CompareFramework_Utils,CompareFramework_Utils.bas,FindNewSheetForBase,procedure,Public,151,156,,String,"Public Function FindNewSheetForBase (oSheets As Object, baseName As String) As String",
 CompareFramework_Utils.EndsWith.suffixText,CompareFramework_Utils,CompareFramework_Utils.bas,suffixText,parameter,Local,158,164,EndsWith,String,,
 CompareFramework_Utils.EndsWith.valueText,CompareFramework_Utils,CompareFramework_Utils.bas,valueText,parameter,Local,158,164,EndsWith,String,,
-CompareFramework_Utils.EndsWith,CompareFramework_Utils,CompareFramework_Utils.bas,EndsWith,procedure,Public,158,164,,Boolean,"Public Function EndsWith (valueText As String, suffixText As String) As Boolean",
+CompareFramework_Utils.EndsWith,CompareFramework_Utils,CompareFramework_Utils.bas,EndsWith,procedure,Private,158,164,,Boolean,"Private Function EndsWith (valueText As String, suffixText As String) As Boolean",
 CompareFramework_Utils.HtmlEscape.v,CompareFramework_Utils,CompareFramework_Utils.bas,v,parameter,Local,166,175,HtmlEscape,Variant,,
 CompareFramework_Utils.HtmlEscape,CompareFramework_Utils,CompareFramework_Utils.bas,HtmlEscape,procedure,Public,166,175,,String,Public Function HtmlEscape (v As Variant) As String,
 CompareFramework_Utils.GetDocumentFolderPath,CompareFramework_Utils,CompareFramework_Utils.bas,GetDocumentFolderPath,procedure,Public,177,197,,String,Public Function GetDocumentFolderPath () As String,

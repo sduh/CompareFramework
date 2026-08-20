@@ -163,7 +163,7 @@ Public Function FindNewSheetForBase(oSheets As Object, baseName As String) As St
     FindNewSheetForBase = ""
 End Function
 
-Public Function EndsWith(valueText As String, suffixText As String) As Boolean
+Private Function EndsWith(valueText As String, suffixText As String) As Boolean
     If Len(valueText) < Len(suffixText) Then
         EndsWith = False
     Else

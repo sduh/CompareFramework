@@ -247,7 +247,7 @@ CompareFramework_Utils,CompareFramework_Utils.bas,IsReportOrStatsSheet,Function,
 CompareFramework_Utils,CompareFramework_Utils.bas,IsOldSheetName,Function,Public,133,137,Boolean,1,Public Function IsOldSheetName (sheetName As String) As Boolean
 CompareFramework_Utils,CompareFramework_Utils.bas,PairBaseName,Function,Public,139,149,String,1,Public Function PairBaseName (sheetName As String) As String
 CompareFramework_Utils,CompareFramework_Utils.bas,FindNewSheetForBase,Function,Public,151,156,String,2,"Public Function FindNewSheetForBase (oSheets As Object, baseName As String) As String"
-CompareFramework_Utils,CompareFramework_Utils.bas,EndsWith,Function,Public,158,164,Boolean,2,"Public Function EndsWith (valueText As String, suffixText As String) As Boolean"
+CompareFramework_Utils,CompareFramework_Utils.bas,EndsWith,Function,Private,158,164,Boolean,2,"Private Function EndsWith (valueText As String, suffixText As String) As Boolean"
 CompareFramework_Utils,CompareFramework_Utils.bas,HtmlEscape,Function,Public,166,175,String,1,Public Function HtmlEscape (v As Variant) As String
 CompareFramework_Utils,CompareFramework_Utils.bas,GetDocumentFolderPath,Function,Public,177,197,String,0,Public Function GetDocumentFolderPath () As String
 CompareFramework_Utils,CompareFramework_Utils.bas,WriteTextFile,Sub,Public,199,209,,2,"Public Sub WriteTextFile (sUrl As String, sText As String)"

@@ -657,19 +657,6 @@
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
     },
     {
-      "id": "CompareFramework_Utils.EndsWith",
-      "module": "CompareFramework_Utils",
-      "module_path": "CompareFramework_Utils.bas",
-      "procedure": "EndsWith",
-      "kind": "Function",
-      "line": 158,
-      "local_incoming_edges": 2,
-      "local_call_sites": 9,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
       "id": "CompareFramework_Validation.CF_ValidateActiveProfile",
       "module": "CompareFramework_Validation",
       "module_path": "CompareFramework_Validation.bas",
@@ -1087,12 +1074,12 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 182,
+    "public_procedure_count": 181,
     "cross_module_used_public_count": 99,
-    "candidate_count": 83,
+    "candidate_count": 82,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 53,
+      "local-only": 52,
       "zero-caller-review": 30
     }
   }
