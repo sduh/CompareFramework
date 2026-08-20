@@ -1,0 +1,286 @@
+module,module_path,name,kind,visibility,line,end_line,return_type,parameter_count,signature
+CompareFramework_API,CompareFramework_API.bas,CF_StartReferenceComparison,Sub,Public,14,16,,0,Public Sub CF_StartReferenceComparison ()
+CompareFramework_API,CompareFramework_API.bas,CF_RunStandardComparison,Sub,Public,19,21,,0,Public Sub CF_RunStandardComparison ()
+CompareFramework_API,CompareFramework_API.bas,CF_ExportLastReportHTML,Sub,Public,24,26,,0,Public Sub CF_ExportLastReportHTML ()
+CompareFramework_API,CompareFramework_API.bas,CF_OpenSettings,Sub,Public,29,31,,0,Public Sub CF_OpenSettings ()
+CompareFramework_API,CompareFramework_API.bas,CF_RunDiagnostics,Sub,Public,34,36,,0,Public Sub CF_RunDiagnostics ()
+CompareFramework_API,CompareFramework_API.bas,CF_RunReleaseValidation,Sub,Public,39,41,,0,Public Sub CF_RunReleaseValidation ()
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditBegin,Sub,Public,29,56,,1,Public Sub CF_AuditBegin (Optional sRunName As Variant)
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditSet,Sub,Public,58,85,,2,"Public Sub CF_AuditSet (sMetricName As String, vValue As Variant)"
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditFail,Sub,Public,87,95,,2,"Public Sub CF_AuditFail (vErrorNumber As Variant, sErrorMessage As String)"
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditEnd,Sub,Public,97,121,,1,Public Sub CF_AuditEnd (Optional sStatus As Variant)
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditWriteCurrentRun,Sub,Public,123,152,,0,Public Sub CF_AuditWriteCurrentRun ()
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditClearHistory,Sub,Public,154,170,,0,Public Sub CF_AuditClearHistory ()
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditGetRunId,Function,Public,172,174,String,0,Public Function CF_AuditGetRunId () As String
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditDurationSeconds,Function,Public,176,191,Double,0,Public Function CF_AuditDurationSeconds () As Double
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditEnsureSheet,Sub,Private,193,215,,1,Private Sub CF_AuditEnsureSheet (oDoc As Object)
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditNextRow,Function,Private,217,227,Long,1,Private Function CF_AuditNextRow (oSheet As Object) As Long
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditCreateRunId,Function,Private,229,234,String,0,Private Function CF_AuditCreateRunId () As String
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditGetProfileName,Function,Private,236,247,String,0,Private Function CF_AuditGetProfileName () As String
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditGetDocumentName,Function,Private,249,261,String,0,Private Function CF_AuditGetDocumentName () As String
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditSerializeMetrics,Function,Private,263,274,String,0,Private Function CF_AuditSerializeMetrics () As String
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditMetricIndexOf,Function,Private,276,290,Long,1,Private Function CF_AuditMetricIndexOf (sMetricName As String) As Long
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditWriteCell,Sub,Private,292,294,,4,"Private Sub CF_AuditWriteCell (oSheet As Object, col As Long, row As Long, value As Variant)"
+CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditFormatSheet,Sub,Private,296,313,,1,Private Sub CF_AuditFormatSheet (oSheet As Object)
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_EnsureComparatorsSheet,Function,Public,18,30,Object,1,Public Function CF_EnsureComparatorsSheet (oDoc As Object) As Object
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_WriteDefaultComparatorConfig,Sub,Public,32,54,,1,Public Sub CF_WriteDefaultComparatorConfig (oSheet As Object)
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_LoadComparatorConfig,Sub,Public,56,94,,1,Public Sub CF_LoadComparatorConfig (oDoc As Object)
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_ResolveComparatorConfig,Function,Public,96,121,Boolean,5,"Public Function CF_ResolveComparatorConfig (headerName As String, ByRef comparatorType As String, ByRef tolerance As Double, ByRef hasTolerance As Boolean, ByRef source As String) As Boolean"
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_ReloadComparatorConfig,Sub,Public,123,127,,0,Public Sub CF_ReloadComparatorConfig ()
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_OpenComparatorConfig,Sub,Public,129,133,,0,Public Sub CF_OpenComparatorConfig ()
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_RunComparatorConfigTests,Sub,Public,135,168,,0,Public Sub CF_RunComparatorConfigTests ()
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_FindRule,Function,Private,170,181,Long,2,"Private Function CF_CC_FindRule (profileName As String, columnName As String) As Long"
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_ToBoolean,Function,Private,183,187,Boolean,1,Private Function CF_CC_ToBoolean (v As String) As Boolean
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_TryParseDouble,Function,Private,189,201,Boolean,2,"Private Function CF_CC_TryParseDouble (v As String, ByRef result As Double) As Boolean"
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_WriteRow,Sub,Private,203,210,,8,"Private Sub CF_CC_WriteRow (oSheet As Object, rowIndex As Long, enabled As String, profileName As String, columnName As String, comparatorType As String, tolerance As String, comment As String)"
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_SetCell,Sub,Private,212,214,,4,"Private Sub CF_CC_SetCell (oSheet As Object, col As Long, row As Long, value As Variant)"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TypedValuesEqual,Function,Public,16,56,Boolean,5,"Public Function CF_TypedValuesEqual (oldRaw As Variant, newRaw As Variant, headerName As String, ByRef comparatorUsed As String, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_ComparatorTypeForHeader,Function,Public,58,79,String,3,"Public Function CF_ComparatorTypeForHeader (headerName As String, oldRaw As Variant, newRaw As Variant) As String"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TextEqual,Function,Public,81,87,Boolean,3,"Public Function CF_TextEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_NumberEqual,Function,Public,89,99,Boolean,4,"Public Function CF_NumberEqual (a As Variant, b As Variant, tolerance As Double, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_DateEqual,Function,Public,101,111,Boolean,4,"Public Function CF_DateEqual (a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_BooleanEqual,Function,Public,113,119,Boolean,3,"Public Function CF_BooleanEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksNumeric,Function,Public,121,124,Boolean,1,Public Function CF_LooksNumeric (v As Variant) As Boolean
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksDate,Function,Public,126,132,Boolean,1,Public Function CF_LooksDate (v As Variant) As Boolean
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksBoolean,Function,Public,134,136,Boolean,1,Public Function CF_LooksBoolean (v As Variant) As Boolean
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TryParseNumber,Function,Public,138,166,Boolean,2,"Public Function CF_TryParseNumber (v As Variant, ByRef result As Double) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TryParseDateSerial,Function,Public,168,182,Boolean,2,"Public Function CF_TryParseDateSerial (v As Variant, ByRef result As Double) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_BooleanCode,Function,Public,184,195,Integer,1,Public Function CF_BooleanCode (v As Variant) As Integer
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_PercentToNumber,Function,Public,197,206,Variant,1,Public Function CF_PercentToNumber (v As Variant) As Variant
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_CurrencyToNumber,Function,Public,208,211,Variant,1,Public Function CF_CurrencyToNumber (v As Variant) As Variant
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetNumericTolerance,Function,Public,213,215,Double,0,Public Function CF_GetNumericTolerance () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetPercentTolerance,Function,Public,217,219,Double,0,Public Function CF_GetPercentTolerance () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetCurrencyTolerance,Function,Public,221,223,Double,0,Public Function CF_GetCurrencyTolerance () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetDateToleranceDays,Function,Public,225,227,Double,0,Public Function CF_GetDateToleranceDays () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_RunTypedComparatorTests,Sub,Public,229,244,,0,Public Sub CF_RunTypedComparatorTests ()
+CompareFramework_Config,CompareFramework_Config.bas,LoadCompareConfig,Sub,Public,5,38,,1,Public Sub LoadCompareConfig (oDoc As Object)
+CompareFramework_Config,CompareFramework_Config.bas,EnsureConfigSheet,Function,Public,40,53,Object,1,Public Function EnsureConfigSheet (oDoc As Object) As Object
+CompareFramework_Config,CompareFramework_Config.bas,WriteDefaultConfig,Sub,Public,55,85,,1,Public Sub WriteDefaultConfig (oSheet As Object)
+CompareFramework_Config,CompareFramework_Config.bas,EnsureRulesSheet,Function,Public,88,101,Object,1,Public Function EnsureRulesSheet (oDoc As Object) As Object
+CompareFramework_Config,CompareFramework_Config.bas,WriteDefaultRulesSheet,Sub,Public,103,146,,1,Public Sub WriteDefaultRulesSheet (oSheet As Object)
+CompareFramework_Config,CompareFramework_Config.bas,NormalizeCompareValue,Function,Public,148,161,String,1,Public Function NormalizeCompareValue (valueText As String) As String
+CompareFramework_Config,CompareFramework_Config.bas,NormalizeSpaces,Function,Public,163,170,String,1,Public Function NormalizeSpaces (valueText As String) As String
+CompareFramework_Config,CompareFramework_Config.bas,IgnoreThisEmptyChange,Function,Public,172,178,Boolean,2,"Public Function IgnoreThisEmptyChange (oldCompare As String, newCompare As String) As Boolean"
+CompareFramework_Config,CompareFramework_Config.bas,ColumnIsIgnored,Function,Public,180,182,Boolean,1,Public Function ColumnIsIgnored (headerName As String) As Boolean
+CompareFramework_Config,CompareFramework_Config.bas,TokenInList,Function,Public,184,189,Boolean,2,"Public Function TokenInList (token As String, listText As String) As Boolean"
+CompareFramework_Config,CompareFramework_Config.bas,NormalizeList,Function,Public,191,201,String,1,Public Function NormalizeList (listText As String) As String
+CompareFramework_Config,CompareFramework_Config.bas,ToBoolean,Function,Public,203,207,Boolean,1,Public Function ToBoolean (valueText As String) As Boolean
+CompareFramework_Config,CompareFramework_Config.bas,FindIdColumn,Function,Public,209,219,Long,1,Public Function FindIdColumn (headers As Variant) As Long
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextReset,Sub,Public,23,32,,0,Public Sub CF_ContextReset ()
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextInitIfNeeded,Sub,Public,34,38,,0,Public Sub CF_ContextInitIfNeeded ()
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextSet,Sub,Public,40,64,,2,"Public Sub CF_ContextSet (sKey As String, vValue As Variant)"
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextGet,Function,Public,66,79,String,2,"Public Function CF_ContextGet (sKey As String, Optional sDefault As Variant) As String"
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextHas,Function,Public,81,84,Boolean,1,Public Function CF_ContextHas (sKey As String) As Boolean
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextCount,Function,Public,86,89,Long,0,Public Function CF_ContextCount () As Long
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextDumpToSheet,Sub,Public,91,123,,0,Public Sub CF_ContextDumpToSheet ()
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextBeginRun,Sub,Public,125,138,,1,Public Sub CF_ContextBeginRun (Optional sRunName As Variant)
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextEndRun,Sub,Public,140,151,,1,Public Sub CF_ContextEndRun (Optional sStatus As Variant)
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextIndexOf,Function,Private,153,171,Long,1,Private Function CF_ContextIndexOf (sKey As String) As Long
+CompareFramework_Context,CompareFramework_Context.bas,CF_DeleteSheetIfExists_Context,Sub,Private,173,177,,2,"Private Sub CF_DeleteSheetIfExists_Context (oDoc As Object, sName As String)"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_CompareAllSheetsInMemory,Sub,Public,8,78,,0,Public Sub CF_CompareAllSheetsInMemory ()
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_CompareDetectedPairsMemory,Function,Public,80,103,Long,11,"Public Function CF_CompareDetectedPairsMemory (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_CompareFallbackMemory,Function,Public,105,130,Long,11,"Public Function CF_CompareFallbackMemory (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_CompareSheetPairMemory,Sub,Public,132,207,,12,"Public Sub CF_CompareSheetPairMemory (oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_ReadUsedData,Function,Public,209,217,Variant,1,Public Function CF_ReadUsedData (oSheet As Object) As Variant
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_MemoryHeaders,Function,Public,219,229,Variant,1,Public Function CF_MemoryHeaders (data As Variant) As Variant
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_BuildMemoryIdIndex,Sub,Public,231,260,,5,"Public Sub CF_BuildMemoryIdIndex (data As Variant, idCol As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_CompareMemoryRows,Function,Public,262,299,Long,10,"Public Function CF_CompareMemoryRows (oldData As Variant, newData As Variant, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_MemoryFullRow,Function,Public,301,314,String,3,"Public Function CF_MemoryFullRow (data As Variant, headers As Variant, rowIndex As Long) As String"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_ReportMemoryDuplicates,Function,Public,316,333,Long,7,"Public Function CF_ReportMemoryDuplicates (ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String) As Long"
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_MemoryValueText,Function,Public,335,341,String,1,Public Function CF_MemoryValueText (value As Variant) As String
+CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,CF_RunMemoryEngineTests,Sub,Public,343,372,,0,Public Sub CF_RunMemoryEngineTests ()
+CompareFramework_Index,CompareFramework_Index.bas,BuildIdIndex,Sub,Public,5,30,,6,"Public Sub BuildIdIndex (oSheet As Object, idCol As Long, lastRow As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)"
+CompareFramework_Index,CompareFramework_Index.bas,FindRowInIndex,Function,Public,32,57,Long,4,"Public Function FindRowInIndex (ids As Variant, rows As Variant, count As Long, idValue As String) As Long"
+CompareFramework_Index,CompareFramework_Index.bas,QuickSortIndex,Sub,Public,59,88,,4,"Public Sub QuickSortIndex (ByRef ids As Variant, ByRef rows As Variant, ByVal first As Long, ByVal last As Long)"
+CompareFramework_Index,CompareFramework_Index.bas,ReportDuplicateIds,Function,Public,90,109,Long,7,"Public Function ReportDuplicateIds (ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String) As Long"
+CompareFramework_Index,CompareFramework_Index.bas,ReadHeaders,Function,Public,111,121,Variant,2,"Public Function ReadHeaders (oSheet As Object, lastCol As Long) As Variant"
+CompareFramework_Index,CompareFramework_Index.bas,HeaderIndex,Function,Public,123,132,Long,2,"Public Function HeaderIndex (headers As Variant, headerName As String) As Long"
+CompareFramework_Main,CompareFramework_Main.bas,ComparerToutesLesFeuilles_Legacy,Sub,Public,5,49,,0,Public Sub ComparerToutesLesFeuilles_Legacy ()
+CompareFramework_Main,CompareFramework_Main.bas,ComparerToutesLesFeuilles,Sub,Public,51,53,,0,Public Sub ComparerToutesLesFeuilles ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneA,Sub,Public,55,69,,0,Public Sub CF_RunMilestoneA ()
+CompareFramework_Main,CompareFramework_Main.bas,CompareDetectedPairs,Function,Public,71,95,Long,11,"Public Function CompareDetectedPairs (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long"
+CompareFramework_Main,CompareFramework_Main.bas,CompareFallbackTwoSheets,Function,Public,97,123,Long,11,"Public Function CompareFallbackTwoSheets (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long"
+CompareFramework_Main,CompareFramework_Main.bas,CompareSheetPair,Sub,Public,125,205,,12,"Public Sub CompareSheetPair (oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)"
+CompareFramework_Main,CompareFramework_Main.bas,FrameworkManifest,Function,Public,207,209,String,0,Public Function FrameworkManifest () As String
+CompareFramework_Main,CompareFramework_Main.bas,GetFrameworkVersion,Function,Public,211,213,String,0,Public Function GetFrameworkVersion () As String
+CompareFramework_Main,CompareFramework_Main.bas,DiagnosticFramework,Sub,Public,215,218,,0,Public Sub DiagnosticFramework ()
+CompareFramework_Main,CompareFramework_Main.bas,ComparerToutesLesFeuilles_Contextualisee,Sub,Public,226,242,,0,Public Sub ComparerToutesLesFeuilles_Contextualisee ()
+CompareFramework_Main,CompareFramework_Main.bas,DiagnosticFramework_Contextualise,Sub,Public,244,250,,0,Public Sub DiagnosticFramework_Contextualise ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunAudited,Sub,Public,257,293,,0,Public Sub CF_RunAudited ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunPerformanceProfiled,Sub,Public,299,335,,0,Public Sub CF_RunPerformanceProfiled ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB,Sub,Public,338,352,,0,Public Sub CF_RunMilestoneB ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_Configured,Sub,Public,359,378,,0,Public Sub CF_RunMilestoneB_Configured ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_ConfigTests,Sub,Public,380,383,,0,Public Sub CF_RunMilestoneB_ConfigTests ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_Final,Sub,Public,390,412,,0,Public Sub CF_RunMilestoneB_Final ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneC,Sub,Public,419,437,,0,Public Sub CF_RunMilestoneC ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneC_Final,Sub,Public,444,466,,0,Public Sub CF_RunMilestoneC_Final ()
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfReset,Sub,Public,27,38,,0,Public Sub CF_PerfReset ()
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfStart,Sub,Public,40,47,,1,Public Sub CF_PerfStart (sLabel As String)
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfStop,Function,Public,49,60,Double,1,Public Function CF_PerfStop (sLabel As String) As Double
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfRecordPair,Sub,Public,62,82,,5,"Public Sub CF_PerfRecordPair (sPairName As String, oldRows As Long, newRows As Long, columnCount As Long, elapsedSeconds As Double)"
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfWriteReport,Sub,Public,84,127,,0,Public Sub CF_PerfWriteReport ()
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_ReadSheetDataArray,Function,Public,129,135,Variant,1,Public Function CF_ReadSheetDataArray (oSheet As Object) As Variant
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_RunPerformanceBenchmark,Sub,Public,137,160,,0,Public Sub CF_RunPerformanceBenchmark ()
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfIndexOf,Function,Private,162,168,Long,1,Private Function CF_PerfIndexOf (sLabel As String) As Long
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfAddLabel,Function,Private,170,185,Long,1,Private Function CF_PerfAddLabel (sLabel As String) As Long
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfCell,Sub,Private,187,189,,4,"Private Sub CF_PerfCell (oSheet As Object, col As Long, row As Long, v As Variant)"
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_EnsureProfilesSheet,Function,Public,16,28,Object,1,Public Function CF_EnsureProfilesSheet (oDoc As Object) As Object
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_WriteDefaultProfiles,Sub,Public,30,49,,1,Public Sub CF_WriteDefaultProfiles (oSheet As Object)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ApplyProfile,Sub,Public,51,82,,1,Public Sub CF_ApplyProfile (sProfileName As String)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_SaveCurrentConfigAsProfile,Sub,Public,84,115,,1,Public Sub CF_SaveCurrentConfigAsProfile (sProfileName As String)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ListProfiles,Sub,Public,117,121,,0,Public Sub CF_ListProfiles ()
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_RunWithProfile,Sub,Public,123,138,,1,Public Sub CF_RunWithProfile (sProfileName As String)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_WriteProfileHeader,Sub,Private,140,148,,1,Private Sub CF_WriteProfileHeader (oSheet As Object)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_WriteProfileRow,Sub,Private,150,158,,9,"Private Sub CF_WriteProfileRow (oSheet As Object, rowIndex As Long, profileName As String, ignoreColumns As String, idAliases As String, ignoreCase As String, normalizeSpaces As String, ignoreEmptyChanges As String, description As String)"
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_FindProfileRow,Function,Private,160,173,Long,2,"Private Function CF_FindProfileRow (oSheet As Object, sProfileName As String) As Long"
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_SetConfigValue,Sub,Private,175,188,,3,"Private Sub CF_SetConfigValue (oSheet As Object, sKey As String, sValue As String)"
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_GetConfigValue,Function,Private,190,202,String,2,"Private Function CF_GetConfigValue (oSheet As Object, sKey As String) As String"
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_RunEndToEndScenario,Sub,Public,20,36,,0,Public Sub CF_RunEndToEndScenario ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_ValidateExpectedReport,Sub,Public,38,128,,0,Public Sub CF_ValidateExpectedReport ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_RunGlobalRegression,Sub,Public,130,147,,0,Public Sub CF_RunGlobalRegression ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_BuildQualityDashboard,Sub,Public,149,180,,0,Public Sub CF_BuildQualityDashboard ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityCreateScenario,Sub,Private,182,204,,1,Private Sub CF_QualityCreateScenario (oDoc As Object)
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityCreateExpected,Sub,Private,206,229,,1,Private Sub CF_QualityCreateExpected (oDoc As Object)
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityFindReportEntry,Function,Private,231,261,Boolean,4,"Private Function CF_QualityFindReportEntry (oReport As Object, expectedType As String, expectedId As String, expectedColumn As String) As Boolean"
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualitySheetStatus,Function,Private,263,294,String,2,"Private Function CF_QualitySheetStatus (oDoc As Object, sSheetName As String) As String"
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityGlobalStatus,Function,Private,296,305,String,1,Private Function CF_QualityGlobalStatus (oSheet As Object) As String
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityDashboardRow,Sub,Private,307,311,,5,"Private Sub CF_QualityDashboardRow (oSheet As Object, row As Long, labelText As String, statusText As String, detailText As String)"
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityWriteHeaders,Sub,Private,313,320,,1,Private Sub CF_QualityWriteHeaders (oSheet As Object)
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityWriteRow,Sub,Private,322,329,,8,"Private Sub CF_QualityWriteRow (oSheet As Object, row As Long, idValue As String, nameValue As String, amountValue As String, rateValue As String, statusValue As String, dateValue As String)"
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityRecreateSheet,Sub,Private,331,336,,2,"Private Sub CF_QualityRecreateSheet (oDoc As Object, sName As String)"
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityFormat,Sub,Private,338,347,,1,Private Sub CF_QualityFormat (oSheet As Object)
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunTypedRegressionSuite,Sub,Public,17,67,,0,Public Sub CF_RunTypedRegressionSuite ()
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ValidateComparatorRules,Sub,Public,69,150,,0,Public Sub CF_ValidateComparatorRules ()
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_BuildComparatorCoverageReport,Sub,Public,152,194,,0,Public Sub CF_BuildComparatorCoverageReport ()
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunMilestoneB_FinalTests,Sub,Public,196,204,,0,Public Sub CF_RunMilestoneB_FinalTests ()
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ReliabilityAddCase,Sub,Private,206,222,,8,"Private Sub CF_ReliabilityAddCase (oSheet As Object, ByRef row As Long, ByRef total As Long, ByRef passed As Long, comparatorType As String, oldValue As Variant, newValue As Variant, expected As Boolean)"
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ReliabilityWriteHeader,Sub,Private,224,231,,1,Private Sub CF_ReliabilityWriteHeader (oSheet As Object)
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ReliabilityIsSupportedType,Function,Private,233,240,Boolean,1,Private Function CF_ReliabilityIsSupportedType (sType As String) As Boolean
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ReliabilityRecreateSheet,Sub,Private,242,247,,2,"Private Sub CF_ReliabilityRecreateSheet (oDoc As Object, sName As String)"
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ReliabilityFormat,Sub,Private,249,260,,1,Private Sub CF_ReliabilityFormat (oSheet As Object)
+CompareFramework_Report,CompareFramework_Report.bas,PrepareSheet,Function,Public,5,15,Object,2,"Public Function PrepareSheet (oDoc As Object, sheetName As String) As Object"
+CompareFramework_Report,CompareFramework_Report.bas,WriteReportHeader,Sub,Public,17,28,,2,"Public Sub WriteReportHeader (oSheet As Object, rowIndex As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,WriteReportRow,Sub,Public,30,41,,11,"Public Sub WriteReportRow (oSheet As Object, ByRef rowIndex As Long, pairName As String, idValue As String, statusValue As String, colName As String, oldRow As String, newRow As String, oldValue As String, newValue As String, messageText As String)"
+CompareFramework_Report,CompareFramework_Report.bas,WriteStatsHeader,Sub,Public,43,53,,2,"Public Sub WriteStatsHeader (oSheet As Object, rowIndex As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,WriteStatsRow,Sub,Public,55,65,,11,"Public Sub WriteStatsRow (oSheet As Object, ByRef rowIndex As Long, pairName As String, addedRows As Long, removedRows As Long, changedRows As Long, changedCells As Long, duplicates As Long, oldCount As Long, newCount As Long, issues As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,WriteGlobalSummary,Sub,Public,67,96,,9,"Public Sub WriteGlobalSummary (oSheet As Object, ByRef rowIndex As Long, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,WriteDashboard,Sub,Public,98,157,,8,"Public Sub WriteDashboard (oSheet As Object, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,BuildActionPlan,Sub,Public,159,202,,3,"Public Sub BuildActionPlan (oReport As Object, oAction As Object, lastReportRow As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,WriteActionHeader,Sub,Public,204,215,,2,"Public Sub WriteActionHeader (oSheet As Object, rowIndex As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,IsActionableStatus,Function,Public,217,219,Boolean,1,Public Function IsActionableStatus (statusValue As String) As Boolean
+CompareFramework_Report,CompareFramework_Report.bas,ActionPriority,Function,Public,221,240,String,2,"Public Function ActionPriority (statusValue As String, colName As String) As String"
+CompareFramework_Report,CompareFramework_Report.bas,ActionRecommendation,Function,Public,242,261,String,3,"Public Function ActionRecommendation (statusValue As String, colName As String, messageText As String) As String"
+CompareFramework_Report,CompareFramework_Report.bas,WriteAuditLog,Sub,Public,263,299,,9,"Public Sub WriteAuditLog (oSheet As Object, pairCount As Long, totalAdded As Long, totalRemoved As Long, totalChangedRows As Long, totalChangedCells As Long, totalDuplicates As Long, totalIssues As Long, lastReportRow As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,FormatActionPlan,Sub,Public,301,326,,1,Public Sub FormatActionPlan (oSheet As Object)
+CompareFramework_Report,CompareFramework_Report.bas,FormatAuditLog,Sub,Public,328,337,,1,Public Sub FormatAuditLog (oSheet As Object)
+CompareFramework_Report,CompareFramework_Report.bas,FormatDashboard,Sub,Public,339,351,,1,Public Sub FormatDashboard (oSheet As Object)
+CompareFramework_Report,CompareFramework_Report.bas,FormatReport,Sub,Public,353,386,,2,"Public Sub FormatReport (oSheet As Object, lastRow As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,FormatStats,Sub,Public,388,399,,2,"Public Sub FormatStats (oSheet As Object, lastRow As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,ApplyOptionalAutoFilter,Sub,Public,401,408,,3,"Public Sub ApplyOptionalAutoFilter (oSheet As Object, lastCol As Long, lastRow As Long)"
+CompareFramework_Report,CompareFramework_Report.bas,ExporterRapportHTML,Sub,Public,414,439,,0,Public Sub ExporterRapportHTML ()
+CompareFramework_Report,CompareFramework_Report.bas,BuildHtmlReport,Function,Public,441,487,String,1,Public Function BuildHtmlReport (oDoc As Object) As String
+CompareFramework_Report,CompareFramework_Report.bas,HtmlStyleBlock,Function,Public,489,520,String,0,Public Function HtmlStyleBlock () As String
+CompareFramework_Report,CompareFramework_Report.bas,HtmlScriptBlock,Function,Public,522,531,String,0,Public Function HtmlScriptBlock () As String
+CompareFramework_Report,CompareFramework_Report.bas,SheetToHtmlSection,Function,Public,533,548,String,5,"Public Function SheetToHtmlSection (oDoc As Object, sSheetName As String, sAnchor As String, sTitle As String, bFilter As Boolean) As String"
+CompareFramework_Report,CompareFramework_Report.bas,SheetToHtmlTableOnly,Function,Public,550,594,String,4,"Public Function SheetToHtmlTableOnly (oDoc As Object, sSheetName As String, sTableId As String, bHeader As Boolean) As String"
+CompareFramework_Report,CompareFramework_Report.bas,HtmlCssClassForCell,Function,Public,596,615,String,1,Public Function HtmlCssClassForCell (sValue As String) As String
+CompareFramework_Rules,CompareFramework_Rules.bas,LoadCompareRules,Sub,Public,5,45,,1,Public Sub LoadCompareRules (oDoc As Object)
+CompareFramework_Rules,CompareFramework_Rules.bas,ShouldIgnoreDifference,Function,Public,47,65,Boolean,7,"Public Function ShouldIgnoreDifference (pairName As String, idValue As String, headerName As String, oldValue As String, newValue As String, oldCompare As String, newCompare As String) As Boolean"
+CompareFramework_Rules,CompareFramework_Rules.bas,RuleAppliesToColumn,Function,Public,67,71,Boolean,2,"Public Function RuleAppliesToColumn (ruleIndex As Long, headerName As String) As Boolean"
+CompareFramework_Rules,CompareFramework_Rules.bas,RuleAppliesToScope,Function,Public,73,77,Boolean,2,"Public Function RuleAppliesToScope (ruleIndex As Long, pairName As String) As Boolean"
+CompareFramework_Rules,CompareFramework_Rules.bas,EvaluateDifferenceRule,Function,Public,79,101,Boolean,5,"Public Function EvaluateDifferenceRule (ruleIndex As Long, oldValue As String, newValue As String, oldCompare As String, newCompare As String) As Boolean"
+CompareFramework_Rules,CompareFramework_Rules.bas,ValuesAreEquivalentByList,Function,Public,103,112,Boolean,3,"Public Function ValuesAreEquivalentByList (oldCompare As String, newCompare As String, listText As String) As Boolean"
+CompareFramework_Rules,CompareFramework_Rules.bas,ValuesAreWithinNumericTolerance,Function,Public,114,124,Boolean,3,"Public Function ValuesAreWithinNumericTolerance (oldCompare As String, newCompare As String, toleranceText As String) As Boolean"
+CompareFramework_Rules,CompareFramework_Rules.bas,CompareRowCellsDetailed,Function,Public,126,159,Long,10,"Public Function CompareRowCellsDetailed (oOld As Object, oNew As Object, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long"
+CompareFramework_Rules,CompareFramework_Rules.bas,ReportColumnDifferences,Sub,Public,161,185,,6,"Public Sub ReportColumnDifferences (oldHeaders As Variant, newHeaders As Variant, oReport As Object, ByRef reportRow As Long, pairName As String, ByRef pairIssues As Long)"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunAllBusinessScenarios,Sub,Public,23,42,,0,Public Sub CF_RunAllBusinessScenarios ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunFinanceScenario,Sub,Public,44,62,,0,Public Sub CF_RunFinanceScenario ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunHRScenario,Sub,Public,64,81,,0,Public Sub CF_RunHRScenario ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunERPScenario,Sub,Public,83,100,,0,Public Sub CF_RunERPScenario ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_BuildReleaseReadiness,Sub,Public,102,140,,0,Public Sub CF_BuildReleaseReadiness ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioCreateFinance,Sub,Private,142,161,,1,Private Sub CF_ScenarioCreateFinance (oDoc As Object)
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioCreateHR,Sub,Private,163,182,,1,Private Sub CF_ScenarioCreateHR (oDoc As Object)
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioCreateERP,Sub,Private,184,204,,1,Private Sub CF_ScenarioCreateERP (oDoc As Object)
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioReportContains,Function,Private,206,243,Boolean,3,"Private Function CF_ScenarioReportContains (expectedType As String, expectedId As String, expectedColumn As String) As Boolean"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioPrepareResults,Sub,Private,245,255,,1,Private Sub CF_ScenarioPrepareResults (oDoc As Object)
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioAppendResult,Sub,Private,257,274,,4,"Private Sub CF_ScenarioAppendResult (oDoc As Object, scenarioName As String, ok As Boolean, detailText As String)"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioSheetStatus,Function,Private,276,307,String,2,"Private Function CF_ScenarioSheetStatus (oDoc As Object, sheetName As String) As String"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioWriteHeaders,Sub,Private,309,314,,2,"Private Sub CF_ScenarioWriteHeaders (oSheet As Object, headers As Variant)"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioWriteRow,Sub,Private,316,321,,3,"Private Sub CF_ScenarioWriteRow (oSheet As Object, row As Long, values As Variant)"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioReadinessRow,Sub,Private,323,327,,5,"Private Sub CF_ScenarioReadinessRow (oSheet As Object, row As Long, labelText As String, statusText As String, detailText As String)"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioRecreateSheet,Sub,Private,329,334,,2,"Private Sub CF_ScenarioRecreateSheet (oDoc As Object, sheetName As String)"
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioFormat,Sub,Private,336,343,,1,Private Sub CF_ScenarioFormat (oSheet As Object)
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_CreateTestWorkbook,Sub,Public,19,40,,0,Public Sub CF_CreateTestWorkbook ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunAllTests,Sub,Public,42,85,,0,Public Sub CF_RunAllTests ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_FillOldTestSheet,Sub,Private,87,112,,1,Private Sub CF_FillOldTestSheet (oSheet As Object)
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_FillNewTestSheet,Sub,Private,114,139,,1,Private Sub CF_FillNewTestSheet (oSheet As Object)
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_TestHeaders,Function,Private,141,152,Boolean,1,Private Function CF_TestHeaders (oDoc As Object) As Boolean
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_TestAddedRow,Function,Private,154,156,Boolean,1,Private Function CF_TestAddedRow (oDoc As Object) As Boolean
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_TestDeletedRow,Function,Private,158,161,Boolean,1,Private Function CF_TestDeletedRow (oDoc As Object) As Boolean
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_TestModifiedRow,Function,Private,163,180,Boolean,1,Private Function CF_TestModifiedRow (oDoc As Object) As Boolean
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_TestUnchangedRow,Function,Private,182,202,Boolean,1,Private Function CF_TestUnchangedRow (oDoc As Object) As Boolean
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_FindIdInSheet,Function,Private,204,221,Long,2,"Private Function CF_FindIdInSheet (oSheet As Object, sId As String) As Long"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_WriteTestHeader,Sub,Private,223,227,,1,Private Sub CF_WriteTestHeader (oSheet As Object)
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_AddTestResult,Sub,Private,229,242,,6,"Private Sub CF_AddTestResult (oSheet As Object, ByRef row As Long, sName As String, bOk As Boolean, ByRef total As Long, ByRef passed As Long)"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_WriteTestSummary,Sub,Private,244,252,,4,"Private Sub CF_WriteTestSummary (oSheet As Object, row As Long, total As Long, passed As Long)"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_FormatTestResults,Sub,Private,254,265,,1,Private Sub CF_FormatTestResults (oSheet As Object)
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_SetCell,Sub,Private,267,269,,4,"Private Sub CF_SetCell (oSheet As Object, col As Long, row As Long, value As Variant)"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_CreateSheet,Sub,Private,271,275,,2,"Private Sub CF_CreateSheet (oDoc As Object, sName As String)"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_DeleteSheetIfExists,Sub,Private,277,281,,2,"Private Sub CF_DeleteSheetIfExists (oDoc As Object, sName As String)"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunContextTests,Sub,Public,288,328,,0,Public Sub CF_RunContextTests ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_AddContextTestResult,Sub,Private,330,342,,6,"Private Sub CF_AddContextTestResult (oSheet As Object, ByRef row As Long, sName As String, bOk As Boolean, ByRef total As Long, ByRef passed As Long)"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_DeleteSheetIfExists_TestContext,Sub,Private,344,348,,2,"Private Sub CF_DeleteSheetIfExists_TestContext (oDoc As Object, sName As String)"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunProfileTests,Sub,Public,355,377,,0,Public Sub CF_RunProfileTests ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_TestProfileExists,Function,Private,379,388,Boolean,2,"Private Function CF_TestProfileExists (oSheet As Object, profileName As String) As Boolean"
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunValidationTests,Sub,Public,394,402,,0,Public Sub CF_RunValidationTests ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunAuditTests,Sub,Public,409,456,,0,Public Sub CF_RunAuditTests ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunPerformanceTests,Sub,Public,459,479,,0,Public Sub CF_RunPerformanceTests ()
+CompareFramework_Tests,CompareFramework_Tests.bas,CF_RunMilestoneBTests,Sub,Public,482,485,,0,Public Sub CF_RunMilestoneBTests ()
+CompareFramework_Utils,CompareFramework_Utils.bas,FullRowText,Function,Public,48,62,String,3,"Public Function FullRowText (oSheet As Object, headers As Variant, rowIndex As Long) As String"
+CompareFramework_Utils,CompareFramework_Utils.bas,LastUsedRow,Function,Public,64,69,Long,1,Public Function LastUsedRow (oSheet As Object) As Long
+CompareFramework_Utils,CompareFramework_Utils.bas,LastUsedCol,Function,Public,71,76,Long,1,Public Function LastUsedCol (oSheet As Object) As Long
+CompareFramework_Utils,CompareFramework_Utils.bas,CellText,Function,Public,78,86,String,3,"Public Function CellText (oSheet As Object, col As Long, row As Long) As String"
+CompareFramework_Utils,CompareFramework_Utils.bas,SetCell,Sub,Public,88,90,,4,"Public Sub SetCell (oSheet As Object, col As Long, row As Long, valueText As String)"
+CompareFramework_Utils,CompareFramework_Utils.bas,RowNumberText,Function,Public,92,94,String,1,Public Function RowNumberText (rowIndex As Variant) As String
+CompareFramework_Utils,CompareFramework_Utils.bas,NormalizeHeader,Function,Public,96,116,String,1,Public Function NormalizeHeader (valueText As String) As String
+CompareFramework_Utils,CompareFramework_Utils.bas,IsReportOrStatsSheet,Function,Public,118,131,Boolean,1,Public Function IsReportOrStatsSheet (sheetName As String) As Boolean
+CompareFramework_Utils,CompareFramework_Utils.bas,IsOldSheetName,Function,Public,133,137,Boolean,1,Public Function IsOldSheetName (sheetName As String) As Boolean
+CompareFramework_Utils,CompareFramework_Utils.bas,PairBaseName,Function,Public,139,149,String,1,Public Function PairBaseName (sheetName As String) As String
+CompareFramework_Utils,CompareFramework_Utils.bas,FindNewSheetForBase,Function,Public,151,156,String,2,"Public Function FindNewSheetForBase (oSheets As Object, baseName As String) As String"
+CompareFramework_Utils,CompareFramework_Utils.bas,EndsWith,Function,Public,158,164,Boolean,2,"Public Function EndsWith (valueText As String, suffixText As String) As Boolean"
+CompareFramework_Utils,CompareFramework_Utils.bas,HtmlEscape,Function,Public,166,175,String,1,Public Function HtmlEscape (v As Variant) As String
+CompareFramework_Utils,CompareFramework_Utils.bas,GetDocumentFolderPath,Function,Public,177,197,String,0,Public Function GetDocumentFolderPath () As String
+CompareFramework_Utils,CompareFramework_Utils.bas,WriteTextFile,Sub,Public,199,209,,2,"Public Sub WriteTextFile (sUrl As String, sText As String)"
+CompareFramework_Utils,CompareFramework_Utils.bas,IsNumericText,Function,Public,213,218,Boolean,1,Public Function IsNumericText (valueText As String) As Boolean
+CompareFramework_Utils,CompareFramework_Utils.bas,ToNumber,Function,Public,220,229,Double,1,Public Function ToNumber (valueText As String) As Double
+CompareFramework_Utils,CompareFramework_Utils.bas,AbsDiff,Function,Public,231,237,Double,2,"Public Function AbsDiff (a As Double, b As Double) As Double"
+CompareFramework_Utils,CompareFramework_Utils.bas,CF_RoundCompat,Function,Public,239,251,Double,2,"Public Function CF_RoundCompat (vValue As Double, iDecimals As Integer) As Double"
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_ValidateFramework,Function,Public,18,38,Boolean,0,Public Function CF_ValidateFramework () As Boolean
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_ValidateActiveProfile,Function,Public,40,69,Boolean,0,Public Function CF_ValidateActiveProfile () As Boolean
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_PreflightComparison,Function,Public,71,78,Boolean,0,Public Function CF_PreflightComparison () As Boolean
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_RunValidated,Sub,Public,80,102,,0,Public Sub CF_RunValidated ()
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_ValidationBegin,Sub,Private,104,119,,1,Private Sub CF_ValidationBegin (oDoc As Object)
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_ValidationFinish,Sub,Private,121,136,,0,Private Sub CF_ValidationFinish ()
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_LogValidation,Sub,Private,138,149,,3,"Private Sub CF_LogValidation (level As String, component As String, message As String)"
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_CheckRequiredModules,Sub,Private,151,158,,0,Private Sub CF_CheckRequiredModules ()
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_CheckCoreSheets,Sub,Private,160,170,,1,Private Sub CF_CheckCoreSheets (oDoc As Object)
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_CheckConfigurationSheet,Sub,Private,172,181,,1,Private Sub CF_CheckConfigurationSheet (oDoc As Object)
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_CheckRulesSheet,Sub,Private,183,195,,1,Private Sub CF_CheckRulesSheet (oDoc As Object)
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_CheckProfilesSheet,Sub,Private,197,209,,1,Private Sub CF_CheckProfilesSheet (oDoc As Object)
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_CheckSourcePairs,Sub,Private,211,227,,1,Private Sub CF_CheckSourcePairs (oDoc As Object)
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_ProfileExists,Function,Private,229,241,Boolean,2,"Private Function CF_ProfileExists (oSheet As Object, profileName As String) As Boolean"
+CompareFramework_Validation,CompareFramework_Validation.bas,CF_ReadConfigValue,Function,Private,243,260,String,3,"Private Function CF_ReadConfigValue (oDoc As Object, keyName As String, defaultValue As String) As String"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunReferenceMode,Sub,Public,22,41,,0,Public Sub CF_RunReferenceMode ()
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunAgainstReference_MODELE,Sub,Public,43,45,,0,Public Sub CF_RunAgainstReference_MODELE ()
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunAgainstReference,Sub,Public,47,265,,2,"Public Sub CF_RunAgainstReference (referenceSheetName As String, keyColumnName As String)"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_BuildReferencePlan,Sub,Public,267,303,,2,"Public Sub CF_BuildReferencePlan (referenceSheetName As String, keyColumnName As String)"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceIsTargetSheet,Function,Public,305,341,Boolean,2,"Public Function CF_ReferenceIsTargetSheet (sheetName As String, referenceSheetName As String) As Boolean"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceSheetHasKey,Function,Public,343,359,Boolean,2,"Public Function CF_ReferenceSheetHasKey (oSheet As Object, keyColumnName As String) As Boolean"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferencePlanSetStatus,Sub,Public,361,383,,3,"Public Sub CF_ReferencePlanSetStatus (targetName As String, statusText As String, messageText As String)"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceFormatPlan,Sub,Public,385,403,,0,Public Sub CF_ReferenceFormatPlan ()
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceBuildSummary,Sub,Public,405,505,,1,Public Sub CF_ReferenceBuildSummary (oStats As Object)
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceFormatSummary,Sub,Public,507,521,,1,Public Sub CF_ReferenceFormatSummary (oSummary As Object)
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_OpenReferenceLauncher,Sub,Public,527,593,,0,Public Sub CF_OpenReferenceLauncher ()
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunFromLauncher,Sub,Public,595,643,,0,Public Sub CF_RunFromLauncher ()
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunLauncherQuick,Sub,Public,645,647,,0,Public Sub CF_RunLauncherQuick ()
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceTargetSelected,Function,Private,649,670,Boolean,1,Private Function CF_ReferenceTargetSelected (sheetName As String) As Boolean
