@@ -117,7 +117,7 @@ CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneC_Final,Sub,Publi
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfReset,Sub,Public,27,38,,0,Public Sub CF_PerfReset ()
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfStart,Sub,Public,40,47,,1,Public Sub CF_PerfStart (sLabel As String)
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfStop,Function,Public,49,60,Double,1,Public Function CF_PerfStop (sLabel As String) As Double
-CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfRecordPair,Sub,Public,62,82,,5,"Public Sub CF_PerfRecordPair (sPairName As String, oldRows As Long, newRows As Long, columnCount As Long, elapsedSeconds As Double)"
+CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfRecordPair,Sub,Private,62,82,,5,"Private Sub CF_PerfRecordPair (sPairName As String, oldRows As Long, newRows As Long, columnCount As Long, elapsedSeconds As Double)"
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfWriteReport,Sub,Public,84,127,,0,Public Sub CF_PerfWriteReport ()
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_ReadSheetDataArray,Function,Public,129,135,Variant,1,Public Function CF_ReadSheetDataArray (oSheet As Object) As Variant
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_RunPerformanceBenchmark,Sub,Public,137,160,,0,Public Sub CF_RunPerformanceBenchmark ()

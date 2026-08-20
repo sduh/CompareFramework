@@ -814,7 +814,7 @@ Public Function CF_PerfStop(sLabel As String) As Double
     CF_PerfStop = elapsed
 End Function
 
-Public Sub CF_PerfRecordPair(sPairName As String, oldRows As Long, newRows As Long, columnCount As Long, elapsedSeconds As Double)
+Private Sub CF_PerfRecordPair(sPairName As String, oldRows As Long, newRows As Long, columnCount As Long, elapsedSeconds As Double)
     If CF_PERF_PAIR_COUNT = 0 Then
         ReDim CF_PERF_PAIR_NAMES(0 To 0)
         ReDim CF_PERF_PAIR_OLD_ROWS(0 To 0)

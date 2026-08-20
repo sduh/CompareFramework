@@ -1067,7 +1067,7 @@
       "module": "CompareFramework_Performance",
       "module_path": "CompareFramework_Performance.bas",
       "name": "CF_PerfRecordPair",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 62
     },

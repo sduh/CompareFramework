@@ -319,19 +319,6 @@
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
     },
     {
-      "id": "CompareFramework_Performance.CF_PerfRecordPair",
-      "module": "CompareFramework_Performance",
-      "module_path": "CompareFramework_Performance.bas",
-      "procedure": "CF_PerfRecordPair",
-      "kind": "Sub",
-      "line": 62,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
       "id": "CompareFramework_Profiles.CF_WriteDefaultProfiles",
       "module": "CompareFramework_Profiles",
       "module_path": "CompareFramework_Profiles.bas",
@@ -1100,12 +1087,12 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 183,
+    "public_procedure_count": 182,
     "cross_module_used_public_count": 99,
-    "candidate_count": 84,
+    "candidate_count": 83,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 54,
+      "local-only": 53,
       "zero-caller-review": 30
     }
   }
