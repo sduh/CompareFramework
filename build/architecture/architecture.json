@@ -1529,10 +1529,10 @@
         {
           "name": "WriteDefaultConfig",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 55,
           "end_line": 85,
-          "signature": "Public Sub WriteDefaultConfig (oSheet As Object)",
+          "signature": "Private Sub WriteDefaultConfig (oSheet As Object)",
           "return_type": null,
           "parameters": [
             {
@@ -1549,10 +1549,10 @@
         {
           "name": "EnsureRulesSheet",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 88,
           "end_line": 101,
-          "signature": "Public Function EnsureRulesSheet (oDoc As Object) As Object",
+          "signature": "Private Function EnsureRulesSheet (oDoc As Object) As Object",
           "return_type": "Object",
           "parameters": [
             {
@@ -1569,10 +1569,10 @@
         {
           "name": "WriteDefaultRulesSheet",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 103,
           "end_line": 146,
-          "signature": "Public Sub WriteDefaultRulesSheet (oSheet As Object)",
+          "signature": "Private Sub WriteDefaultRulesSheet (oSheet As Object)",
           "return_type": null,
           "parameters": [
             {
@@ -1678,10 +1678,10 @@
         {
           "name": "TokenInList",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 184,
           "end_line": 189,
-          "signature": "Public Function TokenInList (token As String, listText As String) As Boolean",
+          "signature": "Private Function TokenInList (token As String, listText As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -9403,7 +9403,7 @@
         "module": "CompareFramework_Config",
         "module_path": "CompareFramework_Config.bas",
         "name": "WriteDefaultConfig",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 55
       },
@@ -9412,7 +9412,7 @@
         "module": "CompareFramework_Config",
         "module_path": "CompareFramework_Config.bas",
         "name": "EnsureRulesSheet",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 88
       },
@@ -9421,7 +9421,7 @@
         "module": "CompareFramework_Config",
         "module_path": "CompareFramework_Config.bas",
         "name": "WriteDefaultRulesSheet",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 103
       },
@@ -9466,7 +9466,7 @@
         "module": "CompareFramework_Config",
         "module_path": "CompareFramework_Config.bas",
         "name": "TokenInList",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 184
       },
@@ -19486,58 +19486,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Config.WriteDefaultConfig",
-        "module": "CompareFramework_Config",
-        "module_path": "CompareFramework_Config.bas",
-        "procedure": "WriteDefaultConfig",
-        "kind": "Sub",
-        "line": 55,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Config.EnsureRulesSheet",
-        "module": "CompareFramework_Config",
-        "module_path": "CompareFramework_Config.bas",
-        "procedure": "EnsureRulesSheet",
-        "kind": "Function",
-        "line": 88,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Config.WriteDefaultRulesSheet",
-        "module": "CompareFramework_Config",
-        "module_path": "CompareFramework_Config.bas",
-        "procedure": "WriteDefaultRulesSheet",
-        "kind": "Sub",
-        "line": 103,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Config.TokenInList",
-        "module": "CompareFramework_Config",
-        "module_path": "CompareFramework_Config.bas",
-        "procedure": "TokenInList",
-        "kind": "Function",
-        "line": 184,
-        "local_incoming_edges": 2,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_EngineMemory.CF_CompareDetectedPairsMemory",
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
@@ -20293,12 +20241,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 169,
+      "public_procedure_count": 165,
       "cross_module_used_public_count": 99,
-      "candidate_count": 70,
+      "candidate_count": 66,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 40,
+        "local-only": 36,
         "zero-caller-review": 30
       }
     }
@@ -20307,8 +20255,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 169,
-    "private_procedure_count": 116,
+    "public_procedure_count": 165,
+    "private_procedure_count": 120,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20323,8 +20271,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 70,
-    "local_only_public_count": 40,
+    "privatization_candidate_count": 66,
+    "local_only_public_count": 36,
     "zero_caller_public_count": 30
   }
 }

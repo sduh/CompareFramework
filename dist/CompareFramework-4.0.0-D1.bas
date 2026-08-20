@@ -1752,7 +1752,7 @@ Public Function EnsureConfigSheet(oDoc As Object) As Object
     EnsureConfigSheet = oSheet
 End Function
 
-Public Sub WriteDefaultConfig(oSheet As Object)
+Private Sub WriteDefaultConfig(oSheet As Object)
     SetCell oSheet, 0, 0, "Parametre"
     SetCell oSheet, 1, 0, "Valeur"
     SetCell oSheet, 2, 0, "Description"
@@ -1785,7 +1785,7 @@ Public Sub WriteDefaultConfig(oSheet As Object)
 End Sub
 
 
-Public Function EnsureRulesSheet(oDoc As Object) As Object
+Private Function EnsureRulesSheet(oDoc As Object) As Object
     Dim oSheets As Object, oSheet As Object
     oSheets = oDoc.Sheets
 
@@ -1800,7 +1800,7 @@ Public Function EnsureRulesSheet(oDoc As Object) As Object
     EnsureRulesSheet = oSheet
 End Function
 
-Public Sub WriteDefaultRulesSheet(oSheet As Object)
+Private Sub WriteDefaultRulesSheet(oSheet As Object)
     SetCell oSheet, 0, 0, "RuleId"
     SetCell oSheet, 1, 0, "Enabled"
     SetCell oSheet, 2, 0, "Scope"
@@ -1881,7 +1881,7 @@ Public Function ColumnIsIgnored(headerName As String) As Boolean
     ColumnIsIgnored = TokenInList(NormalizeHeader(headerName), gIgnoreColumns)
 End Function
 
-Public Function TokenInList(token As String, listText As String) As Boolean
+Private Function TokenInList(token As String, listText As String) As Boolean
     Dim normalizedToken As String, normalizedList As String
     normalizedToken = NormalizeHeader(token)
     normalizedList = ";" & NormalizeList(listText) & ";"

@@ -55,14 +55,14 @@ CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetDateToleranc
 CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_RunTypedComparatorTests,Sub,Public,229,244,,0,Public Sub CF_RunTypedComparatorTests ()
 CompareFramework_Config,CompareFramework_Config.bas,LoadCompareConfig,Sub,Public,5,38,,1,Public Sub LoadCompareConfig (oDoc As Object)
 CompareFramework_Config,CompareFramework_Config.bas,EnsureConfigSheet,Function,Public,40,53,Object,1,Public Function EnsureConfigSheet (oDoc As Object) As Object
-CompareFramework_Config,CompareFramework_Config.bas,WriteDefaultConfig,Sub,Public,55,85,,1,Public Sub WriteDefaultConfig (oSheet As Object)
-CompareFramework_Config,CompareFramework_Config.bas,EnsureRulesSheet,Function,Public,88,101,Object,1,Public Function EnsureRulesSheet (oDoc As Object) As Object
-CompareFramework_Config,CompareFramework_Config.bas,WriteDefaultRulesSheet,Sub,Public,103,146,,1,Public Sub WriteDefaultRulesSheet (oSheet As Object)
+CompareFramework_Config,CompareFramework_Config.bas,WriteDefaultConfig,Sub,Private,55,85,,1,Private Sub WriteDefaultConfig (oSheet As Object)
+CompareFramework_Config,CompareFramework_Config.bas,EnsureRulesSheet,Function,Private,88,101,Object,1,Private Function EnsureRulesSheet (oDoc As Object) As Object
+CompareFramework_Config,CompareFramework_Config.bas,WriteDefaultRulesSheet,Sub,Private,103,146,,1,Private Sub WriteDefaultRulesSheet (oSheet As Object)
 CompareFramework_Config,CompareFramework_Config.bas,NormalizeCompareValue,Function,Public,148,161,String,1,Public Function NormalizeCompareValue (valueText As String) As String
 CompareFramework_Config,CompareFramework_Config.bas,NormalizeSpaces,Function,Public,163,170,String,1,Public Function NormalizeSpaces (valueText As String) As String
 CompareFramework_Config,CompareFramework_Config.bas,IgnoreThisEmptyChange,Function,Public,172,178,Boolean,2,"Public Function IgnoreThisEmptyChange (oldCompare As String, newCompare As String) As Boolean"
 CompareFramework_Config,CompareFramework_Config.bas,ColumnIsIgnored,Function,Public,180,182,Boolean,1,Public Function ColumnIsIgnored (headerName As String) As Boolean
-CompareFramework_Config,CompareFramework_Config.bas,TokenInList,Function,Public,184,189,Boolean,2,"Public Function TokenInList (token As String, listText As String) As Boolean"
+CompareFramework_Config,CompareFramework_Config.bas,TokenInList,Function,Private,184,189,Boolean,2,"Private Function TokenInList (token As String, listText As String) As Boolean"
 CompareFramework_Config,CompareFramework_Config.bas,NormalizeList,Function,Public,191,201,String,1,Public Function NormalizeList (listText As String) As String
 CompareFramework_Config,CompareFramework_Config.bas,ToBoolean,Function,Public,203,207,Boolean,1,Public Function ToBoolean (valueText As String) As Boolean
 CompareFramework_Config,CompareFramework_Config.bas,FindIdColumn,Function,Public,209,219,Long,1,Public Function FindIdColumn (headers As Variant) As Long

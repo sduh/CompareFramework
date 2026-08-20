@@ -509,7 +509,7 @@
       "module": "CompareFramework_Config",
       "module_path": "CompareFramework_Config.bas",
       "name": "WriteDefaultConfig",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 55
     },
@@ -518,7 +518,7 @@
       "module": "CompareFramework_Config",
       "module_path": "CompareFramework_Config.bas",
       "name": "EnsureRulesSheet",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 88
     },
@@ -527,7 +527,7 @@
       "module": "CompareFramework_Config",
       "module_path": "CompareFramework_Config.bas",
       "name": "WriteDefaultRulesSheet",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 103
     },
@@ -572,7 +572,7 @@
       "module": "CompareFramework_Config",
       "module_path": "CompareFramework_Config.bas",
       "name": "TokenInList",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 184
     },
