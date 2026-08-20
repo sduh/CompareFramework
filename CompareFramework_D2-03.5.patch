@@ -1,0 +1,11 @@
+--- a/src/CompareFramework_Context.bas
++++ b/src/CompareFramework_Context.bas
+@@ -31,7 +31,7 @@
+     CF_ContextSet "Status", "INITIALIZED"
+ End Sub
+ 
+-Public Sub CF_ContextInitIfNeeded()
++Private Sub CF_ContextInitIfNeeded()
+     If Not CF_CTX_READY Then
+         CF_ContextReset
+     End If

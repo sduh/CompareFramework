@@ -67,7 +67,7 @@ CompareFramework_Config,CompareFramework_Config.bas,NormalizeList,Function,Publi
 CompareFramework_Config,CompareFramework_Config.bas,ToBoolean,Function,Public,203,207,Boolean,1,Public Function ToBoolean (valueText As String) As Boolean
 CompareFramework_Config,CompareFramework_Config.bas,FindIdColumn,Function,Public,209,219,Long,1,Public Function FindIdColumn (headers As Variant) As Long
 CompareFramework_Context,CompareFramework_Context.bas,CF_ContextReset,Sub,Public,23,32,,0,Public Sub CF_ContextReset ()
-CompareFramework_Context,CompareFramework_Context.bas,CF_ContextInitIfNeeded,Sub,Public,34,38,,0,Public Sub CF_ContextInitIfNeeded ()
+CompareFramework_Context,CompareFramework_Context.bas,CF_ContextInitIfNeeded,Sub,Private,34,38,,0,Private Sub CF_ContextInitIfNeeded ()
 CompareFramework_Context,CompareFramework_Context.bas,CF_ContextSet,Sub,Public,40,64,,2,"Public Sub CF_ContextSet (sKey As String, vValue As Variant)"
 CompareFramework_Context,CompareFramework_Context.bas,CF_ContextGet,Function,Public,66,79,String,2,"Public Function CF_ContextGet (sKey As String, Optional sDefault As Variant) As String"
 CompareFramework_Context,CompareFramework_Context.bas,CF_ContextHas,Function,Public,81,84,Boolean,1,Public Function CF_ContextHas (sKey As String) As Boolean

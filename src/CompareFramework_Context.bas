@@ -31,7 +31,7 @@ Public Sub CF_ContextReset()
     CF_ContextSet "Status", "INITIALIZED"
 End Sub
 
-Public Sub CF_ContextInitIfNeeded()
+Private Sub CF_ContextInitIfNeeded()
     If Not CF_CTX_READY Then
         CF_ContextReset
     End If

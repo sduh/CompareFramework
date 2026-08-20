@@ -617,7 +617,7 @@
       "module": "CompareFramework_Context",
       "module_path": "CompareFramework_Context.bas",
       "name": "CF_ContextInitIfNeeded",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 34
     },

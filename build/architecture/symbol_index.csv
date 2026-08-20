@@ -183,7 +183,7 @@ CompareFramework_Context.CF_CTX_VALUES,CompareFramework_Context,CompareFramework
 CompareFramework_Context.CF_CTX_COUNT,CompareFramework_Context,CompareFramework_Context.bas,CF_CTX_COUNT,variable,Private,20,,,Long,,
 CompareFramework_Context.CF_CTX_READY,CompareFramework_Context,CompareFramework_Context.bas,CF_CTX_READY,variable,Private,21,,,Boolean,,
 CompareFramework_Context.CF_ContextReset,CompareFramework_Context,CompareFramework_Context.bas,CF_ContextReset,procedure,Public,23,32,,,Public Sub CF_ContextReset (),
-CompareFramework_Context.CF_ContextInitIfNeeded,CompareFramework_Context,CompareFramework_Context.bas,CF_ContextInitIfNeeded,procedure,Public,34,38,,,Public Sub CF_ContextInitIfNeeded (),
+CompareFramework_Context.CF_ContextInitIfNeeded,CompareFramework_Context,CompareFramework_Context.bas,CF_ContextInitIfNeeded,procedure,Private,34,38,,,Private Sub CF_ContextInitIfNeeded (),
 CompareFramework_Context.CF_ContextSet.sKey,CompareFramework_Context,CompareFramework_Context.bas,sKey,parameter,Local,40,64,CF_ContextSet,String,,
 CompareFramework_Context.CF_ContextSet.vValue,CompareFramework_Context,CompareFramework_Context.bas,vValue,parameter,Local,40,64,CF_ContextSet,Variant,,
 CompareFramework_Context.CF_ContextSet,CompareFramework_Context,CompareFramework_Context.bas,CF_ContextSet,procedure,Public,40,64,,,"Public Sub CF_ContextSet (sKey As String, vValue As Variant)",

@@ -4,7 +4,7 @@ CompareFramework_Audit,CompareFramework_Audit.bas,313,True,17,7,10,0,11,0,0,0
 CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,214,True,12,5,7,1,7,0,0,0
 CompareFramework_Comparators,CompareFramework_Comparators.bas,244,True,19,2,17,7,0,0,0,0
 CompareFramework_Config,CompareFramework_Config.bas,220,True,13,13,0,0,0,0,0,0
-CompareFramework_Context,CompareFramework_Context.bas,177,True,11,9,2,0,4,0,0,0
+CompareFramework_Context,CompareFramework_Context.bas,177,True,11,8,3,0,4,0,0,0
 CompareFramework_EngineMemory,CompareFramework_EngineMemory.bas,372,True,12,12,0,0,0,0,0,0
 CompareFramework_Index,CompareFramework_Index.bas,133,True,6,6,0,0,0,0,0,0
 CompareFramework_Main,CompareFramework_Main.bas,466,True,19,19,0,0,0,0,0,0
