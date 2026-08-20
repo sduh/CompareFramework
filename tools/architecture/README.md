@@ -1,63 +1,42 @@
 # CompareFramework Architecture Analyzer
 
-The analyzer reads `src/**/*.bas` and generates a canonical architecture model
-and deterministic derived exports under:
-
-```text
-build/architecture/
-```
-
-## Run
+Run:
 
 ```bash
 python -m tools.architecture
-```
-
-Print statistics:
-
-```bash
 python -m tools.architecture --summary
 ```
 
-Analyze another checkout:
+Current canonical schema: **1.2.0**
 
-```bash
-python -m tools.architecture --root /path/to/CompareFramework
-```
+Schema 1.2.0 adds dependency, cycle and coupling analysis derived from the
+resolved procedure call graph.
 
-## Canonical output
-
-`architecture.json` is the canonical model.
-
-Schema `1.1.0` adds a resolved procedure call graph while preserving all A1
-fields.
-
-Generated files:
+Generated files include:
 
 ```text
 architecture.json
 call_graph.json
 cross_module_calls.csv
 dependency_matrix.csv
+dependency_analysis.json
+module_dependencies.csv
+module_metrics.csv
+dependency_cycles.csv
 modules.csv
 procedures.csv
 statistics.json
 symbol_index.csv
 ```
 
-## Call resolution rules
+Coupling metrics:
 
-- same-module procedures take precedence;
-- only `Public` procedures are resolved across modules;
-- `ModuleName.Procedure` is supported;
-- dotted UNO/object calls are ignored;
-- a Basic function result assignment (`MyFunction = value`) is not recursion;
-- strings and comments never generate calls.
+- fan-out: number of modules called;
+- fan-in: number of calling modules;
+- instability = fan-out / (fan-in + fan-out);
+- coupling score = fan-in + fan-out.
 
-The analyzer does not attempt to resolve Basic built-ins or UNO methods.
+Cycles are detected with strongly connected components on the directed module
+dependency graph.
 
-## Exit codes
-
-- `0`: success
-- `2`: CLI usage error
-- `3`: repository, parsing, validation or export error
+The analyzer is read-only and never modifies LibreOffice Basic runtime sources.

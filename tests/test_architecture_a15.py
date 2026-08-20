@@ -11,12 +11,46 @@ from tools.architecture.validation import (
 class ValidationTests(unittest.TestCase):
     def sample(self):
         return {
-            "schema_version": "1.0.0",
+            "schema_version": "1.2.0",
             "repository": {"name": "repo", "version": "1.0", "root": "."},
             "languages": [],
             "modules": [
                 {"name": "M", "path": "M.bas", "line_count": 1, "procedures": []}
             ],
+            "call_graph": {
+                "nodes": [],
+                "edges": [],
+                "statistics": {
+                    "node_count": 0,
+                    "edge_count": 0,
+                    "call_site_count": 0,
+                    "cross_module_edge_count": 0,
+                    "recursive_edge_count": 0,
+                    "unresolved_candidate_count": 0,
+                    "ambiguous_candidate_count": 0,
+                },
+            },
+            "dependency_analysis": {
+                "dependencies": [],
+                "module_metrics": [{
+                    "module": "M",
+                    "outgoing_modules": 0,
+                    "incoming_modules": 0,
+                    "outgoing_edges": 0,
+                    "incoming_edges": 0,
+                    "outgoing_call_sites": 0,
+                    "incoming_call_sites": 0,
+                    "instability": 0.0,
+                    "coupling_score": 0,
+                }],
+                "cycles": [],
+                "statistics": {
+                    "module_dependency_count": 0,
+                    "cycle_count": 0,
+                    "cyclic_module_count": 0,
+                    "max_cycle_size": 0,
+                },
+            },
             "statistics": {"module_count": 1, "procedure_count": 0},
         }
 

@@ -1,0 +1,3 @@
+cycle_id,size,modules
+1,7,CompareFramework_EngineMemory;CompareFramework_Main;CompareFramework_Profiles;CompareFramework_Quality;CompareFramework_Scenarios;CompareFramework_Tests;CompareFramework_Validation
+2,2,CompareFramework_Config;CompareFramework_Rules

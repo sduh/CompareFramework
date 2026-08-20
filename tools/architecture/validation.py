@@ -10,12 +10,8 @@ class ArchitectureValidationError(ValueError):
 
 def validate_architecture_document(document: dict[str, Any]) -> None:
     required = {
-        "schema_version",
-        "repository",
-        "languages",
-        "modules",
-        "statistics",
-        "call_graph",
+        "schema_version","repository","languages","modules","statistics",
+        "call_graph","dependency_analysis",
     }
     missing = sorted(required - document.keys())
     if missing:
@@ -29,8 +25,6 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
         )
 
     repository = document["repository"]
-    if not isinstance(repository, dict):
-        raise ArchitectureValidationError("repository must be an object")
     for key in ("name", "version", "root"):
         if key not in repository:
             raise ArchitectureValidationError(f"repository.{key} is required")
@@ -38,26 +32,18 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
         raise ArchitectureValidationError("repository.version must not be empty")
 
     modules = document["modules"]
-    if not isinstance(modules, list):
-        raise ArchitectureValidationError("modules must be an array")
-
     paths = set()
+    module_names = set()
     procedure_ids = set()
+
     for index, module in enumerate(modules):
-        if not isinstance(module, dict):
-            raise ArchitectureValidationError(f"modules[{index}] must be an object")
         for key in ("name", "path", "line_count", "procedures"):
             if key not in module:
                 raise ArchitectureValidationError(f"modules[{index}].{key} is required")
         if module["path"] in paths:
             raise ArchitectureValidationError(f"Duplicate module path: {module['path']}")
         paths.add(module["path"])
-        if module["line_count"] < 0:
-            raise ArchitectureValidationError(f"Negative line_count for {module['path']}")
-        if not isinstance(module["procedures"], list):
-            raise ArchitectureValidationError(
-                f"modules[{index}].procedures must be an array"
-            )
+        module_names.add(module["name"])
         for proc in module["procedures"]:
             procedure_ids.add(f"{module['name']}.{proc['name']}")
 
@@ -66,32 +52,40 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
         raise ArchitectureValidationError(
             "statistics.module_count does not match modules length"
         )
-    procedure_count = sum(len(module["procedures"]) for module in modules)
-    if stats.get("procedure_count") != procedure_count:
+    if stats.get("procedure_count") != sum(len(m["procedures"]) for m in modules):
         raise ArchitectureValidationError(
             "statistics.procedure_count does not match parsed procedures"
         )
 
-    call_graph = document["call_graph"]
-    if not isinstance(call_graph, dict):
-        raise ArchitectureValidationError("call_graph must be an object")
-    for key in ("nodes", "edges", "statistics"):
-        if key not in call_graph:
-            raise ArchitectureValidationError(f"call_graph.{key} is required")
-
-    node_ids = {node["id"] for node in call_graph["nodes"]}
+    graph = document["call_graph"]
+    node_ids = {node["id"] for node in graph["nodes"]}
     if node_ids != procedure_ids:
         raise ArchitectureValidationError(
             "call_graph nodes do not exactly match parsed procedures"
         )
-    for edge in call_graph["edges"]:
-        if edge["caller"] not in node_ids:
-            raise ArchitectureValidationError(
-                f"Unknown call_graph caller: {edge['caller']}"
-            )
-        if edge["callee"] not in node_ids:
-            raise ArchitectureValidationError(
-                f"Unknown call_graph callee: {edge['callee']}"
-            )
-        if edge["call_count"] < 1:
-            raise ArchitectureValidationError("call_graph edge call_count must be >= 1")
+    for edge in graph["edges"]:
+        if edge["caller"] not in node_ids or edge["callee"] not in node_ids:
+            raise ArchitectureValidationError("call_graph edge references unknown node")
+
+    analysis = document["dependency_analysis"]
+    for key in ("dependencies","module_metrics","cycles","statistics"):
+        if key not in analysis:
+            raise ArchitectureValidationError(f"dependency_analysis.{key} is required")
+
+    metric_modules = {item["module"] for item in analysis["module_metrics"]}
+    if metric_modules != module_names:
+        raise ArchitectureValidationError(
+            "dependency_analysis module metrics do not match parsed modules"
+        )
+    for dep in analysis["dependencies"]:
+        if dep["caller_module"] not in module_names:
+            raise ArchitectureValidationError("Unknown dependency caller module")
+        if dep["callee_module"] not in module_names:
+            raise ArchitectureValidationError("Unknown dependency callee module")
+        if dep["caller_module"] == dep["callee_module"]:
+            raise ArchitectureValidationError("module dependencies must be cross-module")
+    for cycle in analysis["cycles"]:
+        if cycle["size"] != len(cycle["modules"]):
+            raise ArchitectureValidationError("dependency cycle size mismatch")
+        if not set(cycle["modules"]).issubset(module_names):
+            raise ArchitectureValidationError("dependency cycle references unknown module")

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "repository": {
     "name": "CompareFramework-main",
     "version": "4.0.0-D1",
@@ -18658,6 +18658,721 @@
       "ambiguous_candidate_count": 0
     }
   },
+  "dependency_analysis": {
+    "dependencies": [
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_Audit",
+        "edge_count": 2,
+        "call_site_count": 5
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_ComparatorConfig",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_Config",
+        "edge_count": 2,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 1,
+        "call_site_count": 4
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_EngineMemory",
+        "edge_count": 3,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_Index",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_Report",
+        "edge_count": 16,
+        "call_site_count": 21
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_Rules",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CF_ModeReference",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 3,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CompareFramework_API",
+        "callee_module": "CF_ModeReference",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_API",
+        "callee_module": "CompareFramework_ComparatorConfig",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_API",
+        "callee_module": "CompareFramework_Main",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_API",
+        "callee_module": "CompareFramework_Quality",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_API",
+        "callee_module": "CompareFramework_Report",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_API",
+        "callee_module": "CompareFramework_Validation",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Audit",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 4,
+        "call_site_count": 11
+      },
+      {
+        "caller_module": "CompareFramework_Audit",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_ComparatorConfig",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 3,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CompareFramework_ComparatorConfig",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 3,
+        "call_site_count": 8
+      },
+      {
+        "caller_module": "CompareFramework_Comparators",
+        "callee_module": "CompareFramework_ComparatorConfig",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Comparators",
+        "callee_module": "CompareFramework_Config",
+        "edge_count": 1,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CompareFramework_Config",
+        "callee_module": "CompareFramework_Rules",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Config",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 7,
+        "call_site_count": 56
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Audit",
+        "edge_count": 2,
+        "call_site_count": 4
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_ComparatorConfig",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Comparators",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Config",
+        "edge_count": 6,
+        "call_site_count": 8
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 1,
+        "call_site_count": 7
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Index",
+        "edge_count": 3,
+        "call_site_count": 5
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Report",
+        "edge_count": 17,
+        "call_site_count": 24
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Rules",
+        "edge_count": 3,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Tests",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_EngineMemory",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 10,
+        "call_site_count": 13
+      },
+      {
+        "caller_module": "CompareFramework_Index",
+        "callee_module": "CompareFramework_Report",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Index",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 4,
+        "call_site_count": 6
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Audit",
+        "edge_count": 32,
+        "call_site_count": 52
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_ComparatorConfig",
+        "edge_count": 2,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Comparators",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Config",
+        "edge_count": 2,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 25,
+        "call_site_count": 40
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_EngineMemory",
+        "edge_count": 4,
+        "call_site_count": 4
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Index",
+        "edge_count": 5,
+        "call_site_count": 10
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Performance",
+        "edge_count": 4,
+        "call_site_count": 13
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Quality",
+        "edge_count": 2,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Reliability",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Report",
+        "edge_count": 15,
+        "call_site_count": 22
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Rules",
+        "edge_count": 2,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Scenarios",
+        "edge_count": 2,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 9,
+        "call_site_count": 13
+      },
+      {
+        "caller_module": "CompareFramework_Main",
+        "callee_module": "CompareFramework_Validation",
+        "edge_count": 2,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CompareFramework_Performance",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 4,
+        "call_site_count": 5
+      },
+      {
+        "caller_module": "CompareFramework_Profiles",
+        "callee_module": "CompareFramework_Config",
+        "edge_count": 4,
+        "call_site_count": 4
+      },
+      {
+        "caller_module": "CompareFramework_Profiles",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 4,
+        "call_site_count": 8
+      },
+      {
+        "caller_module": "CompareFramework_Profiles",
+        "callee_module": "CompareFramework_Main",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Profiles",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 11,
+        "call_site_count": 30
+      },
+      {
+        "caller_module": "CompareFramework_Quality",
+        "callee_module": "CompareFramework_EngineMemory",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Quality",
+        "callee_module": "CompareFramework_Main",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Quality",
+        "callee_module": "CompareFramework_Reliability",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Quality",
+        "callee_module": "CompareFramework_Tests",
+        "edge_count": 5,
+        "call_site_count": 5
+      },
+      {
+        "caller_module": "CompareFramework_Reliability",
+        "callee_module": "CompareFramework_ComparatorConfig",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Reliability",
+        "callee_module": "CompareFramework_Comparators",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Report",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 20,
+        "call_site_count": 164
+      },
+      {
+        "caller_module": "CompareFramework_Rules",
+        "callee_module": "CompareFramework_Config",
+        "edge_count": 7,
+        "call_site_count": 12
+      },
+      {
+        "caller_module": "CompareFramework_Rules",
+        "callee_module": "CompareFramework_Index",
+        "edge_count": 2,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CompareFramework_Rules",
+        "callee_module": "CompareFramework_Report",
+        "edge_count": 2,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CompareFramework_Rules",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 10,
+        "call_site_count": 25
+      },
+      {
+        "caller_module": "CompareFramework_Scenarios",
+        "callee_module": "CompareFramework_Main",
+        "edge_count": 3,
+        "call_site_count": 3
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_Audit",
+        "edge_count": 5,
+        "call_site_count": 5
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_Comparators",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 6,
+        "call_site_count": 9
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_EngineMemory",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_Performance",
+        "edge_count": 5,
+        "call_site_count": 5
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_Profiles",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_Utils",
+        "edge_count": 2,
+        "call_site_count": 2
+      },
+      {
+        "caller_module": "CompareFramework_Tests",
+        "callee_module": "CompareFramework_Validation",
+        "edge_count": 1,
+        "call_site_count": 1
+      },
+      {
+        "caller_module": "CompareFramework_Validation",
+        "callee_module": "CompareFramework_Context",
+        "edge_count": 4,
+        "call_site_count": 10
+      },
+      {
+        "caller_module": "CompareFramework_Validation",
+        "callee_module": "CompareFramework_Main",
+        "edge_count": 2,
+        "call_site_count": 2
+      }
+    ],
+    "module_metrics": [
+      {
+        "module": "CompareFramework_Main",
+        "outgoing_modules": 15,
+        "incoming_modules": 5,
+        "outgoing_edges": 108,
+        "incoming_edges": 8,
+        "outgoing_call_sites": 169,
+        "incoming_call_sites": 8,
+        "instability": 0.75,
+        "coupling_score": 20
+      },
+      {
+        "module": "CompareFramework_EngineMemory",
+        "outgoing_modules": 10,
+        "incoming_modules": 4,
+        "outgoing_edges": 45,
+        "incoming_edges": 9,
+        "outgoing_call_sites": 67,
+        "incoming_call_sites": 9,
+        "instability": 0.714286,
+        "coupling_score": 14
+      },
+      {
+        "module": "CompareFramework_Utils",
+        "outgoing_modules": 0,
+        "incoming_modules": 12,
+        "outgoing_edges": 0,
+        "incoming_edges": 84,
+        "outgoing_call_sites": 0,
+        "incoming_call_sites": 326,
+        "instability": 0.0,
+        "coupling_score": 12
+      },
+      {
+        "module": "CF_ModeReference",
+        "outgoing_modules": 9,
+        "incoming_modules": 1,
+        "outgoing_edges": 30,
+        "incoming_edges": 1,
+        "outgoing_call_sites": 41,
+        "incoming_call_sites": 1,
+        "instability": 0.9,
+        "coupling_score": 10
+      },
+      {
+        "module": "CompareFramework_Tests",
+        "outgoing_modules": 8,
+        "incoming_modules": 2,
+        "outgoing_edges": 22,
+        "incoming_edges": 6,
+        "outgoing_call_sites": 25,
+        "incoming_call_sites": 6,
+        "instability": 0.8,
+        "coupling_score": 10
+      },
+      {
+        "module": "CompareFramework_ComparatorConfig",
+        "outgoing_modules": 2,
+        "incoming_modules": 6,
+        "outgoing_edges": 6,
+        "incoming_edges": 7,
+        "outgoing_call_sites": 11,
+        "incoming_call_sites": 7,
+        "instability": 0.25,
+        "coupling_score": 8
+      },
+      {
+        "module": "CompareFramework_Config",
+        "outgoing_modules": 2,
+        "incoming_modules": 6,
+        "outgoing_edges": 8,
+        "incoming_edges": 22,
+        "outgoing_call_sites": 57,
+        "incoming_call_sites": 31,
+        "instability": 0.25,
+        "coupling_score": 8
+      },
+      {
+        "module": "CompareFramework_Context",
+        "outgoing_modules": 0,
+        "incoming_modules": 8,
+        "outgoing_edges": 0,
+        "incoming_edges": 48,
+        "outgoing_call_sites": 0,
+        "incoming_call_sites": 92,
+        "instability": 0.0,
+        "coupling_score": 8
+      },
+      {
+        "module": "CompareFramework_Rules",
+        "outgoing_modules": 4,
+        "incoming_modules": 4,
+        "outgoing_edges": 21,
+        "incoming_edges": 7,
+        "outgoing_call_sites": 43,
+        "incoming_call_sites": 7,
+        "instability": 0.5,
+        "coupling_score": 8
+      },
+      {
+        "module": "CompareFramework_Report",
+        "outgoing_modules": 1,
+        "incoming_modules": 6,
+        "outgoing_edges": 20,
+        "incoming_edges": 52,
+        "outgoing_call_sites": 164,
+        "incoming_call_sites": 72,
+        "instability": 0.142857,
+        "coupling_score": 7
+      },
+      {
+        "module": "CompareFramework_API",
+        "outgoing_modules": 6,
+        "incoming_modules": 0,
+        "outgoing_edges": 6,
+        "incoming_edges": 0,
+        "outgoing_call_sites": 6,
+        "incoming_call_sites": 0,
+        "instability": 1.0,
+        "coupling_score": 6
+      },
+      {
+        "module": "CompareFramework_Audit",
+        "outgoing_modules": 2,
+        "incoming_modules": 4,
+        "outgoing_edges": 5,
+        "incoming_edges": 41,
+        "outgoing_call_sites": 12,
+        "incoming_call_sites": 66,
+        "instability": 0.333333,
+        "coupling_score": 6
+      },
+      {
+        "module": "CompareFramework_Comparators",
+        "outgoing_modules": 2,
+        "incoming_modules": 4,
+        "outgoing_edges": 2,
+        "incoming_edges": 4,
+        "outgoing_call_sites": 3,
+        "incoming_call_sites": 4,
+        "instability": 0.333333,
+        "coupling_score": 6
+      },
+      {
+        "module": "CompareFramework_Index",
+        "outgoing_modules": 2,
+        "incoming_modules": 4,
+        "outgoing_edges": 5,
+        "incoming_edges": 11,
+        "outgoing_call_sites": 7,
+        "incoming_call_sites": 19,
+        "instability": 0.333333,
+        "coupling_score": 6
+      },
+      {
+        "module": "CompareFramework_Quality",
+        "outgoing_modules": 4,
+        "incoming_modules": 2,
+        "outgoing_edges": 8,
+        "incoming_edges": 3,
+        "outgoing_call_sites": 8,
+        "incoming_call_sites": 3,
+        "instability": 0.666667,
+        "coupling_score": 6
+      },
+      {
+        "module": "CompareFramework_Profiles",
+        "outgoing_modules": 4,
+        "incoming_modules": 1,
+        "outgoing_edges": 20,
+        "incoming_edges": 1,
+        "outgoing_call_sites": 43,
+        "incoming_call_sites": 1,
+        "instability": 0.8,
+        "coupling_score": 5
+      },
+      {
+        "module": "CompareFramework_Validation",
+        "outgoing_modules": 2,
+        "incoming_modules": 3,
+        "outgoing_edges": 6,
+        "incoming_edges": 4,
+        "outgoing_call_sites": 12,
+        "incoming_call_sites": 4,
+        "instability": 0.4,
+        "coupling_score": 5
+      },
+      {
+        "module": "CompareFramework_Reliability",
+        "outgoing_modules": 2,
+        "incoming_modules": 2,
+        "outgoing_edges": 2,
+        "incoming_edges": 2,
+        "outgoing_call_sites": 2,
+        "incoming_call_sites": 2,
+        "instability": 0.5,
+        "coupling_score": 4
+      },
+      {
+        "module": "CompareFramework_Performance",
+        "outgoing_modules": 1,
+        "incoming_modules": 2,
+        "outgoing_edges": 4,
+        "incoming_edges": 9,
+        "outgoing_call_sites": 5,
+        "incoming_call_sites": 18,
+        "instability": 0.333333,
+        "coupling_score": 3
+      },
+      {
+        "module": "CompareFramework_Scenarios",
+        "outgoing_modules": 1,
+        "incoming_modules": 1,
+        "outgoing_edges": 3,
+        "incoming_edges": 2,
+        "outgoing_call_sites": 3,
+        "incoming_call_sites": 2,
+        "instability": 0.5,
+        "coupling_score": 2
+      }
+    ],
+    "cycles": [
+      {
+        "modules": [
+          "CompareFramework_EngineMemory",
+          "CompareFramework_Main",
+          "CompareFramework_Profiles",
+          "CompareFramework_Quality",
+          "CompareFramework_Scenarios",
+          "CompareFramework_Tests",
+          "CompareFramework_Validation"
+        ],
+        "size": 7
+      },
+      {
+        "modules": [
+          "CompareFramework_Config",
+          "CompareFramework_Rules"
+        ],
+        "size": 2
+      }
+    ],
+    "statistics": {
+      "module_dependency_count": 77,
+      "cycle_count": 2,
+      "cyclic_module_count": 9,
+      "max_cycle_size": 7
+    }
+  },
   "statistics": {
     "module_count": 20,
     "line_count": 5988,
@@ -18673,6 +19388,10 @@
     "call_graph_edge_count": 600,
     "call_site_count": 1207,
     "cross_module_edge_count": 321,
-    "recursive_edge_count": 1
+    "recursive_edge_count": 1,
+    "module_dependency_count": 77,
+    "dependency_cycle_count": 2,
+    "cyclic_module_count": 9,
+    "max_dependency_cycle_size": 7
   }
 }
