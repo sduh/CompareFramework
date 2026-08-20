@@ -1760,7 +1760,7 @@
       "module": "CompareFramework_Scenarios",
       "module_path": "CompareFramework_Scenarios.bas",
       "name": "CF_RunFinanceScenario",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 44
     },
@@ -1769,7 +1769,7 @@
       "module": "CompareFramework_Scenarios",
       "module_path": "CompareFramework_Scenarios.bas",
       "name": "CF_RunHRScenario",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 64
     },
@@ -1778,7 +1778,7 @@
       "module": "CompareFramework_Scenarios",
       "module_path": "CompareFramework_Scenarios.bas",
       "name": "CF_RunERPScenario",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 83
     },

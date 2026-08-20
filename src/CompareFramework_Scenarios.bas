@@ -41,7 +41,7 @@ ErrHandler:
     MsgBox "Erreur CF_RunAllBusinessScenarios : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_RunFinanceScenario()
+Private Sub CF_RunFinanceScenario()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -61,7 +61,7 @@ ErrHandler:
     CF_ScenarioAppendResult ThisComponent, "FINANCE", False, "Erreur " & Err & " - " & Error$
 End Sub
 
-Public Sub CF_RunHRScenario()
+Private Sub CF_RunHRScenario()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -80,7 +80,7 @@ ErrHandler:
     CF_ScenarioAppendResult ThisComponent, "RH", False, "Erreur " & Err & " - " & Error$
 End Sub
 
-Public Sub CF_RunERPScenario()
+Private Sub CF_RunERPScenario()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object

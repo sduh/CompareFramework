@@ -194,9 +194,9 @@ CompareFramework_Rules,CompareFramework_Rules.bas,ValuesAreWithinNumericToleranc
 CompareFramework_Rules,CompareFramework_Rules.bas,CompareRowCellsDetailed,Function,Public,126,159,Long,10,"Public Function CompareRowCellsDetailed (oOld As Object, oNew As Object, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long"
 CompareFramework_Rules,CompareFramework_Rules.bas,ReportColumnDifferences,Sub,Public,161,185,,6,"Public Sub ReportColumnDifferences (oldHeaders As Variant, newHeaders As Variant, oReport As Object, ByRef reportRow As Long, pairName As String, ByRef pairIssues As Long)"
 CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunAllBusinessScenarios,Sub,Public,23,42,,0,Public Sub CF_RunAllBusinessScenarios ()
-CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunFinanceScenario,Sub,Public,44,62,,0,Public Sub CF_RunFinanceScenario ()
-CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunHRScenario,Sub,Public,64,81,,0,Public Sub CF_RunHRScenario ()
-CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunERPScenario,Sub,Public,83,100,,0,Public Sub CF_RunERPScenario ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunFinanceScenario,Sub,Private,44,62,,0,Private Sub CF_RunFinanceScenario ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunHRScenario,Sub,Private,64,81,,0,Private Sub CF_RunHRScenario ()
+CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_RunERPScenario,Sub,Private,83,100,,0,Private Sub CF_RunERPScenario ()
 CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_BuildReleaseReadiness,Sub,Public,102,140,,0,Public Sub CF_BuildReleaseReadiness ()
 CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioCreateFinance,Sub,Private,142,161,,1,Private Sub CF_ScenarioCreateFinance (oDoc As Object)
 CompareFramework_Scenarios,CompareFramework_Scenarios.bas,CF_ScenarioCreateHR,Sub,Private,163,182,,1,Private Sub CF_ScenarioCreateHR (oDoc As Object)

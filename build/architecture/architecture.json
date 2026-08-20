@@ -6381,30 +6381,30 @@
         {
           "name": "CF_RunFinanceScenario",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 44,
           "end_line": 62,
-          "signature": "Public Sub CF_RunFinanceScenario ()",
+          "signature": "Private Sub CF_RunFinanceScenario ()",
           "return_type": null,
           "parameters": []
         },
         {
           "name": "CF_RunHRScenario",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 64,
           "end_line": 81,
-          "signature": "Public Sub CF_RunHRScenario ()",
+          "signature": "Private Sub CF_RunHRScenario ()",
           "return_type": null,
           "parameters": []
         },
         {
           "name": "CF_RunERPScenario",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 83,
           "end_line": 100,
-          "signature": "Public Sub CF_RunERPScenario ()",
+          "signature": "Private Sub CF_RunERPScenario ()",
           "return_type": null,
           "parameters": []
         },
@@ -10654,7 +10654,7 @@
         "module": "CompareFramework_Scenarios",
         "module_path": "CompareFramework_Scenarios.bas",
         "name": "CF_RunFinanceScenario",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 44
       },
@@ -10663,7 +10663,7 @@
         "module": "CompareFramework_Scenarios",
         "module_path": "CompareFramework_Scenarios.bas",
         "name": "CF_RunHRScenario",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 64
       },
@@ -10672,7 +10672,7 @@
         "module": "CompareFramework_Scenarios",
         "module_path": "CompareFramework_Scenarios.bas",
         "name": "CF_RunERPScenario",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 83
       },
@@ -19902,45 +19902,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Scenarios.CF_RunFinanceScenario",
-        "module": "CompareFramework_Scenarios",
-        "module_path": "CompareFramework_Scenarios.bas",
-        "procedure": "CF_RunFinanceScenario",
-        "kind": "Sub",
-        "line": 44,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Scenarios.CF_RunHRScenario",
-        "module": "CompareFramework_Scenarios",
-        "module_path": "CompareFramework_Scenarios.bas",
-        "procedure": "CF_RunHRScenario",
-        "kind": "Sub",
-        "line": 64,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Scenarios.CF_RunERPScenario",
-        "module": "CompareFramework_Scenarios",
-        "module_path": "CompareFramework_Scenarios.bas",
-        "procedure": "CF_RunERPScenario",
-        "kind": "Sub",
-        "line": 83,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CF_ModeReference.CF_RunReferenceMode",
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
@@ -20332,12 +20293,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 172,
+      "public_procedure_count": 169,
       "cross_module_used_public_count": 99,
-      "candidate_count": 73,
+      "candidate_count": 70,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 43,
+        "local-only": 40,
         "zero-caller-review": 30
       }
     }
@@ -20346,8 +20307,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 172,
-    "private_procedure_count": 113,
+    "public_procedure_count": 169,
+    "private_procedure_count": 116,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20362,8 +20323,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 73,
-    "local_only_public_count": 43,
+    "privatization_candidate_count": 70,
+    "local_only_public_count": 40,
     "zero_caller_public_count": 30
   }
 }
