@@ -4613,10 +4613,10 @@
         {
           "name": "CF_RunTypedRegressionSuite",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 17,
           "end_line": 67,
-          "signature": "Public Sub CF_RunTypedRegressionSuite ()",
+          "signature": "Private Sub CF_RunTypedRegressionSuite ()",
           "return_type": null,
           "parameters": []
         },
@@ -4633,10 +4633,10 @@
         {
           "name": "CF_BuildComparatorCoverageReport",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 152,
           "end_line": 194,
-          "signature": "Public Sub CF_BuildComparatorCoverageReport ()",
+          "signature": "Private Sub CF_BuildComparatorCoverageReport ()",
           "return_type": null,
           "parameters": []
         },
@@ -10249,7 +10249,7 @@
         "module": "CompareFramework_Reliability",
         "module_path": "CompareFramework_Reliability.bas",
         "name": "CF_RunTypedRegressionSuite",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 17
       },
@@ -10267,7 +10267,7 @@
         "module": "CompareFramework_Reliability",
         "module_path": "CompareFramework_Reliability.bas",
         "name": "CF_BuildComparatorCoverageReport",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 152
       },
@@ -19733,32 +19733,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Reliability.CF_RunTypedRegressionSuite",
-        "module": "CompareFramework_Reliability",
-        "module_path": "CompareFramework_Reliability.bas",
-        "procedure": "CF_RunTypedRegressionSuite",
-        "kind": "Sub",
-        "line": 17,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Reliability.CF_BuildComparatorCoverageReport",
-        "module": "CompareFramework_Reliability",
-        "module_path": "CompareFramework_Reliability.bas",
-        "procedure": "CF_BuildComparatorCoverageReport",
-        "kind": "Sub",
-        "line": 152,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_Report.WriteActionHeader",
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
@@ -20423,12 +20397,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 179,
+      "public_procedure_count": 177,
       "cross_module_used_public_count": 99,
-      "candidate_count": 80,
+      "candidate_count": 78,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 50,
+        "local-only": 48,
         "zero-caller-review": 30
       }
     }
@@ -20437,8 +20411,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 179,
-    "private_procedure_count": 106,
+    "public_procedure_count": 177,
+    "private_procedure_count": 108,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20453,8 +20427,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 80,
-    "local_only_public_count": 50,
+    "privatization_candidate_count": 78,
+    "local_only_public_count": 48,
     "zero_caller_public_count": 30
   }
 }

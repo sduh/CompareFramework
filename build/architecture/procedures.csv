@@ -149,9 +149,9 @@ CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityWriteHeaders,Sub
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityWriteRow,Sub,Private,322,329,,8,"Private Sub CF_QualityWriteRow (oSheet As Object, row As Long, idValue As String, nameValue As String, amountValue As String, rateValue As String, statusValue As String, dateValue As String)"
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityRecreateSheet,Sub,Private,331,336,,2,"Private Sub CF_QualityRecreateSheet (oDoc As Object, sName As String)"
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityFormat,Sub,Private,338,347,,1,Private Sub CF_QualityFormat (oSheet As Object)
-CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunTypedRegressionSuite,Sub,Public,17,67,,0,Public Sub CF_RunTypedRegressionSuite ()
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunTypedRegressionSuite,Sub,Private,17,67,,0,Private Sub CF_RunTypedRegressionSuite ()
 CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ValidateComparatorRules,Sub,Public,69,150,,0,Public Sub CF_ValidateComparatorRules ()
-CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_BuildComparatorCoverageReport,Sub,Public,152,194,,0,Public Sub CF_BuildComparatorCoverageReport ()
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_BuildComparatorCoverageReport,Sub,Private,152,194,,0,Private Sub CF_BuildComparatorCoverageReport ()
 CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunMilestoneB_FinalTests,Sub,Public,196,204,,0,Public Sub CF_RunMilestoneB_FinalTests ()
 CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ReliabilityAddCase,Sub,Private,206,222,,8,"Private Sub CF_ReliabilityAddCase (oSheet As Object, ByRef row As Long, ByRef total As Long, ByRef passed As Long, comparatorType As String, oldValue As Variant, newValue As Variant, expected As Boolean)"
 CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ReliabilityWriteHeader,Sub,Private,224,231,,1,Private Sub CF_ReliabilityWriteHeader (oSheet As Object)

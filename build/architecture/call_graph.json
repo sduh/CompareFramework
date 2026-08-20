@@ -1355,7 +1355,7 @@
       "module": "CompareFramework_Reliability",
       "module_path": "CompareFramework_Reliability.bas",
       "name": "CF_RunTypedRegressionSuite",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 17
     },
@@ -1373,7 +1373,7 @@
       "module": "CompareFramework_Reliability",
       "module_path": "CompareFramework_Reliability.bas",
       "name": "CF_BuildComparatorCoverageReport",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 152
     },

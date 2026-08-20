@@ -2959,7 +2959,7 @@ End Sub
 '   CF_Comparator_Validation
 '=========================================================
 
-Public Sub CF_RunTypedRegressionSuite()
+Private Sub CF_RunTypedRegressionSuite()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -3094,7 +3094,7 @@ ErrHandler:
     MsgBox "Erreur CF_ValidateComparatorRules : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_BuildComparatorCoverageReport()
+Private Sub CF_BuildComparatorCoverageReport()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
