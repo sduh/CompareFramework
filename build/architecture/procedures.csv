@@ -35,23 +35,23 @@ CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_Tr
 CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_WriteRow,Sub,Private,203,210,,8,"Private Sub CF_CC_WriteRow (oSheet As Object, rowIndex As Long, enabled As String, profileName As String, columnName As String, comparatorType As String, tolerance As String, comment As String)"
 CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_CC_SetCell,Sub,Private,212,214,,4,"Private Sub CF_CC_SetCell (oSheet As Object, col As Long, row As Long, value As Variant)"
 CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TypedValuesEqual,Function,Public,16,56,Boolean,5,"Public Function CF_TypedValuesEqual (oldRaw As Variant, newRaw As Variant, headerName As String, ByRef comparatorUsed As String, ByRef detail As String) As Boolean"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_ComparatorTypeForHeader,Function,Public,58,79,String,3,"Public Function CF_ComparatorTypeForHeader (headerName As String, oldRaw As Variant, newRaw As Variant) As String"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TextEqual,Function,Public,81,87,Boolean,3,"Public Function CF_TextEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_NumberEqual,Function,Public,89,99,Boolean,4,"Public Function CF_NumberEqual (a As Variant, b As Variant, tolerance As Double, ByRef detail As String) As Boolean"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_DateEqual,Function,Public,101,111,Boolean,4,"Public Function CF_DateEqual (a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String) As Boolean"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_BooleanEqual,Function,Public,113,119,Boolean,3,"Public Function CF_BooleanEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksNumeric,Function,Public,121,124,Boolean,1,Public Function CF_LooksNumeric (v As Variant) As Boolean
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksDate,Function,Public,126,132,Boolean,1,Public Function CF_LooksDate (v As Variant) As Boolean
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksBoolean,Function,Public,134,136,Boolean,1,Public Function CF_LooksBoolean (v As Variant) As Boolean
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TryParseNumber,Function,Public,138,166,Boolean,2,"Public Function CF_TryParseNumber (v As Variant, ByRef result As Double) As Boolean"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TryParseDateSerial,Function,Public,168,182,Boolean,2,"Public Function CF_TryParseDateSerial (v As Variant, ByRef result As Double) As Boolean"
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_BooleanCode,Function,Public,184,195,Integer,1,Public Function CF_BooleanCode (v As Variant) As Integer
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_PercentToNumber,Function,Public,197,206,Variant,1,Public Function CF_PercentToNumber (v As Variant) As Variant
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_CurrencyToNumber,Function,Public,208,211,Variant,1,Public Function CF_CurrencyToNumber (v As Variant) As Variant
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetNumericTolerance,Function,Public,213,215,Double,0,Public Function CF_GetNumericTolerance () As Double
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetPercentTolerance,Function,Public,217,219,Double,0,Public Function CF_GetPercentTolerance () As Double
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetCurrencyTolerance,Function,Public,221,223,Double,0,Public Function CF_GetCurrencyTolerance () As Double
-CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetDateToleranceDays,Function,Public,225,227,Double,0,Public Function CF_GetDateToleranceDays () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_ComparatorTypeForHeader,Function,Private,58,79,String,3,"Private Function CF_ComparatorTypeForHeader (headerName As String, oldRaw As Variant, newRaw As Variant) As String"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TextEqual,Function,Private,81,87,Boolean,3,"Private Function CF_TextEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_NumberEqual,Function,Private,89,99,Boolean,4,"Private Function CF_NumberEqual (a As Variant, b As Variant, tolerance As Double, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_DateEqual,Function,Private,101,111,Boolean,4,"Private Function CF_DateEqual (a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_BooleanEqual,Function,Private,113,119,Boolean,3,"Private Function CF_BooleanEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksNumeric,Function,Private,121,124,Boolean,1,Private Function CF_LooksNumeric (v As Variant) As Boolean
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksDate,Function,Private,126,132,Boolean,1,Private Function CF_LooksDate (v As Variant) As Boolean
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_LooksBoolean,Function,Private,134,136,Boolean,1,Private Function CF_LooksBoolean (v As Variant) As Boolean
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TryParseNumber,Function,Private,138,166,Boolean,2,"Private Function CF_TryParseNumber (v As Variant, ByRef result As Double) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_TryParseDateSerial,Function,Private,168,182,Boolean,2,"Private Function CF_TryParseDateSerial (v As Variant, ByRef result As Double) As Boolean"
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_BooleanCode,Function,Private,184,195,Integer,1,Private Function CF_BooleanCode (v As Variant) As Integer
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_PercentToNumber,Function,Private,197,206,Variant,1,Private Function CF_PercentToNumber (v As Variant) As Variant
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_CurrencyToNumber,Function,Private,208,211,Variant,1,Private Function CF_CurrencyToNumber (v As Variant) As Variant
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetNumericTolerance,Function,Private,213,215,Double,0,Private Function CF_GetNumericTolerance () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetPercentTolerance,Function,Private,217,219,Double,0,Private Function CF_GetPercentTolerance () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetCurrencyTolerance,Function,Private,221,223,Double,0,Private Function CF_GetCurrencyTolerance () As Double
+CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_GetDateToleranceDays,Function,Private,225,227,Double,0,Private Function CF_GetDateToleranceDays () As Double
 CompareFramework_Comparators,CompareFramework_Comparators.bas,CF_RunTypedComparatorTests,Sub,Public,229,244,,0,Public Sub CF_RunTypedComparatorTests ()
 CompareFramework_Config,CompareFramework_Config.bas,LoadCompareConfig,Sub,Public,5,38,,1,Public Sub LoadCompareConfig (oDoc As Object)
 CompareFramework_Config,CompareFramework_Config.bas,EnsureConfigSheet,Function,Public,40,53,Object,1,Public Function EnsureConfigSheet (oDoc As Object) As Object

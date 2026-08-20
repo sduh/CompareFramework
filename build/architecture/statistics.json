@@ -2,8 +2,8 @@
   "module_count": 20,
   "line_count": 5988,
   "procedure_count": 285,
-  "public_procedure_count": 204,
-  "private_procedure_count": 81,
+  "public_procedure_count": 187,
+  "private_procedure_count": 98,
   "constant_count": 41,
   "module_variable_count": 51,
   "type_count": 0,
@@ -18,7 +18,7 @@
   "dependency_cycle_count": 2,
   "cyclic_module_count": 9,
   "max_dependency_cycle_size": 7,
-  "privatization_candidate_count": 105,
-  "local_only_public_count": 75,
+  "privatization_candidate_count": 88,
+  "local_only_public_count": 58,
   "zero_caller_public_count": 30
 }

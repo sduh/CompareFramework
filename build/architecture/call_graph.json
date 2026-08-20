@@ -329,7 +329,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_ComparatorTypeForHeader",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 58
     },
@@ -338,7 +338,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_TextEqual",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 81
     },
@@ -347,7 +347,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_NumberEqual",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 89
     },
@@ -356,7 +356,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_DateEqual",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 101
     },
@@ -365,7 +365,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_BooleanEqual",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 113
     },
@@ -374,7 +374,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_LooksNumeric",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 121
     },
@@ -383,7 +383,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_LooksDate",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 126
     },
@@ -392,7 +392,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_LooksBoolean",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 134
     },
@@ -401,7 +401,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_TryParseNumber",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 138
     },
@@ -410,7 +410,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_TryParseDateSerial",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 168
     },
@@ -419,7 +419,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_BooleanCode",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 184
     },
@@ -428,7 +428,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_PercentToNumber",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 197
     },
@@ -437,7 +437,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_CurrencyToNumber",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 208
     },
@@ -446,7 +446,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_GetNumericTolerance",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 213
     },
@@ -455,7 +455,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_GetPercentTolerance",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 217
     },
@@ -464,7 +464,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_GetCurrencyTolerance",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 221
     },
@@ -473,7 +473,7 @@
       "module": "CompareFramework_Comparators",
       "module_path": "CompareFramework_Comparators.bas",
       "name": "CF_GetDateToleranceDays",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 225
     },

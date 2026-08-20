@@ -990,10 +990,10 @@
         {
           "name": "CF_ComparatorTypeForHeader",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 58,
           "end_line": 79,
-          "signature": "Public Function CF_ComparatorTypeForHeader (headerName As String, oldRaw As Variant, newRaw As Variant) As String",
+          "signature": "Private Function CF_ComparatorTypeForHeader (headerName As String, oldRaw As Variant, newRaw As Variant) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -1028,10 +1028,10 @@
         {
           "name": "CF_TextEqual",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 81,
           "end_line": 87,
-          "signature": "Public Function CF_TextEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean",
+          "signature": "Private Function CF_TextEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1066,10 +1066,10 @@
         {
           "name": "CF_NumberEqual",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 89,
           "end_line": 99,
-          "signature": "Public Function CF_NumberEqual (a As Variant, b As Variant, tolerance As Double, ByRef detail As String) As Boolean",
+          "signature": "Private Function CF_NumberEqual (a As Variant, b As Variant, tolerance As Double, ByRef detail As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1113,10 +1113,10 @@
         {
           "name": "CF_DateEqual",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 101,
           "end_line": 111,
-          "signature": "Public Function CF_DateEqual (a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String) As Boolean",
+          "signature": "Private Function CF_DateEqual (a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1160,10 +1160,10 @@
         {
           "name": "CF_BooleanEqual",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 113,
           "end_line": 119,
-          "signature": "Public Function CF_BooleanEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean",
+          "signature": "Private Function CF_BooleanEqual (a As Variant, b As Variant, ByRef detail As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1198,10 +1198,10 @@
         {
           "name": "CF_LooksNumeric",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 121,
           "end_line": 124,
-          "signature": "Public Function CF_LooksNumeric (v As Variant) As Boolean",
+          "signature": "Private Function CF_LooksNumeric (v As Variant) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1218,10 +1218,10 @@
         {
           "name": "CF_LooksDate",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 126,
           "end_line": 132,
-          "signature": "Public Function CF_LooksDate (v As Variant) As Boolean",
+          "signature": "Private Function CF_LooksDate (v As Variant) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1238,10 +1238,10 @@
         {
           "name": "CF_LooksBoolean",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 134,
           "end_line": 136,
-          "signature": "Public Function CF_LooksBoolean (v As Variant) As Boolean",
+          "signature": "Private Function CF_LooksBoolean (v As Variant) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1258,10 +1258,10 @@
         {
           "name": "CF_TryParseNumber",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 138,
           "end_line": 166,
-          "signature": "Public Function CF_TryParseNumber (v As Variant, ByRef result As Double) As Boolean",
+          "signature": "Private Function CF_TryParseNumber (v As Variant, ByRef result As Double) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1287,10 +1287,10 @@
         {
           "name": "CF_TryParseDateSerial",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 168,
           "end_line": 182,
-          "signature": "Public Function CF_TryParseDateSerial (v As Variant, ByRef result As Double) As Boolean",
+          "signature": "Private Function CF_TryParseDateSerial (v As Variant, ByRef result As Double) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -1316,10 +1316,10 @@
         {
           "name": "CF_BooleanCode",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 184,
           "end_line": 195,
-          "signature": "Public Function CF_BooleanCode (v As Variant) As Integer",
+          "signature": "Private Function CF_BooleanCode (v As Variant) As Integer",
           "return_type": "Integer",
           "parameters": [
             {
@@ -1336,10 +1336,10 @@
         {
           "name": "CF_PercentToNumber",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 197,
           "end_line": 206,
-          "signature": "Public Function CF_PercentToNumber (v As Variant) As Variant",
+          "signature": "Private Function CF_PercentToNumber (v As Variant) As Variant",
           "return_type": "Variant",
           "parameters": [
             {
@@ -1356,10 +1356,10 @@
         {
           "name": "CF_CurrencyToNumber",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 208,
           "end_line": 211,
-          "signature": "Public Function CF_CurrencyToNumber (v As Variant) As Variant",
+          "signature": "Private Function CF_CurrencyToNumber (v As Variant) As Variant",
           "return_type": "Variant",
           "parameters": [
             {
@@ -1376,40 +1376,40 @@
         {
           "name": "CF_GetNumericTolerance",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 213,
           "end_line": 215,
-          "signature": "Public Function CF_GetNumericTolerance () As Double",
+          "signature": "Private Function CF_GetNumericTolerance () As Double",
           "return_type": "Double",
           "parameters": []
         },
         {
           "name": "CF_GetPercentTolerance",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 217,
           "end_line": 219,
-          "signature": "Public Function CF_GetPercentTolerance () As Double",
+          "signature": "Private Function CF_GetPercentTolerance () As Double",
           "return_type": "Double",
           "parameters": []
         },
         {
           "name": "CF_GetCurrencyTolerance",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 221,
           "end_line": 223,
-          "signature": "Public Function CF_GetCurrencyTolerance () As Double",
+          "signature": "Private Function CF_GetCurrencyTolerance () As Double",
           "return_type": "Double",
           "parameters": []
         },
         {
           "name": "CF_GetDateToleranceDays",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 225,
           "end_line": 227,
-          "signature": "Public Function CF_GetDateToleranceDays () As Double",
+          "signature": "Private Function CF_GetDateToleranceDays () As Double",
           "return_type": "Double",
           "parameters": []
         },
@@ -9223,7 +9223,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_ComparatorTypeForHeader",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 58
       },
@@ -9232,7 +9232,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_TextEqual",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 81
       },
@@ -9241,7 +9241,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_NumberEqual",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 89
       },
@@ -9250,7 +9250,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_DateEqual",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 101
       },
@@ -9259,7 +9259,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_BooleanEqual",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 113
       },
@@ -9268,7 +9268,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_LooksNumeric",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 121
       },
@@ -9277,7 +9277,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_LooksDate",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 126
       },
@@ -9286,7 +9286,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_LooksBoolean",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 134
       },
@@ -9295,7 +9295,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_TryParseNumber",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 138
       },
@@ -9304,7 +9304,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_TryParseDateSerial",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 168
       },
@@ -9313,7 +9313,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_BooleanCode",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 184
       },
@@ -9322,7 +9322,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_PercentToNumber",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 197
       },
@@ -9331,7 +9331,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_CurrencyToNumber",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 208
       },
@@ -9340,7 +9340,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_GetNumericTolerance",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 213
       },
@@ -9349,7 +9349,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_GetPercentTolerance",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 217
       },
@@ -9358,7 +9358,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_GetCurrencyTolerance",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 221
       },
@@ -9367,7 +9367,7 @@
         "module": "CompareFramework_Comparators",
         "module_path": "CompareFramework_Comparators.bas",
         "name": "CF_GetDateToleranceDays",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 225
       },
@@ -19525,227 +19525,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Comparators.CF_ComparatorTypeForHeader",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_ComparatorTypeForHeader",
-        "kind": "Function",
-        "line": 58,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_TextEqual",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_TextEqual",
-        "kind": "Function",
-        "line": 81,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_NumberEqual",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_NumberEqual",
-        "kind": "Function",
-        "line": 89,
-        "local_incoming_edges": 1,
-        "local_call_sites": 3,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_DateEqual",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_DateEqual",
-        "kind": "Function",
-        "line": 101,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_BooleanEqual",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_BooleanEqual",
-        "kind": "Function",
-        "line": 113,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_LooksNumeric",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_LooksNumeric",
-        "kind": "Function",
-        "line": 121,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_LooksDate",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_LooksDate",
-        "kind": "Function",
-        "line": 126,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_LooksBoolean",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_LooksBoolean",
-        "kind": "Function",
-        "line": 134,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_TryParseNumber",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_TryParseNumber",
-        "kind": "Function",
-        "line": 138,
-        "local_incoming_edges": 4,
-        "local_call_sites": 5,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_TryParseDateSerial",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_TryParseDateSerial",
-        "kind": "Function",
-        "line": 168,
-        "local_incoming_edges": 2,
-        "local_call_sites": 3,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_BooleanCode",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_BooleanCode",
-        "kind": "Function",
-        "line": 184,
-        "local_incoming_edges": 2,
-        "local_call_sites": 3,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_PercentToNumber",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_PercentToNumber",
-        "kind": "Function",
-        "line": 197,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_CurrencyToNumber",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_CurrencyToNumber",
-        "kind": "Function",
-        "line": 208,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_GetNumericTolerance",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_GetNumericTolerance",
-        "kind": "Function",
-        "line": 213,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_GetPercentTolerance",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_GetPercentTolerance",
-        "kind": "Function",
-        "line": 217,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_GetCurrencyTolerance",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_GetCurrencyTolerance",
-        "kind": "Function",
-        "line": 221,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Comparators.CF_GetDateToleranceDays",
-        "module": "CompareFramework_Comparators",
-        "module_path": "CompareFramework_Comparators.bas",
-        "procedure": "CF_GetDateToleranceDays",
-        "kind": "Function",
-        "line": 225,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_Config.WriteDefaultConfig",
         "module": "CompareFramework_Config",
         "module_path": "CompareFramework_Config.bas",
@@ -20748,12 +20527,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 204,
+      "public_procedure_count": 187,
       "cross_module_used_public_count": 99,
-      "candidate_count": 105,
+      "candidate_count": 88,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 75,
+        "local-only": 58,
         "zero-caller-review": 30
       }
     }
@@ -20762,8 +20541,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 204,
-    "private_procedure_count": 81,
+    "public_procedure_count": 187,
+    "private_procedure_count": 98,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20778,8 +20557,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 105,
-    "local_only_public_count": 75,
+    "privatization_candidate_count": 88,
+    "local_only_public_count": 58,
     "zero_caller_public_count": 30
   }
 }

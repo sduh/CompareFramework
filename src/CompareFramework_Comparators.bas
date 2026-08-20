@@ -55,7 +55,7 @@ Public Function CF_TypedValuesEqual(oldRaw As Variant, newRaw As Variant, header
     End Select
 End Function
 
-Public Function CF_ComparatorTypeForHeader(headerName As String, oldRaw As Variant, newRaw As Variant) As String
+Private Function CF_ComparatorTypeForHeader(headerName As String, oldRaw As Variant, newRaw As Variant) As String
     Dim h As String
     h = UCase(Trim(headerName))
 
@@ -78,7 +78,7 @@ Public Function CF_ComparatorTypeForHeader(headerName As String, oldRaw As Varia
     End If
 End Function
 
-Public Function CF_TextEqual(a As Variant, b As Variant, ByRef detail As String) As Boolean
+Private Function CF_TextEqual(a As Variant, b As Variant, ByRef detail As String) As Boolean
     Dim sa As String, sb As String
     sa = NormalizeCompareValue(CStr(a))
     sb = NormalizeCompareValue(CStr(b))
@@ -86,7 +86,7 @@ Public Function CF_TextEqual(a As Variant, b As Variant, ByRef detail As String)
     CF_TextEqual = (sa = sb)
 End Function
 
-Public Function CF_NumberEqual(a As Variant, b As Variant, tolerance As Double, ByRef detail As String) As Boolean
+Private Function CF_NumberEqual(a As Variant, b As Variant, tolerance As Double, ByRef detail As String) As Boolean
     Dim da As Double, db As Double, delta As Double
     If Not CF_TryParseNumber(a, da) Or Not CF_TryParseNumber(b, db) Then
         detail = "NUMBER parse impossible"
@@ -98,7 +98,7 @@ Public Function CF_NumberEqual(a As Variant, b As Variant, tolerance As Double, 
     CF_NumberEqual = (delta <= tolerance)
 End Function
 
-Public Function CF_DateEqual(a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String) As Boolean
+Private Function CF_DateEqual(a As Variant, b As Variant, toleranceDays As Double, ByRef detail As String) As Boolean
     Dim da As Double, db As Double, delta As Double
     If Not CF_TryParseDateSerial(a, da) Or Not CF_TryParseDateSerial(b, db) Then
         detail = "DATE parse impossible"
@@ -110,7 +110,7 @@ Public Function CF_DateEqual(a As Variant, b As Variant, toleranceDays As Double
     CF_DateEqual = (delta <= toleranceDays)
 End Function
 
-Public Function CF_BooleanEqual(a As Variant, b As Variant, ByRef detail As String) As Boolean
+Private Function CF_BooleanEqual(a As Variant, b As Variant, ByRef detail As String) As Boolean
     Dim ba As Integer, bb As Integer
     ba = CF_BooleanCode(a)
     bb = CF_BooleanCode(b)
@@ -118,12 +118,12 @@ Public Function CF_BooleanEqual(a As Variant, b As Variant, ByRef detail As Stri
     CF_BooleanEqual = (ba >= 0 And bb >= 0 And ba = bb)
 End Function
 
-Public Function CF_LooksNumeric(v As Variant) As Boolean
+Private Function CF_LooksNumeric(v As Variant) As Boolean
     Dim d As Double
     CF_LooksNumeric = CF_TryParseNumber(v, d)
 End Function
 
-Public Function CF_LooksDate(v As Variant) As Boolean
+Private Function CF_LooksDate(v As Variant) As Boolean
     Dim d As Double, s As String
     s = Trim(CStr(v))
     If s = "" Then CF_LooksDate = False : Exit Function
@@ -131,11 +131,11 @@ Public Function CF_LooksDate(v As Variant) As Boolean
     CF_LooksDate = CF_TryParseDateSerial(v, d)
 End Function
 
-Public Function CF_LooksBoolean(v As Variant) As Boolean
+Private Function CF_LooksBoolean(v As Variant) As Boolean
     CF_LooksBoolean = (CF_BooleanCode(v) >= 0)
 End Function
 
-Public Function CF_TryParseNumber(v As Variant, ByRef result As Double) As Boolean
+Private Function CF_TryParseNumber(v As Variant, ByRef result As Double) As Boolean
     On Error GoTo Fail
     Dim s As String
     If IsNumeric(v) Then result = CDbl(v) : CF_TryParseNumber = True : Exit Function
@@ -165,7 +165,7 @@ Fail:
     CF_TryParseNumber = False
 End Function
 
-Public Function CF_TryParseDateSerial(v As Variant, ByRef result As Double) As Boolean
+Private Function CF_TryParseDateSerial(v As Variant, ByRef result As Double) As Boolean
     On Error GoTo Fail
     If IsDate(v) Then result = CDbl(CDate(v)) : CF_TryParseDateSerial = True : Exit Function
     If IsNumeric(v) Then
@@ -181,7 +181,7 @@ Fail:
     CF_TryParseDateSerial = False
 End Function
 
-Public Function CF_BooleanCode(v As Variant) As Integer
+Private Function CF_BooleanCode(v As Variant) As Integer
     Dim s As String
     s = UCase(Trim(CStr(v)))
     Select Case s
@@ -194,7 +194,7 @@ Public Function CF_BooleanCode(v As Variant) As Integer
     End Select
 End Function
 
-Public Function CF_PercentToNumber(v As Variant) As Variant
+Private Function CF_PercentToNumber(v As Variant) As Variant
     Dim d As Double, s As String
     s = Trim(CStr(v))
     If CF_TryParseNumber(v, d) Then
@@ -205,24 +205,24 @@ Public Function CF_PercentToNumber(v As Variant) As Variant
     End If
 End Function
 
-Public Function CF_CurrencyToNumber(v As Variant) As Variant
+Private Function CF_CurrencyToNumber(v As Variant) As Variant
     Dim d As Double
     If CF_TryParseNumber(v, d) Then CF_CurrencyToNumber = d Else CF_CurrencyToNumber = v
 End Function
 
-Public Function CF_GetNumericTolerance() As Double
+Private Function CF_GetNumericTolerance() As Double
     CF_GetNumericTolerance = 0.000001
 End Function
 
-Public Function CF_GetPercentTolerance() As Double
+Private Function CF_GetPercentTolerance() As Double
     CF_GetPercentTolerance = 0.000001
 End Function
 
-Public Function CF_GetCurrencyTolerance() As Double
+Private Function CF_GetCurrencyTolerance() As Double
     CF_GetCurrencyTolerance = 0.005
 End Function
 
-Public Function CF_GetDateToleranceDays() As Double
+Private Function CF_GetDateToleranceDays() As Double
     CF_GetDateToleranceDays = 0
 End Function
 
