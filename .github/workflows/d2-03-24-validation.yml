@@ -18,11 +18,26 @@ jobs:
           python-version: '3.12'
       - name: Compile architecture analyzer
         run: python -m compileall -q tools/architecture
-      - name: Run cumulative Python regression suite
-        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Run cumulative D2-03 visibility regressions
+        run: |
+          for i in $(seq 2 18); do
+            python "tests/test_d2_03_${i}_visibility.py"
+          done
+          python tests/test_d2_03_19_contract_guardrail.py
+          python tests/test_d2_03_20_entrypoint_audit.py
+          python tests/test_d2_03_21_visibility.py
+          python tests/test_d2_03_22_documentation_conflicts.py
+          python tests/test_d2_03_23_maintenance_entrypoints.py
+      - name: Run architecture regression suite
+        run: |
+          python tests/test_architecture_a15.py
+          python tests/test_architecture_callgraph.py
+          python tests/test_architecture_dependencies.py
+          python tests/test_architecture_reports.py
+          python tests/test_architecture_privatization.py
       - name: Regenerate canonical architecture
         run: python -m tools.architecture --root . --summary
-      - name: Verify D2-03.24 contract after regeneration
+      - name: Verify D2-03.24 frozen API contract
         run: python tests/test_d2_03_24_public_api_freeze.py
       - name: Build monolith
         run: python tools/build_monolith.py
