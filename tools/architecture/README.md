@@ -40,3 +40,17 @@ Cycles are detected with strongly connected components on the directed module
 dependency graph.
 
 The analyzer is read-only and never modifies LibreOffice Basic runtime sources.
+
+
+## Human-readable reports
+
+D2-03.0-D generates two deterministic UTF-8 Markdown reports from the canonical
+model:
+
+```text
+ARCHITECTURE_REPORT.md
+DEPENDENCY_REPORT.md
+```
+
+The reports are derived views. They do not change schema `1.2.0` and do not
+introduce a second source of truth.

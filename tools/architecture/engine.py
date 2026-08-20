@@ -10,6 +10,7 @@ from .config import AnalyzerConfig, SCHEMA_VERSION
 from .dependencies import analyze_dependencies
 from .exporters import export_all
 from .repository import load_repository
+from .reports import write_reports
 from .symbols import build_symbol_table
 from .validation import validate_architecture_document
 
@@ -80,4 +81,5 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         call_graph,
         dependency_analysis,
     )
+    write_reports(config.output_dir, document)
     return document
