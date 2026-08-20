@@ -114,7 +114,7 @@ ErrHandler:
     MsgBox "Erreur CF_SaveCurrentConfigAsProfile : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_ListProfiles()
+Private Sub CF_ListProfiles()
     Dim oSheet As Object
     oSheet = CF_EnsureProfilesSheet(ThisComponent)
     ThisComponent.CurrentController.setActiveSheet(oSheet)

@@ -120,7 +120,7 @@ Public Function CF_ResolveComparatorConfig(headerName As String, ByRef comparato
     CF_ResolveComparatorConfig = True
 End Function
 
-Public Sub CF_ReloadComparatorConfig()
+Private Sub CF_ReloadComparatorConfig()
     CF_CC_LOADED = False
     CF_LoadComparatorConfig ThisComponent
     MsgBox "Configuration des comparateurs rechargee : " & CF_CC_COUNT & " regle(s).", 64, "CompareFramework V" & CF_VERSION

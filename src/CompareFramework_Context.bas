@@ -83,7 +83,7 @@ Public Function CF_ContextHas(sKey As String) As Boolean
     CF_ContextHas = (CF_ContextIndexOf(sKey) >= 0)
 End Function
 
-Public Function CF_ContextCount() As Long
+Private Function CF_ContextCount() As Long
     CF_ContextInitIfNeeded
     CF_ContextCount = CF_CTX_COUNT
 End Function

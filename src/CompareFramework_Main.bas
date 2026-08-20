@@ -52,7 +52,7 @@ Public Sub ComparerToutesLesFeuilles()
     CF_CompareAllSheetsInMemory
 End Sub
 
-Public Sub CF_RunMilestoneA()
+Private Sub CF_RunMilestoneA()
     On Error GoTo ErrHandler
     CF_AuditBegin "MilestoneA-V3.0"
     CF_ContextBeginRun "MilestoneA-V3.0"
@@ -223,7 +223,7 @@ End Sub
 ' V2.5 - Context-aware wrappers
 '=========================================================
 
-Public Sub ComparerToutesLesFeuilles_Contextualisee()
+Private Sub ComparerToutesLesFeuilles_Contextualisee()
     On Error GoTo ErrHandler
 
     CF_ContextBeginRun "ComparerToutesLesFeuilles"
@@ -296,7 +296,7 @@ End Sub
 '=========================================================
 ' V2.9 - Performance-profiled entry point
 '=========================================================
-Public Sub CF_RunPerformanceProfiled()
+Private Sub CF_RunPerformanceProfiled()
     On Error GoTo ErrHandler
     CF_PerfReset
     CF_PerfStart "Total"
@@ -335,7 +335,7 @@ ErrHandler:
 End Sub
 
 
-Public Sub CF_RunMilestoneB()
+Private Sub CF_RunMilestoneB()
     On Error GoTo ErrHandler
     CF_AuditBegin "JalonB_V3.1"
     CF_ContextBeginRun "JalonB_V3.1"
@@ -387,7 +387,7 @@ End Sub
 ' V3.3 - Jalon B final entry point
 '=========================================================
 
-Public Sub CF_RunMilestoneB_Final()
+Private Sub CF_RunMilestoneB_Final()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "CF_RunMilestoneB_Final"
@@ -416,7 +416,7 @@ End Sub
 ' V3.4 - Milestone C entry point
 '=========================================================
 
-Public Sub CF_RunMilestoneC()
+Private Sub CF_RunMilestoneC()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "CF_RunMilestoneC"
@@ -441,7 +441,7 @@ End Sub
 ' V3.5 - Milestone C final entry point
 '=========================================================
 
-Public Sub CF_RunMilestoneC_Final()
+Private Sub CF_RunMilestoneC_Final()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "CF_RunMilestoneC_Final"

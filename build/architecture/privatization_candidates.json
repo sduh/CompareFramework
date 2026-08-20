@@ -168,19 +168,6 @@
   ],
   "candidates": [
     {
-      "id": "CF_ModeReference.CF_RunLauncherQuick",
-      "module": "CF_ModeReference",
-      "module_path": "Modes/CF_ModeReference.bas",
-      "procedure": "CF_RunLauncherQuick",
-      "kind": "Sub",
-      "line": 645,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
       "id": "CompareFramework_API.CF_StartReferenceComparison",
       "module": "CompareFramework_API",
       "module_path": "CompareFramework_API.bas",
@@ -259,77 +246,12 @@
       "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
     },
     {
-      "id": "CompareFramework_Audit.CF_AuditClearHistory",
-      "module": "CompareFramework_Audit",
-      "module_path": "CompareFramework_Audit.bas",
-      "procedure": "CF_AuditClearHistory",
-      "kind": "Sub",
-      "line": 154,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_ComparatorConfig.CF_ReloadComparatorConfig",
-      "module": "CompareFramework_ComparatorConfig",
-      "module_path": "CompareFramework_ComparatorConfig.bas",
-      "procedure": "CF_ReloadComparatorConfig",
-      "kind": "Sub",
-      "line": 123,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Context.CF_ContextCount",
-      "module": "CompareFramework_Context",
-      "module_path": "CompareFramework_Context.bas",
-      "procedure": "CF_ContextCount",
-      "kind": "Function",
-      "line": 86,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
       "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Legacy",
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "procedure": "ComparerToutesLesFeuilles_Legacy",
       "kind": "Sub",
       "line": 5,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneA",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneA",
-      "kind": "Sub",
-      "line": 55,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Contextualisee",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "ComparerToutesLesFeuilles_Contextualisee",
-      "kind": "Sub",
-      "line": 226,
       "local_incoming_edges": 0,
       "local_call_sites": 0,
       "classification": "zero-caller-review",
@@ -350,90 +272,12 @@
       "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
     },
     {
-      "id": "CompareFramework_Main.CF_RunPerformanceProfiled",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunPerformanceProfiled",
-      "kind": "Sub",
-      "line": 299,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneB",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneB",
-      "kind": "Sub",
-      "line": 338,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
       "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "procedure": "CF_RunMilestoneB_ConfigTests",
       "kind": "Sub",
       "line": 380,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneB_Final",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneB_Final",
-      "kind": "Sub",
-      "line": 390,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneC",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneC",
-      "kind": "Sub",
-      "line": 419,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneC_Final",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneC_Final",
-      "kind": "Sub",
-      "line": 444,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Profiles.CF_ListProfiles",
-      "module": "CompareFramework_Profiles",
-      "module_path": "CompareFramework_Profiles.bas",
-      "procedure": "CF_ListProfiles",
-      "kind": "Sub",
-      "line": 117,
       "local_incoming_edges": 0,
       "local_call_sites": 0,
       "classification": "zero-caller-review",
@@ -455,13 +299,13 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 134,
+    "public_procedure_count": 122,
     "cross_module_used_public_count": 99,
-    "candidate_count": 22,
+    "candidate_count": 10,
     "protected_public_count": 13,
-    "zero_caller_public_count": 30,
+    "zero_caller_public_count": 18,
     "classification_counts": {
-      "zero-caller-review": 22
+      "zero-caller-review": 10
     }
   }
 }

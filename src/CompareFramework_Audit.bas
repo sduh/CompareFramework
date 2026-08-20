@@ -151,7 +151,7 @@ ErrHandler:
     MsgBox "Erreur CF_AuditWriteCurrentRun : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_AuditClearHistory()
+Private Sub CF_AuditClearHistory()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object

@@ -642,7 +642,7 @@ ErrHandler:
            16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_RunLauncherQuick()
+Private Sub CF_RunLauncherQuick()
     CF_OpenReferenceLauncher
 End Sub
 

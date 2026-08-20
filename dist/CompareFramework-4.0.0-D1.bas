@@ -344,7 +344,7 @@ Public Function CF_ContextHas(sKey As String) As Boolean
     CF_ContextHas = (CF_ContextIndexOf(sKey) >= 0)
 End Function
 
-Public Function CF_ContextCount() As Long
+Private Function CF_ContextCount() As Long
     CF_ContextInitIfNeeded
     CF_ContextCount = CF_CTX_COUNT
 End Function
@@ -591,7 +591,7 @@ ErrHandler:
     MsgBox "Erreur CF_AuditWriteCurrentRun : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_AuditClearHistory()
+Private Sub CF_AuditClearHistory()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -2475,7 +2475,7 @@ Public Function CF_ResolveComparatorConfig(headerName As String, ByRef comparato
     CF_ResolveComparatorConfig = True
 End Function
 
-Public Sub CF_ReloadComparatorConfig()
+Private Sub CF_ReloadComparatorConfig()
     CF_CC_LOADED = False
     CF_LoadComparatorConfig ThisComponent
     MsgBox "Configuration des comparateurs rechargee : " & CF_CC_COUNT & " regle(s).", 64, "CompareFramework V" & CF_VERSION
@@ -3321,7 +3321,7 @@ ErrHandler:
     MsgBox "Erreur CF_SaveCurrentConfigAsProfile : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_ListProfiles()
+Private Sub CF_ListProfiles()
     Dim oSheet As Object
     oSheet = CF_EnsureProfilesSheet(ThisComponent)
     ThisComponent.CurrentController.setActiveSheet(oSheet)
@@ -4053,7 +4053,7 @@ ErrHandler:
            16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_RunLauncherQuick()
+Private Sub CF_RunLauncherQuick()
     CF_OpenReferenceLauncher
 End Sub
 
@@ -4136,7 +4136,7 @@ Public Sub ComparerToutesLesFeuilles()
     CF_CompareAllSheetsInMemory
 End Sub
 
-Public Sub CF_RunMilestoneA()
+Private Sub CF_RunMilestoneA()
     On Error GoTo ErrHandler
     CF_AuditBegin "MilestoneA-V3.0"
     CF_ContextBeginRun "MilestoneA-V3.0"
@@ -4307,7 +4307,7 @@ End Sub
 ' V2.5 - Context-aware wrappers
 '=========================================================
 
-Public Sub ComparerToutesLesFeuilles_Contextualisee()
+Private Sub ComparerToutesLesFeuilles_Contextualisee()
     On Error GoTo ErrHandler
 
     CF_ContextBeginRun "ComparerToutesLesFeuilles"
@@ -4380,7 +4380,7 @@ End Sub
 '=========================================================
 ' V2.9 - Performance-profiled entry point
 '=========================================================
-Public Sub CF_RunPerformanceProfiled()
+Private Sub CF_RunPerformanceProfiled()
     On Error GoTo ErrHandler
     CF_PerfReset
     CF_PerfStart "Total"
@@ -4419,7 +4419,7 @@ ErrHandler:
 End Sub
 
 
-Public Sub CF_RunMilestoneB()
+Private Sub CF_RunMilestoneB()
     On Error GoTo ErrHandler
     CF_AuditBegin "JalonB_V3.1"
     CF_ContextBeginRun "JalonB_V3.1"
@@ -4471,7 +4471,7 @@ End Sub
 ' V3.3 - Jalon B final entry point
 '=========================================================
 
-Public Sub CF_RunMilestoneB_Final()
+Private Sub CF_RunMilestoneB_Final()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "CF_RunMilestoneB_Final"
@@ -4500,7 +4500,7 @@ End Sub
 ' V3.4 - Milestone C entry point
 '=========================================================
 
-Public Sub CF_RunMilestoneC()
+Private Sub CF_RunMilestoneC()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "CF_RunMilestoneC"
@@ -4525,7 +4525,7 @@ End Sub
 ' V3.5 - Milestone C final entry point
 '=========================================================
 
-Public Sub CF_RunMilestoneC_Final()
+Private Sub CF_RunMilestoneC_Final()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "CF_RunMilestoneC_Final"

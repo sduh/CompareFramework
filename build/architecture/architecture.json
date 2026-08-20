@@ -203,10 +203,10 @@
         {
           "name": "CF_AuditClearHistory",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 154,
           "end_line": 170,
-          "signature": "Public Sub CF_AuditClearHistory ()",
+          "signature": "Private Sub CF_AuditClearHistory ()",
           "return_type": null,
           "parameters": []
         },
@@ -618,10 +618,10 @@
         {
           "name": "CF_ReloadComparatorConfig",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 123,
           "end_line": 127,
-          "signature": "Public Sub CF_ReloadComparatorConfig ()",
+          "signature": "Private Sub CF_ReloadComparatorConfig ()",
           "return_type": null,
           "parameters": []
         },
@@ -1878,10 +1878,10 @@
         {
           "name": "CF_ContextCount",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 86,
           "end_line": 89,
-          "signature": "Public Function CF_ContextCount () As Long",
+          "signature": "Private Function CF_ContextCount () As Long",
           "return_type": "Long",
           "parameters": []
         },
@@ -3058,10 +3058,10 @@
         {
           "name": "CF_RunMilestoneA",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 55,
           "end_line": 69,
-          "signature": "Public Sub CF_RunMilestoneA ()",
+          "signature": "Private Sub CF_RunMilestoneA ()",
           "return_type": null,
           "parameters": []
         },
@@ -3437,10 +3437,10 @@
         {
           "name": "ComparerToutesLesFeuilles_Contextualisee",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 226,
           "end_line": 242,
-          "signature": "Public Sub ComparerToutesLesFeuilles_Contextualisee ()",
+          "signature": "Private Sub ComparerToutesLesFeuilles_Contextualisee ()",
           "return_type": null,
           "parameters": []
         },
@@ -3467,20 +3467,20 @@
         {
           "name": "CF_RunPerformanceProfiled",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 299,
           "end_line": 335,
-          "signature": "Public Sub CF_RunPerformanceProfiled ()",
+          "signature": "Private Sub CF_RunPerformanceProfiled ()",
           "return_type": null,
           "parameters": []
         },
         {
           "name": "CF_RunMilestoneB",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 338,
           "end_line": 352,
-          "signature": "Public Sub CF_RunMilestoneB ()",
+          "signature": "Private Sub CF_RunMilestoneB ()",
           "return_type": null,
           "parameters": []
         },
@@ -3507,30 +3507,30 @@
         {
           "name": "CF_RunMilestoneB_Final",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 390,
           "end_line": 412,
-          "signature": "Public Sub CF_RunMilestoneB_Final ()",
+          "signature": "Private Sub CF_RunMilestoneB_Final ()",
           "return_type": null,
           "parameters": []
         },
         {
           "name": "CF_RunMilestoneC",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 419,
           "end_line": 437,
-          "signature": "Public Sub CF_RunMilestoneC ()",
+          "signature": "Private Sub CF_RunMilestoneC ()",
           "return_type": null,
           "parameters": []
         },
         {
           "name": "CF_RunMilestoneC_Final",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 444,
           "end_line": 466,
-          "signature": "Public Sub CF_RunMilestoneC_Final ()",
+          "signature": "Private Sub CF_RunMilestoneC_Final ()",
           "return_type": null,
           "parameters": []
         }
@@ -3957,10 +3957,10 @@
         {
           "name": "CF_ListProfiles",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 117,
           "end_line": 121,
-          "signature": "Public Sub CF_ListProfiles ()",
+          "signature": "Private Sub CF_ListProfiles ()",
           "return_type": null,
           "parameters": []
         },
@@ -8825,10 +8825,10 @@
         {
           "name": "CF_RunLauncherQuick",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 645,
           "end_line": 647,
-          "signature": "Public Sub CF_RunLauncherQuick ()",
+          "signature": "Private Sub CF_RunLauncherQuick ()",
           "return_type": null,
           "parameters": []
         },
@@ -8998,7 +8998,7 @@
         "module": "CompareFramework_Audit",
         "module_path": "CompareFramework_Audit.bas",
         "name": "CF_AuditClearHistory",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 154
       },
@@ -9142,7 +9142,7 @@
         "module": "CompareFramework_ComparatorConfig",
         "module_path": "CompareFramework_ComparatorConfig.bas",
         "name": "CF_ReloadComparatorConfig",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 123
       },
@@ -9547,7 +9547,7 @@
         "module": "CompareFramework_Context",
         "module_path": "CompareFramework_Context.bas",
         "name": "CF_ContextCount",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 86
       },
@@ -9781,7 +9781,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunMilestoneA",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 55
       },
@@ -9844,7 +9844,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "ComparerToutesLesFeuilles_Contextualisee",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 226
       },
@@ -9871,7 +9871,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunPerformanceProfiled",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 299
       },
@@ -9880,7 +9880,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunMilestoneB",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 338
       },
@@ -9907,7 +9907,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunMilestoneB_Final",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 390
       },
@@ -9916,7 +9916,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunMilestoneC",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 419
       },
@@ -9925,7 +9925,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunMilestoneC_Final",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 444
       },
@@ -10060,7 +10060,7 @@
         "module": "CompareFramework_Profiles",
         "module_path": "CompareFramework_Profiles.bas",
         "name": "CF_ListProfiles",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 117
       },
@@ -11446,7 +11446,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_RunLauncherQuick",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 645
       },
@@ -19543,19 +19543,6 @@
     ],
     "candidates": [
       {
-        "id": "CF_ModeReference.CF_RunLauncherQuick",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_RunLauncherQuick",
-        "kind": "Sub",
-        "line": 645,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
         "id": "CompareFramework_API.CF_StartReferenceComparison",
         "module": "CompareFramework_API",
         "module_path": "CompareFramework_API.bas",
@@ -19634,77 +19621,12 @@
         "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
       },
       {
-        "id": "CompareFramework_Audit.CF_AuditClearHistory",
-        "module": "CompareFramework_Audit",
-        "module_path": "CompareFramework_Audit.bas",
-        "procedure": "CF_AuditClearHistory",
-        "kind": "Sub",
-        "line": 154,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_ComparatorConfig.CF_ReloadComparatorConfig",
-        "module": "CompareFramework_ComparatorConfig",
-        "module_path": "CompareFramework_ComparatorConfig.bas",
-        "procedure": "CF_ReloadComparatorConfig",
-        "kind": "Sub",
-        "line": 123,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Context.CF_ContextCount",
-        "module": "CompareFramework_Context",
-        "module_path": "CompareFramework_Context.bas",
-        "procedure": "CF_ContextCount",
-        "kind": "Function",
-        "line": 86,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
         "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Legacy",
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "procedure": "ComparerToutesLesFeuilles_Legacy",
         "kind": "Sub",
         "line": 5,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneA",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneA",
-        "kind": "Sub",
-        "line": 55,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Contextualisee",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "ComparerToutesLesFeuilles_Contextualisee",
-        "kind": "Sub",
-        "line": 226,
         "local_incoming_edges": 0,
         "local_call_sites": 0,
         "classification": "zero-caller-review",
@@ -19725,90 +19647,12 @@
         "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
       },
       {
-        "id": "CompareFramework_Main.CF_RunPerformanceProfiled",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunPerformanceProfiled",
-        "kind": "Sub",
-        "line": 299,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneB",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneB",
-        "kind": "Sub",
-        "line": 338,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
         "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "procedure": "CF_RunMilestoneB_ConfigTests",
         "kind": "Sub",
         "line": 380,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneB_Final",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneB_Final",
-        "kind": "Sub",
-        "line": 390,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneC",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneC",
-        "kind": "Sub",
-        "line": 419,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneC_Final",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneC_Final",
-        "kind": "Sub",
-        "line": 444,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Profiles.CF_ListProfiles",
-        "module": "CompareFramework_Profiles",
-        "module_path": "CompareFramework_Profiles.bas",
-        "procedure": "CF_ListProfiles",
-        "kind": "Sub",
-        "line": 117,
         "local_incoming_edges": 0,
         "local_call_sites": 0,
         "classification": "zero-caller-review",
@@ -19830,13 +19674,13 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 134,
+      "public_procedure_count": 122,
       "cross_module_used_public_count": 99,
-      "candidate_count": 22,
+      "candidate_count": 10,
       "protected_public_count": 13,
-      "zero_caller_public_count": 30,
+      "zero_caller_public_count": 18,
       "classification_counts": {
-        "zero-caller-review": 22
+        "zero-caller-review": 10
       }
     }
   },
@@ -19987,159 +19831,14 @@
         "user_document_references": [],
         "disposition": "maintenance-entrypoint-review",
         "rationale": "Maintenance/test entry point requires an explicit lifecycle decision."
-      },
-      {
-        "id": "CF_ModeReference.CF_RunLauncherQuick",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_RunLauncherQuick",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Audit.CF_AuditClearHistory",
-        "module": "CompareFramework_Audit",
-        "module_path": "CompareFramework_Audit.bas",
-        "procedure": "CF_AuditClearHistory",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_ComparatorConfig.CF_ReloadComparatorConfig",
-        "module": "CompareFramework_ComparatorConfig",
-        "module_path": "CompareFramework_ComparatorConfig.bas",
-        "procedure": "CF_ReloadComparatorConfig",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Context.CF_ContextCount",
-        "module": "CompareFramework_Context",
-        "module_path": "CompareFramework_Context.bas",
-        "procedure": "CF_ContextCount",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneA",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneA",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneB",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneB",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneB_Final",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneB_Final",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneC",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneC",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneC_Final",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneC_Final",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunPerformanceProfiled",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunPerformanceProfiled",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Contextualisee",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "ComparerToutesLesFeuilles_Contextualisee",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
-      },
-      {
-        "id": "CompareFramework_Profiles.CF_ListProfiles",
-        "module": "CompareFramework_Profiles",
-        "module_path": "CompareFramework_Profiles.bas",
-        "procedure": "CF_ListProfiles",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [],
-        "disposition": "private-after-regression-review",
-        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
       }
     ],
     "statistics": {
-      "review_count": 22,
+      "review_count": 10,
       "disposition_counts": {
         "keep-public-api": 6,
         "documentation-conflict-review": 2,
-        "maintenance-entrypoint-review": 2,
-        "private-after-regression-review": 12
+        "maintenance-entrypoint-review": 2
       }
     }
   },
@@ -20147,8 +19846,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 134,
-    "private_procedure_count": 151,
+    "public_procedure_count": 122,
+    "private_procedure_count": 163,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20163,10 +19862,10 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 22,
+    "privatization_candidate_count": 10,
     "local_only_public_count": 0,
     "protected_public_count": 13,
-    "zero_caller_public_count": 30,
-    "entrypoint_review_count": 22
+    "zero_caller_public_count": 18,
+    "entrypoint_review_count": 10
   }
 }

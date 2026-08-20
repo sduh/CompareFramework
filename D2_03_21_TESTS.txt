@@ -1,0 +1,244 @@
+COMPILE_ANALYZER
+================
+
+VISIBILITY_D2032
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+
+VISIBILITY_D2033
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D2034
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D2035
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D2036
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D2037
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D2038
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D2039
+================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D20310
+=================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D20311
+=================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D20312
+=================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+
+VISIBILITY_D20313
+=================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+
+VISIBILITY_D20314
+=================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+
+VISIBILITY_D20315
+=================
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+
+VISIBILITY_D20316
+=================
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.023s
+
+OK
+
+VISIBILITY_D20317
+=================
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.019s
+
+OK
+
+VISIBILITY_D20318
+=================
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.024s
+
+OK
+
+CONTRACT_GUARDRAIL
+==================
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK
+
+ENTRYPOINT_AUDIT
+================
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK
+
+VISIBILITY_D20321
+=================
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.074s
+
+OK
+
+A15
+===
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+
+CALLGRAPH
+=========
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+
+DEPENDENCIES
+============
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+
+REPORTS
+=======
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK
+
+PRIVATIZATION
+=============
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+
+ANALYZER
+========
+{
+  "module_count": 20,
+  "line_count": 5988,
+  "procedure_count": 285,
+  "public_procedure_count": 122,
+  "private_procedure_count": 163,
+  "constant_count": 41,
+  "module_variable_count": 51,
+  "type_count": 0,
+  "enum_count": 0,
+  "symbol_count": 917,
+  "parse_warning_count": 0,
+  "call_graph_edge_count": 600,
+  "call_site_count": 1207,
+  "cross_module_edge_count": 321,
+  "recursive_edge_count": 1,
+  "module_dependency_count": 77,
+  "dependency_cycle_count": 2,
+  "cyclic_module_count": 9,
+  "max_dependency_cycle_size": 7,
+  "privatization_candidate_count": 10,
+  "local_only_public_count": 0,
+  "protected_public_count": 13,
+  "zero_caller_public_count": 18,
+  "entrypoint_review_count": 10
+}
+
+BUILD_MONOLITH
+==============
+/mnt/data/cf_d20321_impl/CompareFramework-main/dist/CompareFramework-4.0.0-D1.bas
+/mnt/data/cf_d20321_impl/CompareFramework-main/dist/BUILD_MANIFEST.json
+
+PRIVATIZED=12
+EXTERNAL_MACRO_UI_DOC_REFERENCES=0
+ENTRYPOINT_REVIEW_REMAINING=10
+DISPOSITION_COUNTS={"documentation-conflict-review": 2, "keep-public-api": 6, "maintenance-entrypoint-review": 2}
+CALL_GRAPH_UNRESOLVED=0
+CALL_GRAPH_AMBIGUOUS=0
+DETERMINISTIC=True

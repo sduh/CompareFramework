@@ -104,7 +104,7 @@
       "module": "CompareFramework_Audit",
       "module_path": "CompareFramework_Audit.bas",
       "name": "CF_AuditClearHistory",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 154
     },
@@ -248,7 +248,7 @@
       "module": "CompareFramework_ComparatorConfig",
       "module_path": "CompareFramework_ComparatorConfig.bas",
       "name": "CF_ReloadComparatorConfig",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 123
     },
@@ -653,7 +653,7 @@
       "module": "CompareFramework_Context",
       "module_path": "CompareFramework_Context.bas",
       "name": "CF_ContextCount",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 86
     },
@@ -887,7 +887,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunMilestoneA",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 55
     },
@@ -950,7 +950,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "ComparerToutesLesFeuilles_Contextualisee",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 226
     },
@@ -977,7 +977,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunPerformanceProfiled",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 299
     },
@@ -986,7 +986,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunMilestoneB",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 338
     },
@@ -1013,7 +1013,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunMilestoneB_Final",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 390
     },
@@ -1022,7 +1022,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunMilestoneC",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 419
     },
@@ -1031,7 +1031,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunMilestoneC_Final",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 444
     },
@@ -1166,7 +1166,7 @@
       "module": "CompareFramework_Profiles",
       "module_path": "CompareFramework_Profiles.bas",
       "name": "CF_ListProfiles",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 117
     },
@@ -2552,7 +2552,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_RunLauncherQuick",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 645
     },
