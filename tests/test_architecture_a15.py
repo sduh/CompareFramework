@@ -11,7 +11,7 @@ from tools.architecture.validation import (
 class ValidationTests(unittest.TestCase):
     def sample(self):
         return {
-            "schema_version": "1.2.0",
+            "schema_version": "1.3.0",
             "repository": {"name": "repo", "version": "1.0", "root": "."},
             "languages": [],
             "modules": [
@@ -49,6 +49,17 @@ class ValidationTests(unittest.TestCase):
                     "cycle_count": 0,
                     "cyclic_module_count": 0,
                     "max_cycle_size": 0,
+                },
+            },
+            "privatization_analysis": {
+                "policy": {},
+                "candidates": [],
+                "statistics": {
+                    "public_procedure_count": 0,
+                    "cross_module_used_public_count": 0,
+                    "candidate_count": 0,
+                    "zero_caller_public_count": 0,
+                    "classification_counts": {},
                 },
             },
             "statistics": {"module_count": 1, "procedure_count": 0},

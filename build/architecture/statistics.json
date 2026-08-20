@@ -17,5 +17,8 @@
   "module_dependency_count": 77,
   "dependency_cycle_count": 2,
   "cyclic_module_count": 9,
-  "max_dependency_cycle_size": 7
+  "max_dependency_cycle_size": 7,
+  "privatization_candidate_count": 105,
+  "local_only_public_count": 75,
+  "zero_caller_public_count": 30
 }

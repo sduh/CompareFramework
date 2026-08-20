@@ -11,7 +11,7 @@ class ArchitectureValidationError(ValueError):
 def validate_architecture_document(document: dict[str, Any]) -> None:
     required = {
         "schema_version","repository","languages","modules","statistics",
-        "call_graph","dependency_analysis",
+        "call_graph","dependency_analysis","privatization_analysis",
     }
     missing = sorted(required - document.keys())
     if missing:
@@ -89,3 +89,21 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
             raise ArchitectureValidationError("dependency cycle size mismatch")
         if not set(cycle["modules"]).issubset(module_names):
             raise ArchitectureValidationError("dependency cycle references unknown module")
+
+    validate_privatization_analysis(document)
+
+def validate_privatization_analysis(document: dict[str, Any]) -> None:
+    analysis = document["privatization_analysis"]
+    if "candidates" not in analysis or "statistics" not in analysis:
+        raise ArchitectureValidationError("privatization_analysis is incomplete")
+    ids = set()
+    for item in analysis["candidates"]:
+        if item["id"] in ids:
+            raise ArchitectureValidationError("duplicate privatization candidate")
+        ids.add(item["id"])
+        if item["classification"] not in {
+            "local-only", "zero-caller-review", "entrypoint-review"
+        }:
+            raise ArchitectureValidationError("unknown privatization classification")
+        if item["confidence"] not in {"high", "medium", "low"}:
+            raise ArchitectureValidationError("unknown privatization confidence")

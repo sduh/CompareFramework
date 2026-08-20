@@ -11,6 +11,7 @@ from .dependencies import analyze_dependencies
 from .exporters import export_all
 from .repository import load_repository
 from .reports import write_reports
+from .privatization import analyze_privatization
 from .symbols import build_symbol_table
 from .validation import validate_architecture_document
 
@@ -44,6 +45,9 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
     dependency_analysis = analyze_dependencies(repository, call_graph)
     dependency_data = dependency_analysis.as_dict()
 
+    privatization_analysis = analyze_privatization(repository, call_graph)
+    privatization_data = privatization_analysis.as_dict()
+
     statistics.update({
         "call_graph_edge_count": graph_data["statistics"]["edge_count"],
         "call_site_count": graph_data["statistics"]["call_site_count"],
@@ -53,6 +57,9 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         "dependency_cycle_count": dependency_data["statistics"]["cycle_count"],
         "cyclic_module_count": dependency_data["statistics"]["cyclic_module_count"],
         "max_dependency_cycle_size": dependency_data["statistics"]["max_cycle_size"],
+        "privatization_candidate_count": privatization_data["statistics"]["candidate_count"],
+        "local_only_public_count": privatization_data["statistics"]["classification_counts"].get("local-only", 0),
+        "zero_caller_public_count": privatization_data["statistics"]["zero_caller_public_count"],
     })
 
     document = {
@@ -70,6 +77,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         "modules": [asdict(module) for module in repository.modules],
         "call_graph": graph_data,
         "dependency_analysis": dependency_data,
+        "privatization_analysis": privatization_data,
         "statistics": statistics,
     }
 
@@ -82,4 +90,23 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         dependency_analysis,
     )
     write_reports(config.output_dir, document)
+
+    import csv
+    import json
+    privatization_json = config.output_dir / "privatization_candidates.json"
+    privatization_json.write_text(
+        json.dumps(privatization_data, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    privatization_csv = config.output_dir / "privatization_candidates.csv"
+    fields = [
+        "id", "module", "module_path", "procedure", "kind", "line",
+        "local_incoming_edges", "local_call_sites", "classification",
+        "confidence", "reason",
+    ]
+    with privatization_csv.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(privatization_data["candidates"])
+
     return document
