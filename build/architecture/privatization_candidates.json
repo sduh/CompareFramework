@@ -319,45 +319,6 @@
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
     },
     {
-      "id": "CompareFramework_Quality.CF_RunEndToEndScenario",
-      "module": "CompareFramework_Quality",
-      "module_path": "CompareFramework_Quality.bas",
-      "procedure": "CF_RunEndToEndScenario",
-      "kind": "Sub",
-      "line": 20,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Quality.CF_ValidateExpectedReport",
-      "module": "CompareFramework_Quality",
-      "module_path": "CompareFramework_Quality.bas",
-      "procedure": "CF_ValidateExpectedReport",
-      "kind": "Sub",
-      "line": 38,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Quality.CF_BuildQualityDashboard",
-      "module": "CompareFramework_Quality",
-      "module_path": "CompareFramework_Quality.bas",
-      "procedure": "CF_BuildQualityDashboard",
-      "kind": "Sub",
-      "line": 149,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
       "id": "CompareFramework_Report.WriteActionHeader",
       "module": "CompareFramework_Report",
       "module_path": "CompareFramework_Report.bas",
@@ -996,12 +957,12 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 175,
+    "public_procedure_count": 172,
     "cross_module_used_public_count": 99,
-    "candidate_count": 76,
+    "candidate_count": 73,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 46,
+      "local-only": 43,
       "zero-caller-review": 30
     }
   }

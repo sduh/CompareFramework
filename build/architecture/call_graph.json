@@ -1229,7 +1229,7 @@
       "module": "CompareFramework_Quality",
       "module_path": "CompareFramework_Quality.bas",
       "name": "CF_RunEndToEndScenario",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 20
     },
@@ -1238,7 +1238,7 @@
       "module": "CompareFramework_Quality",
       "module_path": "CompareFramework_Quality.bas",
       "name": "CF_ValidateExpectedReport",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 38
     },
@@ -1256,7 +1256,7 @@
       "module": "CompareFramework_Quality",
       "module_path": "CompareFramework_Quality.bas",
       "name": "CF_BuildQualityDashboard",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 149
     },

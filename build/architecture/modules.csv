@@ -10,7 +10,7 @@ CompareFramework_Index,CompareFramework_Index.bas,133,True,6,6,0,0,0,0,0,0
 CompareFramework_Main,CompareFramework_Main.bas,466,True,19,19,0,0,0,0,0,0
 CompareFramework_Performance,CompareFramework_Performance.bas,189,True,10,6,4,0,10,0,0,0
 CompareFramework_Profiles,CompareFramework_Profiles.bas,202,True,11,4,7,1,0,0,0,0
-CompareFramework_Quality,CompareFramework_Quality.bas,347,True,14,4,10,0,0,0,0,0
+CompareFramework_Quality,CompareFramework_Quality.bas,347,True,14,1,13,0,0,0,0,0
 CompareFramework_Reliability,CompareFramework_Reliability.bas,260,True,9,2,7,0,0,0,0,0
 CompareFramework_Report,CompareFramework_Report.bas,616,True,26,26,0,0,0,0,0,0
 CompareFramework_Rules,CompareFramework_Rules.bas,185,True,9,9,0,0,0,0,0,0

@@ -17,7 +17,7 @@ Option Explicit
 '   CF_Quality_Dashboard
 '=========================================================
 
-Public Sub CF_RunEndToEndScenario()
+Private Sub CF_RunEndToEndScenario()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -35,7 +35,7 @@ ErrHandler:
     MsgBox "Erreur CF_RunEndToEndScenario : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_ValidateExpectedReport()
+Private Sub CF_ValidateExpectedReport()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -146,7 +146,7 @@ ErrHandler:
     MsgBox "Erreur CF_RunGlobalRegression : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_BuildQualityDashboard()
+Private Sub CF_BuildQualityDashboard()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object

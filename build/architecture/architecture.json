@@ -4216,20 +4216,20 @@
         {
           "name": "CF_RunEndToEndScenario",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 20,
           "end_line": 36,
-          "signature": "Public Sub CF_RunEndToEndScenario ()",
+          "signature": "Private Sub CF_RunEndToEndScenario ()",
           "return_type": null,
           "parameters": []
         },
         {
           "name": "CF_ValidateExpectedReport",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 38,
           "end_line": 128,
-          "signature": "Public Sub CF_ValidateExpectedReport ()",
+          "signature": "Private Sub CF_ValidateExpectedReport ()",
           "return_type": null,
           "parameters": []
         },
@@ -4246,10 +4246,10 @@
         {
           "name": "CF_BuildQualityDashboard",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 149,
           "end_line": 180,
-          "signature": "Public Sub CF_BuildQualityDashboard ()",
+          "signature": "Private Sub CF_BuildQualityDashboard ()",
           "return_type": null,
           "parameters": []
         },
@@ -10123,7 +10123,7 @@
         "module": "CompareFramework_Quality",
         "module_path": "CompareFramework_Quality.bas",
         "name": "CF_RunEndToEndScenario",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 20
       },
@@ -10132,7 +10132,7 @@
         "module": "CompareFramework_Quality",
         "module_path": "CompareFramework_Quality.bas",
         "name": "CF_ValidateExpectedReport",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 38
       },
@@ -10150,7 +10150,7 @@
         "module": "CompareFramework_Quality",
         "module_path": "CompareFramework_Quality.bas",
         "name": "CF_BuildQualityDashboard",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 149
       },
@@ -19694,45 +19694,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Quality.CF_RunEndToEndScenario",
-        "module": "CompareFramework_Quality",
-        "module_path": "CompareFramework_Quality.bas",
-        "procedure": "CF_RunEndToEndScenario",
-        "kind": "Sub",
-        "line": 20,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Quality.CF_ValidateExpectedReport",
-        "module": "CompareFramework_Quality",
-        "module_path": "CompareFramework_Quality.bas",
-        "procedure": "CF_ValidateExpectedReport",
-        "kind": "Sub",
-        "line": 38,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Quality.CF_BuildQualityDashboard",
-        "module": "CompareFramework_Quality",
-        "module_path": "CompareFramework_Quality.bas",
-        "procedure": "CF_BuildQualityDashboard",
-        "kind": "Sub",
-        "line": 149,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_Report.WriteActionHeader",
         "module": "CompareFramework_Report",
         "module_path": "CompareFramework_Report.bas",
@@ -20371,12 +20332,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 175,
+      "public_procedure_count": 172,
       "cross_module_used_public_count": 99,
-      "candidate_count": 76,
+      "candidate_count": 73,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 46,
+        "local-only": 43,
         "zero-caller-review": 30
       }
     }
@@ -20385,8 +20346,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 175,
-    "private_procedure_count": 110,
+    "public_procedure_count": 172,
+    "private_procedure_count": 113,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20401,8 +20362,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 76,
-    "local_only_public_count": 46,
+    "privatization_candidate_count": 73,
+    "local_only_public_count": 43,
     "zero_caller_public_count": 30
   }
 }

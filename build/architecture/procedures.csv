@@ -135,10 +135,10 @@ CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_WriteProfileRow,Sub,P
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_FindProfileRow,Function,Private,160,173,Long,2,"Private Function CF_FindProfileRow (oSheet As Object, sProfileName As String) As Long"
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_SetConfigValue,Sub,Private,175,188,,3,"Private Sub CF_SetConfigValue (oSheet As Object, sKey As String, sValue As String)"
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_GetConfigValue,Function,Private,190,202,String,2,"Private Function CF_GetConfigValue (oSheet As Object, sKey As String) As String"
-CompareFramework_Quality,CompareFramework_Quality.bas,CF_RunEndToEndScenario,Sub,Public,20,36,,0,Public Sub CF_RunEndToEndScenario ()
-CompareFramework_Quality,CompareFramework_Quality.bas,CF_ValidateExpectedReport,Sub,Public,38,128,,0,Public Sub CF_ValidateExpectedReport ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_RunEndToEndScenario,Sub,Private,20,36,,0,Private Sub CF_RunEndToEndScenario ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_ValidateExpectedReport,Sub,Private,38,128,,0,Private Sub CF_ValidateExpectedReport ()
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_RunGlobalRegression,Sub,Public,130,147,,0,Public Sub CF_RunGlobalRegression ()
-CompareFramework_Quality,CompareFramework_Quality.bas,CF_BuildQualityDashboard,Sub,Public,149,180,,0,Public Sub CF_BuildQualityDashboard ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_BuildQualityDashboard,Sub,Private,149,180,,0,Private Sub CF_BuildQualityDashboard ()
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityCreateScenario,Sub,Private,182,204,,1,Private Sub CF_QualityCreateScenario (oDoc As Object)
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityCreateExpected,Sub,Private,206,229,,1,Private Sub CF_QualityCreateExpected (oDoc As Object)
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityFindReportEntry,Function,Private,231,261,Boolean,4,"Private Function CF_QualityFindReportEntry (oReport As Object, expectedType As String, expectedId As String, expectedColumn As String) As Boolean"
