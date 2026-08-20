@@ -1986,19 +1986,19 @@ Public Function ShouldIgnoreDifference(pairName As String, idValue As String, he
     Next i
 End Function
 
-Public Function RuleAppliesToColumn(ruleIndex As Long, headerName As String) As Boolean
+Private Function RuleAppliesToColumn(ruleIndex As Long, headerName As String) As Boolean
     Dim colRule As String
     colRule = gRuleColumn(ruleIndex)
     RuleAppliesToColumn = (colRule = "" Or colRule = "*" Or colRule = NormalizeHeader(headerName))
 End Function
 
-Public Function RuleAppliesToScope(ruleIndex As Long, pairName As String) As Boolean
+Private Function RuleAppliesToScope(ruleIndex As Long, pairName As String) As Boolean
     Dim scopeText As String
     scopeText = UCase(Trim(gRuleScope(ruleIndex)))
     RuleAppliesToScope = (scopeText = "" Or scopeText = "GLOBAL" Or InStr(UCase(pairName), scopeText) > 0)
 End Function
 
-Public Function EvaluateDifferenceRule(ruleIndex As Long, oldValue As String, newValue As String, oldCompare As String, newCompare As String) As Boolean
+Private Function EvaluateDifferenceRule(ruleIndex As Long, oldValue As String, newValue As String, oldCompare As String, newCompare As String) As Boolean
     Dim ruleType As String
     Dim p1 As String
 
@@ -2022,7 +2022,7 @@ Public Function EvaluateDifferenceRule(ruleIndex As Long, oldValue As String, ne
     End Select
 End Function
 
-Public Function ValuesAreEquivalentByList(oldCompare As String, newCompare As String, listText As String) As Boolean
+Private Function ValuesAreEquivalentByList(oldCompare As String, newCompare As String, listText As String) As Boolean
     Dim normalizedList As String
     Dim oldToken As String, newToken As String
 
@@ -2033,7 +2033,7 @@ Public Function ValuesAreEquivalentByList(oldCompare As String, newCompare As St
     ValuesAreEquivalentByList = (InStr(normalizedList, ";" & oldToken & ";") > 0 And InStr(normalizedList, ";" & newToken & ";") > 0)
 End Function
 
-Public Function ValuesAreWithinNumericTolerance(oldCompare As String, newCompare As String, toleranceText As String) As Boolean
+Private Function ValuesAreWithinNumericTolerance(oldCompare As String, newCompare As String, toleranceText As String) As Boolean
     Dim tolerance As Double
 
     ValuesAreWithinNumericTolerance = False

@@ -1688,7 +1688,7 @@
       "module": "CompareFramework_Rules",
       "module_path": "CompareFramework_Rules.bas",
       "name": "RuleAppliesToColumn",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 67
     },
@@ -1697,7 +1697,7 @@
       "module": "CompareFramework_Rules",
       "module_path": "CompareFramework_Rules.bas",
       "name": "RuleAppliesToScope",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 73
     },
@@ -1706,7 +1706,7 @@
       "module": "CompareFramework_Rules",
       "module_path": "CompareFramework_Rules.bas",
       "name": "EvaluateDifferenceRule",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 79
     },
@@ -1715,7 +1715,7 @@
       "module": "CompareFramework_Rules",
       "module_path": "CompareFramework_Rules.bas",
       "name": "ValuesAreEquivalentByList",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 103
     },
@@ -1724,7 +1724,7 @@
       "module": "CompareFramework_Rules",
       "module_path": "CompareFramework_Rules.bas",
       "name": "ValuesAreWithinNumericTolerance",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 114
     },

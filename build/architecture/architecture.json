@@ -6002,10 +6002,10 @@
         {
           "name": "RuleAppliesToColumn",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 67,
           "end_line": 71,
-          "signature": "Public Function RuleAppliesToColumn (ruleIndex As Long, headerName As String) As Boolean",
+          "signature": "Private Function RuleAppliesToColumn (ruleIndex As Long, headerName As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -6031,10 +6031,10 @@
         {
           "name": "RuleAppliesToScope",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 73,
           "end_line": 77,
-          "signature": "Public Function RuleAppliesToScope (ruleIndex As Long, pairName As String) As Boolean",
+          "signature": "Private Function RuleAppliesToScope (ruleIndex As Long, pairName As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -6060,10 +6060,10 @@
         {
           "name": "EvaluateDifferenceRule",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 79,
           "end_line": 101,
-          "signature": "Public Function EvaluateDifferenceRule (ruleIndex As Long, oldValue As String, newValue As String, oldCompare As String, newCompare As String) As Boolean",
+          "signature": "Private Function EvaluateDifferenceRule (ruleIndex As Long, oldValue As String, newValue As String, oldCompare As String, newCompare As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -6116,10 +6116,10 @@
         {
           "name": "ValuesAreEquivalentByList",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 103,
           "end_line": 112,
-          "signature": "Public Function ValuesAreEquivalentByList (oldCompare As String, newCompare As String, listText As String) As Boolean",
+          "signature": "Private Function ValuesAreEquivalentByList (oldCompare As String, newCompare As String, listText As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -6154,10 +6154,10 @@
         {
           "name": "ValuesAreWithinNumericTolerance",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 114,
           "end_line": 124,
-          "signature": "Public Function ValuesAreWithinNumericTolerance (oldCompare As String, newCompare As String, toleranceText As String) As Boolean",
+          "signature": "Private Function ValuesAreWithinNumericTolerance (oldCompare As String, newCompare As String, toleranceText As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -10582,7 +10582,7 @@
         "module": "CompareFramework_Rules",
         "module_path": "CompareFramework_Rules.bas",
         "name": "RuleAppliesToColumn",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 67
       },
@@ -10591,7 +10591,7 @@
         "module": "CompareFramework_Rules",
         "module_path": "CompareFramework_Rules.bas",
         "name": "RuleAppliesToScope",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 73
       },
@@ -10600,7 +10600,7 @@
         "module": "CompareFramework_Rules",
         "module_path": "CompareFramework_Rules.bas",
         "name": "EvaluateDifferenceRule",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 79
       },
@@ -10609,7 +10609,7 @@
         "module": "CompareFramework_Rules",
         "module_path": "CompareFramework_Rules.bas",
         "name": "ValuesAreEquivalentByList",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 103
       },
@@ -10618,7 +10618,7 @@
         "module": "CompareFramework_Rules",
         "module_path": "CompareFramework_Rules.bas",
         "name": "ValuesAreWithinNumericTolerance",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 114
       },
@@ -19785,71 +19785,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Rules.RuleAppliesToColumn",
-        "module": "CompareFramework_Rules",
-        "module_path": "CompareFramework_Rules.bas",
-        "procedure": "RuleAppliesToColumn",
-        "kind": "Function",
-        "line": 67,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Rules.RuleAppliesToScope",
-        "module": "CompareFramework_Rules",
-        "module_path": "CompareFramework_Rules.bas",
-        "procedure": "RuleAppliesToScope",
-        "kind": "Function",
-        "line": 73,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Rules.EvaluateDifferenceRule",
-        "module": "CompareFramework_Rules",
-        "module_path": "CompareFramework_Rules.bas",
-        "procedure": "EvaluateDifferenceRule",
-        "kind": "Function",
-        "line": 79,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Rules.ValuesAreEquivalentByList",
-        "module": "CompareFramework_Rules",
-        "module_path": "CompareFramework_Rules.bas",
-        "procedure": "ValuesAreEquivalentByList",
-        "kind": "Function",
-        "line": 103,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Rules.ValuesAreWithinNumericTolerance",
-        "module": "CompareFramework_Rules",
-        "module_path": "CompareFramework_Rules.bas",
-        "procedure": "ValuesAreWithinNumericTolerance",
-        "kind": "Function",
-        "line": 114,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CF_ModeReference.CF_RunReferenceMode",
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
@@ -20241,12 +20176,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 165,
+      "public_procedure_count": 160,
       "cross_module_used_public_count": 99,
-      "candidate_count": 66,
+      "candidate_count": 61,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 36,
+        "local-only": 31,
         "zero-caller-review": 30
       }
     }
@@ -20255,8 +20190,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 165,
-    "private_procedure_count": 120,
+    "public_procedure_count": 160,
+    "private_procedure_count": 125,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20271,8 +20206,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 66,
-    "local_only_public_count": 36,
+    "privatization_candidate_count": 61,
+    "local_only_public_count": 31,
     "zero_caller_public_count": 30
   }
 }

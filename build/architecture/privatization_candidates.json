@@ -410,71 +410,6 @@
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
     },
     {
-      "id": "CompareFramework_Rules.RuleAppliesToColumn",
-      "module": "CompareFramework_Rules",
-      "module_path": "CompareFramework_Rules.bas",
-      "procedure": "RuleAppliesToColumn",
-      "kind": "Function",
-      "line": 67,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Rules.RuleAppliesToScope",
-      "module": "CompareFramework_Rules",
-      "module_path": "CompareFramework_Rules.bas",
-      "procedure": "RuleAppliesToScope",
-      "kind": "Function",
-      "line": 73,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Rules.EvaluateDifferenceRule",
-      "module": "CompareFramework_Rules",
-      "module_path": "CompareFramework_Rules.bas",
-      "procedure": "EvaluateDifferenceRule",
-      "kind": "Function",
-      "line": 79,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Rules.ValuesAreEquivalentByList",
-      "module": "CompareFramework_Rules",
-      "module_path": "CompareFramework_Rules.bas",
-      "procedure": "ValuesAreEquivalentByList",
-      "kind": "Function",
-      "line": 103,
-      "local_incoming_edges": 1,
-      "local_call_sites": 2,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Rules.ValuesAreWithinNumericTolerance",
-      "module": "CompareFramework_Rules",
-      "module_path": "CompareFramework_Rules.bas",
-      "procedure": "ValuesAreWithinNumericTolerance",
-      "kind": "Function",
-      "line": 114,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
       "id": "CF_ModeReference.CF_RunReferenceMode",
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
@@ -866,12 +801,12 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 165,
+    "public_procedure_count": 160,
     "cross_module_used_public_count": 99,
-    "candidate_count": 66,
+    "candidate_count": 61,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 36,
+      "local-only": 31,
       "zero-caller-review": 30
     }
   }
