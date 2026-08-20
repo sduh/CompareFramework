@@ -1,7 +1,10 @@
 # CompareFramework Architecture Analyzer
 
-The analyzer reads `src/**/*.bas` without modifying source files. Its canonical
-machine-readable output is `build/architecture/architecture.json`.
+The analyzer reads `src/**/*.bas` and generates a canonical architecture model under:
+
+```text
+build/architecture/
+```
 
 ## Run
 
@@ -9,31 +12,26 @@ machine-readable output is `build/architecture/architecture.json`.
 python -m tools.architecture
 ```
 
-## A1.4 outputs
+From another working directory:
 
-The command generates, from one parsed repository model:
-
-```text
-build/architecture/
-├── architecture.json
-├── modules.csv
-├── procedures.csv
-├── statistics.json
-└── symbol_index.csv
+```bash
+python -m tools.architecture --root /path/to/CompareFramework
 ```
 
-`architecture.json` is the canonical representation. CSV and statistics files
-are deterministic projections of the same in-memory model; source files are not
-reparsed for individual exports.
+Print statistics:
 
-## Current parsing scope
+```bash
+python -m tools.architecture --summary
+```
 
-- `Option Explicit`;
-- `Sub`, `Function`, and `Property` declarations;
-- parameters, return types, signatures and source bounds;
-- module constants and variables;
-- user-defined `Type` and `Enum` blocks;
-- normalized symbol table including parameters and members.
+## Exit codes
 
-Procedure-body and call-graph analysis are intentionally deferred to
-D2-03.0-B.
+- `0`: success
+- `2`: CLI usage error (`argparse`)
+- `3`: repository, parsing, export or model validation error
+
+## Canonical output
+
+`build/architecture/architecture.json` is the canonical analyzer output. CSV and statistics exports are derived from the same in-memory model.
+
+The current schema version is `1.0.0`.

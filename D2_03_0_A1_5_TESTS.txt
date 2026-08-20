@@ -1,0 +1,28 @@
+COMPILE
+=======
+
+CLI
+===
+{
+  "module_count": 20,
+  "line_count": 5988,
+  "procedure_count": 285,
+  "public_procedure_count": 204,
+  "private_procedure_count": 81,
+  "constant_count": 41,
+  "module_variable_count": 51,
+  "type_count": 0,
+  "enum_count": 0,
+  "symbol_count": 917,
+  "parse_warning_count": 0
+}
+
+UNITTEST
+========
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+
+DETERMINISTIC=True

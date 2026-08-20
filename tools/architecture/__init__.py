@@ -1,0 +1,1 @@
+"""CompareFramework architecture analyzer."""
