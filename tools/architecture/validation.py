@@ -11,7 +11,7 @@ class ArchitectureValidationError(ValueError):
 def validate_architecture_document(document: dict[str, Any]) -> None:
     required = {
         "schema_version","repository","languages","modules","statistics",
-        "call_graph","dependency_analysis","privatization_analysis",
+        "call_graph","dependency_analysis","privatization_analysis","entrypoint_audit",
     }
     missing = sorted(required - document.keys())
     if missing:
@@ -91,6 +91,7 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
             raise ArchitectureValidationError("dependency cycle references unknown module")
 
     validate_privatization_analysis(document)
+    validate_entrypoint_audit(document)
 
 
 def validate_privatization_analysis(document: dict[str, Any]) -> None:
@@ -133,3 +134,28 @@ def validate_privatization_analysis(document: dict[str, Any]) -> None:
         analysis["protected_public"]
     ):
         raise ArchitectureValidationError("protected public count mismatch")
+
+
+def validate_entrypoint_audit(document: dict[str, Any]) -> None:
+    audit = document["entrypoint_audit"]
+    for key in ("policy", "reviews", "statistics"):
+        if key not in audit:
+            raise ArchitectureValidationError(f"entrypoint_audit.{key} is required")
+
+    valid_dispositions = {
+        "keep-public-api",
+        "documentation-conflict-review",
+        "maintenance-entrypoint-review",
+        "private-after-regression-review",
+        "unclassified-review",
+    }
+    ids = set()
+    for item in audit["reviews"]:
+        if item["id"] in ids:
+            raise ArchitectureValidationError("duplicate entrypoint audit review")
+        if item["disposition"] not in valid_dispositions:
+            raise ArchitectureValidationError("unknown entrypoint audit disposition")
+        ids.add(item["id"])
+
+    if audit["statistics"]["review_count"] != len(audit["reviews"]):
+        raise ArchitectureValidationError("entrypoint audit review count mismatch")

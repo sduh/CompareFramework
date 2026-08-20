@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.4.0",
+  "schema_version": "1.5.0",
   "repository": {
     "name": "CompareFramework-main",
     "version": "4.0.0-D1",
@@ -19840,6 +19840,309 @@
       }
     }
   },
+  "entrypoint_audit": {
+    "policy": {
+      "scope": "unresolved Public procedures remaining after high-confidence privatization",
+      "automatic_source_change": false,
+      "primary_inventory": "docs/audit/D1_PUBLIC_API_INVENTORY.csv",
+      "supporting_inventory": "docs/audit/PUBLIC_SYMBOL_INVENTORY.csv",
+      "documentation_conflicts_require_review": true
+    },
+    "reviews": [
+      {
+        "id": "CompareFramework_API.CF_ExportLastReportHTML",
+        "module": "CompareFramework_API",
+        "module_path": "CompareFramework_API.bas",
+        "procedure": "CF_ExportLastReportHTML",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "official-api",
+        "inventory_decision": "keep-public",
+        "user_document_references": [
+          "docs/API_REFERENCE.md",
+          "STEP4_INTERACTIVE_CHECKLIST.md"
+        ],
+        "disposition": "keep-public-api",
+        "rationale": "Explicit official API contract requires Public visibility."
+      },
+      {
+        "id": "CompareFramework_API.CF_OpenSettings",
+        "module": "CompareFramework_API",
+        "module_path": "CompareFramework_API.bas",
+        "procedure": "CF_OpenSettings",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "official-api",
+        "inventory_decision": "keep-public",
+        "user_document_references": [
+          "docs/API_REFERENCE.md"
+        ],
+        "disposition": "keep-public-api",
+        "rationale": "Explicit official API contract requires Public visibility."
+      },
+      {
+        "id": "CompareFramework_API.CF_RunDiagnostics",
+        "module": "CompareFramework_API",
+        "module_path": "CompareFramework_API.bas",
+        "procedure": "CF_RunDiagnostics",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "official-api",
+        "inventory_decision": "keep-public",
+        "user_document_references": [
+          "docs/API_REFERENCE.md"
+        ],
+        "disposition": "keep-public-api",
+        "rationale": "Explicit official API contract requires Public visibility."
+      },
+      {
+        "id": "CompareFramework_API.CF_RunReleaseValidation",
+        "module": "CompareFramework_API",
+        "module_path": "CompareFramework_API.bas",
+        "procedure": "CF_RunReleaseValidation",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "official-api",
+        "inventory_decision": "keep-public",
+        "user_document_references": [
+          "docs/API_REFERENCE.md"
+        ],
+        "disposition": "keep-public-api",
+        "rationale": "Explicit official API contract requires Public visibility."
+      },
+      {
+        "id": "CompareFramework_API.CF_RunStandardComparison",
+        "module": "CompareFramework_API",
+        "module_path": "CompareFramework_API.bas",
+        "procedure": "CF_RunStandardComparison",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "official-api",
+        "inventory_decision": "keep-public",
+        "user_document_references": [
+          "docs/API_REFERENCE.md"
+        ],
+        "disposition": "keep-public-api",
+        "rationale": "Explicit official API contract requires Public visibility."
+      },
+      {
+        "id": "CompareFramework_API.CF_StartReferenceComparison",
+        "module": "CompareFramework_API",
+        "module_path": "CompareFramework_API.bas",
+        "procedure": "CF_StartReferenceComparison",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "official-api",
+        "inventory_decision": "keep-public",
+        "user_document_references": [
+          "docs/API_REFERENCE.md",
+          "STEP4_INTERACTIVE_CHECKLIST.md"
+        ],
+        "disposition": "keep-public-api",
+        "rationale": "Explicit official API contract requires Public visibility."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunAudited",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunAudited",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [
+          "README.md",
+          "docs/USER_GUIDE.md"
+        ],
+        "disposition": "documentation-conflict-review",
+        "rationale": "Inventory suggests privatization, but user-facing documentation still references the procedure; documentation and contract must be reconciled first."
+      },
+      {
+        "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Legacy",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "ComparerToutesLesFeuilles_Legacy",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [
+          "README.md"
+        ],
+        "disposition": "documentation-conflict-review",
+        "rationale": "Inventory suggests privatization, but user-facing documentation still references the procedure; documentation and contract must be reconciled first."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunMilestoneB_ConfigTests",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "maintenance-test",
+        "inventory_decision": "review-public-maintenance",
+        "user_document_references": [],
+        "disposition": "maintenance-entrypoint-review",
+        "rationale": "Maintenance/test entry point requires an explicit lifecycle decision."
+      },
+      {
+        "id": "CompareFramework_Tests.CF_RunMilestoneBTests",
+        "module": "CompareFramework_Tests",
+        "module_path": "CompareFramework_Tests.bas",
+        "procedure": "CF_RunMilestoneBTests",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "maintenance-test",
+        "inventory_decision": "review-public-maintenance",
+        "user_document_references": [],
+        "disposition": "maintenance-entrypoint-review",
+        "rationale": "Maintenance/test entry point requires an explicit lifecycle decision."
+      },
+      {
+        "id": "CF_ModeReference.CF_RunLauncherQuick",
+        "module": "CF_ModeReference",
+        "module_path": "Modes/CF_ModeReference.bas",
+        "procedure": "CF_RunLauncherQuick",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Audit.CF_AuditClearHistory",
+        "module": "CompareFramework_Audit",
+        "module_path": "CompareFramework_Audit.bas",
+        "procedure": "CF_AuditClearHistory",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_ComparatorConfig.CF_ReloadComparatorConfig",
+        "module": "CompareFramework_ComparatorConfig",
+        "module_path": "CompareFramework_ComparatorConfig.bas",
+        "procedure": "CF_ReloadComparatorConfig",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Context.CF_ContextCount",
+        "module": "CompareFramework_Context",
+        "module_path": "CompareFramework_Context.bas",
+        "procedure": "CF_ContextCount",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunMilestoneA",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunMilestoneA",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunMilestoneB",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunMilestoneB",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunMilestoneB_Final",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunMilestoneB_Final",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunMilestoneC",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunMilestoneC",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunMilestoneC_Final",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunMilestoneC_Final",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Main.CF_RunPerformanceProfiled",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "CF_RunPerformanceProfiled",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Contextualisee",
+        "module": "CompareFramework_Main",
+        "module_path": "CompareFramework_Main.bas",
+        "procedure": "ComparerToutesLesFeuilles_Contextualisee",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      },
+      {
+        "id": "CompareFramework_Profiles.CF_ListProfiles",
+        "module": "CompareFramework_Profiles",
+        "module_path": "CompareFramework_Profiles.bas",
+        "procedure": "CF_ListProfiles",
+        "static_classification": "zero-caller-review",
+        "inventory_classification": "module-internal-candidate",
+        "inventory_decision": "candidate-private-after-regression",
+        "user_document_references": [],
+        "disposition": "private-after-regression-review",
+        "rationale": "Both inventories identify a module-internal candidate; regression and external macro checks are still required before changing visibility."
+      }
+    ],
+    "statistics": {
+      "review_count": 22,
+      "disposition_counts": {
+        "keep-public-api": 6,
+        "documentation-conflict-review": 2,
+        "maintenance-entrypoint-review": 2,
+        "private-after-regression-review": 12
+      }
+    }
+  },
   "statistics": {
     "module_count": 20,
     "line_count": 5988,
@@ -19863,6 +20166,7 @@
     "privatization_candidate_count": 22,
     "local_only_public_count": 0,
     "protected_public_count": 13,
-    "zero_caller_public_count": 30
+    "zero_caller_public_count": 30,
+    "entrypoint_review_count": 22
   }
 }

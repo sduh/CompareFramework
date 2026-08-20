@@ -21,5 +21,6 @@
   "privatization_candidate_count": 22,
   "local_only_public_count": 0,
   "protected_public_count": 13,
-  "zero_caller_public_count": 30
+  "zero_caller_public_count": 30,
+  "entrypoint_review_count": 22
 }

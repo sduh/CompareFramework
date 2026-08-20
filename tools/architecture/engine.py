@@ -8,6 +8,7 @@ from typing import Any
 from .callgraph import build_call_graph
 from .config import AnalyzerConfig, SCHEMA_VERSION
 from .dependencies import analyze_dependencies
+from .entrypoints import build_entrypoint_audit
 from .exporters import export_all
 from .repository import load_repository
 from .reports import write_reports
@@ -48,6 +49,9 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
     privatization_analysis = analyze_privatization(repository, call_graph, config.repository_root)
     privatization_data = privatization_analysis.as_dict()
 
+    entrypoint_audit = build_entrypoint_audit(config.repository_root, privatization_analysis)
+    entrypoint_data = entrypoint_audit.as_dict()
+
     statistics.update({
         "call_graph_edge_count": graph_data["statistics"]["edge_count"],
         "call_site_count": graph_data["statistics"]["call_site_count"],
@@ -61,6 +65,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         "local_only_public_count": privatization_data["statistics"]["classification_counts"].get("local-only", 0),
         "protected_public_count": privatization_data["statistics"]["protected_public_count"],
         "zero_caller_public_count": privatization_data["statistics"]["zero_caller_public_count"],
+        "entrypoint_review_count": entrypoint_data["statistics"]["review_count"],
     })
 
     document = {
@@ -79,6 +84,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         "call_graph": graph_data,
         "dependency_analysis": dependency_data,
         "privatization_analysis": privatization_data,
+        "entrypoint_audit": entrypoint_data,
         "statistics": statistics,
     }
 
@@ -109,5 +115,26 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         writer.writerows(privatization_data["candidates"])
+
+    entrypoint_json = config.output_dir / "entrypoint_audit.json"
+    entrypoint_json.write_text(
+        json.dumps(entrypoint_data, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    entrypoint_csv = config.output_dir / "entrypoint_audit.csv"
+    entrypoint_fields = [
+        "id", "module", "module_path", "procedure", "static_classification",
+        "inventory_classification", "inventory_decision",
+        "user_document_references", "disposition", "rationale",
+    ]
+    with entrypoint_csv.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=entrypoint_fields)
+        writer.writeheader()
+        for row in entrypoint_data["reviews"]:
+            exported = dict(row)
+            exported["user_document_references"] = ";".join(
+                exported["user_document_references"]
+            )
+            writer.writerow(exported)
 
     return document

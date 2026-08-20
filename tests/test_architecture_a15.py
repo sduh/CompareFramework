@@ -11,7 +11,7 @@ from tools.architecture.validation import (
 class ValidationTests(unittest.TestCase):
     def sample(self):
         return {
-            "schema_version": "1.4.0",
+            "schema_version": "1.5.0",
             "repository": {"name": "repo", "version": "1.0", "root": "."},
             "languages": [],
             "modules": [
@@ -63,6 +63,11 @@ class ValidationTests(unittest.TestCase):
                     "zero_caller_public_count": 0,
                     "classification_counts": {},
                 },
+            },
+            "entrypoint_audit": {
+                "policy": {},
+                "reviews": [],
+                "statistics": {"review_count": 0, "disposition_counts": {}},
             },
             "statistics": {"module_count": 1, "procedure_count": 0},
         }

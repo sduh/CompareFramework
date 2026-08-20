@@ -7,7 +7,7 @@ python -m tools.architecture
 python -m tools.architecture --summary
 ```
 
-Current canonical schema: **1.4.0**
+Current canonical schema: **1.5.0**
 
 Schema 1.2.0 adds dependency, cycle and coupling analysis derived from the
 resolved procedure call graph.
@@ -66,3 +66,22 @@ call-graph heuristics and is exported under `protected_public`, never under
 This closes the automatic high-confidence privatization phase: when
 `local_only_public_count` reaches zero, no further automatic visibility change
 is permitted without explicit review of the remaining zero-caller procedures.
+
+
+## Entrypoint audit
+
+D2-03.20 classifies unresolved Public procedures by combining:
+
+- `D1_PUBLIC_API_INVENTORY.csv`;
+- `PUBLIC_SYMBOL_INVENTORY.csv`;
+- references in user-facing documentation.
+
+Outputs:
+
+```text
+entrypoint_audit.json
+entrypoint_audit.csv
+```
+
+No visibility is changed by this audit. `documentation-conflict-review` and
+`maintenance-entrypoint-review` require an explicit human decision.
