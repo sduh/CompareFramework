@@ -2370,7 +2370,7 @@ Private CF_CC_TOLERANCE() As String
 Private CF_CC_COUNT As Long
 Private CF_CC_LOADED As Boolean
 
-Public Function CF_EnsureComparatorsSheet(oDoc As Object) As Object
+Private Function CF_EnsureComparatorsSheet(oDoc As Object) As Object
     Dim oSheet As Object
 
     If oDoc.Sheets.hasByName(CF_COMPARATORS_SHEET) Then
@@ -2384,7 +2384,7 @@ Public Function CF_EnsureComparatorsSheet(oDoc As Object) As Object
     CF_EnsureComparatorsSheet = oSheet
 End Function
 
-Public Sub CF_WriteDefaultComparatorConfig(oSheet As Object)
+Private Sub CF_WriteDefaultComparatorConfig(oSheet As Object)
     CF_CC_SetCell oSheet, 0, 0, "Enabled"
     CF_CC_SetCell oSheet, 1, 0, "Profile"
     CF_CC_SetCell oSheet, 2, 0, "Column"

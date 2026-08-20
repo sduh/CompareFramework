@@ -22,8 +22,8 @@ CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditSerializeMetrics,Funct
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditMetricIndexOf,Function,Private,276,290,Long,1,Private Function CF_AuditMetricIndexOf (sMetricName As String) As Long
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditWriteCell,Sub,Private,292,294,,4,"Private Sub CF_AuditWriteCell (oSheet As Object, col As Long, row As Long, value As Variant)"
 CompareFramework_Audit,CompareFramework_Audit.bas,CF_AuditFormatSheet,Sub,Private,296,313,,1,Private Sub CF_AuditFormatSheet (oSheet As Object)
-CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_EnsureComparatorsSheet,Function,Public,18,30,Object,1,Public Function CF_EnsureComparatorsSheet (oDoc As Object) As Object
-CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_WriteDefaultComparatorConfig,Sub,Public,32,54,,1,Public Sub CF_WriteDefaultComparatorConfig (oSheet As Object)
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_EnsureComparatorsSheet,Function,Private,18,30,Object,1,Private Function CF_EnsureComparatorsSheet (oDoc As Object) As Object
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_WriteDefaultComparatorConfig,Sub,Private,32,54,,1,Private Sub CF_WriteDefaultComparatorConfig (oSheet As Object)
 CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_LoadComparatorConfig,Sub,Public,56,94,,1,Public Sub CF_LoadComparatorConfig (oDoc As Object)
 CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_ResolveComparatorConfig,Function,Public,96,121,Boolean,5,"Public Function CF_ResolveComparatorConfig (headerName As String, ByRef comparatorType As String, ByRef tolerance As Double, ByRef hasTolerance As Boolean, ByRef source As String) As Boolean"
 CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,CF_ReloadComparatorConfig,Sub,Public,123,127,,0,Public Sub CF_ReloadComparatorConfig ()

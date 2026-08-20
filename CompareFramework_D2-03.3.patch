@@ -1,0 +1,20 @@
+--- a/src/CompareFramework_ComparatorConfig.bas
++++ b/src/CompareFramework_ComparatorConfig.bas
+@@ -15,7 +15,7 @@
+ Private CF_CC_COUNT As Long
+ Private CF_CC_LOADED As Boolean
+ 
+-Public Function CF_EnsureComparatorsSheet(oDoc As Object) As Object
++Private Function CF_EnsureComparatorsSheet(oDoc As Object) As Object
+     Dim oSheet As Object
+ 
+     If oDoc.Sheets.hasByName(CF_COMPARATORS_SHEET) Then
+@@ -29,7 +29,7 @@
+     CF_EnsureComparatorsSheet = oSheet
+ End Function
+ 
+-Public Sub CF_WriteDefaultComparatorConfig(oSheet As Object)
++Private Sub CF_WriteDefaultComparatorConfig(oSheet As Object)
+     CF_CC_SetCell oSheet, 0, 0, "Enabled"
+     CF_CC_SetCell oSheet, 1, 0, "Profile"
+     CF_CC_SetCell oSheet, 2, 0, "Column"

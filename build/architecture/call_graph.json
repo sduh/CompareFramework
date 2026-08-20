@@ -212,7 +212,7 @@
       "module": "CompareFramework_ComparatorConfig",
       "module_path": "CompareFramework_ComparatorConfig.bas",
       "name": "CF_EnsureComparatorsSheet",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 18
     },
@@ -221,7 +221,7 @@
       "module": "CompareFramework_ComparatorConfig",
       "module_path": "CompareFramework_ComparatorConfig.bas",
       "name": "CF_WriteDefaultComparatorConfig",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 32
     },

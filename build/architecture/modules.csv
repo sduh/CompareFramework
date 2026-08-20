@@ -1,7 +1,7 @@
 name,path,line_count,option_explicit,procedure_count,public_procedure_count,private_procedure_count,constant_count,variable_count,type_count,enum_count,parse_warning_count
 CompareFramework_API,CompareFramework_API.bas,41,True,6,6,0,0,0,0,0,0
 CompareFramework_Audit,CompareFramework_Audit.bas,313,True,17,8,9,0,11,0,0,0
-CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,214,True,12,7,5,1,7,0,0,0
+CompareFramework_ComparatorConfig,CompareFramework_ComparatorConfig.bas,214,True,12,5,7,1,7,0,0,0
 CompareFramework_Comparators,CompareFramework_Comparators.bas,244,True,19,2,17,7,0,0,0,0
 CompareFramework_Config,CompareFramework_Config.bas,220,True,13,13,0,0,0,0,0,0
 CompareFramework_Context,CompareFramework_Context.bas,177,True,11,9,2,0,4,0,0,0
