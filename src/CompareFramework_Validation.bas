@@ -37,7 +37,7 @@ ErrHandler:
     CF_ValidateFramework = False
 End Function
 
-Public Function CF_ValidateActiveProfile() As Boolean
+Private Function CF_ValidateActiveProfile() As Boolean
     On Error GoTo ErrHandler
     Dim profileName As String
     Dim oDoc As Object
@@ -68,7 +68,7 @@ ErrHandler:
     CF_ValidateActiveProfile = False
 End Function
 
-Public Function CF_PreflightComparison() As Boolean
+Private Function CF_PreflightComparison() As Boolean
     Dim okFramework As Boolean
     Dim okProfile As Boolean
 

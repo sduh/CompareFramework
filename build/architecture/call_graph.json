@@ -2318,7 +2318,7 @@
       "module": "CompareFramework_Validation",
       "module_path": "CompareFramework_Validation.bas",
       "name": "CF_ValidateActiveProfile",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 40
     },
@@ -2327,7 +2327,7 @@
       "module": "CompareFramework_Validation",
       "module_path": "CompareFramework_Validation.bas",
       "name": "CF_PreflightComparison",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 71
     },

@@ -605,32 +605,6 @@
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
     },
     {
-      "id": "CompareFramework_Validation.CF_ValidateActiveProfile",
-      "module": "CompareFramework_Validation",
-      "module_path": "CompareFramework_Validation.bas",
-      "procedure": "CF_ValidateActiveProfile",
-      "kind": "Function",
-      "line": 40,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Validation.CF_PreflightComparison",
-      "module": "CompareFramework_Validation",
-      "module_path": "CompareFramework_Validation.bas",
-      "procedure": "CF_PreflightComparison",
-      "kind": "Function",
-      "line": 71,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
       "id": "CF_ModeReference.CF_RunReferenceMode",
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
@@ -1022,12 +996,12 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 177,
+    "public_procedure_count": 175,
     "cross_module_used_public_count": 99,
-    "candidate_count": 78,
+    "candidate_count": 76,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 48,
+      "local-only": 46,
       "zero-caller-review": 30
     }
   }
