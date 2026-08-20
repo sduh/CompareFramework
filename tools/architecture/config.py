@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "1.1.0"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 SRC_DIR = REPOSITORY_ROOT / "src"
 VERSION_FILE = REPOSITORY_ROOT / "VERSION"

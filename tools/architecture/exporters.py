@@ -8,6 +8,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Iterable
 
+from .callgraph import CallGraph
 from .model import Repository
 from .symbols import Symbol, build_symbol_table
 
@@ -18,12 +19,21 @@ def _write_csv(path: Path, fieldnames: list[str], rows: Iterable[dict[str, Any]]
         writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
         for row in rows:
-            writer.writerow({key: "" if row.get(key) is None else row.get(key) for key in fieldnames})
+            writer.writerow(
+                {key: "" if row.get(key) is None else row.get(key) for key in fieldnames}
+            )
+
+
+def _write_json(path: Path, data: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
 
 
 def export_architecture_json(path: Path, data: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    _write_json(path, data)
 
 
 def export_modules_csv(path: Path, repository: Repository) -> None:
@@ -36,8 +46,12 @@ def export_modules_csv(path: Path, repository: Repository) -> None:
                 "line_count": module.line_count,
                 "option_explicit": module.option_explicit,
                 "procedure_count": len(module.procedures),
-                "public_procedure_count": sum(p.visibility == "Public" for p in module.procedures),
-                "private_procedure_count": sum(p.visibility == "Private" for p in module.procedures),
+                "public_procedure_count": sum(
+                    p.visibility == "Public" for p in module.procedures
+                ),
+                "private_procedure_count": sum(
+                    p.visibility == "Private" for p in module.procedures
+                ),
                 "constant_count": len(module.constants),
                 "variable_count": len(module.variables),
                 "type_count": len(module.types),
@@ -48,18 +62,10 @@ def export_modules_csv(path: Path, repository: Repository) -> None:
     _write_csv(
         path,
         [
-            "name",
-            "path",
-            "line_count",
-            "option_explicit",
-            "procedure_count",
-            "public_procedure_count",
-            "private_procedure_count",
-            "constant_count",
-            "variable_count",
-            "type_count",
-            "enum_count",
-            "parse_warning_count",
+            "name", "path", "line_count", "option_explicit",
+            "procedure_count", "public_procedure_count",
+            "private_procedure_count", "constant_count", "variable_count",
+            "type_count", "enum_count", "parse_warning_count",
         ],
         rows,
     )
@@ -86,16 +92,8 @@ def export_procedures_csv(path: Path, repository: Repository) -> None:
     _write_csv(
         path,
         [
-            "module",
-            "module_path",
-            "name",
-            "kind",
-            "visibility",
-            "line",
-            "end_line",
-            "return_type",
-            "parameter_count",
-            "signature",
+            "module", "module_path", "name", "kind", "visibility",
+            "line", "end_line", "return_type", "parameter_count", "signature",
         ],
         rows,
     )
@@ -110,35 +108,88 @@ def export_symbol_index_csv(path: Path, symbols: list[Symbol]) -> None:
     _write_csv(
         path,
         [
-            "qualified_name",
-            "module",
-            "module_path",
-            "name",
-            "kind",
-            "visibility",
-            "line",
-            "end_line",
-            "parent",
-            "type_name",
-            "signature",
-            "value",
+            "qualified_name", "module", "module_path", "name", "kind",
+            "visibility", "line", "end_line", "parent", "type_name",
+            "signature", "value",
         ],
         rows,
     )
 
 
 def export_statistics_json(path: Path, statistics: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(statistics, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    _write_json(path, statistics)
 
 
-def export_all(build_dir: Path, repository: Repository, data: dict[str, Any]) -> list[Symbol]:
-    """Write every A1 tabular export and return the symbol table used."""
+def export_call_graph_json(path: Path, call_graph: CallGraph) -> None:
+    _write_json(path, call_graph.as_dict())
 
+
+def export_cross_module_calls_csv(path: Path, call_graph: CallGraph) -> None:
+    rows = []
+    for edge in call_graph.edges:
+        if edge.caller_module == edge.callee_module:
+            continue
+        rows.append(
+            {
+                "caller": edge.caller,
+                "caller_module": edge.caller_module,
+                "callee": edge.callee,
+                "callee_module": edge.callee_module,
+                "call_count": edge.call_count,
+                "lines": ";".join(str(line) for line in edge.lines),
+            }
+        )
+    _write_csv(
+        path,
+        [
+            "caller", "caller_module", "callee", "callee_module",
+            "call_count", "lines",
+        ],
+        rows,
+    )
+
+
+def export_dependency_matrix_csv(
+    path: Path,
+    repository: Repository,
+    call_graph: CallGraph,
+) -> None:
+    modules = [module.name for module in repository.modules]
+    counts = {
+        (caller, callee): 0
+        for caller in modules
+        for callee in modules
+    }
+    for edge in call_graph.edges:
+        if edge.caller_module != edge.callee_module:
+            counts[(edge.caller_module, edge.callee_module)] += edge.call_count
+
+    rows = []
+    for caller in modules:
+        row = {"module": caller}
+        for callee in modules:
+            row[callee] = counts[(caller, callee)]
+        rows.append(row)
+    _write_csv(path, ["module", *modules], rows)
+
+
+def export_all(
+    build_dir: Path,
+    repository: Repository,
+    data: dict[str, Any],
+    call_graph: CallGraph,
+) -> list[Symbol]:
     symbols = build_symbol_table(repository)
     export_architecture_json(build_dir / "architecture.json", data)
     export_modules_csv(build_dir / "modules.csv", repository)
     export_procedures_csv(build_dir / "procedures.csv", repository)
     export_symbol_index_csv(build_dir / "symbol_index.csv", symbols)
     export_statistics_json(build_dir / "statistics.json", data["statistics"])
+    export_call_graph_json(build_dir / "call_graph.json", call_graph)
+    export_cross_module_calls_csv(build_dir / "cross_module_calls.csv", call_graph)
+    export_dependency_matrix_csv(
+        build_dir / "dependency_matrix.csv",
+        repository,
+        call_graph,
+    )
     return symbols

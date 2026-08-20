@@ -5,11 +5,13 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+from .callgraph import build_call_graph
 from .config import AnalyzerConfig, SCHEMA_VERSION
 from .exporters import export_all
 from .repository import load_repository
 from .symbols import build_symbol_table
 from .validation import validate_architecture_document
+
 
 def _statistics(repository) -> dict[str, int]:
     symbols = build_symbol_table(repository)
@@ -29,10 +31,22 @@ def _statistics(repository) -> dict[str, int]:
         "parse_warning_count": sum(len(m.parse_warnings) for m in modules),
     }
 
+
 def build_architecture(repository_root: Path) -> dict[str, Any]:
     config = AnalyzerConfig.from_repository_root(repository_root)
     repository = load_repository(config.repository_root)
     statistics = _statistics(repository)
+    call_graph = build_call_graph(config.repository_root, repository)
+    graph_data = call_graph.as_dict()
+
+    statistics.update(
+        {
+            "call_graph_edge_count": graph_data["statistics"]["edge_count"],
+            "call_site_count": graph_data["statistics"]["call_site_count"],
+            "cross_module_edge_count": graph_data["statistics"]["cross_module_edge_count"],
+            "recursive_edge_count": graph_data["statistics"]["recursive_edge_count"],
+        }
+    )
 
     document = {
         "schema_version": SCHEMA_VERSION,
@@ -49,9 +63,10 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
             }
         ],
         "modules": [asdict(module) for module in repository.modules],
+        "call_graph": graph_data,
         "statistics": statistics,
     }
 
     validate_architecture_document(document)
-    export_all(config.output_dir, repository, document)
+    export_all(config.output_dir, repository, document, call_graph)
     return document

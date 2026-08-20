@@ -1,3 +1,16 @@
+COMPILE
+=======
+
+UNIT
+====
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+OK
+
+CLI
+===
 {
   "module_count": 20,
   "line_count": 5988,
@@ -15,3 +28,5 @@
   "cross_module_edge_count": 321,
   "recursive_edge_count": 1
 }
+
+DETERMINISTIC=True
