@@ -6,7 +6,12 @@ from pathlib import Path
 from typing import Any
 
 from .callgraph import build_call_graph
-from .config import AnalyzerConfig, SCHEMA_VERSION
+from .config import (
+    AnalyzerConfig,
+    PUBLIC_API_MODULE,
+    PUBLIC_API_PROCEDURES,
+    SCHEMA_VERSION,
+)
 from .dependencies import analyze_dependencies
 from .entrypoints import build_entrypoint_audit
 from .exporters import export_all
@@ -35,6 +40,19 @@ def _statistics(repository) -> dict[str, int]:
     }
 
 
+def _public_api_contract() -> dict[str, Any]:
+    return {
+        "status": "frozen",
+        "module": PUBLIC_API_MODULE,
+        "procedure_count": len(PUBLIC_API_PROCEDURES),
+        "procedures": list(PUBLIC_API_PROCEDURES),
+        "policy": (
+            "Only these procedures form the supported user API. Other Public "
+            "procedures are technical cross-module contracts and are outside the user API."
+        ),
+    }
+
+
 def build_architecture(repository_root: Path) -> dict[str, Any]:
     config = AnalyzerConfig.from_repository_root(repository_root)
     repository = load_repository(config.repository_root)
@@ -51,6 +69,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
 
     entrypoint_audit = build_entrypoint_audit(config.repository_root, privatization_analysis)
     entrypoint_data = entrypoint_audit.as_dict()
+    public_api_contract = _public_api_contract()
 
     statistics.update({
         "call_graph_edge_count": graph_data["statistics"]["edge_count"],
@@ -66,6 +85,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         "protected_public_count": privatization_data["statistics"]["protected_public_count"],
         "zero_caller_public_count": privatization_data["statistics"]["zero_caller_public_count"],
         "entrypoint_review_count": entrypoint_data["statistics"]["review_count"],
+        "supported_public_api_count": public_api_contract["procedure_count"],
     })
 
     document = {
@@ -85,6 +105,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         "dependency_analysis": dependency_data,
         "privatization_analysis": privatization_data,
         "entrypoint_audit": entrypoint_data,
+        "public_api_contract": public_api_contract,
         "statistics": statistics,
     }
 
