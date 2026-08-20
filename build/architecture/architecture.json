@@ -2043,10 +2043,10 @@
         {
           "name": "CF_CompareDetectedPairsMemory",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 80,
           "end_line": 103,
-          "signature": "Public Function CF_CompareDetectedPairsMemory (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
+          "signature": "Private Function CF_CompareDetectedPairsMemory (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
           "return_type": "Long",
           "parameters": [
             {
@@ -2153,10 +2153,10 @@
         {
           "name": "CF_CompareFallbackMemory",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 105,
           "end_line": 130,
-          "signature": "Public Function CF_CompareFallbackMemory (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
+          "signature": "Private Function CF_CompareFallbackMemory (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
           "return_type": "Long",
           "parameters": [
             {
@@ -2422,10 +2422,10 @@
         {
           "name": "CF_BuildMemoryIdIndex",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 231,
           "end_line": 260,
-          "signature": "Public Sub CF_BuildMemoryIdIndex (data As Variant, idCol As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)",
+          "signature": "Private Sub CF_BuildMemoryIdIndex (data As Variant, idCol As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)",
           "return_type": null,
           "parameters": [
             {
@@ -2478,10 +2478,10 @@
         {
           "name": "CF_CompareMemoryRows",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 262,
           "end_line": 299,
-          "signature": "Public Function CF_CompareMemoryRows (oldData As Variant, newData As Variant, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long",
+          "signature": "Private Function CF_CompareMemoryRows (oldData As Variant, newData As Variant, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long",
           "return_type": "Long",
           "parameters": [
             {
@@ -2579,10 +2579,10 @@
         {
           "name": "CF_MemoryFullRow",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 301,
           "end_line": 314,
-          "signature": "Public Function CF_MemoryFullRow (data As Variant, headers As Variant, rowIndex As Long) As String",
+          "signature": "Private Function CF_MemoryFullRow (data As Variant, headers As Variant, rowIndex As Long) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -2617,10 +2617,10 @@
         {
           "name": "CF_ReportMemoryDuplicates",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 316,
           "end_line": 333,
-          "signature": "Public Function CF_ReportMemoryDuplicates (ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String) As Long",
+          "signature": "Private Function CF_ReportMemoryDuplicates (ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String) As Long",
           "return_type": "Long",
           "parameters": [
             {
@@ -2691,10 +2691,10 @@
         {
           "name": "CF_MemoryValueText",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 335,
           "end_line": 341,
-          "signature": "Public Function CF_MemoryValueText (value As Variant) As String",
+          "signature": "Private Function CF_MemoryValueText (value As Variant) As String",
           "return_type": "String",
           "parameters": [
             {
@@ -9610,7 +9610,7 @@
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
         "name": "CF_CompareDetectedPairsMemory",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 80
       },
@@ -9619,7 +9619,7 @@
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
         "name": "CF_CompareFallbackMemory",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 105
       },
@@ -9655,7 +9655,7 @@
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
         "name": "CF_BuildMemoryIdIndex",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 231
       },
@@ -9664,7 +9664,7 @@
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
         "name": "CF_CompareMemoryRows",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 262
       },
@@ -9673,7 +9673,7 @@
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
         "name": "CF_MemoryFullRow",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 301
       },
@@ -9682,7 +9682,7 @@
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
         "name": "CF_ReportMemoryDuplicates",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 316
       },
@@ -9691,7 +9691,7 @@
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
         "name": "CF_MemoryValueText",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 335
       },
@@ -19395,97 +19395,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_EngineMemory.CF_CompareDetectedPairsMemory",
-        "module": "CompareFramework_EngineMemory",
-        "module_path": "CompareFramework_EngineMemory.bas",
-        "procedure": "CF_CompareDetectedPairsMemory",
-        "kind": "Function",
-        "line": 80,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_EngineMemory.CF_CompareFallbackMemory",
-        "module": "CompareFramework_EngineMemory",
-        "module_path": "CompareFramework_EngineMemory.bas",
-        "procedure": "CF_CompareFallbackMemory",
-        "kind": "Function",
-        "line": 105,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_EngineMemory.CF_BuildMemoryIdIndex",
-        "module": "CompareFramework_EngineMemory",
-        "module_path": "CompareFramework_EngineMemory.bas",
-        "procedure": "CF_BuildMemoryIdIndex",
-        "kind": "Sub",
-        "line": 231,
-        "local_incoming_edges": 2,
-        "local_call_sites": 3,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_EngineMemory.CF_CompareMemoryRows",
-        "module": "CompareFramework_EngineMemory",
-        "module_path": "CompareFramework_EngineMemory.bas",
-        "procedure": "CF_CompareMemoryRows",
-        "kind": "Function",
-        "line": 262,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_EngineMemory.CF_MemoryFullRow",
-        "module": "CompareFramework_EngineMemory",
-        "module_path": "CompareFramework_EngineMemory.bas",
-        "procedure": "CF_MemoryFullRow",
-        "kind": "Function",
-        "line": 301,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_EngineMemory.CF_ReportMemoryDuplicates",
-        "module": "CompareFramework_EngineMemory",
-        "module_path": "CompareFramework_EngineMemory.bas",
-        "procedure": "CF_ReportMemoryDuplicates",
-        "kind": "Function",
-        "line": 316,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_EngineMemory.CF_MemoryValueText",
-        "module": "CompareFramework_EngineMemory",
-        "module_path": "CompareFramework_EngineMemory.bas",
-        "procedure": "CF_MemoryValueText",
-        "kind": "Function",
-        "line": 335,
-        "local_incoming_edges": 4,
-        "local_call_sites": 5,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_Main.GetFrameworkVersion",
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
@@ -20072,12 +19981,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 152,
+      "public_procedure_count": 145,
       "cross_module_used_public_count": 99,
-      "candidate_count": 53,
+      "candidate_count": 46,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 23,
+        "local-only": 16,
         "zero-caller-review": 30
       }
     }
@@ -20086,8 +19995,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 152,
-    "private_procedure_count": 133,
+    "public_procedure_count": 145,
+    "private_procedure_count": 140,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20102,8 +20011,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 53,
-    "local_only_public_count": 23,
+    "privatization_candidate_count": 46,
+    "local_only_public_count": 16,
     "zero_caller_public_count": 30
   }
 }

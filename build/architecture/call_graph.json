@@ -716,7 +716,7 @@
       "module": "CompareFramework_EngineMemory",
       "module_path": "CompareFramework_EngineMemory.bas",
       "name": "CF_CompareDetectedPairsMemory",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 80
     },
@@ -725,7 +725,7 @@
       "module": "CompareFramework_EngineMemory",
       "module_path": "CompareFramework_EngineMemory.bas",
       "name": "CF_CompareFallbackMemory",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 105
     },
@@ -761,7 +761,7 @@
       "module": "CompareFramework_EngineMemory",
       "module_path": "CompareFramework_EngineMemory.bas",
       "name": "CF_BuildMemoryIdIndex",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 231
     },
@@ -770,7 +770,7 @@
       "module": "CompareFramework_EngineMemory",
       "module_path": "CompareFramework_EngineMemory.bas",
       "name": "CF_CompareMemoryRows",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 262
     },
@@ -779,7 +779,7 @@
       "module": "CompareFramework_EngineMemory",
       "module_path": "CompareFramework_EngineMemory.bas",
       "name": "CF_MemoryFullRow",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 301
     },
@@ -788,7 +788,7 @@
       "module": "CompareFramework_EngineMemory",
       "module_path": "CompareFramework_EngineMemory.bas",
       "name": "CF_ReportMemoryDuplicates",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 316
     },
@@ -797,7 +797,7 @@
       "module": "CompareFramework_EngineMemory",
       "module_path": "CompareFramework_EngineMemory.bas",
       "name": "CF_MemoryValueText",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 335
     },

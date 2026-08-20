@@ -2648,7 +2648,7 @@ ErrHandler:
     MsgBox "Erreur moteur en memoire : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Function CF_CompareDetectedPairsMemory(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
+Private Function CF_CompareDetectedPairsMemory(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
     Dim oSheets As Object, names As Variant
     Dim i As Long, sheetName As String, baseName As String, newName As String
     Dim count As Long
@@ -2673,7 +2673,7 @@ Public Function CF_CompareDetectedPairsMemory(oDoc As Object, oReport As Object,
     CF_CompareDetectedPairsMemory = count
 End Function
 
-Public Function CF_CompareFallbackMemory(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
+Private Function CF_CompareFallbackMemory(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
     Dim oSheets As Object, allNames As Variant
     Dim names(1) As String
     Dim i As Long, n As Long, sheetName As String
@@ -2799,7 +2799,7 @@ Public Function CF_MemoryHeaders(data As Variant) As Variant
     CF_MemoryHeaders = headers
 End Function
 
-Public Sub CF_BuildMemoryIdIndex(data As Variant, idCol As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)
+Private Sub CF_BuildMemoryIdIndex(data As Variant, idCol As Long, ByRef ids As Variant, ByRef rows As Variant, ByRef count As Long)
     Dim tempIds() As String, tempRows() As Long
     Dim r As Long, idValue As String, n As Long
     Dim rowData As Variant
@@ -2830,7 +2830,7 @@ Public Sub CF_BuildMemoryIdIndex(data As Variant, idCol As Long, ByRef ids As Va
     count = n
 End Sub
 
-Public Function CF_CompareMemoryRows(oldData As Variant, newData As Variant, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long
+Private Function CF_CompareMemoryRows(oldData As Variant, newData As Variant, oldHeaders As Variant, newHeaders As Variant, oldRow As Long, newRow As Long, idValue As String, pairName As String, oReport As Object, ByRef reportRow As Long) As Long
     Dim i As Long, newCol As Long
     Dim headerName As String, oldValue As String, newValue As String
     Dim oldCompare As String, newCompare As String
@@ -2869,7 +2869,7 @@ Public Function CF_CompareMemoryRows(oldData As Variant, newData As Variant, old
     CF_CompareMemoryRows = changedCells
 End Function
 
-Public Function CF_MemoryFullRow(data As Variant, headers As Variant, rowIndex As Long) As String
+Private Function CF_MemoryFullRow(data As Variant, headers As Variant, rowIndex As Long) As String
     Dim rowData As Variant
     Dim i As Long, h As String, result As String
 
@@ -2884,7 +2884,7 @@ Public Function CF_MemoryFullRow(data As Variant, headers As Variant, rowIndex A
     CF_MemoryFullRow = result
 End Function
 
-Public Function CF_ReportMemoryDuplicates(ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String) As Long
+Private Function CF_ReportMemoryDuplicates(ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String) As Long
     Dim i As Long, duplicateCount As Long
 
     If count <= 1 Then
@@ -2903,7 +2903,7 @@ Public Function CF_ReportMemoryDuplicates(ids As Variant, rows As Variant, count
     CF_ReportMemoryDuplicates = duplicateCount
 End Function
 
-Public Function CF_MemoryValueText(value As Variant) As String
+Private Function CF_MemoryValueText(value As Variant) As String
     If IsNull(value) Or IsEmpty(value) Then
         CF_MemoryValueText = ""
     Else
