@@ -126,7 +126,7 @@ CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfAddLabel,Fu
 CompareFramework_Performance,CompareFramework_Performance.bas,CF_PerfCell,Sub,Private,187,189,,4,"Private Sub CF_PerfCell (oSheet As Object, col As Long, row As Long, v As Variant)"
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_EnsureProfilesSheet,Function,Public,16,28,Object,1,Public Function CF_EnsureProfilesSheet (oDoc As Object) As Object
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_WriteDefaultProfiles,Sub,Private,30,49,,1,Private Sub CF_WriteDefaultProfiles (oSheet As Object)
-CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ApplyProfile,Sub,Private,51,82,,1,Private Sub CF_ApplyProfile (sProfileName As String)
+CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ApplyProfile,Sub,Public,51,82,,1,Public Sub CF_ApplyProfile (sProfileName As String)
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_SaveCurrentConfigAsProfile,Sub,Public,84,115,,1,Public Sub CF_SaveCurrentConfigAsProfile (sProfileName As String)
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_ListProfiles,Sub,Public,117,121,,0,Public Sub CF_ListProfiles ()
 CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_RunWithProfile,Sub,Public,123,138,,1,Public Sub CF_RunWithProfile (sProfileName As String)
@@ -138,7 +138,7 @@ CompareFramework_Profiles,CompareFramework_Profiles.bas,CF_GetConfigValue,Functi
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_RunEndToEndScenario,Sub,Private,20,36,,0,Private Sub CF_RunEndToEndScenario ()
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_ValidateExpectedReport,Sub,Private,38,128,,0,Private Sub CF_ValidateExpectedReport ()
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_RunGlobalRegression,Sub,Public,130,147,,0,Public Sub CF_RunGlobalRegression ()
-CompareFramework_Quality,CompareFramework_Quality.bas,CF_BuildQualityDashboard,Sub,Private,149,180,,0,Private Sub CF_BuildQualityDashboard ()
+CompareFramework_Quality,CompareFramework_Quality.bas,CF_BuildQualityDashboard,Sub,Public,149,180,,0,Public Sub CF_BuildQualityDashboard ()
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityCreateScenario,Sub,Private,182,204,,1,Private Sub CF_QualityCreateScenario (oDoc As Object)
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityCreateExpected,Sub,Private,206,229,,1,Private Sub CF_QualityCreateExpected (oDoc As Object)
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityFindReportEntry,Function,Private,231,261,Boolean,4,"Private Function CF_QualityFindReportEntry (oReport As Object, expectedType As String, expectedId As String, expectedColumn As String) As Boolean"
@@ -149,7 +149,7 @@ CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityWriteHeaders,Sub
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityWriteRow,Sub,Private,322,329,,8,"Private Sub CF_QualityWriteRow (oSheet As Object, row As Long, idValue As String, nameValue As String, amountValue As String, rateValue As String, statusValue As String, dateValue As String)"
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityRecreateSheet,Sub,Private,331,336,,2,"Private Sub CF_QualityRecreateSheet (oDoc As Object, sName As String)"
 CompareFramework_Quality,CompareFramework_Quality.bas,CF_QualityFormat,Sub,Private,338,347,,1,Private Sub CF_QualityFormat (oSheet As Object)
-CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunTypedRegressionSuite,Sub,Private,17,67,,0,Private Sub CF_RunTypedRegressionSuite ()
+CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunTypedRegressionSuite,Sub,Public,17,67,,0,Public Sub CF_RunTypedRegressionSuite ()
 CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_ValidateComparatorRules,Sub,Public,69,150,,0,Public Sub CF_ValidateComparatorRules ()
 CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_BuildComparatorCoverageReport,Sub,Private,152,194,,0,Private Sub CF_BuildComparatorCoverageReport ()
 CompareFramework_Reliability,CompareFramework_Reliability.bas,CF_RunMilestoneB_FinalTests,Sub,Public,196,204,,0,Public Sub CF_RunMilestoneB_FinalTests ()
@@ -273,13 +273,13 @@ CompareFramework_Validation,CompareFramework_Validation.bas,CF_ReadConfigValue,F
 CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunReferenceMode,Sub,Public,22,41,,0,Public Sub CF_RunReferenceMode ()
 CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunAgainstReference_MODELE,Sub,Public,43,45,,0,Public Sub CF_RunAgainstReference_MODELE ()
 CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunAgainstReference,Sub,Public,47,265,,2,"Public Sub CF_RunAgainstReference (referenceSheetName As String, keyColumnName As String)"
-CF_ModeReference,Modes/CF_ModeReference.bas,CF_BuildReferencePlan,Sub,Public,267,303,,2,"Public Sub CF_BuildReferencePlan (referenceSheetName As String, keyColumnName As String)"
-CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceIsTargetSheet,Function,Public,305,341,Boolean,2,"Public Function CF_ReferenceIsTargetSheet (sheetName As String, referenceSheetName As String) As Boolean"
-CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceSheetHasKey,Function,Public,343,359,Boolean,2,"Public Function CF_ReferenceSheetHasKey (oSheet As Object, keyColumnName As String) As Boolean"
-CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferencePlanSetStatus,Sub,Public,361,383,,3,"Public Sub CF_ReferencePlanSetStatus (targetName As String, statusText As String, messageText As String)"
-CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceFormatPlan,Sub,Public,385,403,,0,Public Sub CF_ReferenceFormatPlan ()
-CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceBuildSummary,Sub,Public,405,505,,1,Public Sub CF_ReferenceBuildSummary (oStats As Object)
-CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceFormatSummary,Sub,Public,507,521,,1,Public Sub CF_ReferenceFormatSummary (oSummary As Object)
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_BuildReferencePlan,Sub,Private,267,303,,2,"Private Sub CF_BuildReferencePlan (referenceSheetName As String, keyColumnName As String)"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceIsTargetSheet,Function,Private,305,341,Boolean,2,"Private Function CF_ReferenceIsTargetSheet (sheetName As String, referenceSheetName As String) As Boolean"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceSheetHasKey,Function,Private,343,359,Boolean,2,"Private Function CF_ReferenceSheetHasKey (oSheet As Object, keyColumnName As String) As Boolean"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferencePlanSetStatus,Sub,Private,361,383,,3,"Private Sub CF_ReferencePlanSetStatus (targetName As String, statusText As String, messageText As String)"
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceFormatPlan,Sub,Private,385,403,,0,Private Sub CF_ReferenceFormatPlan ()
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceBuildSummary,Sub,Private,405,505,,1,Private Sub CF_ReferenceBuildSummary (oStats As Object)
+CF_ModeReference,Modes/CF_ModeReference.bas,CF_ReferenceFormatSummary,Sub,Private,507,521,,1,Private Sub CF_ReferenceFormatSummary (oSummary As Object)
 CF_ModeReference,Modes/CF_ModeReference.bas,CF_OpenReferenceLauncher,Sub,Public,527,593,,0,Public Sub CF_OpenReferenceLauncher ()
 CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunFromLauncher,Sub,Public,595,643,,0,Public Sub CF_RunFromLauncher ()
 CF_ModeReference,Modes/CF_ModeReference.bas,CF_RunLauncherQuick,Sub,Public,645,647,,0,Public Sub CF_RunLauncherQuick ()

@@ -2959,7 +2959,7 @@ End Sub
 '   CF_Comparator_Validation
 '=========================================================
 
-Private Sub CF_RunTypedRegressionSuite()
+Public Sub CF_RunTypedRegressionSuite()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -3255,7 +3255,7 @@ Private Sub CF_WriteDefaultProfiles(oSheet As Object)
     oSheet.Columns.getByIndex(6).Width = 9000
 End Sub
 
-Private Sub CF_ApplyProfile(sProfileName As String)
+Public Sub CF_ApplyProfile(sProfileName As String)
     On Error GoTo ErrHandler
 
     Dim oDoc As Object, oProfiles As Object, oConfig As Object
@@ -3675,7 +3675,7 @@ ErrHandler:
         "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_BuildReferencePlan(referenceSheetName As String, keyColumnName As String)
+Private Sub CF_BuildReferencePlan(referenceSheetName As String, keyColumnName As String)
     Dim oDoc As Object
     Dim oSheets As Object
     Dim oPlan As Object
@@ -3713,7 +3713,7 @@ Public Sub CF_BuildReferencePlan(referenceSheetName As String, keyColumnName As 
     CF_ReferenceFormatPlan
 End Sub
 
-Public Function CF_ReferenceIsTargetSheet(sheetName As String, referenceSheetName As String) As Boolean
+Private Function CF_ReferenceIsTargetSheet(sheetName As String, referenceSheetName As String) As Boolean
     Dim normalized As String
 
     normalized = LCase(Trim(CStr(sheetName)))
@@ -3751,7 +3751,7 @@ Public Function CF_ReferenceIsTargetSheet(sheetName As String, referenceSheetNam
     CF_ReferenceIsTargetSheet = True
 End Function
 
-Public Function CF_ReferenceSheetHasKey(oSheet As Object, keyColumnName As String) As Boolean
+Private Function CF_ReferenceSheetHasKey(oSheet As Object, keyColumnName As String) As Boolean
     Dim data As Variant
     Dim headers As Variant
     Dim keyIndex As Long
@@ -3769,7 +3769,7 @@ NotFound:
     CF_ReferenceSheetHasKey = False
 End Function
 
-Public Sub CF_ReferencePlanSetStatus(targetName As String, statusText As String, messageText As String)
+Private Sub CF_ReferencePlanSetStatus(targetName As String, statusText As String, messageText As String)
     Dim oDoc As Object
     Dim oPlan As Object
     Dim lastRow As Long
@@ -3793,7 +3793,7 @@ Public Sub CF_ReferencePlanSetStatus(targetName As String, statusText As String,
     Next row
 End Sub
 
-Public Sub CF_ReferenceFormatPlan()
+Private Sub CF_ReferenceFormatPlan()
     On Error Resume Next
 
     Dim oDoc As Object
@@ -3813,7 +3813,7 @@ Public Sub CF_ReferenceFormatPlan()
     oPlan.Columns.getByIndex(4).Width = 9000
 End Sub
 
-Public Sub CF_ReferenceBuildSummary(oStats As Object)
+Private Sub CF_ReferenceBuildSummary(oStats As Object)
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -3915,7 +3915,7 @@ ErrHandler:
     MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Sub CF_ReferenceFormatSummary(oSummary As Object)
+Private Sub CF_ReferenceFormatSummary(oSummary As Object)
     On Error Resume Next
 
     oSummary.getCellRangeByName("A1:H1").CharWeight = 150
@@ -5792,7 +5792,7 @@ ErrHandler:
     MsgBox "Erreur CF_RunGlobalRegression : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Private Sub CF_BuildQualityDashboard()
+Public Sub CF_BuildQualityDashboard()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object

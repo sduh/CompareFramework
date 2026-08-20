@@ -14,7 +14,7 @@ Option Explicit
 '   CF_Comparator_Validation
 '=========================================================
 
-Private Sub CF_RunTypedRegressionSuite()
+Public Sub CF_RunTypedRegressionSuite()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object

@@ -1148,7 +1148,7 @@
       "module": "CompareFramework_Profiles",
       "module_path": "CompareFramework_Profiles.bas",
       "name": "CF_ApplyProfile",
-      "visibility": "Private",
+      "visibility": "Public",
       "kind": "Sub",
       "line": 51
     },
@@ -1256,7 +1256,7 @@
       "module": "CompareFramework_Quality",
       "module_path": "CompareFramework_Quality.bas",
       "name": "CF_BuildQualityDashboard",
-      "visibility": "Private",
+      "visibility": "Public",
       "kind": "Sub",
       "line": 149
     },
@@ -1355,7 +1355,7 @@
       "module": "CompareFramework_Reliability",
       "module_path": "CompareFramework_Reliability.bas",
       "name": "CF_RunTypedRegressionSuite",
-      "visibility": "Private",
+      "visibility": "Public",
       "kind": "Sub",
       "line": 17
     },
@@ -2471,7 +2471,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_BuildReferencePlan",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 267
     },
@@ -2480,7 +2480,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_ReferenceIsTargetSheet",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 305
     },
@@ -2489,7 +2489,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_ReferenceSheetHasKey",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 343
     },
@@ -2498,7 +2498,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_ReferencePlanSetStatus",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 361
     },
@@ -2507,7 +2507,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_ReferenceFormatPlan",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 385
     },
@@ -2516,7 +2516,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_ReferenceBuildSummary",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 405
     },
@@ -2525,7 +2525,7 @@
       "module": "CF_ModeReference",
       "module_path": "Modes/CF_ModeReference.bas",
       "name": "CF_ReferenceFormatSummary",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 507
     },

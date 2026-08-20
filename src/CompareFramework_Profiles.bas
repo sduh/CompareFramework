@@ -48,7 +48,7 @@ Private Sub CF_WriteDefaultProfiles(oSheet As Object)
     oSheet.Columns.getByIndex(6).Width = 9000
 End Sub
 
-Private Sub CF_ApplyProfile(sProfileName As String)
+Public Sub CF_ApplyProfile(sProfileName As String)
     On Error GoTo ErrHandler
 
     Dim oDoc As Object, oProfiles As Object, oConfig As Object

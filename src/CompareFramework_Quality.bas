@@ -146,7 +146,7 @@ ErrHandler:
     MsgBox "Erreur CF_RunGlobalRegression : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Private Sub CF_BuildQualityDashboard()
+Public Sub CF_BuildQualityDashboard()
     On Error GoTo ErrHandler
 
     Dim oDoc As Object

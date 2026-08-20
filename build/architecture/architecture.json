@@ -3917,10 +3917,10 @@
         {
           "name": "CF_ApplyProfile",
           "kind": "Sub",
-          "visibility": "Private",
+          "visibility": "Public",
           "line": 51,
           "end_line": 82,
-          "signature": "Private Sub CF_ApplyProfile (sProfileName As String)",
+          "signature": "Public Sub CF_ApplyProfile (sProfileName As String)",
           "return_type": null,
           "parameters": [
             {
@@ -4246,10 +4246,10 @@
         {
           "name": "CF_BuildQualityDashboard",
           "kind": "Sub",
-          "visibility": "Private",
+          "visibility": "Public",
           "line": 149,
           "end_line": 180,
-          "signature": "Private Sub CF_BuildQualityDashboard ()",
+          "signature": "Public Sub CF_BuildQualityDashboard ()",
           "return_type": null,
           "parameters": []
         },
@@ -4613,10 +4613,10 @@
         {
           "name": "CF_RunTypedRegressionSuite",
           "kind": "Sub",
-          "visibility": "Private",
+          "visibility": "Public",
           "line": 17,
           "end_line": 67,
-          "signature": "Private Sub CF_RunTypedRegressionSuite ()",
+          "signature": "Public Sub CF_RunTypedRegressionSuite ()",
           "return_type": null,
           "parameters": []
         },
@@ -8630,10 +8630,10 @@
         {
           "name": "CF_BuildReferencePlan",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 267,
           "end_line": 303,
-          "signature": "Public Sub CF_BuildReferencePlan (referenceSheetName As String, keyColumnName As String)",
+          "signature": "Private Sub CF_BuildReferencePlan (referenceSheetName As String, keyColumnName As String)",
           "return_type": null,
           "parameters": [
             {
@@ -8659,10 +8659,10 @@
         {
           "name": "CF_ReferenceIsTargetSheet",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 305,
           "end_line": 341,
-          "signature": "Public Function CF_ReferenceIsTargetSheet (sheetName As String, referenceSheetName As String) As Boolean",
+          "signature": "Private Function CF_ReferenceIsTargetSheet (sheetName As String, referenceSheetName As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -8688,10 +8688,10 @@
         {
           "name": "CF_ReferenceSheetHasKey",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 343,
           "end_line": 359,
-          "signature": "Public Function CF_ReferenceSheetHasKey (oSheet As Object, keyColumnName As String) As Boolean",
+          "signature": "Private Function CF_ReferenceSheetHasKey (oSheet As Object, keyColumnName As String) As Boolean",
           "return_type": "Boolean",
           "parameters": [
             {
@@ -8717,10 +8717,10 @@
         {
           "name": "CF_ReferencePlanSetStatus",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 361,
           "end_line": 383,
-          "signature": "Public Sub CF_ReferencePlanSetStatus (targetName As String, statusText As String, messageText As String)",
+          "signature": "Private Sub CF_ReferencePlanSetStatus (targetName As String, statusText As String, messageText As String)",
           "return_type": null,
           "parameters": [
             {
@@ -8755,20 +8755,20 @@
         {
           "name": "CF_ReferenceFormatPlan",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 385,
           "end_line": 403,
-          "signature": "Public Sub CF_ReferenceFormatPlan ()",
+          "signature": "Private Sub CF_ReferenceFormatPlan ()",
           "return_type": null,
           "parameters": []
         },
         {
           "name": "CF_ReferenceBuildSummary",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 405,
           "end_line": 505,
-          "signature": "Public Sub CF_ReferenceBuildSummary (oStats As Object)",
+          "signature": "Private Sub CF_ReferenceBuildSummary (oStats As Object)",
           "return_type": null,
           "parameters": [
             {
@@ -8785,10 +8785,10 @@
         {
           "name": "CF_ReferenceFormatSummary",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 507,
           "end_line": 521,
-          "signature": "Public Sub CF_ReferenceFormatSummary (oSummary As Object)",
+          "signature": "Private Sub CF_ReferenceFormatSummary (oSummary As Object)",
           "return_type": null,
           "parameters": [
             {
@@ -10042,7 +10042,7 @@
         "module": "CompareFramework_Profiles",
         "module_path": "CompareFramework_Profiles.bas",
         "name": "CF_ApplyProfile",
-        "visibility": "Private",
+        "visibility": "Public",
         "kind": "Sub",
         "line": 51
       },
@@ -10150,7 +10150,7 @@
         "module": "CompareFramework_Quality",
         "module_path": "CompareFramework_Quality.bas",
         "name": "CF_BuildQualityDashboard",
-        "visibility": "Private",
+        "visibility": "Public",
         "kind": "Sub",
         "line": 149
       },
@@ -10249,7 +10249,7 @@
         "module": "CompareFramework_Reliability",
         "module_path": "CompareFramework_Reliability.bas",
         "name": "CF_RunTypedRegressionSuite",
-        "visibility": "Private",
+        "visibility": "Public",
         "kind": "Sub",
         "line": 17
       },
@@ -11365,7 +11365,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_BuildReferencePlan",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 267
       },
@@ -11374,7 +11374,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_ReferenceIsTargetSheet",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 305
       },
@@ -11383,7 +11383,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_ReferenceSheetHasKey",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 343
       },
@@ -11392,7 +11392,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_ReferencePlanSetStatus",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 361
       },
@@ -11401,7 +11401,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_ReferenceFormatPlan",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 385
       },
@@ -11410,7 +11410,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_ReferenceBuildSummary",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 405
       },
@@ -11419,7 +11419,7 @@
         "module": "CF_ModeReference",
         "module_path": "Modes/CF_ModeReference.bas",
         "name": "CF_ReferenceFormatSummary",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 507
       },
@@ -19395,97 +19395,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CF_ModeReference.CF_BuildReferencePlan",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_BuildReferencePlan",
-        "kind": "Sub",
-        "line": 267,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CF_ModeReference.CF_ReferenceIsTargetSheet",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_ReferenceIsTargetSheet",
-        "kind": "Function",
-        "line": 305,
-        "local_incoming_edges": 3,
-        "local_call_sites": 3,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CF_ModeReference.CF_ReferenceSheetHasKey",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_ReferenceSheetHasKey",
-        "kind": "Function",
-        "line": 343,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CF_ModeReference.CF_ReferencePlanSetStatus",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_ReferencePlanSetStatus",
-        "kind": "Sub",
-        "line": 361,
-        "local_incoming_edges": 1,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CF_ModeReference.CF_ReferenceFormatPlan",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_ReferenceFormatPlan",
-        "kind": "Sub",
-        "line": 385,
-        "local_incoming_edges": 2,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CF_ModeReference.CF_ReferenceBuildSummary",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_ReferenceBuildSummary",
-        "kind": "Sub",
-        "line": 405,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CF_ModeReference.CF_ReferenceFormatSummary",
-        "module": "CF_ModeReference",
-        "module_path": "Modes/CF_ModeReference.bas",
-        "procedure": "CF_ReferenceFormatSummary",
-        "kind": "Sub",
-        "line": 507,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_EngineMemory.CF_CompareDetectedPairsMemory",
         "module": "CompareFramework_EngineMemory",
         "module_path": "CompareFramework_EngineMemory.bas",
@@ -19585,6 +19494,45 @@
         "line": 211,
         "local_incoming_edges": 2,
         "local_call_sites": 2,
+        "classification": "local-only",
+        "confidence": "high",
+        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
+      },
+      {
+        "id": "CompareFramework_Profiles.CF_ApplyProfile",
+        "module": "CompareFramework_Profiles",
+        "module_path": "CompareFramework_Profiles.bas",
+        "procedure": "CF_ApplyProfile",
+        "kind": "Sub",
+        "line": 51,
+        "local_incoming_edges": 1,
+        "local_call_sites": 1,
+        "classification": "local-only",
+        "confidence": "high",
+        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
+      },
+      {
+        "id": "CompareFramework_Quality.CF_BuildQualityDashboard",
+        "module": "CompareFramework_Quality",
+        "module_path": "CompareFramework_Quality.bas",
+        "procedure": "CF_BuildQualityDashboard",
+        "kind": "Sub",
+        "line": 149,
+        "local_incoming_edges": 1,
+        "local_call_sites": 1,
+        "classification": "local-only",
+        "confidence": "high",
+        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
+      },
+      {
+        "id": "CompareFramework_Reliability.CF_RunTypedRegressionSuite",
+        "module": "CompareFramework_Reliability",
+        "module_path": "CompareFramework_Reliability.bas",
+        "procedure": "CF_RunTypedRegressionSuite",
+        "kind": "Sub",
+        "line": 17,
+        "local_incoming_edges": 1,
+        "local_call_sites": 1,
         "classification": "local-only",
         "confidence": "high",
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
@@ -20124,12 +20072,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 156,
+      "public_procedure_count": 152,
       "cross_module_used_public_count": 99,
-      "candidate_count": 57,
+      "candidate_count": 53,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 27,
+        "local-only": 23,
         "zero-caller-review": 30
       }
     }
@@ -20138,8 +20086,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 156,
-    "private_procedure_count": 129,
+    "public_procedure_count": 152,
+    "private_procedure_count": 133,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20154,8 +20102,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 57,
-    "local_only_public_count": 27,
+    "privatization_candidate_count": 53,
+    "local_only_public_count": 23,
     "zero_caller_public_count": 30
   }
 }
