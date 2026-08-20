@@ -73,6 +73,8 @@
       "inventory_classification": "official-api",
       "inventory_decision": "keep-public",
       "user_document_references": [
+        "README.md",
+        "docs/USER_GUIDE.md",
         "docs/API_REFERENCE.md"
       ],
       "disposition": "keep-public-api",
@@ -87,40 +89,13 @@
       "inventory_classification": "official-api",
       "inventory_decision": "keep-public",
       "user_document_references": [
+        "README.md",
+        "docs/USER_GUIDE.md",
         "docs/API_REFERENCE.md",
         "STEP4_INTERACTIVE_CHECKLIST.md"
       ],
       "disposition": "keep-public-api",
       "rationale": "Explicit official API contract requires Public visibility."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunAudited",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunAudited",
-      "static_classification": "zero-caller-review",
-      "inventory_classification": "module-internal-candidate",
-      "inventory_decision": "candidate-private-after-regression",
-      "user_document_references": [
-        "README.md",
-        "docs/USER_GUIDE.md"
-      ],
-      "disposition": "documentation-conflict-review",
-      "rationale": "Inventory suggests privatization, but user-facing documentation still references the procedure; documentation and contract must be reconciled first."
-    },
-    {
-      "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Legacy",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "ComparerToutesLesFeuilles_Legacy",
-      "static_classification": "zero-caller-review",
-      "inventory_classification": "module-internal-candidate",
-      "inventory_decision": "candidate-private-after-regression",
-      "user_document_references": [
-        "README.md"
-      ],
-      "disposition": "documentation-conflict-review",
-      "rationale": "Inventory suggests privatization, but user-facing documentation still references the procedure; documentation and contract must be reconciled first."
     },
     {
       "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
@@ -148,10 +123,9 @@
     }
   ],
   "statistics": {
-    "review_count": 10,
+    "review_count": 8,
     "disposition_counts": {
       "keep-public-api": 6,
-      "documentation-conflict-review": 2,
       "maintenance-entrypoint-review": 2
     }
   }

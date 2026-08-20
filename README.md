@@ -162,19 +162,15 @@ Produits_REF
 Produits_NEW
 ```
 
-Points d’entrée principaux :
+Points d’entrée publics principaux :
 
 ```basic
-CF_RunValidated()
-CF_RunAudited()
-ComparerToutesLesFeuilles()
+CF_RunStandardComparison()
+CF_StartReferenceComparison()
 ```
 
-Le moteur historique reste disponible pour contrôle :
-
-```basic
-ComparerToutesLesFeuilles_Legacy()
-```
+Les anciens points d’entrée historiques et techniques ne font plus partie de
+l’API utilisateur. Ils restent des détails d’implémentation internes.
 
 ## Export HTML
 

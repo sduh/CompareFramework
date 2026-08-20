@@ -22,9 +22,8 @@ Produits_REF -> Produits_NEW
 Macros principales :
 
 ```basic
-CF_RunValidated()
-CF_RunAudited()
-ComparerToutesLesFeuilles()
+CF_RunStandardComparison()
+CF_StartReferenceComparison()
 ```
 
 ---

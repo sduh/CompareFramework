@@ -95,7 +95,7 @@ CompareFramework_Index,CompareFramework_Index.bas,QuickSortIndex,Sub,Public,59,8
 CompareFramework_Index,CompareFramework_Index.bas,ReportDuplicateIds,Function,Public,90,109,Long,7,"Public Function ReportDuplicateIds (ids As Variant, rows As Variant, count As Long, oReport As Object, ByRef reportRow As Long, pairName As String, sideName As String) As Long"
 CompareFramework_Index,CompareFramework_Index.bas,ReadHeaders,Function,Public,111,121,Variant,2,"Public Function ReadHeaders (oSheet As Object, lastCol As Long) As Variant"
 CompareFramework_Index,CompareFramework_Index.bas,HeaderIndex,Function,Public,123,132,Long,2,"Public Function HeaderIndex (headers As Variant, headerName As String) As Long"
-CompareFramework_Main,CompareFramework_Main.bas,ComparerToutesLesFeuilles_Legacy,Sub,Public,5,49,,0,Public Sub ComparerToutesLesFeuilles_Legacy ()
+CompareFramework_Main,CompareFramework_Main.bas,ComparerToutesLesFeuilles_Legacy,Sub,Private,5,49,,0,Private Sub ComparerToutesLesFeuilles_Legacy ()
 CompareFramework_Main,CompareFramework_Main.bas,ComparerToutesLesFeuilles,Sub,Public,51,53,,0,Public Sub ComparerToutesLesFeuilles ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneA,Sub,Private,55,69,,0,Private Sub CF_RunMilestoneA ()
 CompareFramework_Main,CompareFramework_Main.bas,CompareDetectedPairs,Function,Private,71,95,Long,11,"Private Function CompareDetectedPairs (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long"
@@ -106,7 +106,7 @@ CompareFramework_Main,CompareFramework_Main.bas,GetFrameworkVersion,Function,Pub
 CompareFramework_Main,CompareFramework_Main.bas,DiagnosticFramework,Sub,Public,215,218,,0,Public Sub DiagnosticFramework ()
 CompareFramework_Main,CompareFramework_Main.bas,ComparerToutesLesFeuilles_Contextualisee,Sub,Private,226,242,,0,Private Sub ComparerToutesLesFeuilles_Contextualisee ()
 CompareFramework_Main,CompareFramework_Main.bas,DiagnosticFramework_Contextualise,Sub,Public,244,250,,0,Public Sub DiagnosticFramework_Contextualise ()
-CompareFramework_Main,CompareFramework_Main.bas,CF_RunAudited,Sub,Public,257,293,,0,Public Sub CF_RunAudited ()
+CompareFramework_Main,CompareFramework_Main.bas,CF_RunAudited,Sub,Private,257,293,,0,Private Sub CF_RunAudited ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunPerformanceProfiled,Sub,Private,299,335,,0,Private Sub CF_RunPerformanceProfiled ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB,Sub,Private,338,352,,0,Private Sub CF_RunMilestoneB ()
 CompareFramework_Main,CompareFramework_Main.bas,CF_RunMilestoneB_Configured,Sub,Private,359,378,,0,Private Sub CF_RunMilestoneB_Configured ()

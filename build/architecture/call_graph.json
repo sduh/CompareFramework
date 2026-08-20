@@ -869,7 +869,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "ComparerToutesLesFeuilles_Legacy",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 5
     },
@@ -968,7 +968,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunAudited",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 257
     },

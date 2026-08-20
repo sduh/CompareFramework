@@ -1,0 +1,65 @@
+--- a/README.md
++++ b/README.md
+@@ -162,19 +162,15 @@
+ Produits_NEW
+ ```
+ 
+-Points d’entrée principaux :
+-
+-```basic
+-CF_RunValidated()
+-CF_RunAudited()
+-ComparerToutesLesFeuilles()
+-```
+-
+-Le moteur historique reste disponible pour contrôle :
+-
+-```basic
+-ComparerToutesLesFeuilles_Legacy()
+-```
++Points d’entrée publics principaux :
++
++```basic
++CF_RunStandardComparison()
++CF_StartReferenceComparison()
++```
++
++Les anciens points d’entrée historiques et techniques ne font plus partie de
++l’API utilisateur. Ils restent des détails d’implémentation internes.
+ 
+ ## Export HTML
+ 
+--- a/docs/USER_GUIDE.md
++++ b/docs/USER_GUIDE.md
+@@ -22,9 +22,8 @@
+ Macros principales :
+ 
+ ```basic
+-CF_RunValidated()
+-CF_RunAudited()
+-ComparerToutesLesFeuilles()
++CF_RunStandardComparison()
++CF_StartReferenceComparison()
+ ```
+ 
+ ---
+--- a/src/CompareFramework_Main.bas
++++ b/src/CompareFramework_Main.bas
+@@ -2,7 +2,7 @@
+ ' Orchestration et API publique.
+ Option Explicit
+ 
+-Public Sub ComparerToutesLesFeuilles_Legacy()
++Private Sub ComparerToutesLesFeuilles_Legacy()
+     Dim oDoc As Object, oReport As Object, oStats As Object, oDash As Object, oAction As Object, oAudit As Object
+     Dim reportRow As Long, statsRow As Long, pairCount As Long
+     Dim totalAdded As Long, totalRemoved As Long, totalChangedRows As Long
+@@ -254,7 +254,7 @@
+ ' V2.8 - Audited entry point
+ '=========================================================
+ 
+-Public Sub CF_RunAudited()
++Private Sub CF_RunAudited()
+     On Error GoTo ErrHandler
+ 
+     CF_AuditBegin "CF_RunAudited"

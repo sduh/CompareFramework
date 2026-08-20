@@ -4086,7 +4086,7 @@ End Function
 ' CompareFramework - Main
 ' Orchestration et API publique.
 
-Public Sub ComparerToutesLesFeuilles_Legacy()
+Private Sub ComparerToutesLesFeuilles_Legacy()
     Dim oDoc As Object, oReport As Object, oStats As Object, oDash As Object, oAction As Object, oAudit As Object
     Dim reportRow As Long, statsRow As Long, pairCount As Long
     Dim totalAdded As Long, totalRemoved As Long, totalChangedRows As Long
@@ -4338,7 +4338,7 @@ End Sub
 ' V2.8 - Audited entry point
 '=========================================================
 
-Public Sub CF_RunAudited()
+Private Sub CF_RunAudited()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "CF_RunAudited"

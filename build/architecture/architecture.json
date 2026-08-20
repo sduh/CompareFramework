@@ -3038,10 +3038,10 @@
         {
           "name": "ComparerToutesLesFeuilles_Legacy",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 5,
           "end_line": 49,
-          "signature": "Public Sub ComparerToutesLesFeuilles_Legacy ()",
+          "signature": "Private Sub ComparerToutesLesFeuilles_Legacy ()",
           "return_type": null,
           "parameters": []
         },
@@ -3457,10 +3457,10 @@
         {
           "name": "CF_RunAudited",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 257,
           "end_line": 293,
-          "signature": "Public Sub CF_RunAudited ()",
+          "signature": "Private Sub CF_RunAudited ()",
           "return_type": null,
           "parameters": []
         },
@@ -9763,7 +9763,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "ComparerToutesLesFeuilles_Legacy",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 5
       },
@@ -9862,7 +9862,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunAudited",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 257
       },
@@ -19621,32 +19621,6 @@
         "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
       },
       {
-        "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Legacy",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "ComparerToutesLesFeuilles_Legacy",
-        "kind": "Sub",
-        "line": 5,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunAudited",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunAudited",
-        "kind": "Sub",
-        "line": 257,
-        "local_incoming_edges": 0,
-        "local_call_sites": 0,
-        "classification": "zero-caller-review",
-        "confidence": "medium",
-        "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-      },
-      {
         "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
@@ -19674,13 +19648,13 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 122,
+      "public_procedure_count": 120,
       "cross_module_used_public_count": 99,
-      "candidate_count": 10,
+      "candidate_count": 8,
       "protected_public_count": 13,
-      "zero_caller_public_count": 18,
+      "zero_caller_public_count": 16,
       "classification_counts": {
-        "zero-caller-review": 10
+        "zero-caller-review": 8
       }
     }
   },
@@ -19759,6 +19733,8 @@
         "inventory_classification": "official-api",
         "inventory_decision": "keep-public",
         "user_document_references": [
+          "README.md",
+          "docs/USER_GUIDE.md",
           "docs/API_REFERENCE.md"
         ],
         "disposition": "keep-public-api",
@@ -19773,40 +19749,13 @@
         "inventory_classification": "official-api",
         "inventory_decision": "keep-public",
         "user_document_references": [
+          "README.md",
+          "docs/USER_GUIDE.md",
           "docs/API_REFERENCE.md",
           "STEP4_INTERACTIVE_CHECKLIST.md"
         ],
         "disposition": "keep-public-api",
         "rationale": "Explicit official API contract requires Public visibility."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunAudited",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunAudited",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [
-          "README.md",
-          "docs/USER_GUIDE.md"
-        ],
-        "disposition": "documentation-conflict-review",
-        "rationale": "Inventory suggests privatization, but user-facing documentation still references the procedure; documentation and contract must be reconciled first."
-      },
-      {
-        "id": "CompareFramework_Main.ComparerToutesLesFeuilles_Legacy",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "ComparerToutesLesFeuilles_Legacy",
-        "static_classification": "zero-caller-review",
-        "inventory_classification": "module-internal-candidate",
-        "inventory_decision": "candidate-private-after-regression",
-        "user_document_references": [
-          "README.md"
-        ],
-        "disposition": "documentation-conflict-review",
-        "rationale": "Inventory suggests privatization, but user-facing documentation still references the procedure; documentation and contract must be reconciled first."
       },
       {
         "id": "CompareFramework_Main.CF_RunMilestoneB_ConfigTests",
@@ -19834,10 +19783,9 @@
       }
     ],
     "statistics": {
-      "review_count": 10,
+      "review_count": 8,
       "disposition_counts": {
         "keep-public-api": 6,
-        "documentation-conflict-review": 2,
         "maintenance-entrypoint-review": 2
       }
     }
@@ -19846,8 +19794,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 122,
-    "private_procedure_count": 163,
+    "public_procedure_count": 120,
+    "private_procedure_count": 165,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -19862,10 +19810,10 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 10,
+    "privatization_candidate_count": 8,
     "local_only_public_count": 0,
     "protected_public_count": 13,
-    "zero_caller_public_count": 18,
-    "entrypoint_review_count": 10
+    "zero_caller_public_count": 16,
+    "entrypoint_review_count": 8
   }
 }

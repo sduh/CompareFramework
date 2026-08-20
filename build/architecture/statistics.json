@@ -2,8 +2,8 @@
   "module_count": 20,
   "line_count": 5988,
   "procedure_count": 285,
-  "public_procedure_count": 122,
-  "private_procedure_count": 163,
+  "public_procedure_count": 120,
+  "private_procedure_count": 165,
   "constant_count": 41,
   "module_variable_count": 51,
   "type_count": 0,
@@ -18,9 +18,9 @@
   "dependency_cycle_count": 2,
   "cyclic_module_count": 9,
   "max_dependency_cycle_size": 7,
-  "privatization_candidate_count": 10,
+  "privatization_candidate_count": 8,
   "local_only_public_count": 0,
   "protected_public_count": 13,
-  "zero_caller_public_count": 18,
-  "entrypoint_review_count": 10
+  "zero_caller_public_count": 16,
+  "entrypoint_review_count": 8
 }
