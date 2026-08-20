@@ -4152,7 +4152,7 @@ ErrHandler:
     MsgBox "Erreur Jalon A : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
 End Sub
 
-Public Function CompareDetectedPairs(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
+Private Function CompareDetectedPairs(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
     Dim oSheets As Object, names As Variant
     Dim i As Long, sheetName As String, baseName As String, newName As String
     Dim count As Long
@@ -4178,7 +4178,7 @@ Public Function CompareDetectedPairs(oDoc As Object, oReport As Object, ByRef re
     CompareDetectedPairs = count
 End Function
 
-Public Function CompareFallbackTwoSheets(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
+Private Function CompareFallbackTwoSheets(oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long
     Dim oSheets As Object, names() As String, allNames As Variant
     Dim i As Long, n As Long, sheetName As String
 
@@ -4206,7 +4206,7 @@ Public Function CompareFallbackTwoSheets(oDoc As Object, oReport As Object, ByRe
     End If
 End Function
 
-Public Sub CompareSheetPair(oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)
+Private Sub CompareSheetPair(oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)
     Dim oldHeaders As Variant, newHeaders As Variant
     Dim oldIdCol As Long, newIdCol As Long
     Dim oldLastRow As Long, newLastRow As Long, oldLastCol As Long, newLastCol As Long
@@ -4440,7 +4440,7 @@ End Sub
 ' V3.2 - Jalon B configurable comparators
 '=========================================================
 
-Public Sub CF_RunMilestoneB_Configured()
+Private Sub CF_RunMilestoneB_Configured()
     On Error GoTo ErrHandler
 
     CF_AuditBegin "JalonB_V3.2"

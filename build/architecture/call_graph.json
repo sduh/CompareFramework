@@ -896,7 +896,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CompareDetectedPairs",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 71
     },
@@ -905,7 +905,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CompareFallbackTwoSheets",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Function",
       "line": 97
     },
@@ -914,7 +914,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CompareSheetPair",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 125
     },
@@ -995,7 +995,7 @@
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
       "name": "CF_RunMilestoneB_Configured",
-      "visibility": "Public",
+      "visibility": "Private",
       "kind": "Sub",
       "line": 359
     },

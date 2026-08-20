@@ -202,45 +202,6 @@
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
     },
     {
-      "id": "CompareFramework_Main.CompareDetectedPairs",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CompareDetectedPairs",
-      "kind": "Function",
-      "line": 71,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Main.CompareFallbackTwoSheets",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CompareFallbackTwoSheets",
-      "kind": "Function",
-      "line": 97,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Main.CompareSheetPair",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CompareSheetPair",
-      "kind": "Sub",
-      "line": 125,
-      "local_incoming_edges": 2,
-      "local_call_sites": 2,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
       "id": "CompareFramework_Main.GetFrameworkVersion",
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
@@ -249,19 +210,6 @@
       "line": 211,
       "local_incoming_edges": 2,
       "local_call_sites": 2,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Main.CF_RunMilestoneB_Configured",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "CF_RunMilestoneB_Configured",
-      "kind": "Sub",
-      "line": 359,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
       "classification": "local-only",
       "confidence": "high",
       "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
@@ -801,12 +749,12 @@
     }
   ],
   "statistics": {
-    "public_procedure_count": 160,
+    "public_procedure_count": 156,
     "cross_module_used_public_count": 99,
-    "candidate_count": 61,
+    "candidate_count": 57,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 31,
+      "local-only": 27,
       "zero-caller-review": 30
     }
   }

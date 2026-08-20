@@ -9,8 +9,8 @@ Generated automatically from `build/architecture/architecture.json`.
 - LibreOffice Basic modules: **20**
 - Lines: **5988**
 - Procedures: **285**
-- Public procedures: **160**
-- Private procedures: **125**
+- Public procedures: **156**
+- Private procedures: **129**
 - Parse warnings: **0**
 
 ## Call graph

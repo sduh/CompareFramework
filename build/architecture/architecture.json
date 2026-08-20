@@ -3068,10 +3068,10 @@
         {
           "name": "CompareDetectedPairs",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 71,
           "end_line": 95,
-          "signature": "Public Function CompareDetectedPairs (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
+          "signature": "Private Function CompareDetectedPairs (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
           "return_type": "Long",
           "parameters": [
             {
@@ -3178,10 +3178,10 @@
         {
           "name": "CompareFallbackTwoSheets",
           "kind": "Function",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 97,
           "end_line": 123,
-          "signature": "Public Function CompareFallbackTwoSheets (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
+          "signature": "Private Function CompareFallbackTwoSheets (oDoc As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long) As Long",
           "return_type": "Long",
           "parameters": [
             {
@@ -3288,10 +3288,10 @@
         {
           "name": "CompareSheetPair",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 125,
           "end_line": 205,
-          "signature": "Public Sub CompareSheetPair (oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",
+          "signature": "Private Sub CompareSheetPair (oOld As Object, oNew As Object, oReport As Object, ByRef reportRow As Long, oStats As Object, ByRef statsRow As Long, ByRef totalAdded As Long, ByRef totalRemoved As Long, ByRef totalChangedRows As Long, ByRef totalChangedCells As Long, ByRef totalDuplicates As Long, ByRef totalIssues As Long)",
           "return_type": null,
           "parameters": [
             {
@@ -3487,10 +3487,10 @@
         {
           "name": "CF_RunMilestoneB_Configured",
           "kind": "Sub",
-          "visibility": "Public",
+          "visibility": "Private",
           "line": 359,
           "end_line": 378,
-          "signature": "Public Sub CF_RunMilestoneB_Configured ()",
+          "signature": "Private Sub CF_RunMilestoneB_Configured ()",
           "return_type": null,
           "parameters": []
         },
@@ -9790,7 +9790,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CompareDetectedPairs",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 71
       },
@@ -9799,7 +9799,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CompareFallbackTwoSheets",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Function",
         "line": 97
       },
@@ -9808,7 +9808,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CompareSheetPair",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 125
       },
@@ -9889,7 +9889,7 @@
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
         "name": "CF_RunMilestoneB_Configured",
-        "visibility": "Public",
+        "visibility": "Private",
         "kind": "Sub",
         "line": 359
       },
@@ -19577,45 +19577,6 @@
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
       },
       {
-        "id": "CompareFramework_Main.CompareDetectedPairs",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CompareDetectedPairs",
-        "kind": "Function",
-        "line": 71,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Main.CompareFallbackTwoSheets",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CompareFallbackTwoSheets",
-        "kind": "Function",
-        "line": 97,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Main.CompareSheetPair",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CompareSheetPair",
-        "kind": "Sub",
-        "line": 125,
-        "local_incoming_edges": 2,
-        "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
         "id": "CompareFramework_Main.GetFrameworkVersion",
         "module": "CompareFramework_Main",
         "module_path": "CompareFramework_Main.bas",
@@ -19624,19 +19585,6 @@
         "line": 211,
         "local_incoming_edges": 2,
         "local_call_sites": 2,
-        "classification": "local-only",
-        "confidence": "high",
-        "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-      },
-      {
-        "id": "CompareFramework_Main.CF_RunMilestoneB_Configured",
-        "module": "CompareFramework_Main",
-        "module_path": "CompareFramework_Main.bas",
-        "procedure": "CF_RunMilestoneB_Configured",
-        "kind": "Sub",
-        "line": 359,
-        "local_incoming_edges": 1,
-        "local_call_sites": 1,
         "classification": "local-only",
         "confidence": "high",
         "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
@@ -20176,12 +20124,12 @@
       }
     ],
     "statistics": {
-      "public_procedure_count": 160,
+      "public_procedure_count": 156,
       "cross_module_used_public_count": 99,
-      "candidate_count": 61,
+      "candidate_count": 57,
       "zero_caller_public_count": 30,
       "classification_counts": {
-        "local-only": 31,
+        "local-only": 27,
         "zero-caller-review": 30
       }
     }
@@ -20190,8 +20138,8 @@
     "module_count": 20,
     "line_count": 5988,
     "procedure_count": 285,
-    "public_procedure_count": 160,
-    "private_procedure_count": 125,
+    "public_procedure_count": 156,
+    "private_procedure_count": 129,
     "constant_count": 41,
     "module_variable_count": 51,
     "type_count": 0,
@@ -20206,8 +20154,8 @@
     "dependency_cycle_count": 2,
     "cyclic_module_count": 9,
     "max_dependency_cycle_size": 7,
-    "privatization_candidate_count": 61,
-    "local_only_public_count": 31,
+    "privatization_candidate_count": 57,
+    "local_only_public_count": 27,
     "zero_caller_public_count": 30
   }
 }
