@@ -92,10 +92,15 @@ def validate_architecture_document(document: dict[str, Any]) -> None:
 
     validate_privatization_analysis(document)
 
+
 def validate_privatization_analysis(document: dict[str, Any]) -> None:
     analysis = document["privatization_analysis"]
-    if "candidates" not in analysis or "statistics" not in analysis:
-        raise ArchitectureValidationError("privatization_analysis is incomplete")
+    for key in ("policy", "candidates", "protected_public", "statistics"):
+        if key not in analysis:
+            raise ArchitectureValidationError(
+                f"privatization_analysis.{key} is required"
+            )
+
     ids = set()
     for item in analysis["candidates"]:
         if item["id"] in ids:
@@ -107,3 +112,24 @@ def validate_privatization_analysis(document: dict[str, Any]) -> None:
             raise ArchitectureValidationError("unknown privatization classification")
         if item["confidence"] not in {"high", "medium", "low"}:
             raise ArchitectureValidationError("unknown privatization confidence")
+
+    protected_ids = set()
+    for item in analysis["protected_public"]:
+        if item["id"] in protected_ids:
+            raise ArchitectureValidationError("duplicate protected public symbol")
+        if item["id"] in ids:
+            raise ArchitectureValidationError(
+                "protected public symbol also appears as privatization candidate"
+            )
+        if "keep public" not in item["contract_decision"].casefold():
+            raise ArchitectureValidationError(
+                "protected public symbol lacks Keep Public contract"
+            )
+        protected_ids.add(item["id"])
+
+    if analysis["statistics"]["candidate_count"] != len(analysis["candidates"]):
+        raise ArchitectureValidationError("privatization candidate count mismatch")
+    if analysis["statistics"]["protected_public_count"] != len(
+        analysis["protected_public"]
+    ):
+        raise ArchitectureValidationError("protected public count mismatch")

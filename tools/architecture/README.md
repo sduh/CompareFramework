@@ -7,7 +7,7 @@ python -m tools.architecture
 python -m tools.architecture --summary
 ```
 
-Current canonical schema: **1.2.0**
+Current canonical schema: **1.4.0**
 
 Schema 1.2.0 adds dependency, cycle and coupling analysis derived from the
 resolved procedure call graph.
@@ -54,3 +54,15 @@ DEPENDENCY_REPORT.md
 
 The reports are derived views. They do not change schema `1.2.0` and do not
 introduce a second source of truth.
+
+
+## Contract-aware privatization
+
+D2-03.19 integrates `docs/audit/PUBLIC_SYMBOL_INVENTORY.csv` directly into
+candidate qualification. A documented `Keep Public` decision overrides static
+call-graph heuristics and is exported under `protected_public`, never under
+`candidates`.
+
+This closes the automatic high-confidence privatization phase: when
+`local_only_public_count` reaches zero, no further automatic visibility change
+is permitted without explicit review of the remaining zero-caller procedures.

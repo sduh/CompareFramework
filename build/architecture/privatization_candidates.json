@@ -2,75 +2,13 @@
   "policy": {
     "scope": "Public procedures only",
     "candidate_rule": "no resolved cross-module incoming call",
+    "contract_inventory": "docs/audit/PUBLIC_SYMBOL_INVENTORY.csv",
+    "contract_precedence": true,
+    "keep_public_excluded_from_candidates": true,
     "automatic_source_change": false,
     "external_entry_points_proven_absent": false
   },
-  "candidates": [
-    {
-      "id": "CF_ModeReference.CF_RunAgainstReference",
-      "module": "CF_ModeReference",
-      "module_path": "Modes/CF_ModeReference.bas",
-      "procedure": "CF_RunAgainstReference",
-      "kind": "Sub",
-      "line": 47,
-      "local_incoming_edges": 3,
-      "local_call_sites": 3,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Main.GetFrameworkVersion",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "GetFrameworkVersion",
-      "kind": "Function",
-      "line": 211,
-      "local_incoming_edges": 2,
-      "local_call_sites": 2,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Profiles.CF_ApplyProfile",
-      "module": "CompareFramework_Profiles",
-      "module_path": "CompareFramework_Profiles.bas",
-      "procedure": "CF_ApplyProfile",
-      "kind": "Sub",
-      "line": 51,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Quality.CF_BuildQualityDashboard",
-      "module": "CompareFramework_Quality",
-      "module_path": "CompareFramework_Quality.bas",
-      "procedure": "CF_BuildQualityDashboard",
-      "kind": "Sub",
-      "line": 149,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
-    {
-      "id": "CompareFramework_Reliability.CF_RunTypedRegressionSuite",
-      "module": "CompareFramework_Reliability",
-      "module_path": "CompareFramework_Reliability.bas",
-      "procedure": "CF_RunTypedRegressionSuite",
-      "kind": "Sub",
-      "line": 17,
-      "local_incoming_edges": 1,
-      "local_call_sites": 1,
-      "classification": "local-only",
-      "confidence": "high",
-      "reason": "Public procedure has resolved callers only inside its own module and no resolved cross-module incoming call."
-    },
+  "protected_public": [
     {
       "id": "CF_ModeReference.CF_RunReferenceMode",
       "module": "CF_ModeReference",
@@ -78,11 +16,10 @@
       "procedure": "CF_RunReferenceMode",
       "kind": "Sub",
       "line": 22,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Stable user API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
     },
     {
       "id": "CF_ModeReference.CF_RunAgainstReference_MODELE",
@@ -91,11 +28,22 @@
       "procedure": "CF_RunAgainstReference_MODELE",
       "kind": "Sub",
       "line": 43,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Stable user API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
+    },
+    {
+      "id": "CF_ModeReference.CF_RunAgainstReference",
+      "module": "CF_ModeReference",
+      "module_path": "Modes/CF_ModeReference.bas",
+      "procedure": "CF_RunAgainstReference",
+      "kind": "Sub",
+      "line": 47,
+      "static_classification": "local-only",
+      "contract_classification": "Advanced API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static local-only classification."
     },
     {
       "id": "CF_ModeReference.CF_RunFromLauncher",
@@ -104,12 +52,121 @@
       "procedure": "CF_RunFromLauncher",
       "kind": "Sub",
       "line": 595,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Stable user API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
     },
+    {
+      "id": "CompareFramework_Main.GetFrameworkVersion",
+      "module": "CompareFramework_Main",
+      "module_path": "CompareFramework_Main.bas",
+      "procedure": "GetFrameworkVersion",
+      "kind": "Function",
+      "line": 211,
+      "static_classification": "local-only",
+      "contract_classification": "Advanced API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static local-only classification."
+    },
+    {
+      "id": "CompareFramework_Main.DiagnosticFramework_Contextualise",
+      "module": "CompareFramework_Main",
+      "module_path": "CompareFramework_Main.bas",
+      "procedure": "DiagnosticFramework_Contextualise",
+      "kind": "Sub",
+      "line": 244,
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Developer/diagnostic API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
+    },
+    {
+      "id": "CompareFramework_Performance.CF_RunPerformanceBenchmark",
+      "module": "CompareFramework_Performance",
+      "module_path": "CompareFramework_Performance.bas",
+      "procedure": "CF_RunPerformanceBenchmark",
+      "kind": "Sub",
+      "line": 137,
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Developer/diagnostic API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
+    },
+    {
+      "id": "CompareFramework_Profiles.CF_ApplyProfile",
+      "module": "CompareFramework_Profiles",
+      "module_path": "CompareFramework_Profiles.bas",
+      "procedure": "CF_ApplyProfile",
+      "kind": "Sub",
+      "line": 51,
+      "static_classification": "local-only",
+      "contract_classification": "Advanced API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static local-only classification."
+    },
+    {
+      "id": "CompareFramework_Profiles.CF_SaveCurrentConfigAsProfile",
+      "module": "CompareFramework_Profiles",
+      "module_path": "CompareFramework_Profiles.bas",
+      "procedure": "CF_SaveCurrentConfigAsProfile",
+      "kind": "Sub",
+      "line": 84,
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Advanced API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
+    },
+    {
+      "id": "CompareFramework_Profiles.CF_RunWithProfile",
+      "module": "CompareFramework_Profiles",
+      "module_path": "CompareFramework_Profiles.bas",
+      "procedure": "CF_RunWithProfile",
+      "kind": "Sub",
+      "line": 123,
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Advanced API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
+    },
+    {
+      "id": "CompareFramework_Quality.CF_BuildQualityDashboard",
+      "module": "CompareFramework_Quality",
+      "module_path": "CompareFramework_Quality.bas",
+      "procedure": "CF_BuildQualityDashboard",
+      "kind": "Sub",
+      "line": 149,
+      "static_classification": "local-only",
+      "contract_classification": "Developer/diagnostic API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static local-only classification."
+    },
+    {
+      "id": "CompareFramework_Reliability.CF_RunTypedRegressionSuite",
+      "module": "CompareFramework_Reliability",
+      "module_path": "CompareFramework_Reliability.bas",
+      "procedure": "CF_RunTypedRegressionSuite",
+      "kind": "Sub",
+      "line": 17,
+      "static_classification": "local-only",
+      "contract_classification": "Developer/diagnostic API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static local-only classification."
+    },
+    {
+      "id": "CompareFramework_Tests.CF_RunAllTests",
+      "module": "CompareFramework_Tests",
+      "module_path": "CompareFramework_Tests.bas",
+      "procedure": "CF_RunAllTests",
+      "kind": "Sub",
+      "line": 42,
+      "static_classification": "zero-caller-review",
+      "contract_classification": "Developer/diagnostic API",
+      "contract_decision": "Keep Public",
+      "reason": "Explicit public API contract overrides static zero-caller-review classification."
+    }
+  ],
+  "candidates": [
     {
       "id": "CF_ModeReference.CF_RunLauncherQuick",
       "module": "CF_ModeReference",
@@ -280,19 +337,6 @@
       "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
     },
     {
-      "id": "CompareFramework_Main.DiagnosticFramework_Contextualise",
-      "module": "CompareFramework_Main",
-      "module_path": "CompareFramework_Main.bas",
-      "procedure": "DiagnosticFramework_Contextualise",
-      "kind": "Sub",
-      "line": 244,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
       "id": "CompareFramework_Main.CF_RunAudited",
       "module": "CompareFramework_Main",
       "module_path": "CompareFramework_Main.bas",
@@ -384,64 +428,12 @@
       "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
     },
     {
-      "id": "CompareFramework_Performance.CF_RunPerformanceBenchmark",
-      "module": "CompareFramework_Performance",
-      "module_path": "CompareFramework_Performance.bas",
-      "procedure": "CF_RunPerformanceBenchmark",
-      "kind": "Sub",
-      "line": 137,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Profiles.CF_SaveCurrentConfigAsProfile",
-      "module": "CompareFramework_Profiles",
-      "module_path": "CompareFramework_Profiles.bas",
-      "procedure": "CF_SaveCurrentConfigAsProfile",
-      "kind": "Sub",
-      "line": 84,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
       "id": "CompareFramework_Profiles.CF_ListProfiles",
       "module": "CompareFramework_Profiles",
       "module_path": "CompareFramework_Profiles.bas",
       "procedure": "CF_ListProfiles",
       "kind": "Sub",
       "line": 117,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Profiles.CF_RunWithProfile",
-      "module": "CompareFramework_Profiles",
-      "module_path": "CompareFramework_Profiles.bas",
-      "procedure": "CF_RunWithProfile",
-      "kind": "Sub",
-      "line": 123,
-      "local_incoming_edges": 0,
-      "local_call_sites": 0,
-      "classification": "zero-caller-review",
-      "confidence": "medium",
-      "reason": "No resolved repository caller. It may be dead/internal code, but external LibreOffice or user invocation cannot be excluded."
-    },
-    {
-      "id": "CompareFramework_Tests.CF_RunAllTests",
-      "module": "CompareFramework_Tests",
-      "module_path": "CompareFramework_Tests.bas",
-      "procedure": "CF_RunAllTests",
-      "kind": "Sub",
-      "line": 42,
       "local_incoming_edges": 0,
       "local_call_sites": 0,
       "classification": "zero-caller-review",
@@ -465,11 +457,11 @@
   "statistics": {
     "public_procedure_count": 134,
     "cross_module_used_public_count": 99,
-    "candidate_count": 35,
+    "candidate_count": 22,
+    "protected_public_count": 13,
     "zero_caller_public_count": 30,
     "classification_counts": {
-      "local-only": 5,
-      "zero-caller-review": 30
+      "zero-caller-review": 22
     }
   }
 }

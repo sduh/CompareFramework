@@ -45,7 +45,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
     dependency_analysis = analyze_dependencies(repository, call_graph)
     dependency_data = dependency_analysis.as_dict()
 
-    privatization_analysis = analyze_privatization(repository, call_graph)
+    privatization_analysis = analyze_privatization(repository, call_graph, config.repository_root)
     privatization_data = privatization_analysis.as_dict()
 
     statistics.update({
@@ -59,6 +59,7 @@ def build_architecture(repository_root: Path) -> dict[str, Any]:
         "max_dependency_cycle_size": dependency_data["statistics"]["max_cycle_size"],
         "privatization_candidate_count": privatization_data["statistics"]["candidate_count"],
         "local_only_public_count": privatization_data["statistics"]["classification_counts"].get("local-only", 0),
+        "protected_public_count": privatization_data["statistics"]["protected_public_count"],
         "zero_caller_public_count": privatization_data["statistics"]["zero_caller_public_count"],
     })
 

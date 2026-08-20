@@ -5,7 +5,7 @@ Generated automatically from `build/architecture/architecture.json`.
 ## Repository
 
 - Version: **4.0.0-D1**
-- Canonical schema: **1.3.0**
+- Canonical schema: **1.4.0**
 - LibreOffice Basic modules: **20**
 - Lines: **5988**
 - Procedures: **285**
