@@ -18,6 +18,7 @@ Public Const CF_REFERENCE_PLAN_SHEET As String = "Compare_Reference_Plan"
 Public Const CF_REFERENCE_SUMMARY_SHEET As String = "Compare_Reference_Summary"
 Public CF_REFERENCE_TARGET_MODE As String
 Public CF_REFERENCE_SELECTED_TARGETS As String
+Public CF_REFERENCE_SILENT As Boolean
 
 Public Sub CF_RunReferenceMode()
     Dim referenceName As String
@@ -73,12 +74,16 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
     keyColumnName = Trim(CStr(keyColumnName))
 
     If referenceSheetName = "" Then
-        MsgBox "Le nom de la feuille de référence est obligatoire.", 48, "CompareFramework D1"
+        If Not CF_REFERENCE_SILENT Then
+            MsgBox "Le nom de la feuille de référence est obligatoire.", 48, "CompareFramework D1"
+        End If
         Exit Sub
     End If
 
     If keyColumnName = "" Then
-        MsgBox "Le nom de la colonne identifiant est obligatoire.", 48, "CompareFramework D1"
+        If Not CF_REFERENCE_SILENT Then
+            MsgBox "Le nom de la colonne identifiant est obligatoire.", 48, "CompareFramework D1"
+        End If
         Exit Sub
     End If
 
@@ -86,7 +91,9 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
     oSheets = oDoc.Sheets
 
     If Not oSheets.hasByName(referenceSheetName) Then
-        MsgBox "Feuille de référence introuvable : " & referenceSheetName, 16, "CompareFramework D1"
+        If Not CF_REFERENCE_SILENT Then
+            MsgBox "Feuille de référence introuvable : " & referenceSheetName, 16, "CompareFramework D1"
+        End If
         Exit Sub
     End If
 
@@ -101,9 +108,11 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
 
     If Not CF_ReferenceSheetHasKey(oReference, keyColumnName) Then
         gIdAliases = previousAliases
-        MsgBox "La colonne identifiant '" & keyColumnName & _
-               "' est absente de la feuille " & referenceSheetName & ".", _
-               16, "CompareFramework D1"
+        If Not CF_REFERENCE_SILENT Then
+            MsgBox "La colonne identifiant '" & keyColumnName & _
+                   "' est absente de la feuille " & referenceSheetName & ".", _
+                   16, "CompareFramework D1"
+        End If
         Exit Sub
     End If
 
@@ -223,7 +232,15 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
     FormatDashboard oDash
     FormatActionPlan oAction
     FormatAuditLog oAudit
-    CF_ReferenceBuildSummary oStats
+    CF_ReferenceBuildSummary _
+        oStats, _
+        totalAdded, _
+        totalRemoved, _
+        totalChangedRows, _
+        totalChangedCells, _
+        totalDuplicates, _
+        totalIssues, _
+        targetCount
     CF_ReferenceFormatPlan
 
     On Error Resume Next
@@ -239,16 +256,18 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
 
     gIdAliases = previousAliases
 
-    MsgBox _
-        "Comparaison par référence terminée." & Chr(10) & _
-        "Référence : " & referenceSheetName & Chr(10) & _
-        "Clé : " & keyColumnName & Chr(10) & _
-        "Feuilles comparées : " & targetCount & Chr(10) & _
-        "Ajouts : " & totalAdded & Chr(10) & _
-        "Suppressions : " & totalRemoved & Chr(10) & _
-        "Lignes modifiées : " & totalChangedRows, _
-        64, _
-        "CompareFramework V" & CF_VERSION
+    If Not CF_REFERENCE_SILENT Then
+        MsgBox _
+            "Comparaison par référence terminée." & Chr(10) & _
+            "Référence : " & referenceSheetName & Chr(10) & _
+            "Clé : " & keyColumnName & Chr(10) & _
+            "Feuilles comparées : " & targetCount & Chr(10) & _
+            "Ajouts : " & totalAdded & Chr(10) & _
+            "Suppressions : " & totalRemoved & Chr(10) & _
+            "Lignes modifiées : " & totalChangedRows, _
+            64, _
+            "CompareFramework V" & CF_VERSION
+    End If
 
     Exit Sub
 
@@ -258,10 +277,12 @@ ErrHandler:
     CF_AuditFail Err, Error$
     On Error GoTo 0
 
-    MsgBox _
-        "Erreur CF_RunAgainstReference : " & Err & " - " & Error$, _
-        16, _
-        "CompareFramework V" & CF_VERSION
+    If Not CF_REFERENCE_SILENT Then
+        MsgBox _
+            "Erreur CF_RunAgainstReference : " & Err & " - " & Error$, _
+            16, _
+            "CompareFramework V" & CF_VERSION
+    End If
 End Sub
 
 Private Sub CF_BuildReferencePlan(referenceSheetName As String, keyColumnName As String)
@@ -357,7 +378,6 @@ Private Function CF_ReferenceSheetHasKey(oSheet As Object, keyColumnName As Stri
 NotFound:
     CF_ReferenceSheetHasKey = False
 End Function
-
 Private Sub CF_ReferencePlanSetStatus(targetName As String, statusText As String, messageText As String)
     Dim oDoc As Object
     Dim oPlan As Object
@@ -402,7 +422,16 @@ Private Sub CF_ReferenceFormatPlan()
     oPlan.Columns.getByIndex(4).Width = 9000
 End Sub
 
-Private Sub CF_ReferenceBuildSummary(oStats As Object)
+Private Sub CF_ReferenceBuildSummary( _
+    oStats As Object, _
+    totalAdded As Long, _
+    totalRemoved As Long, _
+    totalChangedRows As Long, _
+    totalChangedCells As Long, _
+    totalDuplicates As Long, _
+    totalIssues As Long, _
+    comparedTargets As Long)
+
     On Error GoTo ErrHandler
 
     Dim oDoc As Object
@@ -417,13 +446,6 @@ Private Sub CF_ReferenceBuildSummary(oStats As Object)
     Dim changedCells As String
     Dim duplicateCount As String
     Dim issueCount As String
-    Dim totalAdded As Long
-    Dim totalRemoved As Long
-    Dim totalChangedRows As Long
-    Dim totalChangedCells As Long
-    Dim totalDuplicates As Long
-    Dim totalIssues As Long
-    Dim comparedTargets As Long
 
     oDoc = ThisComponent
     oSummary = PrepareSheet(oDoc, CF_REFERENCE_SUMMARY_SHEET)
@@ -467,13 +489,6 @@ Private Sub CF_ReferenceBuildSummary(oStats As Object)
                 oSummary.getCellByPosition(7, outRow).String = "OK"
             End If
 
-            totalAdded = totalAdded + Val(addedCount)
-            totalRemoved = totalRemoved + Val(removedCount)
-            totalChangedRows = totalChangedRows + Val(changedRows)
-            totalChangedCells = totalChangedCells + Val(changedCells)
-            totalDuplicates = totalDuplicates + Val(duplicateCount)
-            totalIssues = totalIssues + Val(issueCount)
-            comparedTargets = comparedTargets + 1
             outRow = outRow + 1
         End If
     Next row
@@ -501,7 +516,9 @@ Private Sub CF_ReferenceBuildSummary(oStats As Object)
     Exit Sub
 
 ErrHandler:
-    MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
+    If Not CF_REFERENCE_SILENT Then
+        MsgBox "Erreur CF_ReferenceBuildSummary : " & Err & " - " & Error$, 16, "CompareFramework V" & CF_VERSION
+    End If
 End Sub
 
 Private Sub CF_ReferenceFormatSummary(oSummary As Object)
@@ -518,6 +535,31 @@ Private Sub CF_ReferenceFormatSummary(oSummary As Object)
     oSummary.Columns.getByIndex(5).Width = 2500
     oSummary.Columns.getByIndex(6).Width = 2500
     oSummary.Columns.getByIndex(7).Width = 4000
+End Sub
+
+' Technical CI-only functional scenario entrypoint.
+' It invokes the real reference-mode comparison path and restores global state.
+Public Sub CF_CI_RunScenario()
+    Dim previousSilent As Boolean
+    Dim previousMode As String
+    Dim previousSelected As String
+
+    On Error GoTo Cleanup
+
+    previousSilent = CF_REFERENCE_SILENT
+    previousMode = CF_REFERENCE_TARGET_MODE
+    previousSelected = CF_REFERENCE_SELECTED_TARGETS
+
+    CF_REFERENCE_SILENT = True
+    CF_REFERENCE_TARGET_MODE = "SELECTED"
+    CF_REFERENCE_SELECTED_TARGETS = "TARGET"
+
+    CF_RunAgainstReference "MODELE", "ProductId"
+
+Cleanup:
+    CF_REFERENCE_SILENT = previousSilent
+    CF_REFERENCE_TARGET_MODE = previousMode
+    CF_REFERENCE_SELECTED_TARGETS = previousSelected
 End Sub
 
 '=========================================================
