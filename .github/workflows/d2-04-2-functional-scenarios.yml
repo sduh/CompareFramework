@@ -1,0 +1,70 @@
+name: D2-04.2 functional scenarios T001-T010
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  functional-scenarios:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install LibreOffice 7.4.7.2
+        run: bash tools/ci/install_libreoffice_7_4_7_2.sh
+
+      - name: Build current monolith
+        run: python tools/build_monolith.py
+
+      - name: Validate D2-04.2 static scenario contract
+        run: PYTHONPATH=. python tests/test_d2_04_2_scenario_contract.py
+
+      - name: Validate D2-04.2 pure runner helpers
+        run: PYTHONPATH=. python tests/test_d2_04_2_runner_unit.py
+
+      - name: Resolve PyUNO Python environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -x /opt/libreoffice7.4/program/python ]]; then
+            echo "UNO_PYTHON=/opt/libreoffice7.4/program/python" >> "$GITHUB_ENV"
+          else
+            echo "UNO_PYTHON=$(command -v python3)" >> "$GITHUB_ENV"
+            echo "PYTHONPATH=/opt/libreoffice7.4/program${PYTHONPATH:+:${PYTHONPATH}}" >> "$GITHUB_ENV"
+            echo "LD_LIBRARY_PATH=/opt/libreoffice7.4/program${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Verify UNO Python bridge
+        run: |
+          "${UNO_PYTHON}" -c 'import uno; print("PyUNO import OK")'
+
+      - name: Run T001-T010 through real LibreOffice and UNO
+        run: |
+          set -euo pipefail
+          monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
+          test -n "${monolith}"
+          "${UNO_PYTHON}" tools/ci/run_functional_scenarios.py \
+            --soffice "${SOFFICE_BIN}" \
+            --monolith "${monolith}" \
+            --datasets tests/datasets \
+            --artifacts build/d2-04-2 \
+            --timeout 60
+
+      - name: Upload D2-04.2 diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: d2-04-2-functional-scenarios
+          path: build/d2-04-2
+          if-no-files-found: warn
+
+      - name: Regenerate canonical architecture for API freeze guard
+        run: PYTHONPATH=. python -m tools.architecture --root . --summary
+
+      - name: Preserve D2-03.24 API freeze
+        run: PYTHONPATH=. python tests/test_d2_03_24_public_api_freeze.py
