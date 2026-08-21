@@ -48,7 +48,7 @@ jobs:
           set -euo pipefail
           monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
           test -n "${monolith}"
-          "${UNO_PYTHON}" tools/ci/run_functional_scenarios.py \
+          PYTHONPATH=".:${PYTHONPATH:-}" "${UNO_PYTHON}" -m tools.ci.run_functional_scenarios \
             --soffice "${SOFFICE_BIN}" \
             --monolith "${monolith}" \
             --datasets tests/datasets \
