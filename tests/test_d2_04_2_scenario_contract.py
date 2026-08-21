@@ -55,7 +55,7 @@ class D2042ScenarioContractTests(unittest.TestCase):
             "ubuntu-22.04",
             "install_libreoffice_7_4_7_2.sh",
             "build_monolith.py",
-            "run_functional_scenarios.py",
+            "tools.ci.run_functional_scenarios",
             "actions/upload-artifact@v4",
             "build/d2-04-2",
         ):
