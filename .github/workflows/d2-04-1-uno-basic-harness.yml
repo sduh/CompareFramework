@@ -79,5 +79,8 @@ jobs:
             exit 1
           fi
 
+      - name: Regenerate canonical architecture for API freeze guard
+        run: PYTHONPATH=. python -m tools.architecture --root . --summary
+
       - name: Preserve D2-03.24 API freeze
         run: PYTHONPATH=. python tests/test_d2_03_24_public_api_freeze.py
