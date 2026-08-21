@@ -1,1 +1,0 @@
-The `.ods` fixture must be stored as binary content, not base64 text.

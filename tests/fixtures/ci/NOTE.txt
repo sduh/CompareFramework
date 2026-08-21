@@ -1,1 +1,0 @@
-Binary fixture committed via Git tree in the next commit.
