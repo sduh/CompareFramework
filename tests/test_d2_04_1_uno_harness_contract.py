@@ -28,9 +28,8 @@ class D2041UnoHarnessContractTests(unittest.TestCase):
         for forbidden in ("MsgBox", "InputBox", "CF_RunReleaseValidation", "CF_RunStandardComparison"):
             self.assertNotIn(forbidden, text)
 
-    def test_harness_uses_built_monolith_and_result_contract(self):
+    def test_harness_uses_result_contract_without_loading_src_modules(self):
         text = HARNESS.read_text(encoding="utf-8")
-        self.assertIn("dist", text)
         self.assertIn("CF_CI_RuntimeSmoke", text)
         self.assertIn("CompareFramework_CI", text)
         self.assertIn("COMPAREFRAMEWORK_CI_SMOKE_OK", text)
@@ -59,10 +58,11 @@ class D2041UnoHarnessContractTests(unittest.TestCase):
             self.assertIn('table:name="CompareFramework_CI"', content)
             self.assertNotIn("CF_CI_RuntimeSmoke", content)
 
-    def test_workflow_uses_pinned_runtime_build_and_harness(self):
+    def test_workflow_uses_pinned_runtime_built_dist_artifact_and_harness(self):
         workflow = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("install_libreoffice_7_4_7_2.sh", workflow)
         self.assertIn("build_monolith.py", workflow)
+        self.assertIn("find dist", workflow)
         self.assertIn("run_libreoffice_basic_smoke.py", workflow)
         self.assertIn("ubuntu-22.04", workflow)
         self.assertIn("--negative-missing-macro", workflow)
