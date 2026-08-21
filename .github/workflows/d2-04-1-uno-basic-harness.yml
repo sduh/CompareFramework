@@ -1,0 +1,86 @@
+name: D2-04.1 LibreOffice Basic UNO harness
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  uno-basic-harness:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install LibreOffice 7.4.7.2
+        run: bash tools/ci/install_libreoffice_7_4_7_2.sh
+
+      - name: Build current monolith
+        run: python tools/build_monolith.py
+
+      - name: Validate D2-04.1 static contract
+        run: PYTHONPATH=. python tests/test_d2_04_1_uno_harness_contract.py
+
+      - name: Validate pure harness helpers
+        run: PYTHONPATH=. python tests/test_d2_04_1_harness_unit.py
+
+      - name: Resolve PyUNO Python environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -x /opt/libreoffice7.4/program/python ]]; then
+            echo "UNO_PYTHON=/opt/libreoffice7.4/program/python" >> "$GITHUB_ENV"
+          else
+            echo "UNO_PYTHON=$(command -v python3)" >> "$GITHUB_ENV"
+            echo "PYTHONPATH=/opt/libreoffice7.4/program${PYTHONPATH:+:${PYTHONPATH}}" >> "$GITHUB_ENV"
+            echo "LD_LIBRARY_PATH=/opt/libreoffice7.4/program${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Verify UNO Python bridge
+        run: |
+          "${UNO_PYTHON}" -c 'import uno; print("PyUNO import OK")'
+
+      - name: Run real Basic smoke through UNO
+        run: |
+          monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
+          test -n "${monolith}"
+          "${UNO_PYTHON}" tools/ci/run_libreoffice_basic_smoke.py \
+            --soffice "${SOFFICE_BIN}" \
+            --fixture tests/fixtures/ci/CompareFramework_CI.ods \
+            --monolith "${monolith}" \
+            --timeout 60
+
+      - name: Negative path - nonexistent macro must fail
+        run: |
+          monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
+          if "${UNO_PYTHON}" tools/ci/run_libreoffice_basic_smoke.py \
+            --soffice "${SOFFICE_BIN}" \
+            --fixture tests/fixtures/ci/CompareFramework_CI.ods \
+            --monolith "${monolith}" \
+            --negative-missing-macro \
+            --timeout 60; then
+            echo "Expected nonexistent macro validation to fail" >&2
+            exit 1
+          fi
+
+      - name: Negative path - wrong marker must fail
+        run: |
+          monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
+          if "${UNO_PYTHON}" tools/ci/run_libreoffice_basic_smoke.py \
+            --soffice "${SOFFICE_BIN}" \
+            --fixture tests/fixtures/ci/CompareFramework_CI.ods \
+            --monolith "${monolith}" \
+            --negative-wrong-marker \
+            --timeout 60; then
+            echo "Expected wrong-marker validation to fail" >&2
+            exit 1
+          fi
+
+      - name: Regenerate canonical architecture for API freeze guard
+        run: PYTHONPATH=. python -m tools.architecture --root . --summary
+
+      - name: Preserve D2-03.24 API freeze
+        run: PYTHONPATH=. python tests/test_d2_03_24_public_api_freeze.py

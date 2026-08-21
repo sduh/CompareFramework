@@ -5,7 +5,8 @@
 # 1. Foundation modules first.
 # 2. Runtime services before engines and orchestration.
 # 3. Validation/test modules after runtime modules.
-# 4. Public API facade last.
+# 4. Technical CI entrypoints before the official public facade.
+# 5. Public API facade last.
 #
 # Known cycles prevent a strict topological order:
 # - Config <-> Rules
@@ -44,6 +45,9 @@ src/CompareFramework_Validation.bas
 src/CompareFramework_Scenarios.bas
 src/CompareFramework_Tests.bas
 src/CompareFramework_Quality.bas
+
+# Technical CI-only runtime entrypoint; not part of supported user API
+src/CompareFramework_CI.bas
 
 # Official public facade; keep last
 src/CompareFramework_API.bas
