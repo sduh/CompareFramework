@@ -17,6 +17,10 @@ USER_DOCUMENTS = (
     "STEP4_INTERACTIVE_CHECKLIST.md",
 )
 
+TECHNICAL_ENTRYPOINTS = {
+    ("CompareFramework_CI.bas", "CF_CI_RuntimeSmoke"),
+}
+
 
 @dataclass(frozen=True, slots=True)
 class EntrypointReview:
@@ -47,6 +51,10 @@ class EntrypointAudit:
                 "primary_inventory": "docs/audit/D1_PUBLIC_API_INVENTORY.csv",
                 "supporting_inventory": "docs/audit/PUBLIC_SYMBOL_INVENTORY.csv",
                 "documentation_conflicts_require_review": True,
+                "technical_entrypoints_excluded": [
+                    f"{module}:{procedure}"
+                    for module, procedure in sorted(TECHNICAL_ENTRYPOINTS)
+                ],
             },
             "reviews": [
                 {
@@ -75,6 +83,15 @@ def _normalise_module_path(value: str) -> str:
     if value.casefold().startswith("src/"):
         value = value[4:]
     return value
+
+
+def _is_technical_entrypoint(module_path: str, procedure: str) -> bool:
+    normalised = _normalise_module_path(module_path)
+    return any(
+        normalised.casefold() == module.casefold()
+        and procedure.casefold() == technical_procedure.casefold()
+        for module, technical_procedure in TECHNICAL_ENTRYPOINTS
+    )
 
 
 def _load_d1_inventory(repository_root: Path) -> dict[tuple[str, str], dict[str, str]]:
@@ -186,6 +203,7 @@ def build_entrypoint_audit(
         item
         for item in privatization.candidates
         if item.classification in {"zero-caller-review", "entrypoint-review"}
+        and not _is_technical_entrypoint(item.module_path, item.procedure)
     ]
 
     reviews = []
