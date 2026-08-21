@@ -4,6 +4,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASETS = ROOT / "tests" / "datasets"
+REFERENCE_MODE = ROOT / "src" / "Modes" / "CF_ModeReference.bas"
+API = ROOT / "src" / "CompareFramework_API.bas"
+WORKFLOW = ROOT / ".github" / "workflows" / "d2-04-2-functional-scenarios.yml"
 SCENARIOS = (
     ("T001", "identical"),
     ("T002", "additions"),
@@ -35,6 +38,28 @@ class D2042ScenarioContractTests(unittest.TestCase):
             for field in FIELDS - {"scenario_id", "decision"}:
                 self.assertIsInstance(payload[field], int)
                 self.assertGreaterEqual(payload[field], 0)
+
+    def test_ci_scenario_entrypoint_is_technical_and_noninteractive(self):
+        text = REFERENCE_MODE.read_text(encoding="utf-8-sig")
+        api = API.read_text(encoding="utf-8-sig")
+        self.assertIn("Public Sub CF_CI_RunScenario()", text)
+        self.assertIn('CF_REFERENCE_SELECTED_TARGETS = "TARGET"', text)
+        self.assertIn('CF_RunAgainstReference "MODELE", "ProductId"', text)
+        self.assertIn("Public CF_REFERENCE_SILENT As Boolean", text)
+        self.assertNotIn("CF_CI_RunScenario", api)
+
+    def test_workflow_pins_runtime_and_uploads_diagnostics(self):
+        self.assertTrue(WORKFLOW.is_file(), WORKFLOW)
+        text = WORKFLOW.read_text(encoding="utf-8")
+        for token in (
+            "ubuntu-22.04",
+            "install_libreoffice_7_4_7_2.sh",
+            "build_monolith.py",
+            "run_functional_scenarios.py",
+            "actions/upload-artifact@v4",
+            "build/d2-04-2",
+        ):
+            self.assertIn(token, text)
 
 
 if __name__ == "__main__":
