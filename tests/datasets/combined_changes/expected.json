@@ -1,0 +1,10 @@
+{
+  "scenario_id": "T005",
+  "decision": "ECARTS",
+  "added_rows": 1,
+  "deleted_rows": 1,
+  "modified_rows": 1,
+  "modified_cells": 1,
+  "duplicate_ids": 0,
+  "structure_alerts": 0
+}
