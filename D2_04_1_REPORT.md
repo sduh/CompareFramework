@@ -2,7 +2,7 @@
 
 ## Status
 
-**IMPLEMENTED — verification pending**
+**VALIDATED**
 
 ## Runtime contract
 
@@ -15,22 +15,36 @@
 - Result sheet: `CompareFramework_CI`
 - Required result: `B1=OK`, `B2=COMPAREFRAMEWORK_CI_SMOKE_OK`
 
-## Validation required
+## Validation evidence
 
-D2-04.1 becomes `VALIDATED` only after a fresh GitHub Actions run on the final PR head proves:
+Successful GitHub Actions validation on commit `009f0b83c68072000ed614407836ba6b64b1f9d4`:
 
-1. LibreOffice 7.4.7.2 installation succeeds;
-2. current monolith build succeeds;
-3. the versioned `.ods` fixture opens through UNO;
-4. the generated monolith is injected dynamically into the document Basic library;
-5. `CF_CI_RuntimeSmoke` resolves and executes;
-6. the exact status and marker are read back through UNO;
-7. nonexistent-macro and wrong-marker negative paths fail as expected;
-8. D2-03.24 API freeze validation remains green;
-9. document and LibreOffice process terminate cleanly.
+- D2-04.1 workflow: run `32470116909` / run #5 — **SUCCESS**
+- D2-04.0 LibreOffice runtime: run `32470116913` / run #8 — **SUCCESS**
+- D2-03.24 cumulative validation: run `32470116906` / run #11 — **SUCCESS**
+- Runner for D2-04.1: `ubuntu-22.04`
+- Observed LibreOffice: `LibreOffice 7.4.7.2 723314e595e8007d3cf785c16538505a1c878ca5`
+- Current monolith build: **PASS**
+- D2-04.1 static contract: **PASS** (6 tests)
+- Pure harness helpers: **PASS** (5 tests)
+- PyUNO import: **PASS**
+- Real monolith injection and Basic execution: **PASS**
+- Observed Basic result: `STATUS=OK`
+- Observed Basic marker: `COMPAREFRAMEWORK_CI_SMOKE_OK`
+- Negative missing-macro path: **PASS** — harness rejected the nonexistent procedure
+- Negative wrong-marker path: **PASS** — result validation rejected the intentionally incorrect expected marker
+- D2-03.24 six-procedure user API freeze: **PASS** after canonical architecture regeneration
 
 ## Implementation notes
 
 The harness is repository-owned at `tools/ci/run_libreoffice_basic_smoke.py` and uses an isolated temporary LibreOffice profile and temporary working copy of the fixture for each execution.
 
-The technical Basic entrypoint is located in `src/CompareFramework_CI.bas` and is intentionally outside `CompareFramework_API.bas`.
+The technical Basic entrypoint is located in `src/CompareFramework_CI.bas`, is included in the generated monolith through `MODULE_ORDER.txt`, and remains intentionally outside `CompareFramework_API.bas`. The architecture entrypoint audit explicitly excludes this technical CI-only entrypoint from the supported user API review while preserving the six frozen user APIs.
+
+## Scope
+
+D2-04.1 does not execute T001–T010 or a complete business comparison. Functional scenario automation remains assigned to D2-04.2.
+
+## Final merge gate
+
+This evidence-recording commit must itself receive fresh successful runs for D2-03.24, D2-04.0 and D2-04.1 before the PR may be merged. Successful checks from the evidence commit above do not substitute for checks on the final PR HEAD.
