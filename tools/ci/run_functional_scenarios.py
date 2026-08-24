@@ -107,6 +107,14 @@ class Scenario:
     model_csv: Path
     target_csv: Path
     expected_json: Path
+    setup_sheets: tuple[Path, ...] = ()
+
+
+def discover_setup_sheets(directory: Path) -> tuple[Path, ...]:
+    setup = directory / "setup"
+    if not setup.is_dir():
+        return ()
+    return tuple(sorted(setup.glob("*.csv")))
 
 
 def discover_scenarios(datasets: Path) -> list[Scenario]:
@@ -130,9 +138,25 @@ def discover_scenarios(datasets: Path) -> list[Scenario]:
                 model_csv=model_csv,
                 target_csv=target_csv,
                 expected_json=expected_json,
+                setup_sheets=discover_setup_sheets(directory),
             )
         )
     return scenarios
+
+
+def select_scenarios(
+    scenarios: list[Scenario], requested_ids: list[str] | None
+) -> list[Scenario]:
+    if not requested_ids:
+        return scenarios
+    requested = {item.upper() for item in requested_ids}
+    known = {scenario.scenario_id for scenario in scenarios}
+    unknown = sorted(requested - known)
+    if unknown:
+        raise ScenarioContractError(
+            f"unknown scenario id(s): {', '.join(unknown)}"
+        )
+    return [scenario for scenario in scenarios if scenario.scenario_id in requested]
 
 
 def validate_contract(payload: object, scenario_id: str) -> dict[str, object]:
@@ -287,6 +311,12 @@ def create_calc_document(remote_ctx):
 
 def prepare_document(document, scenario: Scenario) -> None:
     try:
+        for setup_csv in scenario.setup_sheets:
+            if setup_csv.stem.upper() in {"MODELE", "TARGET"}:
+                raise ScenarioContractError(
+                    f"{scenario.scenario_id}: setup sheet name is reserved: "
+                    f"{setup_csv.stem}"
+                )
         sheets = document.Sheets
         names = sheets.getElementNames()
         if not names:
@@ -299,6 +329,14 @@ def prepare_document(document, scenario: Scenario) -> None:
         target = sheets.getByName("TARGET")
         write_tokens_to_sheet(first, read_csv_tokens(scenario.model_csv))
         write_tokens_to_sheet(target, read_csv_tokens(scenario.target_csv))
+        for setup_csv in scenario.setup_sheets:
+            sheet_name = setup_csv.stem
+            if sheets.hasByName(sheet_name):
+                sheets.removeByName(sheet_name)
+            sheets.insertNewByName(sheet_name, sheets.getCount())
+            write_tokens_to_sheet(
+                sheets.getByName(sheet_name), read_csv_tokens(setup_csv)
+            )
     except ScenarioError:
         raise
     except Exception as exc:
@@ -487,6 +525,7 @@ def parse_args(argv=None):
     parser.add_argument("--datasets", type=Path, default=Path("tests/datasets"))
     parser.add_argument("--artifacts", type=Path, default=Path("build/d2-04-2"))
     parser.add_argument("--timeout", type=int, default=60)
+    parser.add_argument("--scenario", action="append")
     return parser.parse_args(argv)
 
 
@@ -500,7 +539,7 @@ def main(argv=None) -> int:
             raise ScenarioContractError(
                 f"technical macro {MACRO_NAME!r} not present in {args.monolith}"
             )
-        scenarios = discover_scenarios(args.datasets)
+        scenarios = select_scenarios(discover_scenarios(args.datasets), args.scenario)
         version = validate_runtime(args.soffice)
         print(f"[runtime] {version}")
     except Exception as exc:
@@ -534,7 +573,7 @@ def main(argv=None) -> int:
     lines, passed = format_suite_summary(results)
     for line in lines:
         print(line)
-    return 0 if passed == len(scenarios) == 10 else 1
+    return 0 if passed == len(scenarios) else 1
 
 
 if __name__ == "__main__":

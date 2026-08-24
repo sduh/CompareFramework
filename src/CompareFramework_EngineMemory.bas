@@ -167,6 +167,14 @@ Public Sub CF_CompareSheetPairMemory(oOld As Object, oNew As Object, oReport As 
 
     pairDuplicates = CF_ReportMemoryDuplicates(oldIds, oldRows, oldCount, oReport, reportRow, pairName, "ANCIENNE")
     pairDuplicates = pairDuplicates + CF_ReportMemoryDuplicates(newIds, newRows, newCount, oReport, reportRow, pairName, "NOUVELLE")
+
+    If pairDuplicates > 0 Then
+        WriteStatsRow oStats, statsRow, pairName, 0, 0, 0, 0, pairDuplicates, oldCount, newCount, 0
+        statsRow = statsRow + 1
+        totalDuplicates = totalDuplicates + pairDuplicates
+        Exit Sub
+    End If
+
     ReportColumnDifferences oldHeaders, newHeaders, oReport, reportRow, pairName, pairIssues
 
     For i = 0 To oldCount - 1

@@ -43,7 +43,7 @@ class D2042ScenarioContractTests(unittest.TestCase):
         text = REFERENCE_MODE.read_text(encoding="utf-8-sig")
         api = API.read_text(encoding="utf-8-sig")
         self.assertIn("Public Sub CF_CI_RunScenario()", text)
-        self.assertIn('CF_REFERENCE_SELECTED_TARGETS = "TARGET"', text)
+        self.assertIn('CF_REFERENCE_TARGET_MODE = "ALL"', text)
         self.assertIn('CF_RunAgainstReference "MODELE", "ProductId"', text)
         self.assertIn("Public CF_REFERENCE_SILENT As Boolean", text)
         self.assertNotIn("CF_CI_RunScenario", api)

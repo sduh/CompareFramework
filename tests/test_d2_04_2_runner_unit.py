@@ -9,10 +9,14 @@ from tools.ci.run_functional_scenarios import (
     ScenarioContractError,
     ScenarioMismatchError,
     compare_contracts,
+    discover_setup_sheets,
     discover_scenarios,
     extract_actual,
     format_suite_summary,
     load_expected,
+    parse_args,
+    prepare_document,
+    select_scenarios,
     write_json,
 )
 
@@ -20,31 +24,74 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class FakeCell:
-    def __init__(self, value=""):
-        self.String = value
+    def __init__(self, sheet, column, row):
+        self.sheet = sheet
+        self.column = column
+        self.row = row
+
+    @property
+    def String(self):
+        try:
+            return self.sheet.rows[self.row][self.column]
+        except IndexError:
+            return ""
+
+    @String.setter
+    def String(self, value):
+        while len(self.sheet.rows) <= self.row:
+            self.sheet.rows.append([])
+        while len(self.sheet.rows[self.row]) <= self.column:
+            self.sheet.rows[self.row].append("")
+        self.sheet.rows[self.row][self.column] = value
 
 
 class FakeSheet:
-    def __init__(self, rows):
+    def __init__(self, rows, name=""):
         self.rows = rows
+        self._name = name
+        self._sheets = None
+
+    @property
+    def Name(self):
+        return self._name
+
+    @Name.setter
+    def Name(self, value):
+        if self._sheets is not None:
+            del self._sheets.mapping[self._name]
+            self._sheets.mapping[value] = self
+        self._name = value
 
     def getCellByPosition(self, column, row):
-        try:
-            value = self.rows[row][column]
-        except (IndexError, TypeError):
-            value = ""
-        return FakeCell(value)
+        return FakeCell(self, column, row)
 
 
 class FakeSheets:
     def __init__(self, mapping):
         self.mapping = mapping
+        for name, sheet in mapping.items():
+            sheet._name = name
+            sheet._sheets = self
 
     def hasByName(self, name):
         return name in self.mapping
 
     def getByName(self, name):
         return self.mapping[name]
+
+    def getElementNames(self):
+        return tuple(self.mapping)
+
+    def getCount(self):
+        return len(self.mapping)
+
+    def insertNewByName(self, name, _index):
+        sheet = FakeSheet([], name)
+        sheet._sheets = self
+        self.mapping[name] = sheet
+
+    def removeByName(self, name):
+        del self.mapping[name]
 
 
 class FakeDocument:
@@ -59,6 +106,92 @@ class D2042RunnerUnitTests(unittest.TestCase):
             [f"T{i:03d}" for i in range(1, 11)],
             [scenario.scenario_id for scenario in scenarios],
         )
+
+    def test_scenario_filter_preserves_catalogue_order_and_is_generic(self):
+        scenarios = discover_scenarios(ROOT / "tests" / "datasets")
+        selected = select_scenarios(scenarios, ["T010", "T006", "T007"])
+        self.assertEqual(
+            ["T006", "T007", "T010"],
+            [item.scenario_id for item in selected],
+        )
+
+    def test_scenario_filter_rejects_unknown_ids(self):
+        scenarios = discover_scenarios(ROOT / "tests" / "datasets")
+        with self.assertRaises(ScenarioContractError) as ctx:
+            select_scenarios(scenarios, ["T999"])
+        self.assertIn("T999", str(ctx.exception))
+
+    def test_parse_args_accepts_repeatable_scenario_filter(self):
+        args = parse_args(
+            [
+                "--soffice", "/opt/libreoffice7.4/program/soffice",
+                "--monolith", "dist/current.bas",
+                "--scenario", "T006",
+                "--scenario", "T010",
+            ]
+        )
+        self.assertEqual(["T006", "T010"], args.scenario)
+
+    def test_setup_discovery_is_generic_and_sorted(self):
+        with TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            setup = directory / "setup"
+            setup.mkdir()
+            second = setup / "Zeta.csv"
+            first = setup / "Alpha.csv"
+            second.write_text("Key,Value\nB,2\n", encoding="utf-8")
+            first.write_text("Key,Value\nA,1\n", encoding="utf-8")
+            self.assertEqual((first, second), discover_setup_sheets(directory))
+
+    def test_prepare_document_materializes_arbitrary_setup_sheets(self):
+        with TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            model = directory / "MODELE.csv"
+            target = directory / "TARGET.csv"
+            setup = directory / "setup"
+            setup.mkdir()
+            alpha = setup / "Alpha_Config.csv"
+            model.write_text("ProductId,Value\nP001,model\n", encoding="utf-8")
+            target.write_text("ProductId,Value\nP001,target\n", encoding="utf-8")
+            alpha.write_text("Key,Value\nA,1\n", encoding="utf-8")
+            scenario = Scenario(
+                "T000", "setup", directory, model, target, directory / "expected.json",
+                (alpha,),
+            )
+            document = FakeDocument({"Sheet1": FakeSheet([])})
+
+            prepare_document(document, scenario)
+
+            self.assertEqual(
+                ("MODELE", "TARGET", "Alpha_Config"),
+                document.Sheets.getElementNames(),
+            )
+            alpha_sheet = document.Sheets.getByName("Alpha_Config")
+            self.assertEqual("Key", alpha_sheet.getCellByPosition(0, 0).String)
+            self.assertEqual("1", alpha_sheet.getCellByPosition(1, 1).String)
+
+    def test_prepare_document_rejects_reserved_setup_sheet_names(self):
+        with TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            model = directory / "MODELE.csv"
+            target = directory / "TARGET.csv"
+            setup = directory / "setup"
+            setup.mkdir()
+            model.write_text("ProductId\nP001\n", encoding="utf-8")
+            target.write_text("ProductId\nP001\n", encoding="utf-8")
+            for reserved_name in ("MODELE", "target"):
+                reserved = setup / f"{reserved_name}.csv"
+                reserved.write_text("ProductId\nP999\n", encoding="utf-8")
+                scenario = Scenario(
+                    "T000", "reserved", directory, model, target,
+                    directory / "expected.json", (reserved,),
+                )
+                document = FakeDocument({"Sheet1": FakeSheet([])})
+
+                with self.assertRaises(ScenarioContractError):
+                    prepare_document(document, scenario)
+
+                self.assertEqual(("Sheet1",), document.Sheets.getElementNames())
 
     def test_strict_contract_detects_any_field_difference(self):
         expected = {
