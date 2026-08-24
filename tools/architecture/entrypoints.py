@@ -19,6 +19,7 @@ USER_DOCUMENTS = (
 
 TECHNICAL_ENTRYPOINTS = {
     ("CompareFramework_CI.bas", "CF_CI_RuntimeSmoke"),
+    ("Modes/CF_ModeReference.bas", "CF_CI_RunScenario"),
 }
 
 
