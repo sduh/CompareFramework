@@ -44,12 +44,29 @@ jobs:
           "${UNO_PYTHON}" -c 'import uno; print("PyUNO import OK")'
 
       - name: Run reference structural-alert runtime regressions
+        shell: bash
         run: |
           set -euo pipefail
-          monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
-          test -n "${monolith}"
-          export CF_MONOLITH="${monolith}"
-          PYTHONPATH=".:${PYTHONPATH:-}" "${UNO_PYTHON}" tests/test_d2_04_2_reference_runtime.py
+          diagnostics_dir="build/d2-04-2"
+          mkdir -p "${diagnostics_dir}"
+          runtime_log="${diagnostics_dir}/reference-runtime.log"
+          set +e
+          (
+            set -euo pipefail
+            set -x
+            monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)" || exit $?
+            test -n "${monolith}" || exit $?
+            export CF_MONOLITH="${monolith}"
+            export CF_D2042_ARTIFACT_ROOT="${diagnostics_dir}/reference-runtime"
+            PYTHONPATH=".:${PYTHONPATH:-}" "${UNO_PYTHON}" \
+              tests/test_d2_04_2_reference_runtime.py -v
+          ) 2>&1 | tee "${runtime_log}"
+          statuses=("${PIPESTATUS[@]}")
+          set -e
+          if (( statuses[0] != 0 )); then
+            exit "${statuses[0]}"
+          fi
+          exit "${statuses[1]}"
 
       - name: Provision French locale for typed-value runtime regression
         run: sudo locale-gen fr_FR.UTF-8
