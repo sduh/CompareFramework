@@ -51,6 +51,20 @@ jobs:
           export CF_MONOLITH="${monolith}"
           PYTHONPATH=".:${PYTHONPATH:-}" "${UNO_PYTHON}" tests/test_d2_04_2_reference_runtime.py
 
+      - name: Provision French locale for typed-value runtime regression
+        run: sudo locale-gen fr_FR.UTF-8
+
+      - name: Run typed-value runtime regression under C and French locales
+        run: |
+          set -euo pipefail
+          monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
+          test -n "${monolith}"
+          export CF_MONOLITH="${monolith}"
+          for locale_name in C.UTF-8 fr_FR.UTF-8; do
+            LC_ALL="${locale_name}" LANG="${locale_name}" \
+              PYTHONPATH=".:${PYTHONPATH:-}" "${UNO_PYTHON}" tests/test_d2_04_2_typed_runtime.py
+          done
+
       - name: Run T001-T010 through real LibreOffice and UNO
         run: |
           set -euo pipefail

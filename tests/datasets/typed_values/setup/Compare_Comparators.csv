@@ -1,0 +1,5 @@
+Enabled,Profile,Column,Comparator,Tolerance,Comment
+TRUE,GLOBAL,Amount,CURRENCY,0,Exact currency equivalence
+TRUE,GLOBAL,Rate,PERCENT,0,Exact percent equivalence
+TRUE,GLOBAL,Enabled,BOOLEAN,,Boolean vocabulary equivalence
+TRUE,GLOBAL,Date,DATE,0,Exact date equivalence

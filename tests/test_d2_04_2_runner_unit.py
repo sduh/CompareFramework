@@ -193,6 +193,60 @@ class D2042RunnerUnitTests(unittest.TestCase):
 
                 self.assertEqual(("Sheet1",), document.Sheets.getElementNames())
 
+    def test_t010_setup_fixtures_materialize_exact_document_local_sheets(self):
+        """Omitting T010's setup CSVs must not silently use default comparators."""
+        scenario = next(
+            item
+            for item in discover_scenarios(ROOT / "tests" / "datasets")
+            if item.scenario_id == "T010"
+        )
+        self.assertEqual(
+            ("Compare_Comparators", "Compare_Config"),
+            tuple(path.stem for path in scenario.setup_sheets),
+        )
+
+        document = FakeDocument({"Sheet1": FakeSheet([])})
+        prepare_document(document, scenario)
+
+        self.assertEqual(
+            ("MODELE", "TARGET", "Compare_Comparators", "Compare_Config"),
+            document.Sheets.getElementNames(),
+        )
+        self.assertEqual(
+            [
+                ["Enabled", "Profile", "Column", "Comparator", "Tolerance", "Comment"],
+                ["TRUE", "GLOBAL", "Amount", "CURRENCY", "0", "Exact currency equivalence"],
+                ["TRUE", "GLOBAL", "Rate", "PERCENT", "0", "Exact percent equivalence"],
+                ["TRUE", "GLOBAL", "Enabled", "BOOLEAN", "", "Boolean vocabulary equivalence"],
+                ["TRUE", "GLOBAL", "Date", "DATE", "0", "Exact date equivalence"],
+            ],
+            document.Sheets.getByName("Compare_Comparators").rows,
+        )
+        self.assertEqual(
+            [
+                ["Parametre", "Valeur", "Description"],
+                ["IGNORE_CASE", "TRUE", "Ignore case for typed equivalence scenario"],
+            ],
+            document.Sheets.getByName("Compare_Config").rows,
+        )
+
+        unrelated_document = FakeDocument({"Sheet1": FakeSheet([])})
+        prepare_document(
+            unrelated_document,
+            Scenario(
+                "T000",
+                "no-setup",
+                scenario.directory,
+                scenario.model_csv,
+                scenario.target_csv,
+                scenario.expected_json,
+            ),
+        )
+        self.assertEqual(
+            ("MODELE", "TARGET"),
+            unrelated_document.Sheets.getElementNames(),
+        )
+
     def test_strict_contract_detects_any_field_difference(self):
         expected = {
             "scenario_id": "T001",

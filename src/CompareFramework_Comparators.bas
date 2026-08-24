@@ -137,27 +137,16 @@ End Function
 
 Private Function CF_TryParseNumber(v As Variant, ByRef result As Double) As Boolean
     On Error GoTo Fail
-    Dim s As String
-    If IsNumeric(v) Then result = CDbl(v) : CF_TryParseNumber = True : Exit Function
-    s = Trim(CStr(v))
-    If s = "" Then GoTo Fail
-    s = Replace(s, Chr(160), "")
-    s = Replace(s, " ", "")
-    s = Replace(s, "€", "")
-    s = Replace(s, "$", "")
-    s = Replace(s, "£", "")
-    s = Replace(s, "%", "")
-    If InStr(s, ",") > 0 And InStr(s, ".") > 0 Then
-        If InStrRev(s, ",") > InStrRev(s, ".") Then
-            s = Replace(s, ".", "")
-            s = Replace(s, ",", ".")
-        Else
-            s = Replace(s, ",", "")
-        End If
-    ElseIf InStr(s, ",") > 0 Then
-        s = Replace(s, ",", ".")
+    If CF_TryParseCanonicalNumber(Trim(CStr(v)), result) Then
+        CF_TryParseNumber = True
+        Exit Function
     End If
-    result = CDbl(s)
+    If IsNumeric(v) Then
+        result = CDbl(v)
+        CF_TryParseNumber = True
+        Exit Function
+    End If
+    result = CDbl(CF_NormalizeLegacyNumber(Trim(CStr(v))))
     CF_TryParseNumber = True
     Exit Function
 Fail:
@@ -167,6 +156,11 @@ End Function
 
 Private Function CF_TryParseDateSerial(v As Variant, ByRef result As Double) As Boolean
     On Error GoTo Fail
+    If CF_TryParseCanonicalDate(Trim(CStr(v)), result) Then
+        CF_TryParseDateSerial = True
+        Exit Function
+    End If
+    If CF_HasCanonicalDateShape(Trim(CStr(v))) Then GoTo Fail
     If IsDate(v) Then result = CDbl(CDate(v)) : CF_TryParseDateSerial = True : Exit Function
     If IsNumeric(v) Then
         result = CDbl(v)
@@ -179,6 +173,158 @@ Private Function CF_TryParseDateSerial(v As Variant, ByRef result As Double) As 
 Fail:
     result = 0
     CF_TryParseDateSerial = False
+End Function
+
+Private Function CF_TryParseDigits(valueText As String, ByRef result As Double) As Boolean
+    Dim i As Long, digit As Long
+
+    If valueText = "" Then Exit Function
+    result = 0
+    For i = 1 To Len(valueText)
+        digit = Asc(Mid(valueText, i, 1)) - Asc("0")
+        If digit < 0 Or digit > 9 Then Exit Function
+        result = result * 10 + digit
+    Next i
+    CF_TryParseDigits = True
+End Function
+
+Private Function CF_TryParseCanonicalNumber(valueText As String, ByRef result As Double) As Boolean
+    Dim s As String, wholeText As String, fractionText As String
+    Dim decimalAt As Long, wholeValue As Double, fractionValue As Double
+    Dim scale As Double, signValue As Double, i As Long, ch As String
+
+    s = Replace(Replace(Trim(valueText), Chr(160), ""), " ", "")
+    If s = "" Then Exit Function
+    If CF_IsNumericMarker(Right(s, 1)) Then s = Left(s, Len(s) - 1)
+    If s = "" Then Exit Function
+
+    signValue = 1
+    If Left(s, 1) = "-" Then
+        signValue = -1
+        s = Mid(s, 2)
+    ElseIf Left(s, 1) = "+" Then
+        s = Mid(s, 2)
+    End If
+    If s = "" Then Exit Function
+
+    For i = 1 To Len(s)
+        ch = Mid(s, i, 1)
+        If ch = "." Or ch = "," Then
+            If decimalAt > 0 Then Exit Function
+            decimalAt = i
+        ElseIf ch < "0" Or ch > "9" Then
+            Exit Function
+        End If
+    Next i
+
+    wholeText = s
+    fractionText = ""
+    If decimalAt > 0 Then
+        wholeText = Left(s, decimalAt - 1)
+        fractionText = Mid(s, decimalAt + 1)
+    End If
+    If Not CF_TryParseDigits(wholeText, wholeValue) Then Exit Function
+    scale = 1
+    If fractionText <> "" Then
+        If Not CF_TryParseDigits(fractionText, fractionValue) Then Exit Function
+        For i = 1 To Len(fractionText)
+            scale = scale * 10
+        Next i
+    ElseIf decimalAt > 0 Then
+        Exit Function
+    End If
+
+    result = signValue * (wholeValue + fractionValue / scale)
+    CF_TryParseCanonicalNumber = True
+End Function
+
+Private Function CF_NormalizeLegacyNumber(valueText As String) As String
+    Dim s As String
+    s = Replace(Replace(Trim(valueText), Chr(160), ""), " ", "")
+    s = Replace(s, "€", "")
+    s = Replace(s, "$", "")
+    s = Replace(s, "£", "")
+    s = Replace(s, "%", "")
+    If InStr(s, ",") > 0 And InStr(s, ".") > 0 Then
+        If CF_LastCharacterPosition(s, ",") > CF_LastCharacterPosition(s, ".") Then
+            s = Replace(s, ".", "")
+            s = Replace(s, ",", ".")
+        Else
+            s = Replace(s, ",", "")
+        End If
+    ElseIf InStr(s, ",") > 0 Then
+        s = Replace(s, ",", ".")
+    End If
+    CF_NormalizeLegacyNumber = s
+End Function
+
+Private Function CF_IsNumericMarker(valueText As String) As Boolean
+    CF_IsNumericMarker = (valueText = "€" Or valueText = "$" Or valueText = "£" Or valueText = "%")
+End Function
+
+Private Function CF_LastCharacterPosition(valueText As String, character As String) As Long
+    Dim i As Long
+
+    For i = Len(valueText) To 1 Step -1
+        If Mid(valueText, i, 1) = character Then
+            CF_LastCharacterPosition = i
+            Exit Function
+        End If
+    Next i
+End Function
+
+Private Function CF_TryParseCanonicalDate(valueText As String, ByRef result As Double) As Boolean
+    On Error GoTo Fail
+    Dim parts As Variant
+    Dim yearValue As Double, monthValue As Double, dayValue As Double
+    Dim parsedDate As Date
+
+    If InStr(valueText, "-") > 0 Then
+        parts = Split(valueText, "-")
+        If UBound(parts) <> 2 Then GoTo Fail
+        If Len(parts(0)) <> 4 Or Len(parts(1)) <> 2 Or Len(parts(2)) <> 2 Then GoTo Fail
+        If Not CF_TryParseDigits(parts(0), yearValue) Then GoTo Fail
+        If Not CF_TryParseDigits(parts(1), monthValue) Then GoTo Fail
+        If Not CF_TryParseDigits(parts(2), dayValue) Then GoTo Fail
+    ElseIf InStr(valueText, "/") > 0 Then
+        parts = Split(valueText, "/")
+        If UBound(parts) <> 2 Then GoTo Fail
+        If Len(parts(0)) <> 2 Or Len(parts(1)) <> 2 Or Len(parts(2)) <> 4 Then GoTo Fail
+        If Not CF_TryParseDigits(parts(0), dayValue) Then GoTo Fail
+        If Not CF_TryParseDigits(parts(1), monthValue) Then GoTo Fail
+        If Not CF_TryParseDigits(parts(2), yearValue) Then GoTo Fail
+    Else
+        GoTo Fail
+    End If
+
+    parsedDate = DateSerial(CLng(yearValue), CLng(monthValue), CLng(dayValue))
+    If Year(parsedDate) <> CLng(yearValue) Or Month(parsedDate) <> CLng(monthValue) Or Day(parsedDate) <> CLng(dayValue) Then GoTo Fail
+    result = CDbl(parsedDate)
+    CF_TryParseCanonicalDate = True
+    Exit Function
+Fail:
+    result = 0
+    CF_TryParseCanonicalDate = False
+End Function
+
+Private Function CF_HasCanonicalDateShape(valueText As String) As Boolean
+    Dim parts As Variant
+    Dim partValue As Double
+    If InStr(valueText, "-") > 0 Then
+        parts = Split(valueText, "-")
+        If UBound(parts) <> 2 Then Exit Function
+        If Len(parts(0)) <> 4 Or Len(parts(1)) <> 2 Or Len(parts(2)) <> 2 Then Exit Function
+    ElseIf InStr(valueText, "/") > 0 Then
+        parts = Split(valueText, "/")
+        If UBound(parts) <> 2 Then Exit Function
+        If Len(parts(0)) <> 2 Or Len(parts(1)) <> 2 Or Len(parts(2)) <> 4 Then Exit Function
+    Else
+        Exit Function
+    End If
+    If Not CF_TryParseDigits(parts(0), partValue) Then Exit Function
+    If Not CF_TryParseDigits(parts(1), partValue) Then Exit Function
+    If Not CF_TryParseDigits(parts(2), partValue) Then Exit Function
+    CF_HasCanonicalDateShape = True
 End Function
 
 Private Function CF_BooleanCode(v As Variant) As Integer
