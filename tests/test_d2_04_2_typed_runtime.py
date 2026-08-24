@@ -52,28 +52,31 @@ class D2042TypedRuntimeTests(unittest.TestCase):
         """A permissive parser must not equate malformed separators or invalid dates."""
         headers = [
             "ProductId", "Amount", "Rate", "Enabled", "Date", "BadComma",
-            "BadMixed", "Legacy", "InvalidIso", "InvalidSlash",
+            "BadMixed", "BadMarker", "Legacy", "PrefixCurrency",
+            "ScientificDecimal", "HugeScientific", "InvalidIso", "InvalidSlash",
         ]
         model_rows = [
             headers,
             [
                 "P001", "-10.50 €", "10%", "TRUE", "2026-02-28", "12.3",
-                "1234567.89", "1000", "2026-02-28", "28/02/2026",
+                "123.4", "0.1", "1000", "10.5", "1000", "0",
+                "2026-02-28", "28/02/2026",
             ],
             [
                 "P002", "11", "20%", "TRUE", "2026-07-01", "0", "0",
-                "1000", "2026-01-01", "01/01/2026",
+                "0", "1000", "0", "0", "0", "2026-01-01", "01/01/2026",
             ],
         ]
         target_rows = [
             headers,
             [
                 "P001", "-10,50", "0.1", "Oui", "28/02/2026", "1,2,3",
-                "1.234,567,89", "1E3%", "2026-02-30", "31/02/2026",
+                "1.2.3,4", "10%%", "1E3%", "$10.50", "1.0E3%",
+                "0E999999999%", "2026-02-30", "31/02/2026",
             ],
             [
                 "P002", "10", "0.1", "FALSE", "02/07/2026", "0", "0",
-                "1E3%", "2026-01-01", "01/01/2026",
+                "0", "1E3%", "0", "0", "0", "2026-01-01", "01/01/2026",
             ],
         ]
         rules = [
@@ -84,7 +87,11 @@ class D2042TypedRuntimeTests(unittest.TestCase):
             ["TRUE", "GLOBAL", "Date", "DATE", "0", "native test"],
             ["TRUE", "GLOBAL", "BadComma", "CURRENCY", "0", "native test"],
             ["TRUE", "GLOBAL", "BadMixed", "CURRENCY", "0", "native test"],
+            ["TRUE", "GLOBAL", "BadMarker", "PERCENT", "0", "native test"],
             ["TRUE", "GLOBAL", "Legacy", "CURRENCY", "0", "native test"],
+            ["TRUE", "GLOBAL", "PrefixCurrency", "CURRENCY", "0", "native test"],
+            ["TRUE", "GLOBAL", "ScientificDecimal", "CURRENCY", "0", "native test"],
+            ["TRUE", "GLOBAL", "HugeScientific", "CURRENCY", "0", "native test"],
             ["TRUE", "GLOBAL", "InvalidIso", "DATE", "0", "native test"],
             ["TRUE", "GLOBAL", "InvalidSlash", "DATE", "0", "native test"],
         ]
@@ -119,12 +126,14 @@ class D2042TypedRuntimeTests(unittest.TestCase):
 
         self.assertEqual("ECARTS", actual["decision"])
         self.assertEqual(2, actual["modified_rows"])
-        self.assertEqual(8, actual["modified_cells"])
+        self.assertEqual(10, actual["modified_cells"])
         self.assertNotIn(("P001", "Amount"), changes)
         self.assertNotIn(("P001", "Rate"), changes)
         self.assertNotIn(("P001", "Enabled"), changes)
         self.assertNotIn(("P001", "Date"), changes)
         self.assertNotIn(("P001", "Legacy"), changes)
+        self.assertNotIn(("P001", "PrefixCurrency"), changes)
+        self.assertNotIn(("P001", "ScientificDecimal"), changes)
         for column, comparator in (
             ("Amount", "CURRENCY [GLOBAL/AMOUNT]"),
             ("Rate", "PERCENT [GLOBAL/RATE]"),
@@ -136,9 +145,12 @@ class D2042TypedRuntimeTests(unittest.TestCase):
         for column, comparator in (
             ("BadComma", "CURRENCY [GLOBAL/BADCOMMA]"),
             ("BadMixed", "CURRENCY [GLOBAL/BADMIXED]"),
+            ("BadMarker", "PERCENT [GLOBAL/BADMARKER]"),
+            ("HugeScientific", "CURRENCY [GLOBAL/HUGESCIENTIFIC]"),
         ):
             self.assertIn(("P001", column), changes)
             self.assertIn(comparator, changes[("P001", column)])
+            self.assertIn("parse impossible", changes[("P001", column)])
         for column, comparator in (
             ("InvalidIso", "DATE [GLOBAL/INVALIDISO]"),
             ("InvalidSlash", "DATE [GLOBAL/INVALIDSLASH]"),
