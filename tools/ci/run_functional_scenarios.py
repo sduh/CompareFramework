@@ -105,7 +105,7 @@ class Scenario:
     name: str
     directory: Path
     model_csv: Path
-    target_csv: Path
+    target_csv: Path | None
     expected_json: Path
     setup_sheets: tuple[Path, ...] = ()
 
@@ -323,12 +323,13 @@ def prepare_document(document, scenario: Scenario) -> None:
             raise ScenarioUnoError("new Calc document contains no sheet")
         first = sheets.getByName(names[0])
         first.Name = "MODELE"
-        if sheets.hasByName("TARGET"):
-            sheets.removeByName("TARGET")
-        sheets.insertNewByName("TARGET", sheets.getCount())
-        target = sheets.getByName("TARGET")
         write_tokens_to_sheet(first, read_csv_tokens(scenario.model_csv))
-        write_tokens_to_sheet(target, read_csv_tokens(scenario.target_csv))
+        if scenario.target_csv is not None:
+            if sheets.hasByName("TARGET"):
+                sheets.removeByName("TARGET")
+            sheets.insertNewByName("TARGET", sheets.getCount())
+            target = sheets.getByName("TARGET")
+            write_tokens_to_sheet(target, read_csv_tokens(scenario.target_csv))
         for setup_csv in scenario.setup_sheets:
             sheet_name = setup_csv.stem
             if sheets.hasByName(sheet_name):

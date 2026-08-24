@@ -43,6 +43,14 @@ jobs:
         run: |
           "${UNO_PYTHON}" -c 'import uno; print("PyUNO import OK")'
 
+      - name: Run reference structural-alert runtime regressions
+        run: |
+          set -euo pipefail
+          monolith="$(find dist -maxdepth 1 -type f -name '*.bas' | sort | head -n 1)"
+          test -n "${monolith}"
+          export CF_MONOLITH="${monolith}"
+          PYTHONPATH=".:${PYTHONPATH:-}" "${UNO_PYTHON}" tests/test_d2_04_2_reference_runtime.py
+
       - name: Run T001-T010 through real LibreOffice and UNO
         run: |
           set -euo pipefail

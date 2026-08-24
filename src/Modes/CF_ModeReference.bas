@@ -69,6 +69,7 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
     Dim totalDuplicates As Long
     Dim totalIssues As Long
     Dim previousAliases As String
+    Dim targetEligibilityIssueReported As Boolean
 
     referenceSheetName = Trim(CStr(referenceSheetName))
     keyColumnName = Trim(CStr(keyColumnName))
@@ -170,13 +171,14 @@ Public Sub CF_RunAgainstReference(referenceSheetName As String, keyColumnName As
 
                 reportRow = reportRow + 1
                 totalIssues = totalIssues + 1
+                targetEligibilityIssueReported = True
                 CF_ReferencePlanSetStatus targetName, "IGNOREE", _
                     "Colonne identifiant absente"
             End If
         End If
     Next i
 
-    If targetCount = 0 Then
+    If targetCount = 0 And Not targetEligibilityIssueReported Then
         WriteReportRow _
             oReport, _
             reportRow, _
