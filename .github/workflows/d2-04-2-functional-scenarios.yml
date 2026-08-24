@@ -58,15 +58,24 @@ jobs:
             test -n "${monolith}" || exit $?
             export CF_MONOLITH="${monolith}"
             export CF_D2042_ARTIFACT_ROOT="${diagnostics_dir}/reference-runtime"
+            set +x
+            printf '%s\n' '[reference-runtime] unittest output begins'
             PYTHONPATH=".:${PYTHONPATH:-}" "${UNO_PYTHON}" \
               tests/test_d2_04_2_reference_runtime.py -v
           ) 2>&1 | tee "${runtime_log}"
           statuses=("${PIPESTATUS[@]}")
           set -e
-          if (( statuses[0] != 0 )); then
-            exit "${statuses[0]}"
+          if (( statuses[0] != 0 || statuses[1] != 0 )); then
+            runtime_tail="$(awk '/^\[reference-runtime\] unittest output begins$/ { capture = 1; next } capture { print }' "${runtime_log}" 2>/dev/null | tail -n 80 || true)"
+            runtime_tail="${runtime_tail//%/%25}"
+            runtime_tail="${runtime_tail//$'\r'/%0D}"
+            runtime_tail="${runtime_tail//$'\n'/%0A}"
+            printf '%s\n' "::error title=Reference runtime regression failed::${runtime_tail:-No runtime log available.}" || true
+            if (( statuses[0] != 0 )); then
+              exit "${statuses[0]}"
+            fi
+            exit "${statuses[1]}"
           fi
-          exit "${statuses[1]}"
 
       - name: Provision French locale for typed-value runtime regression
         run: sudo locale-gen fr_FR.UTF-8
